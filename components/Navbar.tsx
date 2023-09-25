@@ -24,7 +24,7 @@ function Navbar() {
           <Link href="/academics" >Academics</Link>
           <ul className="p-2">
             <li><Link href="/academics/studentPortal" >Student portal</Link></li>
-            <li><Link href="/academics/tutorPortal" >Tutor Portal </Link></li>
+            <li><Link href="/academics/instructorPortal" >Tutor Portal </Link></li>
             <li><Link href="/academics/adminPortal">Admin portal</Link></li>
           </ul>
         </li>
@@ -42,7 +42,7 @@ function Navbar() {
           <summary><Link href="/academics" >Academics</Link></summary>
           <ul className="p-2">
             <li><Link href="/academics/studentPortal" >Student portal</Link></li>
-            <li><Link href="/academics/tutorPortal" >Tutor Portal </Link></li>
+            <li><Link href="/academics/instructorPortal" >Tutor Portal </Link></li>
             <li><Link href="/academics/adminPortal">Admin portal</Link></li>
           </ul>
         </details>
