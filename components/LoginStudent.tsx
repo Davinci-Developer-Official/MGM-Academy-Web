@@ -21,7 +21,7 @@ function LoginStudent(props: LoginStudentProps) {
     if(email=="temp@gmail.com"&& password=="temp"){
       setSuccessful(true);
     }else{
-      alert("insecure")
+      console.log("insecure")
     }
     const loginSuccessful = sucessful  ///await yourLoginFunction(username, password);
 
