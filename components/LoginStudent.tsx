@@ -52,7 +52,7 @@ function LoginStudent(props: LoginStudentProps) {
               <span className="label-text">Email</span>
             </label>
             <input type="email"
-             placeholder="email" 
+             placeholder="temp@gmail.com" 
              onChange={(e) => setEmail(e.target.value)}
              className="input input-bordered" />
           </div>
@@ -61,7 +61,7 @@ function LoginStudent(props: LoginStudentProps) {
               <span className="label-text">Password</span>
             </label>
             <input type="text" 
-            placeholder="password" 
+            placeholder="temp" 
             onChange={(e) => setPassword(e.target.value)}
             className="input input-bordered" />
             <label className="label">
