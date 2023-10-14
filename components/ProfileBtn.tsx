@@ -1,6 +1,7 @@
 import React from 'react'
 import ba from "../public/profile/vlcsnap-2022-06-29-14h22m30s920.png"
 import Image from 'next/image'
+import Link from 'next/link'
 
 function ProfileBtn() {
   return (
@@ -21,7 +22,7 @@ function ProfileBtn() {
           </a>
         </li>
         <li><a>Settings</a></li>
-        <li><a>Logout</a></li>
+        <li><Link href="/academics/studentPortal" >Logout</Link></li>
       </ul>
     </div>
   )

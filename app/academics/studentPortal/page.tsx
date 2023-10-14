@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar';
 import RegisterStudent from '@/components/RegisterStudent';
 import React, { useState } from 'react'
 
-function page() {
+function Page() {
 
   const [login, setLogin] = useState<boolean>(true);
  
@@ -18,4 +18,4 @@ function page() {
     </div>  )
 }
 
-export default page
+export default Page
