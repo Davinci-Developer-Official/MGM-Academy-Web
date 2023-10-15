@@ -39,13 +39,13 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
           backgroundColor:"grey",         
         }} className='rounded-tl-md rounded-tr-md ' /> 
         <div className='flex flex-row h-[60px]  justify-between bg-blue-300 rounded-bl-md rounded-br-md '   >
-         <div className='flex flex-col ml-2 ' >
+         <div className='flex flex-col ml-2 w-[80%] ' >
          <h2 className='text-base text-black pt-2 ' > {currentItem.courseName}</h2>
          <p className='text-sm text-black ' >Instructed by: {currentItem.courseInstructor}</p>
          </div>
-         <button className='btn btn-ghost mt-1 mr-1 text-black  ' >
+         <button className='btn btn-success mt-1 mr-1 sm:text-sm text-black  w-[20%] ' >
           view course
-          <FaArrowRight/>
+          
          </button>
         </div>      
         </div>
@@ -54,11 +54,11 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
     <button
       key={item.id}
       onClick={() => setCurrentItemIndex(index)}
-      className={`lower-nav-button mt-4 ${currentItemIndex === index ? 'active' : ''}`}
+      className={`lower-nav-button mt-2 mb-2 ${currentItemIndex === index ? 'active' : ''}`}
     >
       <FaCircle
         className={`lower-nav-icon ml-1 h-2 ${
-          currentItemIndex === index ? 'active text-blue-300' : 'hover:opacity-70'
+          currentItemIndex === index ? 'active text-green-600' : 'hover:opacity-70'
         }`}
       />
     </button>
