@@ -11,7 +11,7 @@ export default function Home() {
   <div style={{
     width:"100%",
   }} >
-  {/*<DarkModeButton/>*/}
+  <DarkModeButton/>
   <Navbar/>
   <AboutDashBoard/>
   <Footer/>

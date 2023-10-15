@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import ba from "../public/profile/vlcsnap-2022-06-29-14h23m45s921.png"
 import Image from 'next/image';
-import { FaBars, FaBook, FaCaretRight, FaCog, FaEllipsisV, FaGraduationCap, FaHome, FaSave, FaWrench } from 'react-icons/fa';
+import { FaBars, FaBook, FaCaretRight, FaChevronCircleRight, FaCog, FaEllipsisV, FaGraduationCap, FaHome, FaSave, FaWrench } from 'react-icons/fa';
 import DarkModeButton from './DarkModeButton';
 import CartBtn from './CartBtn';
 import ProfileBtn from './ProfileBtn';
@@ -21,7 +21,7 @@ const DrawerStudent: React.FC = () => {
   <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
   <div className="drawer-content flex flex-col items-left justify-center">
     {/* Page content here */}
-    <label htmlFor="my-drawer-2" className="btn btn-ghost drawer-button lg:hidden fixed mt-20 ml-2 "> <FaBars size={20} /> </label>
+    <label htmlFor="my-drawer-2" className="btn btn-ghost drawer-button lg:hidden fixed mt-40 ml-2 "> <FaChevronCircleRight size={20} /> </label>
   
   </div> 
   <div className="drawer-side  ">
@@ -29,7 +29,7 @@ const DrawerStudent: React.FC = () => {
     <ul className="menu overflow-auto p-4 w-80 min-h-full bg-green-600 text-base-content"  >
       {/* Sidebar content here */}
       <a className="btn btn-ghost normal-case text-xl mt-2 "> MGM Institute </a>
-     {/*<DarkModeButton/>*/}
+      <DarkModeButton/>
       
       <li style={{
         marginTop:"20%"
