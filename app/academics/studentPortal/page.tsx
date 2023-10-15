@@ -13,7 +13,7 @@ function Page() {
   return (
     <div>
       <Navbar/>
-      <DarkModeButton/>
+      {/*<DarkModeButton/>*/}
       {login ? <LoginStudent setlogin={setLogin} /> : <RegisterStudent setlogin={setLogin} />}
     </div>  )
 }

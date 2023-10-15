@@ -24,12 +24,12 @@ const DrawerStudent: React.FC = () => {
     <label htmlFor="my-drawer-2" className="btn btn-ghost drawer-button lg:hidden fixed mt-20 ml-2 "> <FaBars size={20} /> </label>
   
   </div> 
-  <div className="drawer-side">
+  <div className="drawer-side  ">
     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label> 
-    <ul className="menu p-4 w-80 min-h-full bg-green-600 text-base-content"  >
+    <ul className="menu overflow-auto p-4 w-80 min-h-full bg-green-600 text-base-content"  >
       {/* Sidebar content here */}
       <a className="btn btn-ghost normal-case text-xl mt-2 "> MGM Institute </a>
-      <DarkModeButton/>
+     {/*<DarkModeButton/>*/}
       
       <li style={{
         marginTop:"20%"
