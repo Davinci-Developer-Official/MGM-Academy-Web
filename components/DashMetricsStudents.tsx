@@ -1,6 +1,12 @@
-import React from 'react'
+"use client";
+import React, { useState } from 'react'
 
 function DashMetricsStudents() {
+  const[coursesTakenNo,setCoursesTakenNo]=useState(0)
+  const[coursesCompletedNo,setCoursesCompletedNo]=useState(0)
+  const[certificatesEarnedNo,setCertificatesEarnedNo]=useState(0)
+  const[hoursSpentNo,sethoursSpentNo]=useState(0)
+
   return (
     <div className='h-[450px] bg-base rounded-md border border-black flex flex-col  ' >
         <p className='text-center  text-base h-[50px] pt-[10px] ' > Progress Tracker </p>
@@ -11,7 +17,7 @@ function DashMetricsStudents() {
             Courses Taken
           </div>
           <div className='h-[80%] bg-base w-full text-center  pt-[20%] rounded-br-md rounded-bl-md text-base  ' >
-            10
+            {coursesTakenNo}
           </div>
         </label>
         <label className='w-[200px] bg-base h-[80%] my-auto rounded-md border border-black '  >
@@ -19,7 +25,7 @@ function DashMetricsStudents() {
             Courses Completed
           </div>
           <div className='h-[80%] bg-base w-full text-center  pt-[20%] rounded-br-md rounded-bl-md text-base  ' >
-            0
+            {coursesCompletedNo}
           </div>
         </label>
         </div>
@@ -30,7 +36,7 @@ function DashMetricsStudents() {
             Certificates Earned
           </div>
           <div className='h-[80%] bg-base w-full text-center  pt-[20%] rounded-br-md rounded-bl-md text-base  ' >
-            10
+            {certificatesEarnedNo}
           </div>
         </label>
         <label className='w-[200px] bg-base h-[80%] my-auto rounded-md border border-black  '  >
@@ -38,7 +44,7 @@ function DashMetricsStudents() {
             Hours Spent
           </div>
           <div className='h-[80%] bg-base w-full text-center  pt-[20%] rounded-br-md rounded-bl-md text-base  ' >
-            10
+            {hoursSpentNo}
           </div>
         </label>
         </div>

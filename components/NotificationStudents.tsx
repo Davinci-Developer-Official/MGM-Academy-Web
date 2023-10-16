@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaBell, FaCalendar, FaCaretLeft, FaChevronCircleLeft, FaChevronLeft, FaRedo } from 'react-icons/fa';
+import { FaBell, FaCalendar, FaCalendarWeek, FaCaretLeft, FaChevronCircleLeft, FaChevronLeft, FaRedo } from 'react-icons/fa';
 
 function NotificationStudents() {
   // Dummy data for notifications and upcoming assignments
@@ -33,7 +33,7 @@ function NotificationStudents() {
           <div  className='h-[400px] w-full  ' >
           <div className=" normal-case text-white bg-green-500 text-xl flex flex-row justify-evenly rounded-md "> 
             <p className='p-[10px] ' > Notifications</p>
-            <button className='btn btn-ghost' > <FaRedo/></button> 
+            <button className='btn btn-ghost' > <FaRedo className="text-black" /></button> 
           </div>
           <li >
           
@@ -48,7 +48,7 @@ function NotificationStudents() {
           <div className='h-[400px] w-full  ' >
           <div className=" normal-case text-white  bg-green-500 text-lg flex flex-row justify-evenly rounded-md "> 
             <p className='p-[10px]' > Upcomming Assignments</p>
-            <button className='btn btn-ghost' > <FaCalendar/></button> 
+            <button className='btn btn-ghost' > <FaCalendarWeek className="text-black"  /></button> 
           </div> 
           <li className='h-[400px] w-full ' >
           
