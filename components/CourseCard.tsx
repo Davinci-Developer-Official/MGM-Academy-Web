@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import React, { useState } from 'react';
+import { FaCartPlus } from 'react-icons/fa';
 
 interface Course {
   id: number;
@@ -24,7 +25,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
   };
 
   return (
-    <div className="course-card bg-green-700 p-4  rounded-md sm:w-[350px] sm:h-[350px] md:w-[300px] md:h-[350px] lg:w-[400px] lg:h-[400px] mx-auto my-2  ">
+    <div className="course-card bg-green-700 p-4  rounded-md sm:w-[350px] sm:h-fit md:w-[300px] md:h-fit lg:w-[400px] lg:h-fit mx-auto my-2  ">
       <div className="course-info">
         <div className="course-details text-black ">
           <h3>{course.courseName}</h3>
@@ -36,13 +37,13 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
         <p className={expanded ? 'expanded' : 'collapsed'}>
           {course.briefOverview}
         </p>
-        <button onClick={toggleOverview}>
+        <button onClick={toggleOverview} className='text-white' >
           {expanded ? 'Show Less' : 'Show More'}
         </button>
       </div>
       <div className="purchase text-black ">
-        <p>${course.price}</p>
-        <button className="purchase-button">Purchase Course</button>
+        <p className='text-xl text-white  ' >${course.price}</p>
+        <button className="purchase-button  flex flex-row btn btn-warning "><FaCartPlus size={20} /> Purchase Course</button>
       </div>
     </div>
   );
