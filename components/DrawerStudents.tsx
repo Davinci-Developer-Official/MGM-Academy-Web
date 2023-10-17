@@ -33,10 +33,10 @@ const DrawerStudent: React.FC = () => {
       
       <li style={{
         marginTop:"20%"
-      }} className={` rounded-xl h-10 pt-1 ${selectedItem === "Dashboard" && "bg-white text-black" }`} ><Link href="" onClick={() => handleItemClick('Dashboard')} className='text-base' ><FaHome size={20} /> Dashboard </Link></li>
+      }} className={` rounded-xl h-10 pt-1 ${selectedItem === "Dashboard" && "bg-white text-black" }`} ><Link href="/academics/studentPortal/Dashboard" onClick={() => handleItemClick('Dashboard')} className='text-base' ><FaHome size={20} /> Dashboard </Link></li>
       <li style={{
         marginTop:"5%"
-      }} className={` rounded-xl h-10 pt-1 ${selectedItem === "Assignments" && "bg-white text-black" }`} ><Link href="" onClick={() => handleItemClick('Assignments')} className='text-base' ><FaBook size={20} /> Assignments</Link></li>
+      }} className={` rounded-xl h-10 pt-1 ${selectedItem === "Assignments" && "bg-white text-black" }`} ><Link href="/academics/studentPortal/Assignments" onClick={() => handleItemClick('Assignments')} className='text-base' ><FaBook size={20} /> Assignments</Link></li>
       <li style={{
         marginTop:"5%"
       }} className={` rounded-xl h-10 pt-1 ${selectedItem === "Courses" && "bg-white text-black" }`} ><Link href="" onClick={() => handleItemClick('Courses')} className='text-base' ><FaGraduationCap size={20} /> Courses</Link></li>
