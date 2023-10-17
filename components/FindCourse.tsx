@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { FaBinoculars, FaTimes } from 'react-icons/fa';
 import Searchbar from './Searchbar';
 import CourseCard from './CourseCard';
-import ba from "../public/profile/vlcsnap-2022-06-29-14h22m30s920.png";
-import bb from "../public/profile/vlcsnap-2022-06-29-14h23m45s921.png";
-import bc from "../public/profile/vlcsnap-2022-06-29-14h24m31s848.png"
+import ba from "../public/placeholders/ba.jpeg";
+import bb from "../public/placeholders/bb.jpeg";
+import bc from "../public/placeholders/bc.jpeg";
 
 const FindCourse = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
