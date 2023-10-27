@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 function ProfileBtn() {
   return (
-    <div className="dropdown dropdown-end mt-[50%]">
+    <div className="dropdown dropdown-end mt-[10%]">
       <div className='flex flex-row' >
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">

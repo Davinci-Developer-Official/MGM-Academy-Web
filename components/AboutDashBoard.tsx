@@ -1,5 +1,7 @@
 "use client";
+import Link from 'next/link';
 import React from 'react'
+import UnlockPage from './UnlockPage';
 
 function AboutDashBoard() {
   return (
@@ -12,6 +14,7 @@ function AboutDashBoard() {
       marginTop:10,
       marginBottom:10,
     }} >
+      {/*<UnlockPage/>*/}
     <h1 style={{
         textAlign:"center",
         fontSize:30,
@@ -29,7 +32,7 @@ function AboutDashBoard() {
         justice, this dedicated institution has been instrumental in reshaping
         societal norms and advancing the rights of women.
       </p>
-    </div>
+    </div >
       <div className="collapse collapse-plus bg-base-200 " style={{
         marginTop:20,
       }}>

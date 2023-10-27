@@ -39,11 +39,11 @@ const DrawerStudent: React.FC = () => {
       }}  ><Link href="/academics/studentPortal/Assignments" onClick={() => handleItemClick('Assignments')} className='text-base' ><FaBook size={20} /> Assignments</Link></li>
       <li style={{
         marginTop:"5%"
-      }}  ><Link href="" onClick={() => handleItemClick('Courses')} className='text-base' ><FaGraduationCap size={20} /> Courses</Link></li>
-      <li style={{
+      }}  ><Link href="/academics/studentPortal/courses" onClick={() => handleItemClick('Courses')} className='text-base' ><FaGraduationCap size={20} /> Courses</Link></li>
+     {/* <li style={{
         marginTop:"5%"
       }}  ><Link href="" onClick={() => handleItemClick('Settings')} className='text-base' ><FaWrench size={20} /> Settings</Link></li>
-      
+      */}
 
   
     <CartBtn/>

@@ -27,11 +27,11 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
   return (
     <div className="course-card bg-green-700 p-4  rounded-md sm:w-[350px] sm:h-fit md:w-[300px] md:h-fit lg:w-[400px] lg:h-fit mx-auto my-2  ">
       <div className="course-info">
-        <div className="course-details text-black ">
-          <h3>{course.courseName}</h3>
-          <p>Instructor: {course.instructorName}</p>
+        <div className="course-details  ">
+          <h3 className='text-yellow-300 mb-2 text-xl text-center ' >{course.courseName}</h3>
+          <p className='text-white mb-2 text-center  ' >Instructor: {course.instructorName}</p>
         </div>
-        <Image src={course.courseCoverImage} alt={course.courseName} className='rounded-md' />
+        <Image src={course.courseCoverImage} alt={course.courseName} className='rounded-md sm:w-[350px] md:w-[300px] lg:w-[400px]  ' />
       </div>
       <div className="course-description text-black">
         <p className={expanded ? 'expanded' : 'collapsed'}>
@@ -43,7 +43,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
       </div>
       <div className="purchase text-black ">
         <p className='text-xl text-white  ' >${course.price}</p>
-        <button className="purchase-button  flex flex-row btn btn-warning "><FaCartPlus size={20} /> Purchase Course</button>
+        <button className="purchase-button  flex flex-row btn btn-warning justify-center "><FaCartPlus size={20} /> Purchase Course</button>
       </div>
     </div>
   );

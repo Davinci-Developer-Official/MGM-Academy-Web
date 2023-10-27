@@ -1,14 +1,12 @@
-'use client';
-import React, { useState } from 'react'
+import React from 'react'
+import SearchbarAsn from './SearchbarAsn'
 import ba from "../public/placeholders/ba.jpeg";
 import bb from "../public/placeholders/bb.jpeg";
 import bc from "../public/placeholders/bc.jpeg";
-import SearchbarAsn from './SearchbarAsn';
-import FilterAsn from './FilterAsn';
-import { FaArrowRight, FaCompress, FaExpand, FaLock } from 'react-icons/fa';
 import Image from 'next/image';
+import { FaSearch } from 'react-icons/fa';
 
-function AsContent() {
+function Courses() {
     const items = [
         {
           "id":1,
@@ -132,35 +130,40 @@ function AsContent() {
       "locked":true
   }
       ];
-    const[scrollbar,showScrollbar]=useState(false)
   return (
     <div className='lg:w-4/5 sm:w-full  flex flex-col '>
-    <SearchbarAsn/>
-    <div className='h-[50px] bg-white w-[80%] mx-auto '>
-        {scrollbar?<button className='btn btn-ghost text-green-700 py-auto ' onClick={()=>showScrollbar(false)} ><FaExpand/></button>:<button className='btn btn-ghost py-auto ' onClick={()=>showScrollbar(true)} ><FaCompress/></button>}
-    </div>
-    <div className={scrollbar?' lg:w-[85%] sm:w-full  mx-auto  flex flex-col h-[640px] bg-base  overflow-y-scroll  ':'lg:w-full sm:w-full flex flex-col h-[640px] bg-base  overflow-y-scroll  '} >
-       
-        {items.map(items=>(
-            <div key={items.id} className='bg-white mt-[10px] w-[90%] mx-auto mb-[10px] rounded-md flex flex-row h-18 border-[2.7px] border-green-500  ' >
-            <span className=' h-18 rounded-tl-md rounded-bl-md  bg-red-400 w-[20%] ' >
-            <Image className='rounded-tl-md rounded-bl-md'  src={items.coverImage} alt={`${items.courseName} cover photo` } style={{
-                height:"100%",
-                width:"100%",
-                objectFit:"fill"
-            }}  />
-            </span>
-             <div className='flex flex-col text-black sm:pt-1 lg:pt-4 w-[80%] pl-10 pt-auto ' >
-                <p className='sm:text-base md:text-base lg:text-xl ' >{items.courseName}</p>
-                <p className='sm:text-xs md:text-xs lg:text-base ' > instructor: {items.courseInstructor}</p>
+        <div className=' h-[80px] w-[80%] mx-auto ' >
+        <div className='w-[70%] mt-5  flex flex-row mx-auto bg-base rounded-md border border-green-600 ' >
+            <input className=' w-[90%] rounded-tl-md rounded-bl-md p-3 placeholder-green-700 ' autoFocus={true} placeholder='  search course' />
+            <button className='btn text-green-700 bg-base rounded-bl-none rounded-tl-none ' ><FaSearch /></button>
+        </div>
+        </div>
+   
+    <div className='flex flex-col h-[690px] bg-base  overflow-y-scroll  ' >
+    {items.map(items=>(
+            <div className='w-[80%] mx-auto mt-3 mb-3 h-[300px] flex flex-col border-[3px] border-green-700 rounded-md  '  >
+            <Image src={items.coverImage} alt={items.courseName} style={{
+              width:"100%",
+              height:"240px",
+              objectFit:"cover",
+              backgroundColor:"grey",         
+            }} className='rounded-tl-md rounded-tr-md ' /> 
+            <div className='flex flex-row h-[60px]  justify-between bg-blue-300 rounded-bl-md rounded-br-md '   >
+             <div className='flex flex-col ml-2 w-[80%] ' >
+             <h2 className='text-base text-black pt-2 ' > {items.courseName}</h2>
+             <p className='text-sm text-black ' >Instructed by: {items.courseInstructor}</p>
              </div>
-             
-             <button className='flex flex-row my-auto mr-2  btn  btn-success ' >View  </button>
+             <button className='btn btn-success mt-1 mr-1 sm:text-sm text-black  w-[20%] ' >
+              view course
+              
+             </button>
+            </div>      
             </div>
+            
         ))}
     </div>
     </div>
   )
 }
 
-export default AsContent
+export default Courses
