@@ -13,20 +13,20 @@ function NotificationStudents() {
   ];
 
   const upcomingAssignments = [
-    'Assignment 1',
-    'Assignment 2',
-    'Assignment 3',
+    {
+      id:1,
+      name:"Unlocked Assignments",
+      message:"Mistrial Chapter 1 Assignment has been unlocked by"
+    }
   ];
 
   return (
-    <div className="drawer drawer-end lg:drawer-open lg:w-1/5 absolute lg:ml-[60%]">
+    <div className="drawer drawer-end lg:drawer-open lg:w-1/5 ">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content items-center justify-right flex flex-col" style={{ marginLeft: "90%" }}>
         {/* Page content here */}
-        <label htmlFor="my-drawer-4" className="btn drawer-button lg:hidden fixed mt-14 mr-2 btn-ghost" style={{ marginTop: "" }}>
-          <FaChevronCircleLeft size={20} className="text-green-600"  />
-          
-        </label>
+        <label htmlFor="my-drawer-2" className="btn btn-ghost drawer-button lg:hidden fixed mt-40 ml-2 text-green-600 "> <FaChevronCircleLeft size={20} /> </label>
+
       </div>
       <div className="drawer-side">
         <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
@@ -57,7 +57,7 @@ function NotificationStudents() {
           
             <ul>
               {upcomingAssignments.map((assignment, index) => (
-                <li key={index}>{assignment}</li>
+                <li key={assignment.id}>{assignment.name}</li>
               ))}
             </ul>
           </li>

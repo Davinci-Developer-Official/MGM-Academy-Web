@@ -1,8 +1,8 @@
 import React from 'react'
 import Carousel from './CoursesCourasel'
-import ba from "../public/placeholders/ba.jpeg";
-import bb from "../public/placeholders/bb.jpeg";
-import bc from "../public/placeholders/bc.jpeg";
+import ba from "../../public/placeholders/ba.jpeg";
+import bb from "../../public/placeholders/bb.jpeg";
+import bc from "../../public/placeholders/bc.jpeg";
 import DashMetricsStudents from './DashMetricsStudents';
 import { FaBinoculars, FaHome, FaSearch } from 'react-icons/fa';
 import FindCourse from './FindCourse';
@@ -39,7 +39,7 @@ function DashContents() {
   }
   ];
   return (
-    <div className='lg:w-4/5 sm:w-full ' >
+    <div className='lg:w-full sm:w-full h-screen overflow-y-scroll ' >
        <div className='h-[80px]   w-full ' >
        <HeaderDash/>
        

@@ -1,0 +1,49 @@
+.container{
+    background-color: aqua;
+}
+.right-drawer{
+    background-color: antiquewhite;
+}
+.central{
+    background-color: blue;
+}
+.left-drawer{
+    background-color: antiquewhite;
+}
+/*Extra small size*/
+@media only screen and(max-width:600px){  };
+/*small devices(portrait tablet and large phones,600px and up)*/
+@media only screen and(min-width:600px){  };
+/*Medium devices (landscape tablet,768px and up)*/
+@media only screen and(min-width:768px){ 
+    .container{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 900px;
+        background-color: red;
+        };
+    .left-drawer{
+        width: 20%;
+        background-color: blue,green;
+        height: 100%
+    }
+    .right-drawer{
+        width: 20%;
+        background-color: blue,green;
+        height: 100%
+    }
+ };
+/*Large devices (laptops/desktops,992px and up*/
+@media only screen and(min-width:992px){ 
+    .container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 900px;
+    background-color: red;
+    }
+    
+ };
+/*Extra Large devices (laptops and desktops,1200px and up*/
+@media only screen and(min-width:1200px){  };

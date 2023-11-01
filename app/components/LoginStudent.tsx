@@ -25,6 +25,7 @@ function LoginStudent(props: LoginStudentProps) {
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Login now</h1>
+          <Link href="/pl/placeholder" className='btn' >Placeholder</Link>
           <p className="py-6">Access the student portal for MGM Institute of Gender And Women Empowerment Courses as a Student</p>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">

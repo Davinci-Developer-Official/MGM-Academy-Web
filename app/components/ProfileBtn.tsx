@@ -1,5 +1,5 @@
 import React from 'react'
-import ba from "../public/profile/vlcsnap-2022-06-29-14h22m30s920.png"
+import ba from "../../public/profile/vlcsnap-2022-06-29-14h22m30s920.png"
 import Image from 'next/image'
 import Link from 'next/link'
 

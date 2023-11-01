@@ -1,12 +1,14 @@
 'use client';
 import React, { useState } from 'react'
-import ba from "../public/placeholders/ba.jpeg";
-import bb from "../public/placeholders/bb.jpeg";
-import bc from "../public/placeholders/bc.jpeg";
+import ba from "../../public/placeholders/ba.jpeg";
+import bb from "../../public/placeholders/bb.jpeg";
+import bc from "../../public/placeholders/bc.jpeg";
 import SearchbarAsn from './SearchbarAsn';
 import FilterAsn from './FilterAsn';
 import { FaArrowRight, FaCompress, FaExpand, FaLock } from 'react-icons/fa';
 import Image from 'next/image';
+//import Choices from './Choices';
+import FilterSelectorCourses from './FilterSelectorCourses';
 
 function AsContent() {
     const items = [
@@ -134,12 +136,13 @@ function AsContent() {
       ];
     const[scrollbar,showScrollbar]=useState(false)
   return (
-    <div className='lg:w-4/5 sm:w-full  flex flex-col '>
+    <div className='lg:w-full sm:w-full  flex flex-col '>
     <SearchbarAsn/>
-    <div className='h-[50px] bg-white w-[80%] mx-auto '>
+    <div className='h-[50px] mt-2 bg-white w-[90%] mx-auto flex flex-row  mb-3 '>
+        <FilterSelectorCourses/>
         {scrollbar?<button className='btn btn-ghost text-green-700 py-auto ' onClick={()=>showScrollbar(false)} ><FaExpand/></button>:<button className='btn btn-ghost py-auto ' onClick={()=>showScrollbar(true)} ><FaCompress/></button>}
     </div>
-    <div className={scrollbar?' lg:w-[85%] sm:w-full  mx-auto  flex flex-col h-[640px] bg-base  overflow-y-scroll  ':'lg:w-full sm:w-full flex flex-col h-[640px] bg-base  overflow-y-scroll  '} >
+    <div className={scrollbar?' lg:w-[85%] sm:w-full  mx-auto  flex flex-col bg-base  overflow-y-scroll  ':'lg:w-full sm:w-full flex flex-col bg-base  overflow-y-scroll  '} >
        
         {items.map(items=>(
             <div key={items.id} className='bg-white mt-[10px] w-[90%] mx-auto mb-[10px] rounded-md flex flex-row h-18 border-[2.7px] border-green-500  ' >

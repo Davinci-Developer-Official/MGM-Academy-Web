@@ -1,7 +1,7 @@
 "use client"
 import Link from 'next/link';
 import React, { useState } from 'react';
-import ba from "../public/profile/vlcsnap-2022-06-29-14h23m45s921.png"
+import ba from "../../public/profile/vlcsnap-2022-06-29-14h22m30s920.png"
 import Image from 'next/image';
 import { FaBars, FaBook, FaCaretRight, FaChevronCircleRight, FaCog, FaEllipsisV, FaGraduationCap, FaHome, FaSave, FaWrench } from 'react-icons/fa';
 import DarkModeButton from './DarkModeButton';
@@ -17,7 +17,7 @@ const DrawerStudent: React.FC = () => {
   };
 
   return (
-    <div className="drawer lg:drawer-open lg:w-1/5  ">
+    <div className="drawer lg:drawer-open lg:w-[20%]  ">
   <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
   <div className="drawer-content flex flex-col items-left justify-center">
     {/* Page content here */}
@@ -33,13 +33,13 @@ const DrawerStudent: React.FC = () => {
       {/*className={` rounded-xl h-10 pt-1 ${selectedItem === "Dashboard" && "bg-white text-black" }`}*/}
       <li style={{
         marginTop:"20%"
-      }}  ><Link href="/academics/studentPortal/Dashboard" onClick={() => handleItemClick('Dashboard')} className='text-base' ><FaHome size={20} /> Dashboard </Link></li>
+      }}  ><Link href="/academics/studentPortal/Dashboard" onClick={() => handleItemClick('Dashboard')} className={` rounded-xl h-10 pt-1 ${selectedItem === "Dashboard" && "bg-white text-black" }`}><FaHome size={20} /> Dashboard </Link></li>
       <li style={{
         marginTop:"5%"
-      }}  ><Link href="/academics/studentPortal/Assignments" onClick={() => handleItemClick('Assignments')} className='text-base' ><FaBook size={20} /> Assignments</Link></li>
+      }}  ><Link href="/academics/studentPortal/Assignments" onClick={() => handleItemClick('Assignments')} className={` rounded-xl h-10 pt-1 ${selectedItem === "Assignments" && "bg-white text-black" }`} ><FaBook size={20} /> Assignments</Link></li>
       <li style={{
         marginTop:"5%"
-      }}  ><Link href="/academics/studentPortal/courses" onClick={() => handleItemClick('Courses')} className='text-base' ><FaGraduationCap size={20} /> Courses</Link></li>
+      }}  ><Link href="/academics/studentPortal/courses" onClick={() => handleItemClick('Courses')} className={` rounded-xl h-10 pt-1 ${selectedItem === "Courses" && "bg-white text-black" }`} ><FaGraduationCap size={20} /> Courses</Link></li>
      {/* <li style={{
         marginTop:"5%"
       }}  ><Link href="" onClick={() => handleItemClick('Settings')} className='text-base' ><FaWrench size={20} /> Settings</Link></li>

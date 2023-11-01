@@ -1,8 +1,8 @@
-import AboutDashBoard from '@/components/AboutDashBoard'
+import AboutDashBoard from '@/app/components/AboutDashBoard'
 //import AboutMGMSection from '@/components/AboutMGMSection'
-import DarkModeButton from '@/components/DarkModeButton'
-import Footer from '@/components/Footer'
-import Navbar from '@/components/Navbar'
+import DarkModeButton from '@/app/components/DarkModeButton'
+import Footer from '@/app/components/Footer'
+import Navbar from '@/app/components/Navbar'
 //import Vision from '@/components/Vision'
 import Image from 'next/image'
 

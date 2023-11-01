@@ -1,8 +1,8 @@
 import React from 'react'
 import SearchbarAsn from './SearchbarAsn'
-import ba from "../public/placeholders/ba.jpeg";
-import bb from "../public/placeholders/bb.jpeg";
-import bc from "../public/placeholders/bc.jpeg";
+import ba from "../../public/placeholders/ba.jpeg";
+import bb from "../../public/placeholders/bb.jpeg";
+import bc from "../../public/placeholders/bc.jpeg";
 import Image from 'next/image';
 import { FaSearch } from 'react-icons/fa';
 
@@ -131,15 +131,15 @@ function Courses() {
   }
       ];
   return (
-    <div className='lg:w-4/5 sm:w-full  flex flex-col '>
-        <div className=' h-[80px] w-[80%] mx-auto ' >
+    <div className='lg:w-full sm:w-full  flex flex-col  lg:h-screen  '>
+        <div className=' h-[80px] w-[80%] mx-auto mb-2 ' >
         <div className='w-[70%] mt-5  flex flex-row mx-auto bg-base rounded-md border border-green-600 ' >
             <input className=' w-[90%] rounded-tl-md rounded-bl-md p-3 placeholder-green-700 ' autoFocus={true} placeholder='  search course' />
             <button className='btn text-green-700 bg-base rounded-bl-none rounded-tl-none ' ><FaSearch /></button>
         </div>
         </div>
    
-    <div className='flex flex-col h-[690px] bg-base  overflow-y-scroll  ' >
+    <div className='flex flex-col bg-base  overflow-y-scroll  ' >
     {items.map(items=>(
             <div className='w-[80%] mx-auto mt-3 mb-3 h-[300px] flex flex-col border-[3px] border-green-700 rounded-md  '  >
             <Image src={items.coverImage} alt={items.courseName} style={{

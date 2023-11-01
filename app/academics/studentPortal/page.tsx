@@ -1,8 +1,8 @@
 "use client"
-import DarkModeButton from '@/components/DarkModeButton';
-import LoginStudent from '@/components/LoginStudent';
-import Navbar from '@/components/Navbar';
-import RegisterStudent from '@/components/RegisterStudent';
+import DarkModeButton from '@/app/components/DarkModeButton';
+import LoginStudent from '@/app/components/LoginStudent';
+import Navbar from '@/app/components/Navbar';
+import RegisterStudent from '@/app/components/RegisterStudent';
 import React, { useState } from 'react'
 
 function Page() {
