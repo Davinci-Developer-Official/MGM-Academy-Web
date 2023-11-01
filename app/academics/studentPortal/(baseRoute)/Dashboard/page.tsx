@@ -7,7 +7,10 @@ import React from 'react'
 
 function page() {
   return (
-    <><DashContents/></>
+    <div className='flex flex-row' >
+    <DashContents/>
+    <div className="lg:w-[15%] bg-green-700 " ><NotificationStudents /></div>
+    </div>
   )
 }
 

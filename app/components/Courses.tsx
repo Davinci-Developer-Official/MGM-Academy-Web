@@ -1,10 +1,12 @@
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
 import SearchbarAsn from './SearchbarAsn'
 import ba from "../../public/placeholders/ba.jpeg";
 import bb from "../../public/placeholders/bb.jpeg";
 import bc from "../../public/placeholders/bc.jpeg";
 import Image from 'next/image';
-import { FaSearch } from 'react-icons/fa';
+import { FaCompress, FaExpand, FaSearch } from 'react-icons/fa';
+import FilterSelectorCourses from './FilterSelectorCourses';
 
 function Courses() {
     const items = [
@@ -130,16 +132,17 @@ function Courses() {
       "locked":true
   }
       ];
+      const[scrollbar,showScrollbar]=useState(false)
+
   return (
     <div className='lg:w-full sm:w-full  flex flex-col  lg:h-screen  '>
-        <div className=' h-[80px] w-[80%] mx-auto mb-2 ' >
-        <div className='w-[70%] mt-5  flex flex-row mx-auto bg-base rounded-md border border-green-600 ' >
-            <input className=' w-[90%] rounded-tl-md rounded-bl-md p-3 placeholder-green-700 ' autoFocus={true} placeholder='  search course' />
-            <button className='btn text-green-700 bg-base rounded-bl-none rounded-tl-none ' ><FaSearch /></button>
-        </div>
-        </div>
+       <SearchbarAsn/>
+    <div className='h-[50px] mt-2  bg-white w-[90%] mx-auto flex flex-row  mb-3 '>
+        <FilterSelectorCourses/>
+        {scrollbar?<button className='btn btn-ghost text-green-700 py-auto ' onClick={()=>showScrollbar(false)} ><FaExpand/></button>:<button className='btn btn-ghost py-auto ' onClick={()=>showScrollbar(true)} ><FaCompress/></button>}
+    </div>
    
-    <div className='flex flex-col bg-base  overflow-y-scroll  ' >
+    <div className='lg:w-[85%] sm:w-full  mx-auto h-[650px] md:h-[950px]  flex flex-col bg-base  overflow-y-scroll ' >
     {items.map(items=>(
             <div className='w-[80%] mx-auto mt-3 mb-3 h-[300px] flex flex-col border-[3px] border-green-700 rounded-md  '  >
             <Image src={items.coverImage} alt={items.courseName} style={{

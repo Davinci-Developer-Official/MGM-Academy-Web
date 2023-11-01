@@ -25,7 +25,10 @@ function NotificationStudents() {
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content items-center justify-right flex flex-col" style={{ marginLeft: "90%" }}>
         {/* Page content here */}
-        <label htmlFor="my-drawer-2" className="btn btn-ghost drawer-button lg:hidden fixed mt-40 ml-2 text-green-600 "> <FaChevronCircleLeft size={20} /> </label>
+        <label htmlFor="my-drawer-4" className="btn drawer-button lg:hidden fixed  top-16 mr-2 btn-ghost" style={{ marginTop: "" }}>
+          <FaChevronCircleLeft size={20} className="text-green-600"  />
+          
+        </label>
 
       </div>
       <div className="drawer-side">

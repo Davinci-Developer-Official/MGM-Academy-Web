@@ -11,6 +11,7 @@ import Image from 'next/image';
 import FilterSelectorCourses from './FilterSelectorCourses';
 
 function AsContent() {
+    
     const items = [
         {
           "id":1,
@@ -138,11 +139,11 @@ function AsContent() {
   return (
     <div className='lg:w-full sm:w-full  flex flex-col '>
     <SearchbarAsn/>
-    <div className='h-[50px] mt-2 bg-white w-[90%] mx-auto flex flex-row  mb-3 '>
+    <div className='h-[50px] mt-2  bg-white w-[90%] mx-auto flex flex-row  mb-3 '>
         <FilterSelectorCourses/>
         {scrollbar?<button className='btn btn-ghost text-green-700 py-auto ' onClick={()=>showScrollbar(false)} ><FaExpand/></button>:<button className='btn btn-ghost py-auto ' onClick={()=>showScrollbar(true)} ><FaCompress/></button>}
     </div>
-    <div className={scrollbar?' lg:w-[85%] sm:w-full  mx-auto  flex flex-col bg-base  overflow-y-scroll  ':'lg:w-full sm:w-full flex flex-col bg-base  overflow-y-scroll  '} >
+    <div className=' lg:w-[85%] sm:w-full  mx-auto h-[650px] md:h-[950px]  flex flex-col bg-base  overflow-y-scroll  ' >
        
         {items.map(items=>(
             <div key={items.id} className='bg-white mt-[10px] w-[90%] mx-auto mb-[10px] rounded-md flex flex-row h-18 border-[2.7px] border-green-500  ' >

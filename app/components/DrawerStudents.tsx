@@ -21,7 +21,7 @@ const DrawerStudent: React.FC = () => {
   <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
   <div className="drawer-content flex flex-col items-left justify-center">
     {/* Page content here */}
-    <label htmlFor="my-drawer-2" className="btn btn-ghost drawer-button lg:hidden fixed mt-40 ml-2 text-green-600 "> <FaChevronCircleRight size={20} /> </label>
+    <label htmlFor="my-drawer-2" className="btn btn-ghost drawer-button lg:hidden fixed top-16 ml-2 text-green-600 "> <FaChevronCircleRight size={20} /> </label>
   
   </div> 
   <div className="drawer-side  ">
@@ -32,14 +32,17 @@ const DrawerStudent: React.FC = () => {
       <DarkModeButton/>
       {/*className={` rounded-xl h-10 pt-1 ${selectedItem === "Dashboard" && "bg-white text-black" }`}*/}
       <li style={{
-        marginTop:"20%"
-      }}  ><Link href="/academics/studentPortal/Dashboard" onClick={() => handleItemClick('Dashboard')} className={` rounded-xl h-10 pt-1 ${selectedItem === "Dashboard" && "bg-white text-black" }`}><FaHome size={20} /> Dashboard </Link></li>
+        marginTop:"20%",
+        marginBottom:"5%"
+      }}  ><Link href="/academics/studentPortal/Dashboard" onClick={() => handleItemClick('Dashboard')} className={` rounded-xl h-10 pt-2 text-xl ${selectedItem === "Dashboard" && "bg-white text-black" }`}><FaHome size={30} /> Dashboard </Link></li>
       <li style={{
-        marginTop:"5%"
-      }}  ><Link href="/academics/studentPortal/Assignments" onClick={() => handleItemClick('Assignments')} className={` rounded-xl h-10 pt-1 ${selectedItem === "Assignments" && "bg-white text-black" }`} ><FaBook size={20} /> Assignments</Link></li>
+        marginTop:"5%",
+        marginBottom:"5%"
+      }}  ><Link href="/academics/studentPortal/Assignments" onClick={() => handleItemClick('Assignments')} className={` rounded-xl h-10 pt-2 text-xl ${selectedItem === "Assignments" && "bg-white text-black" }`} ><FaBook size={25} /> Assignments</Link></li>
       <li style={{
-        marginTop:"5%"
-      }}  ><Link href="/academics/studentPortal/courses" onClick={() => handleItemClick('Courses')} className={` rounded-xl h-10 pt-1 ${selectedItem === "Courses" && "bg-white text-black" }`} ><FaGraduationCap size={20} /> Courses</Link></li>
+        marginTop:"5%",
+        marginBottom:"10%"
+      }}  ><Link href="/academics/studentPortal/courses" onClick={() => handleItemClick('Courses')} className={` rounded-xl h-10 pt-2 text-xl ${selectedItem === "Courses" && "bg-white text-black" }`} ><FaGraduationCap size={30} /> Courses</Link></li>
      {/* <li style={{
         marginTop:"5%"
       }}  ><Link href="" onClick={() => handleItemClick('Settings')} className='text-base' ><FaWrench size={20} /> Settings</Link></li>
