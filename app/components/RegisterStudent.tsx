@@ -6,51 +6,51 @@ interface RegisterStudentProps {
 
 function RegisterStudent(props: RegisterStudentProps ) {
   return (
-    <div className="hero min-h-screen bg-base-200">
+    <div className="hero min-h-screen bg-[#e1b382]">
   <div className="hero-content flex-col lg:flex-row-reverse">
     <div className="text-center lg:text-left">
-      <h1 className="text-5xl font-bold">Register now!</h1>
-      <p className="py-6">
+      <h1 className="text-5xl font-bold text-[#2d545e] ">Register now!</h1>
+      <p className="py-6 text-[#2d545e] ">
       Create An account to access the stundent portal for MGM Institute of Gender And women Empowerment Courses as a Student  
       </p>
     </div>
-    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 bg-[#e1b382] border border-[#2d545e] ">
       <div className="card-body">
-      <div className="form-control">
+      <div className="form-control ">
           <label className="label">
-            <span className="label-text">Your Names</span>
+            <span className="label-text text-[#2d545e] ">Your Names</span>
           </label>
-          <input type="text" placeholder="Full Names" className="input input-bordered" />
+          <input type="text" placeholder="eg John Doe" className="input input-bordered" />
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Your Phonenumber</span>
+            <span className="label-text text-[#2d545e] ">Your Phonenumber</span>
           </label>
-          <input type="tel"  placeholder=" +1(555) 555-1234 " className="input input-bordered" />
+          <input type="tel"  placeholder="eg +1(555) 555-1234 " className="input input-bordered" />
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Email</span>
+            <span className="label-text text-[#2d545e] ">Email</span>
           </label>
-          <input type="text" placeholder="email" className="input input-bordered" />
+          <input type="text" placeholder="eg temp@gmail.com" className="input input-bordered" />
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Create Password</span>
+            <span className="label-text text-[#2d545e] ">Create Password</span>
           </label>
-          <input type="text" placeholder="Create Password" className="input input-bordered" />        
+          <input type="text" placeholder="eg temp123456789" className="input input-bordered" />        
         </div>
         <div className="form-control">
           <label className="label">
-            <span className="label-text">Confirm Password</span>
+            <span className="label-text text-[#2d545e] ">Confirm Password</span>
           </label>
-          <input type="text" placeholder="repeat password" className="input input-bordered" />        
+          <input type="text" placeholder="eg tem123456789" className="input input-bordered" />        
         </div>
         <div className="form-control mt-6">
-          <button className="btn btn-primary">Login</button>
+          <button className="btn  bg-[#2d545e] text-[#e1b382]"> Register </button>
         </div>
       </div>
-      <p style={{
+      <p className='text-[#2d545e]' style={{
             marginLeft:"5%"
         }} >Already have an account ? sign in <button style={{
             color:"purple"

@@ -31,19 +31,19 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
     <div className="carousel w-full flex flex-col ">
       
       <div className="item flex flex-col w-full  ">
-        <div className='w-full h-[300px] flex flex-col border border-black rounded-md  '  >
+        <div className='w-full h-[300px] flex flex-col border border-[#2d545e] rounded-md  '  >
         <Image src={currentItem.coverImage} alt={currentItem.courseName} style={{
           width:"100%",
           height:"240px",
           objectFit:"cover",
           backgroundColor:"grey",         
         }} className='rounded-tl-md rounded-tr-md ' /> 
-        <div className='flex flex-row h-[60px]  justify-between bg-blue-300 rounded-bl-md rounded-br-md '   >
+        <div className='flex flex-row h-[60px]  justify-between text-[#e1b382] bg-[#2d545e] rounded-bl-md rounded-br-md '   >
          <div className='flex flex-col ml-2 w-[80%] ' >
-         <h2 className='text-base text-black pt-2 ' > {currentItem.courseName}</h2>
-         <p className='text-sm text-black ' >Instructed by: {currentItem.courseInstructor}</p>
+         <h2 className='text-base  pt-2 ' > {currentItem.courseName}</h2>
+         <p className='text-sm  ' >Instructed by: {currentItem.courseInstructor}</p>
          </div>
-         <button className='btn btn-success mt-1 mr-1 sm:text-sm text-black  w-[20%] ' >
+         <button className='btn bg-[#e1b382] text-[#2d545e] mt-[5px] mr-1 sm:text-sm text-black  w-[20%] ' >
           view course
           
          </button>
@@ -58,7 +58,7 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
     >
       <FaCircle
         className={`lower-nav-icon ml-1 h-2 ${
-          currentItemIndex === index ? 'active text-green-600' : 'hover:opacity-70'
+          currentItemIndex === index ? 'active text-[#2d545e]' : 'hover:opacity-70'
         }`}
       />
     </button>

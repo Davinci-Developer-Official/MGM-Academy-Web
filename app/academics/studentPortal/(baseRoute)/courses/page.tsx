@@ -14,7 +14,7 @@ function page() {
   return (
     <div className='lg:flex lg:flex-row' >
     <Courses/>
-    <div className="lg:w-[15%] bg-green-700 " ><NotificationStudents /></div>
+    <div className="lg:w-70 bg-green-700 " ><NotificationStudents /></div>
     </div>
   )
 }

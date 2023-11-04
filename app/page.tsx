@@ -10,8 +10,8 @@ export default function Home() {
   return (
   <div style={{
     width:"100%",
-  }} >
-  <DarkModeButton/>
+  }} className='bg-[#e1b382] text-[#2d545e] ' >
+ 
   <Navbar/>
   <AboutDashBoard/>
   <Footer/>

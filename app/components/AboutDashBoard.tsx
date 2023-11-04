@@ -33,7 +33,7 @@ function AboutDashBoard() {
         societal norms and advancing the rights of women.
       </p>
     </div >
-      <div className="collapse collapse-plus bg-base-200 " style={{
+      <div className="collapse collapse-plus text-[#2d545e] " style={{
         marginTop:20,
       }}>
         <input type="radio" name="my-accordion-3" checked={true} />
@@ -44,7 +44,7 @@ function AboutDashBoard() {
           <p>The institute's vision is a world where gender-based discrimination and inequality are eradicated, and women have equal opportunities and access to resources across all spheres of life.</p>
         </div>
       </div>
-      <div className="collapse collapse-plus bg-base-200">
+      <div className="collapse collapse-plus  text-[#2d545e] ">
         <input type="radio" name="my-accordion-3" />
         <div className="collapse-title text-xl font-medium">
           Our Mission
@@ -90,7 +90,7 @@ function AboutDashBoard() {
       </ol>
         </div>
       </div>
-      <div className="collapse collapse-plus bg-base-200">
+      <div className="collapse collapse-plus text-[#2d545e]">
         <input type="radio" name="my-accordion-3" />
         <div className="collapse-title text-xl font-medium">
           Our Key initiatives
@@ -124,7 +124,7 @@ function AboutDashBoard() {
       </ul>
         </div>
       </div>
-      <div className="collapse collapse-plus bg-base-200">
+      <div className="collapse collapse-plus text-[#2d545e]">
         <input type="radio" name="my-accordion-3" />
         <div className="collapse-title text-xl font-medium">
           Our Expected Impact
@@ -138,7 +138,7 @@ function AboutDashBoard() {
       </p>
         </div>
       </div>
-      <div className="collapse collapse-plus bg-base-200">
+      <div className="collapse collapse-plus text-[#2d545e]">
         <input type="radio" name="my-accordion-3" />
         <div className="collapse-title text-xl font-medium">
           Our Future Direction
@@ -155,7 +155,7 @@ function AboutDashBoard() {
       </p>
         </div>
       </div>
-      <div className="collapse collapse-plus bg-base-200">
+      <div className="collapse collapse-plus text-[#2d545e]">
         <input type="radio" name="my-accordion-3" />
         <div className="collapse-title text-xl font-medium">
           Our Final Say

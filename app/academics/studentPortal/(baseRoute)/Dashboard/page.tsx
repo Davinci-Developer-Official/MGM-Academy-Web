@@ -9,7 +9,7 @@ function page() {
   return (
     <div className='flex flex-row' >
     <DashContents/>
-    <div className="lg:w-[15%] bg-green-700 " ><NotificationStudents /></div>
+    <div className="lg:w-70 bg-green-700 " ><NotificationStudents /></div>
     </div>
   )
 }

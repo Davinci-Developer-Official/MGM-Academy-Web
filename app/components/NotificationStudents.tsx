@@ -25,19 +25,19 @@ function NotificationStudents() {
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content items-center justify-right flex flex-col" style={{ marginLeft: "90%" }}>
         {/* Page content here */}
-        <label htmlFor="my-drawer-4" className="btn drawer-button lg:hidden fixed  top-16 mr-2 btn-ghost" style={{ marginTop: "" }}>
-          <FaChevronCircleLeft size={20} className="text-green-600"  />
+        <label htmlFor="my-drawer-4" className="btn drawer-button lg:hidden fixed bg-[#e1b382] text-[#2d545e] top-16 mr-2 btn-ghost" style={{ marginTop: "" }}>
+          <FaChevronCircleLeft size={20} className=""  />
           
         </label>
 
       </div>
       <div className="drawer-side">
         <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
-        <ul className="menu p-4 w-80 min-h-full  bg-base-200 text-base-content">
+        <ul className="menu p-4 w-80 min-h-full h-screen  border border-[#2d545e]  bg-[#e1b382] text-[#2d545e] text-base-content">
           
           {/* Notifications Segment */}
           <div  className='h-[400px] w-full  ' >
-          <div className=" normal-case text-white bg-green-500 text-xl flex flex-row justify-evenly rounded-md "> 
+          <div className=" normal-case text-white bg-[#e1b382] text-[#2d545e] text-xl flex flex-row justify-evenly rounded-md "> 
             <p className='p-[10px] ' > Notifications</p>
             <button className='btn btn-ghost' > <FaRedo className="text-black" /></button> 
           </div>
@@ -50,21 +50,7 @@ function NotificationStudents() {
             </ul>
           </li>
           </div>
-          {/* Upcoming Assignments Segment */}
-          <div className='h-[400px] w-full  ' >
-          <div className=" normal-case text-white  bg-green-500 text-lg flex flex-row justify-evenly rounded-md "> 
-            <p className='p-[10px]' > Upcomming Assignments</p>
-            <button className='btn btn-ghost' > <FaCalendarWeek className="text-black"  /></button> 
-          </div> 
-          <li className='h-[400px] w-full ' >
-          
-            <ul>
-              {upcomingAssignments.map((assignment, index) => (
-                <li key={assignment.id}>{assignment.name}</li>
-              ))}
-            </ul>
-          </li>
-          </div>
+      
         </ul>
       </div>
     </div>

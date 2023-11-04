@@ -2,7 +2,7 @@ import React from 'react';
 
 const StudentPortalGuide = () => {
   return (
-    <div className="portal-guide" style={{
+    <div className="portal-guide  " style={{
       width:"80%",
       marginLeft:"10%"
     }} >

@@ -7,12 +7,12 @@ import { NodeNextRequest } from "next/dist/server/base-http/node";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="lg:flex lg:flex-row  sm:flex-none h-screen w-screen   " style={{
+    <div className="lg:flex lg:flex-row   sm:flex-none h-screen w-full   " style={{
      msOverflowStyle:'none',
      overflow:'hidden'
     }} >
-      <div className="lg:w-[15%] bg-blue-400 " ><DrawerStudent /></div>
-      <main className="lg:w-[80%] sm:w-full md:w-full h-screen   ">
+      <div className="lg:w-60  " ><DrawerStudent /></div>
+      <main className=" sm:w-full md:w-full h-screen   ">
       {children}
         
         

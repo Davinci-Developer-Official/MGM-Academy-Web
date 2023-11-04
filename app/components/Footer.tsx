@@ -4,8 +4,8 @@ function Footer() {
   return (
    <div style={{
     width:"100%"
-   }} >
-     <footer className="footer p-10 bg-base-200 text-base-content"  >
+   }}  >
+     <footer className="footer p-10 text-[#e1b382] bg-[#2d545e] text-base-content"  >
   <nav>
     <header className="footer-title">Services</header> 
     <a className="link link-hover">Branding</a> 
@@ -34,7 +34,7 @@ function Footer() {
       </label> 
       <div className="relative">
         <input type="text" placeholder="username@site.com" className="input input-bordered w-full pr-16" /> 
-        <button className="btn btn-primary absolute top-0 right-0 rounded-l-none">Subscribe</button>
+        <button className="btn text-[#e1b382] bg-[#2d545e] absolute top-0 right-0 rounded-l-none">Subscribe</button>
       </div>
     </fieldset>
   </form>

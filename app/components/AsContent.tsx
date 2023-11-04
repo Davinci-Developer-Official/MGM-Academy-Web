@@ -137,29 +137,26 @@ function AsContent() {
       ];
     const[scrollbar,showScrollbar]=useState(false)
   return (
-    <div className='lg:w-full sm:w-full  flex flex-col '>
+    <div className='lg:w-full sm:w-full  flex flex-col bg-[#e1b382] '>
     <SearchbarAsn/>
-    <div className='h-[50px] mt-2  bg-white w-[90%] mx-auto flex flex-row  mb-3 '>
-        <FilterSelectorCourses/>
-        {scrollbar?<button className='btn btn-ghost text-green-700 py-auto ' onClick={()=>showScrollbar(false)} ><FaExpand/></button>:<button className='btn btn-ghost py-auto ' onClick={()=>showScrollbar(true)} ><FaCompress/></button>}
-    </div>
-    <div className=' lg:w-[85%] sm:w-full  mx-auto h-[650px] md:h-[950px]  flex flex-col bg-base  overflow-y-scroll  ' >
+   
+    <div className=' lg:w-[85%] sm:w-full  mx-auto h-[670px]  flex flex-col bg-base  overflow-y-scroll  ' >
        
         {items.map(items=>(
-            <div key={items.id} className='bg-white mt-[10px] w-[90%] mx-auto mb-[10px] rounded-md flex flex-row h-18 border-[2.7px] border-green-500  ' >
-            <span className=' h-18 rounded-tl-md rounded-bl-md  bg-red-400 w-[20%] ' >
+            <div key={items.id} className='text-[#e1b382] bg-[#2d545e] mt-[10px] w-[90%] mx-auto mb-[10px] rounded-md flex flex-row h-18 border-[2.7px]  border-[#2d545e] ' >
+            <span className=' h-18 rounded-tl-md rounded-bl-md   w-[20%] ' >
             <Image className='rounded-tl-md rounded-bl-md'  src={items.coverImage} alt={`${items.courseName} cover photo` } style={{
                 height:"100%",
                 width:"100%",
                 objectFit:"fill"
             }}  />
             </span>
-             <div className='flex flex-col text-black sm:pt-1 lg:pt-4 w-[80%] pl-10 pt-auto ' >
-                <p className='sm:text-base md:text-base lg:text-xl ' >{items.courseName}</p>
-                <p className='sm:text-xs md:text-xs lg:text-base ' > instructor: {items.courseInstructor}</p>
+             <div className='flex flex-col text-black sm:pt-3 lg:pt-2 w-[80%] pl-10  p-2 ' >
+                <p className='sm:text-[20px] md:text-[25px] lg:text-xl text-[#e1b382]  ' >{items.courseName}</p>
+                <p className='sm:text-[15px] md:text-[17px] lg:text-base text-[#e1b382] ' > instructor: {items.courseInstructor}</p>
              </div>
              
-             <button className='flex flex-row my-auto mr-2  btn  btn-success ' >View  </button>
+             <button className='flex flex-row my-auto mr-2  btn  bg-[#e1b382] text-[#2d545e] ' >View  </button>
             </div>
         ))}
     </div>
