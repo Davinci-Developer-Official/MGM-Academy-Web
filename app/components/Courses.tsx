@@ -141,7 +141,7 @@ function Courses() {
    
     <div className='lg:w-[85%] sm:w-full  mx-auto h-[650px] md:h-[950px]  flex flex-col bg-base  overflow-y-scroll ' >
     {items.map(items=>(
-            <div className='w-[80%] mx-auto mt-3 mb-3 h-[300px] flex flex-col border-[3px] border-[#2d545e] rounded-md  '  >
+            <div className='w-[80%] mx-auto mt-3 mb-3 h-[300px] flex flex-col border-[3px] border-[#2d545e] rounded-md  ' key={items.id}  >
             <Image src={items.coverImage} alt={items.courseName} style={{
               width:"100%",
               height:"240px",
