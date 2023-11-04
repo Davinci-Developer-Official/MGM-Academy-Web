@@ -44,8 +44,8 @@ function NotificationStudents() {
           <li >
           
             <ul>
-              {notifications.map((notification, index) => (
-                <li><NotificationCard key={notification.id} notification={notification}  /></li>
+              {notifications.map(notification => (
+                <li key={notification.id} ><NotificationCard key={notification.id} notification={notification}  /></li>
               ))}
             </ul>
           </li>
