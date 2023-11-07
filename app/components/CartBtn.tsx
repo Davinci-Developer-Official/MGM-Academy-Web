@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 function CartBtn() {
@@ -9,12 +10,12 @@ function CartBtn() {
           <span className="badge badge-sm  bg-[#e1b382] text-[#2d545e] indicator-item">8</span>
         </div>
       </label>
-      <div tabIndex={0} className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow">
+      <div tabIndex={0} className="mt-3 z-[1] card card-compact dropdown-content w-52 text-[#e1b382] bg-[#2d545e] border border-[#e1b382]  shadow">
         <div className="card-body">
           <span className="font-bold text-lg">8 Items</span>
           <span className="text-info">Subtotal: $999</span>
           <div className="card-actions">
-            <button className="btn btn-primary btn-block">View cart</button>
+            <Link href="/academics/studentPortal/Checkout" className="btn bg-[#e1b382] text-[#2d545e] hover:text-[#e1b382] hover:bg-[#2d545e] hover:border hover:border-[#e1b382] btn-block">View cart</Link>
           </div>
         </div>
       </div>

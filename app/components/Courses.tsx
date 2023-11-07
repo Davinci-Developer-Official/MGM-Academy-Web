@@ -153,7 +153,7 @@ function Courses() {
              <h2 className='text-base  pt-1 ' > {items.courseName}</h2>
              <p className='text-sm  ' >Instructed by: {items.courseInstructor}</p>
              </div>
-             <button className='btn mt-1 mr-1 sm:text-sm bg-[#e1b382] text-[#2d545e]  w-[20%] ' >
+             <button className='btn mt-1 mr-1 sm:text-sm bg-[#e1b382] text-[#2d545e] hover:text-[#e1b382] hover:bg-[#2d545e] border hover:border-[#e1b382]  w-[20%] ' >
               view course
               
              </button>

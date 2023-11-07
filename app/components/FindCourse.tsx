@@ -122,16 +122,16 @@ const FindCourse = () => {
       {modalIsOpen && (
         <dialog
           id="my_modal_3"
-          className="modal bg-green-900 w-[99%] mx-auto h-[99%] my-auto rounded-md flex flex-col"
+          className="modal text-[#e1b382] bg-[#2d545e] w-[99%] mx-auto h-[99%] my-auto rounded-md flex flex-col"
           open
         >
           <button
-            className="btn btn-sm btn-circle btn-ghost absolute text-yellow-300  right-2 top-2"
+            className="btn btn-sm btn-circle btn-ghost absolute  right-2 top-2"
             onClick={closeModal}
           >
             <FaTimes size={20} />
           </button>
-          <div className="mb-2 text-yellow-300 text-xl pt-3 pb-3 text-bold ">MGM Courses</div>
+          <div className="mb-2 text-xl pt-3 pb-3 text-bold ">MGM Courses</div>
           <Searchbar />
           <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-2  w-[96%] mx-auto h-[80%] my-auto overflow-y-auto " >
           {courses.map((course) => (

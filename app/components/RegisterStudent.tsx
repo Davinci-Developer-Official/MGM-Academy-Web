@@ -7,14 +7,14 @@ interface RegisterStudentProps {
 function RegisterStudent(props: RegisterStudentProps ) {
   return (
     <div className="hero min-h-screen bg-[#e1b382]">
-  <div className="hero-content flex-col lg:flex-row-reverse">
+  <div className="hero-content flex-col lg:flex-row-reverse ">
     <div className="text-center lg:text-left">
       <h1 className="text-5xl font-bold text-[#2d545e] ">Register now!</h1>
       <p className="py-6 text-[#2d545e] ">
       Create An account to access the stundent portal for MGM Institute of Gender And women Empowerment Courses as a Student  
       </p>
     </div>
-    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 bg-[#e1b382] border border-[#2d545e] ">
+    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl  bg-[#e1b382] border border-[#2d545e] ">
       <div className="card-body">
       <div className="form-control ">
           <label className="label">

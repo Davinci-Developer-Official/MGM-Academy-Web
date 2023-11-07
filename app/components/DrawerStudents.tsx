@@ -26,7 +26,7 @@ const DrawerStudent: React.FC = () => {
   </div> 
   <div className="drawer-side  ">
     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label> 
-    <ul className="menu  p-2 w-60 min-h-full h-screen text-white  h-screen flex flex-col "  style={{
+    <ul className="menu  p-2 w-60 min-h-full  text-white  h-screen flex flex-col "  style={{
       backgroundColor:"#2d545e"
     }}  >
       {/* Sidebar content here */}

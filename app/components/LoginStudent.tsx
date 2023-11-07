@@ -28,7 +28,7 @@ function LoginStudent(props: LoginStudentProps) {
          
           <p className="py-6 text-[#2d545e] ">Access the student portal for MGM Institute of Gender And Women Empowerment Courses as a Student</p>
         </div>
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 bg-[#e1b382] border border-[#2d545e]  ">
+        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl  bg-[#e1b382] border border-[#2d545e]  ">
           <div className="card-body  ">
             <div className="form-control  ">
               <label className="label">

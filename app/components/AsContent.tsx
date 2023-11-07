@@ -156,7 +156,7 @@ function AsContent() {
                 <p className='sm:text-[15px] md:text-[17px] lg:text-base text-[#e1b382] ' > instructor: {items.courseInstructor}</p>
              </div>
              
-             <button className='flex flex-row my-auto mr-2  btn  bg-[#e1b382] text-[#2d545e] ' >View  </button>
+             <button className='flex flex-row my-auto mr-2  btn  bg-[#e1b382] text-[#2d545e] hover:text-[#e1b382]  hover:bg-[#2d545e] hover:border hover:border-[#e1b382]' >View  </button>
             </div>
         ))}
     </div>

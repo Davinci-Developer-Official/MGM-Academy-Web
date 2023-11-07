@@ -43,7 +43,7 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
          <h2 className='text-base  pt-2 ' > {currentItem.courseName}</h2>
          <p className='text-sm  ' >Instructed by: {currentItem.courseInstructor}</p>
          </div>
-         <button className='btn bg-[#e1b382] text-[#2d545e] mt-[5px] mr-1 sm:text-sm text-black  w-[20%] ' >
+         <button className='btn bg-[#e1b382] text-[#2d545e] hover:border hover:border-[#e1b382] hover:text-[#e1b382] hover:bg-[#2d545e] mt-[5px] mr-1 sm:text-sm   w-[20%] ' >
           view course
           
          </button>
