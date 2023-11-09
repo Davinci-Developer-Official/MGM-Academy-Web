@@ -8,7 +8,7 @@ function ProfileBtn() {
   return (
     <div className="dropdown dropdown-end mt-[10%] w-full ">
       <div className='flex flex-row  '  >
-      <div className="w-12 h-12 rounded-full border-[5px] border-[#e1b382] ">
+      <div className="w-12 h-12 rounded-full border border-[#e1b382] ">
           <Image src={ba} alt="image" className='w-full h-full rounded-full ' />
       </div>
       <span className=' w-[180px] text-center '  ><p className='pt-2 pb-2  '  >Thomas Mithamo ssssssssssasa </p></span>

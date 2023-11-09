@@ -2,25 +2,35 @@ import Image from "next/image"
 import ba from "../../../../../public/profile/vlcsnap-2022-06-29-14h22m30s920.png"
 import bb from "../../../../../public/profile/vlcsnap-2022-06-29-14h23m45s921.png"
 import bc from "../../../../../public/profile/vlcsnap-2022-06-29-14h24m31s848.png"
-import { FaCartPlus, FaTrash } from "react-icons/fa"
+import { FaCartPlus, FaMoneyBill, FaTrash } from "react-icons/fa"
 
 export default function page (){
 
     return(
-        <div className="h-screen w-full bg-[#e1b382] flex flex-col " >
+        <div className="bg-[#e1b382] " >
         <p className="text-center h-[50px] text-[#2d545e]  pt-5 font-bold text-xl " >Cart</p>
+
+        <div className="h-screen w-full bg-[#e1b382] lg:flex lg:flex-row sm:flex sm:flex-col overflow-y-auto " >                                
         
         <ProductList/>
         <C2P/>
+        </div>
         </div>
     )
 }
 
 const C2P=()=>{
     return(
-        <div className="flex flex-row  justify-end w-[70%] mx-auto pt-3 pb-2 h-[50px]   " >
-            <div className="flex flex-row text-[#2d545e] mr-4 " > <p className="w-[300px] text-center pt-4 " >Total : $123,652</p> <button className="btn text-[#2d545e] bg-[#e1b382]  " > <FaCartPlus size={30} /> Buy Course(s) </button></div>
-            <button className="btn mr-2 bg-[#e1b382] text-red-600   " > <FaTrash/> clear all </button>
+        <div className="flex flex-col mt-10  w-80 mx-auto pt-3 pb-2 h-60    border border-[#2d545e]   " >
+            <p className="text-center h-20 text-[#2d545e]  pt-5 font-bold text-xl " >Cart Summary </p>
+
+            <div className="flex flex-col text-[#2d545e] mr-4  w-full h-60  " > 
+            <div className="flex flex-row justify-between h-40 pt-16 " >
+                <p className="pl-10 font-bold text-xl " >Subtotal</p> : <p className=" pr-10  font-semibold  " >$123,652</p>
+            </div> 
+            <button className="btn bg-[#2d545e] text-[#e1b382] rounded-none " > <FaMoneyBill size={30} />checkout (<p className="   font-semibold  " >$123,652</p>) </button>
+            </div>
+           
         </div>
     )
 }
@@ -67,8 +77,8 @@ const ProductList=()=>{
     ]
 
     return(
-        <div className=" h-[660px] w-[90%] lg:w-[60%] lg:mx-auto mt-4 mx-auto bg-[#e1b382]  overflow-y-auto    " >
-          
+        <div className=" h-[660px] w-[90%] lg:w-[70%] lg:mx-auto mt-4 mx-auto bg-[#e1b382]      " >
+
           {placeholder.map(item=>(
             <div key={item.id} className="flex flex-row  mx-auto lg:w-[700px] sm:w-[500px] mb-4 mt-4 rounded-md border border-[#2d545e] " >
              
