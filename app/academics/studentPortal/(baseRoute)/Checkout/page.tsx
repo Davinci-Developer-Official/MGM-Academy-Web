@@ -1,36 +1,39 @@
+'use client'
 import Image from "next/image"
 import ba from "../../../../../public/profile/vlcsnap-2022-06-29-14h22m30s920.png"
 import bb from "../../../../../public/profile/vlcsnap-2022-06-29-14h23m45s921.png"
 import bc from "../../../../../public/profile/vlcsnap-2022-06-29-14h24m31s848.png"
 import { FaCartPlus, FaMoneyBill, FaTrash } from "react-icons/fa"
+import { useState } from "react"
 
 export default function page (){
 
     return(
-        <div className="bg-[#e1b382] " >
+        <div className="bg-[#e1b382]  " >
         <p className="text-center h-[50px] text-[#2d545e]  pt-5 font-bold text-xl " >Cart</p>
 
-        <div className="h-screen w-full bg-[#e1b382] lg:flex lg:flex-row sm:flex sm:flex-col overflow-y-auto " >                                
+        <div className=" w-full bg-[#e1b382]  overflow-y-auto " >                                
         
         <ProductList/>
-        <C2P/>
+        
         </div>
+        <C2P/>
+        
         </div>
     )
 }
 
 const C2P=()=>{
-    return(
-        <div className="flex flex-col mt-10  w-80 mx-auto pt-3 pb-2 h-60    border border-[#2d545e]   " >
-            <p className="text-center h-20 text-[#2d545e]  pt-5 font-bold text-xl " >Cart Summary </p>
+    
+    const [finalPrice,etFinalPrice]=useState("$400")
 
-            <div className="flex flex-col text-[#2d545e] mr-4  w-full h-60  " > 
-            <div className="flex flex-row justify-between h-40 pt-16 " >
-                <p className="pl-10 font-bold text-xl " >Subtotal</p> : <p className=" pr-10  font-semibold  " >$123,652</p>
-            </div> 
-            <button className="btn bg-[#2d545e] text-[#e1b382] rounded-none " > <FaMoneyBill size={30} />checkout (<p className="   font-semibold  " >$123,652</p>) </button>
+    return(
+        <div className=" lg:h-[200px] md:h-[200px] h-[150px] flex flex-col w-full justify-evenly " >
+            <div className="   h-[50px] ml-[20%] lg:ml-[30%] w-[60%] lg:w-[40%]  flex flex-row justify-between text-[#2d545e] " >
+                 <p className="ml-[50px] mt-[15px] text-xl font-bold" >sub total : </p> 
+                  <p className="mr-[50px] mt-[15px] text-xl font-bold" > {finalPrice} </p> 
             </div>
-           
+            <button className="btn  lg:h-[100px] md:h-[100px] border border-[#2d545e] bg-[#e1b382] hover:bg-[#5e572d]  text-[#2d545e] hover:text-[#e1b382] h-[50px] ml-[20%] lg:ml-[30%] w-[60%] lg:w-[40%] text-xl  " > pay now   <FaMoneyBill size={20} />  </button>           
         </div>
     )
 }
@@ -77,25 +80,25 @@ const ProductList=()=>{
     ]
 
     return(
-        <div className=" h-[660px] w-[90%] lg:w-[70%] lg:mx-auto mt-4 mx-auto bg-[#e1b382]      " >
+        <div className=" lg:h-[500px] md:h-[700px] h-[550px] sm:h-[400px]  w-[90%] lg:w-[60%] lg:mx-auto sm:[416px]  mt-4 mx-auto bg-[#e1b382]      " >
 
           {placeholder.map(item=>(
             <div key={item.id} className="flex flex-row  mx-auto lg:w-[700px] sm:w-[500px] mb-4 mt-4 rounded-md border border-[#2d545e] " >
              
-             <span className="w-[200px] h-[200px] rounded-tl-md rounded-bl-md " ><Image src={item.productImage} alt="course Image" style={{
+             <span className="w-[200px] lg:h-[200px] md:h-[200px] h-[150px] rounded-tl-md rounded-bl-md " ><Image src={item.productImage} alt="course Image" style={{
               width:"100%",
               height:"100%",
               objectFit:"cover",
               backgroundColor:"grey",         
             }} className='rounded-tl-md rounded-bl-md '  /></span>
-             <div className="  lg:w-[400px] sm:w-[200px] text-center text-[#e1b382] bg-[#2d545e] " >
-             <p className="text-xl font-bold h-[50px] pt-[20px] " >{item.productName}</p>
-             <p className="text-xl font-bold h-[100px] pt-[30px] " >{item.productPrice}</p>
-             <p className="text-base " > Instructed by: {item.instructor}</p>
+             <div className="  lg:w-[400px] sm:w-[200px] text-center text-[#e1b382] bg-[#2d545e] lg:h-[200px] md:h-[200px] h-[150px] " >
+             <p className="lg:text-xl  text-base  font-bold lg:h-[50px] md:h-[50px] h-[30px] pt-[20px] " >{item.productName}</p>
+             <p className="lg:text-xl text-base  font-bold lg:h-[100px] md:h-[100px] h-[50px] pt-[30px] " >{item.productPrice}</p>
+             <p className="text-base lg:h-[50px] md:h-[50px] h-[50px]   " > Instructed by: {item.instructor}</p>
             
              </div>
-           <div className="h-[200px] w-[100px] pt-[80px]  bg-[#2d545e] pl-[20px] rounded-br-md rounded-tr-md " >
-           <button className="btn bg-[#e1b382] text-[#2d545e] " > <FaTrash/></button>
+           <div className="lg:h-[200px] md:h-[200px] h-[150px] w-[100px] pt-[80px]  bg-[#2d545e] pl-[20px] rounded-br-md rounded-tr-md " >
+           <button className="btn bg-[#e1b382] hover:bg-[#2d545e] text-[#2d545e] hover:text-[#e1b382] hover:border hover:border-[#e1b382] " > <FaTrash/></button>
            </div>
 
             </div>

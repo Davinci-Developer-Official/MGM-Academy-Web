@@ -11,8 +11,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
      msOverflowStyle:'none',
      overflow:'hidden'
     }} >
-      <div className="lg:w-60  " ><DrawerStudent /></div>
-      <main className=" sm:w-full md:w-full h-screen   ">
+      <div className="lg:w-60    " ><DrawerStudent /></div>
+      <main className=" sm:w-full md:w-full h-screen bg-[#e1b382]  ">
       {children}
         
         
