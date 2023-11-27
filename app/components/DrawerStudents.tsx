@@ -1,7 +1,7 @@
 "use client"
 import Link from 'next/link';
 import React, { useState } from 'react';
-import ba from "../../public/profile/vlcsnap-2022-06-29-14h22m30s920.png"
+import ba from "../../public/profile/user.png"
 import Image from 'next/image';
 import { FaBars, FaBook, FaCaretRight, FaChevronCircleRight, FaCog, FaEllipsisV, FaFemale, FaGraduationCap, FaHome, FaSave, FaWrench } from 'react-icons/fa';
 import DarkModeButton from './DarkModeButton';

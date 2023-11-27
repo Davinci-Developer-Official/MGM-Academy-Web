@@ -1,8 +1,24 @@
 import React from 'react'
 
+
+
 interface RegisterStudentProps {
     setlogin: React.Dispatch<React.SetStateAction<boolean>>;
   }
+
+// Use fetch
+const postData = async () => {
+  const response = await fetch('http://localhost:3000/api/postData', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ data: 'your_data' }),
+  });
+
+  const data = await response.json();
+  console.log(data);
+};
 
 function RegisterStudent(props: RegisterStudentProps ) {
   return (
