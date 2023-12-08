@@ -1,21 +1,10 @@
-"use client"
-import DarkModeButton from '@/app/components/DarkModeButton';
-import LoginStudent from '@/app/components/LoginStudent';
-import Navbar from '@/app/components/Navbar';
-import RegisterStudent from '@/app/components/RegisterStudent';
-import React, { useState } from 'react'
+import React from 'react'
+import Info from './Info'
 
-function Page() {
-
-  const [login, setLogin] = useState<boolean>(true);
- 
-
+function page() {
   return (
-    <div>
-      <Navbar/>
-      <DarkModeButton/>
-      {login ? <LoginStudent setlogin={setLogin} /> : <RegisterStudent setlogin={setLogin} />}
-    </div>  )
+    <Info/>
+  )
 }
 
-export default Page
+export default page

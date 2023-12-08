@@ -17,7 +17,10 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [
+    require("daisyui"),
+    //require('tailwind-scrollbar-hide'),
+  ],
   daisyui: {
     themes: ["light", "dark", "cupcake"],
   },

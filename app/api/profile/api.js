@@ -2,7 +2,7 @@
 import {v4 as uuidv4 }from "uuid";
 import {pool}from "../db";
 
-export default async function postStudentProfileData(req, res) {
+export  async function postStudentProfileData(req, res) {
     //connect to postrgres database.
     const client = await pool.connect();
     const createTable_studentsProfile = "CREATE TABLE studentsProfile (id  serial,usernames VARCHAR(100),studentUniqueId uuid PRIMARY KEY,phonenumber VARCHAR(20),email VARCHAR(50),biography VARCHAR(300),password VARCHAR(50),dateCreated DATE); "

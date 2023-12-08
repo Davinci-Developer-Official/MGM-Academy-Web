@@ -1,16 +1,14 @@
-'use client';
+//'use client';
 import React, { useState } from 'react'
-import ba from "../../public/placeholders/ba.jpeg";
-import bb from "../../public/placeholders/bb.jpeg";
-import bc from "../../public/placeholders/bc.jpeg";
-import SearchbarAsn from './SearchbarAsn';
-import FilterAsn from './FilterAsn';
-import { FaArrowRight, FaCompress, FaExpand, FaLock } from 'react-icons/fa';
+import ba from "../../../../../public/placeholders/ba.jpeg";
+import bb from "../../../../../public/placeholders/bb.jpeg";
+import bc from "../../../../../public/placeholders/bc.jpeg";
+import SearchbarAsn from '../../../../components/SearchbarAsn';
 import Image from 'next/image';
 //import Choices from './Choices';
-import FilterSelectorCourses from './FilterSelectorCourses';
+import Card from "./card"
 
-function AsContent() {
+function list() {
     
     const items = [
         {
@@ -18,19 +16,19 @@ function AsContent() {
           "courseName":"Sub-poena drafting ",
           "courseInstructor":"John Lenon",
           "coverImage":ba,
-          "locked":true
+          "locked":false
       },{
           "id":2,
           "courseName":"Litigation drafting ",
           "courseInstructor":"Grace Lenon",
           "coverImage":bb,
-          "locked":true
+          "locked":false
       },{
           "id":3,
           "courseName":"Ui Design drafting ",
           "courseInstructor":"Thomas Mithamo",
           "coverImage":bc,
-          "locked":true
+          "locked":false
       },{
           "id":4,
           "courseName":"Mental Health ",
@@ -135,33 +133,16 @@ function AsContent() {
       "locked":true
   }
       ];
-    const[scrollbar,showScrollbar]=useState(false)
+   
   return (
     <div className='lg:w-full sm:w-full  flex flex-col bg-[#e1b382] '>
     <SearchbarAsn/>
    
-    <div className=' lg:w-[85%] sm:w-full  mx-auto h-[670px]  flex flex-col bg-base  overflow-y-scroll  ' >
-       
-        {items.map(items=>(
-            <div key={items.id} className='text-[#e1b382] bg-[#2d545e] mt-[10px] w-[90%] mx-auto mb-[10px] rounded-md flex flex-row h-18 border-[2.7px]  border-[#2d545e] ' >
-            <span className=' h-18 rounded-tl-md rounded-bl-md   w-[20%] ' >
-            <Image className='rounded-tl-md rounded-bl-md'  src={items.coverImage} alt={`${items.courseName} cover photo` } style={{
-                height:"100%",
-                width:"100%",
-                objectFit:"fill"
-            }}  />
-            </span>
-             <div className='flex flex-col text-black sm:pt-3 lg:pt-2 w-[80%] pl-10  p-2 ' >
-                <p className='sm:text-[20px] md:text-[25px] lg:text-xl text-[#e1b382]  ' >{items.courseName}</p>
-                <p className='sm:text-[15px] md:text-[17px] lg:text-base text-[#e1b382] ' > instructor: {items.courseInstructor}</p>
-             </div>
-             
-             <button className='flex flex-row my-auto mr-2  btn  bg-[#e1b382] text-[#2d545e] hover:text-[#e1b382]  hover:bg-[#2d545e] hover:border hover:border-[#e1b382]' >View  </button>
-            </div>
-        ))}
+    <div className=' lg:w-[85%] sm:w-full  mx-auto h-[670px]  flex flex-col bg-base  overflow-y-scroll  ' >       
+        {items.map((items)=>(<Card items={items} />))}
     </div>
     </div>
   )
 }
 
-export default AsContent
+export default list;

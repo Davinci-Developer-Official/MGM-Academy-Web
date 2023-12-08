@@ -4,19 +4,16 @@ import ba from "../../../../../../public/profile/user.png"
 import Image from 'next/image'
 import { FaUpload } from 'react-icons/fa'
 //import get from '@/app/api/get'
+import { fetchDataById } from '@/app/api/get'
 
 async function page() {
   
-  const key = "profile"
-  const value = "https://65644addceac41c0761dd04d.mockapi.io/users/api/profile";
+  //data sets for fetching data
+  const url = "https://65644addceac41c0761dd04d.mockapi.io/users/api/profile";
+  const index = 3
   const localApi = "/api/profile";
   //get data from api
-  
-  const res = await fetch(`${value}/12`,{
-    method:"GET",
-    cache:"no-cache",
-  });
-  const profiles = await res.json()
+  const profiles = await fetchDataById(url,index);
   
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -45,7 +42,7 @@ async function page() {
             <button className='btn  font-bold bg-[#e1b382] ml-5 text-[#2d545e] ' > <FaUpload/> upload</button>
           </p>
         </div>
-        <div className='w-full border border-[#2d545e] h-full sm:overflow-y-scroll ' >
+        <div className='w-full border border-[#2d545e] h-full scrollbar-hide ' >
         <form className="flex flex-col justify-between h-[80%] my-auto  pt-[50px] text-[#2d545e] " >
            <div className='lg:flex lg:flex-row sm:flex sm:flex-col justify-evenly w-[96%] mx-auto text-center  ' >
             <p>Edit Names</p>
