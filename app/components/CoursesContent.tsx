@@ -1,6 +1,6 @@
 import React from 'react'
 import NotificationStudents from './NotificationStudents'
-import AsContent from './AsContent'
+//import AsContent from './AsContent'
 import Courses from './Courses';
 
 function CoursesContent() {
