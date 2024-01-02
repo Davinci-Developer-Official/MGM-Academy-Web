@@ -56,6 +56,7 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
       onClick={() => setCurrentItemIndex(index)}
       className={`lower-nav-button mt-2 mb-2 ${currentItemIndex === index ? 'active' : ''}`}
     >
+      
       <FaCircle
         className={`lower-nav-icon ml-1 h-2 ${
           currentItemIndex === index ? 'active text-[#2d545e]' : 'hover:opacity-70'

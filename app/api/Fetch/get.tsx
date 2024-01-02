@@ -1,6 +1,6 @@
 'use server';
 
-import SingleCourse,{Placeholders} from "../components/SingleCourse";
+import SingleCourse,{Placeholders} from "../../components/SingleCourse";
 export type SingleCourse = JSX.Element;
 
 

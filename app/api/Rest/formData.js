@@ -1,6 +1,6 @@
 // pages/api/postData.js
 
-import { pool } from "./db";
+import { pool } from "./database/db";
 
 export default async function postStudentProfileData(req, res) {
   if (req.method === 'POST') {

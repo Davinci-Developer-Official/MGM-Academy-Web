@@ -1,4 +1,5 @@
 import Image, { StaticImageData } from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 import { FaLock } from 'react-icons/fa'
 
@@ -32,7 +33,7 @@ function card({items}:holder) {
                 <p className='sm:text-[15px] md:text-[17px] lg:text-base text-[#e1b382] ' > instructor: {items.courseInstructor}</p>
              </div>
              
-             <button className='flex flex-row my-auto mr-2  btn  bg-[#e1b382] text-[#2d545e] hover:text-[#e1b382]  hover:bg-[#2d545e] hover:border hover:border-[#e1b382]' >{items.locked ? <FaLock/> : <p>View</p>}  </button>
+             <div >{items.locked ? <FaLock/> : <Link href="/academics/studentPortal/Assignments/dashboard" className='btn sm:mt-2 md:mt-2 lg:mt-5 flex flex-row  mr-2    bg-[#e1b382] text-[#2d545e] hover:text-[#e1b382]  hover:bg-[#2d545e] hover:border hover:border-[#e1b382]' ><button>view</button></Link>}  </div>
             </div>
   )
 }

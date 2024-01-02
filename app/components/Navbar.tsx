@@ -23,8 +23,8 @@ function Navbar() {
         <li>
           <Link href="/academics" >Academics</Link>
           <ul className="p-2  bg-[#2d545e]  text-[#e1b382] ">
-            <li><Link href="/academics/studentPortal" >Student portal</Link></li>
-            <li><Link href="/academics/instructorPortal" >Tutor Portal </Link></li>
+            <li><Link href="/academics/studentPortal/auth" >Student portal</Link></li>
+            <li><Link href="/academics/instructorPortal/auth" >Instructor Portal </Link></li>
             <li><Link href="/academics/adminPortal">Admin portal</Link></li>
           </ul>
         </li>
@@ -42,7 +42,7 @@ function Navbar() {
           <summary><Link href="/academics" >Academics</Link></summary>
           <ul className="p-2  border border-[#e1b382]  bg-[#2d545e]    ">
             <li><Link href="/academics/studentPortal/auth" >Student portal</Link></li>
-            <li><Link href="/academics/instructorPortal" >Tutor Portal </Link></li>
+            <li><Link href="/academics/instructorPortal/auth" >Instructor Portal </Link></li>
             <li><Link href="/academics/adminPortal">Admin portal</Link></li>
           </ul>
         </details>

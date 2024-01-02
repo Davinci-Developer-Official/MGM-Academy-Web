@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import Image, { StaticImageData } from "next/image";
 import animation from "../../public/animated/Animation - 1701465071077.gif";
-import { fetchData } from "../api/get";
+import { fetchData } from "../api/Fetch/get";
 import SingleCourse, { Placeholders } from "./SingleCourse";
 import { MotionDiv } from "./MotionDiv";
 

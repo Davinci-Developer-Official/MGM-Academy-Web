@@ -1,6 +1,6 @@
 'use server'
 import {v4 as uuidv4 }from "uuid";
-import {pool}from "../db";
+import {pool}from "./database/db";
 
 export  async function postStudentProfileData(req, res) {
     //connect to postrgres database.

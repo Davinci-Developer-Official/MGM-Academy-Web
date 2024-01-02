@@ -1,0 +1,322 @@
+{
+    "content":[
+        {
+            "id":1,
+            "chapter":"Introduction ",
+            "module":"Portfolio Development and Freelancing",
+            "topic":[
+                {
+                    "id":1,
+                    "topicname":"what is graphic design"
+                },
+                {
+                    "id":2,
+                    "topicname":"Difference betweeen graphic design and ui/ux design "
+                },
+                {
+                    "id":3,
+                    "topicname":"Importance of graphic design"
+                }
+            ]
+        },
+        {
+            "id":2,
+            "chapter":"Graphic Design Tools ",
+            "module":"Portfolio Development and Freelancing",
+            "topic":[
+                {
+                    "id":1,
+                    "topicname":"Adobe Illustrator"
+                },
+                {
+                    "id":2,
+                    "topicname":"Inkscape "
+                },
+                {
+                    "id":3,
+                    "topicname":"Figma"
+                }
+            ]
+        },
+        {
+            "id":3,
+            "chapter":"Basic Design Principles ",
+            "module":"Introduction to Graphic Design",
+            "topic":[
+                {
+                    "id":1,
+                    "topicname":"Layout and composition"
+                },
+                {
+                    "id":2,
+                    "topicname":"Balance, contrast, and hierarchy "
+                },
+                {
+                    "id":3,
+                    "topicname":"Color theory"
+                }
+            ]
+        },
+        {
+            "id":4,
+            "chapter":"Design Software Introduction ",
+            "module":"Introduction to Graphic Design",
+            "topic":[
+                {
+                    "id":1,
+                    "topicname":"Overview of popular design software (Adobe Photoshop, Illustrator, InDesign)"
+                },
+                {
+                    "id":2,
+                    "topicname":"Setting up workspaces and basic tools "
+                }
+                
+            ]
+        },
+        {
+            "id":5,
+            "chapter":"Typography ",
+            "module":"Fundamentals of Design",
+            "topic":[
+                {
+                    "id":1,
+                    "topicname":"Typeface selection and pairing"
+                },
+                {
+                    "id":2,
+                    "topicname":"Kerning, leading, and tracking "
+                },
+                {
+                    "id":3,
+                    "topicname":"Typography in branding"
+                }
+                
+            ]
+        },
+        {
+            "id":6,
+            "chapter":"Image Editing and Manipulation ",
+            "module":"Fundamentals of Design",
+            "topic":[
+                {
+                    "id":1,
+                    "topicname":"Basics of photo editing"
+                },
+                {
+                    "id":2,
+                    "topicname":"Retouching and enhancing images "
+                },
+                {
+                    "id":3,
+                    "topicname":"Understanding resolution and file formats"
+                }
+                
+            ]
+        },
+        {
+            "id":7,
+            "chapter":"Vector Graphics ",
+            "module":"Fundamentals of Design",
+            "topic":[
+                {
+                    "id":1,
+                    "topicname":"Introduction to vector graphics"
+                },
+                {
+                    "id":2,
+                    "topicname":"Creating and editing vector illustrations "
+                },
+                {
+                    "id":3,
+                    "topicname":"Logo design principles"
+                }
+                
+            ]
+        },
+        {
+            "id":8,
+            "chapter":"Advanced Photoshop Techniques ",
+            "module":"Advanced Design Techniques",
+            "topic":[
+                {
+                    "id":1,
+                    "topicname":"Masking and layers"
+                },
+                {
+                    "id":2,
+                    "topicname":"Photo manipulation and special effects "
+                }
+                
+            ]
+        },
+        {
+            "id":9,
+            "chapter":"Advanced Illustrator Techniques ",
+            "module":"Advanced Design Techniques",
+            "topic":[
+                {
+                    "id":1,
+                    "topicname":"Complex shapes and patterns"
+                },
+                {
+                    "id":2,
+                    "topicname":"Illustrative icons and symbols "
+                }
+                
+            ]
+        },
+        {
+            "id":10,
+            "chapter":"Layout Design with InDesign ",
+            "module":"Advanced Design Techniques",
+            "topic":[
+                {
+                    "id":1,
+                    "topicname":"Page layout principles"
+                },
+                {
+                    "id":2,
+                    "topicname":"Creating print-ready documents "
+                },
+                {
+                    "id":3,
+                    "topicname":"Interactive document features"
+                }
+                
+            ]
+        },
+        {
+            "id":11,
+            "chapter":"Branding Basics",
+             "module":"Branding and Identity",
+            "topic":[
+                {
+                    "id":1,
+                    "topicname":"Understanding brand identity"
+                },
+                {
+                    "id":2,
+                    "topicname":"Logo design process "
+                },
+                {
+                    "id":3,
+                    "topicname":"Brand consistency"
+                }
+                
+            ]
+        },
+        {
+            "id":12,
+            "chapter":"Branding Applications",
+             "module":"Branding and Identity",
+            "topic":[
+                {
+                    "id":1,
+                    "topicname":"Business cards, letterheads, and other collateral"
+                },
+                {
+                    "id":2,
+                    "topicname":"Social media branding "
+                },
+                {
+                    "id":3,
+                    "topicname":"Packaging design"
+                }
+                
+            ]
+        },
+        {
+            "id":13,
+            "chapter":" Introduction to Web Design",
+             "module":"Web and UI/UX Design",
+            "topic":[
+                {
+                    "id":1,
+                    "topicname":"Web design principles"
+                },
+                {
+                    "id":2,
+                    "topicname":"Wireframing and prototyping "
+                },
+                {
+                    "id":3,
+                    "topicname":"Responsive design"
+                }
+                
+            ]
+        },
+        {
+            "id":14,
+            "chapter":" UI/UX Basics",
+             "module":"Web and UI/UX Design",
+            "topic":[
+                {
+                    "id":1,
+                    "topicname":"User interface design principles"
+                },
+                {
+                    "id":2,
+                    "topicname":"User experience considerations "
+                },
+                {
+                    "id":3,
+                    "topicname":"Designing for usability"
+                }
+                
+            ]
+        },
+        {
+            "id":15,
+            "chapter":"Building a Design Portfolio",
+             "module":"Portfolio Development and Freelancing",
+            "topic":[
+                {
+                    "id":1,
+                    "topicname":"Selecting and presenting work"
+                },
+                {
+                    "id":2,
+                    "topicname":"Creating an online portfolio "
+                }
+                
+            ]
+        },
+        {
+            "id":16,
+            "chapter":" Building a Design Portfolio",
+             "module":"Portfolio Development and Freelancing",
+            "topic":[
+                {
+                    "id":1,
+                    "topicname":"Client communication and project management"
+                },
+                {
+                    "id":2,
+                    "topicname":"Pricing and contracts "
+                },
+                {
+                    "id":3,
+                    "topicname":"Marketing yourself as a designer"
+                }
+                
+            ]
+        },
+        {
+            "id":16,
+            "chapter":" Staying Updated in Graphic Design",
+             "module":"Industry Trends and Emerging Technologies",
+            "topic":[
+                {
+                    "id":1,
+                    "topicname":"Emerging design trends"
+                },
+                {
+                    "id":2,
+                    "topicname":"Introduction to new tools and technologies "
+                }
+                
+            ]
+        }
+        
+    ]
+}

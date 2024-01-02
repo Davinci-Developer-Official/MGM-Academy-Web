@@ -1,0 +1,54 @@
+[
+    {
+      "module": "Introduction to Graphic Design",
+      "lessons": [
+        { "topic": "Overview of Graphic Design", "content": ["Definition and history of graphic design", "Importance and applications in various industries"] },
+        { "topic": "Basic Design Principles", "content": ["Layout and composition", "Balance, contrast, and hierarchy", "Color theory"] },
+        { "topic": "Design Software Introduction", "content": ["Overview of popular design software (Adobe Photoshop, Illustrator, InDesign)", "Setting up workspaces and basic tools"] }
+      ]
+    },
+    {
+      "module": "Fundamentals of Design",
+      "lessons": [
+        { "topic": "Typography", "content": ["Typeface selection and pairing", "Kerning, leading, and tracking", "Typography in branding"] },
+        { "topic": "Image Editing and Manipulation", "content": ["Basics of photo editing", "Retouching and enhancing images", "Understanding resolution and file formats"] },
+        { "topic": "Vector Graphics", "content": ["Introduction to vector graphics", "Creating and editing vector illustrations", "Logo design principles"] }
+      ]
+    },
+    {
+      "module": "Advanced Design Techniques",
+      "lessons": [
+        { "topic": "Advanced Photoshop Techniques", "content": ["Masking and layers", "Photo manipulation and special effects"] },
+        { "topic": "Advanced Illustrator Techniques", "content": ["Complex shapes and patterns", "Illustrative icons and symbols"] },
+        { "topic": "Layout Design with InDesign", "content": ["Page layout principles", "Creating print-ready documents", "Interactive document features"] }
+      ]
+    },
+    {
+      "module": "Branding and Identity",
+      "lessons": [
+        { "topic": "Branding Basics", "content": ["Understanding brand identity", "Logo design process", "Brand consistency"] },
+        { "topic": "Branding Applications", "content": ["Business cards, letterheads, and other collateral", "Social media branding", "Packaging design"] }
+      ]
+    },
+    {
+      "module": "Web and UI/UX Design",
+      "lessons": [
+        { "topic": "Introduction to Web Design", "content": ["Web design principles", "Wireframing and prototyping", "Responsive design"] },
+        { "topic": "UI/UX Basics", "content": ["User interface design principles", "User experience considerations", "Designing for usability"] }
+      ]
+    },
+    {
+      "module": "Portfolio Development and Freelancing",
+      "lessons": [
+        { "topic": "Building a Design Portfolio", "content": ["Selecting and presenting work", "Creating an online portfolio"] },
+        { "topic": "Freelancing and Professional Practices", "content": ["Client communication and project management", "Pricing and contracts", "Marketing yourself as a designer"] }
+      ]
+    },
+    {
+      "module": "Industry Trends and Emerging Technologies",
+      "lessons": [
+        { "topic": "Staying Updated in Graphic Design", "content": ["Emerging design trends", "Introduction to new tools and technologies"] }
+      ]
+    }
+  ]
+  

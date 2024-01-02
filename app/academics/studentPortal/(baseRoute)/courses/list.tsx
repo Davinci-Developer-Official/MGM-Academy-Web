@@ -1,16 +1,16 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { fetchMappableCourses } from '@/app/api/get'
+import { fetchMappableCourses } from '@/app/api/Fetch/get'
 import SearchbarAsn from '@/app/components/SearchbarAsn'
 import { StaticImageData } from 'next/image';
 import Card from "./card"
 
 export interface Course {
     id:number,
-    courseName:string,
-    courseInstructor:string,
-    coverImage:string|StaticImageData,
-    locked:boolean
+    coursename:string,
+    courseinstructor:string,
+    coverimage:string|StaticImageData,
+    locked:boolean,
 }
 const url = "https://65644addceac41c0761dd04d.mockapi.io/users/api/profile";
 
@@ -19,16 +19,14 @@ function PreLoaded(){
 const[data,setData]=useState<Course[]>([]);
 const[error,setError]=useState(undefined)
 //Dealing with api Data;
-function DataSorting(){
-    fetchMappableCourses(url)
-    .then(res=>{
-        
-        setData((prevData) => [...prevData, ...res]);
-    }).catch(err=>{
-        setError(err);
-        console.log(err)
+async function DataSorting(){
+    const response = await fetch(url,{
+        method:"GET",
+        cache:"no-cache",
     })
-}
+    const courses:Course[] = await response.json();
+    setData(courses);
+};
 useEffect(()=>{
     DataSorting()
 },[data])
