@@ -139,7 +139,7 @@ function list() {
     <SearchbarAsn/>
    
     <div className=' lg:w-[85%] sm:w-full  mx-auto h-[670px]  flex flex-col bg-base  overflow-y-scroll  ' >       
-        {items.map((items)=>(<Card items={items} />))}
+        {items.map((items)=>(<Card items={items} key={items.id} />))}
     </div>
     </div>
   )

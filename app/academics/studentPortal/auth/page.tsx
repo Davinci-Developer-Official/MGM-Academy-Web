@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import Login from "./login";
 import Register from "./register"
 
-function page() {
+function Page() {
     const[signIn,setSignIn]=useState(true)
   return (
     <div>
@@ -12,4 +12,4 @@ function page() {
   )
 }
 
-export default page
+export default Page

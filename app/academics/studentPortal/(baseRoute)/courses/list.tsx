@@ -31,7 +31,7 @@ useEffect(()=>{
     DataSorting()
 },[data])
 return<div className="lg:w-[85%] sm:w-full mx-auto h-[650px] md:h-[950px] flex flex-col bg-base overflow-y-scroll">
-{data.map(items=><Card items={items} />)}
+{data.map(items=><Card items={items} key={items.id} />)}
 </div>
 }
 //Courses content

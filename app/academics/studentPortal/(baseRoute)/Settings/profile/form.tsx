@@ -224,7 +224,7 @@ function Edit({setformData,profiles,formData,update}:any){
     )
   }
 
- function form({url,index,profiles}:any) {
+ function Form({url,index,profiles}:any) {
     const [formData,setformData]=useState<ProfileData>({
     avatar:"" ,
     username:"",
@@ -253,4 +253,4 @@ function Edit({setformData,profiles,formData,update}:any){
   )
 }
 
-export default form
+export default Form
