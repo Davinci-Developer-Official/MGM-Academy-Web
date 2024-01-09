@@ -10,7 +10,8 @@ export default function Home() {
   return (
   <div style={{
     width:"100%",
-  }} className='bg-[#e1b382] text-[#2d545e] ' >
+    
+  }} className='text-[#e1b382] bg-gradient-to-r from-[#2d545e] h-screen ' >
  
   <Navbar/>
   <AboutDashBoard/>
