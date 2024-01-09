@@ -31,7 +31,7 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
     <div className="carousel w-full flex flex-col ">
       
       <div className="item flex flex-col w-full  ">
-        <div className='w-full h-[300px] flex flex-col border border-[#2d545e] rounded-md  '  >
+        <div className='w-full h-[300px] flex flex-col border border-[#e1b382] rounded-md  '  >
         <Image src={currentItem.coverImage} alt={currentItem.courseName} style={{
           width:"100%",
           height:"240px",

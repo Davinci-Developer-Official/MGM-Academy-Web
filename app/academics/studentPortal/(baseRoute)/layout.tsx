@@ -12,7 +12,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
      overflow:'hidden'
     }} >
       <div className="lg:w-60    " ><DrawerStudent /></div>
-      <main className=" sm:w-full md:w-full h-screen bg-[#e1b382]  ">
+      <main className=" sm:w-full md:w-full h-screen text-[#e1b382] bg-gradient-to-r from-[#2d545e]]  ">
       {children}
         
         

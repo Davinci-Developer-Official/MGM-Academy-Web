@@ -116,7 +116,7 @@ const FindCourse = () => {
   return (
     
     <div>
-      <button className="btn flex flex-row text-[#e1b382] bg-[#2d545e]" onClick={openModal} >
+      <button className="btn flex flex-row text-[#e1b382] bg-gradient-to-r from-[#2d545e] border border-[#e1b382] " onClick={openModal} >
         Find Course(s) <FaBinoculars />
       </button>
       {modalIsOpen && (
