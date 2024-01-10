@@ -39,7 +39,7 @@ function DashContents() {
   }
   ];
   return (
-    <div className='lg:w-full sm:w-full h-screen overflow-y-scroll '  >
+    <div className='lg:w-full sm:w-full h-screen overflow-y-scroll text-[e1b382] bg-gradient-to-r from-[#2d545e] '  >
        <div className='h-[80px]   w-full ' >
        <HeaderDash/>
        
