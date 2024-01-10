@@ -4,7 +4,7 @@ import React, { useEffect } from 'react'
 import UpdatesCard from './UpdatesCard'
 import Cookies from "./Cookies"
 
-function page() {
+function Page() {
   useEffect(()=>{
     setTimeout(()=>{
       return <Cookies/>
@@ -22,4 +22,4 @@ function page() {
   )
 }
 
-export default page
+export default Page
