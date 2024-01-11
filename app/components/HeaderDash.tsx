@@ -45,7 +45,7 @@ const filterAndCheck = (searchValue:any) => {
         <p className=' p-[5px] ' >Dashboard</p>
        </button>*/}
        <div className='w-[80%] mx-auto border-none border-0  justify-around flex flex-row rounded-tl-md rounded-bl-md mt-5 ' >
-        <input placeholder=' Search courses ' value={value} className=' w-full h-full border-solid border border-t-0 border-l-0 border-r-0  border-b-[#e1b382] text-[#2d545e] bg-white p-2 rounded-tl-md rounded-bl-md text-[22px] ' onChange={e=>filterAndCheck(e.target.value)}   />
+        <input placeholder=' Search courses ' value={value} className=' w-full h-full border-solid border border-t-0 border-l-0 border-r-0  border-b-[#e1b382] text-[#2d545e] bg-white p-2 rounded-tl-md rounded-bl-md  ' onChange={e=>filterAndCheck(e.target.value)}   />
       <button className='p-2 text-[#2d545e] hover:text-[#e1b382] bg-white hover:bg-[#2d545e] rounded-tr-md rounded-br-md w-[40px] ' onClick={()=>{
         setValue("")
       }} >

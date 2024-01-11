@@ -54,7 +54,7 @@ function ProfileBtn() {
           </Link>
         </li>
         <li><a>   <FaPhone className=' ml-2' /> Support </a></li>
-        <li><Link href="/academics/studentPortal" className='text-red-600 ml-2 '  > <FaPowerOff/> Logout </Link></li>
+        <li><Link href="/academics/studentPortal/auth" className='text-red-600 ml-2 '  > <FaPowerOff/> Logout </Link></li>
       </ul>
     </div>
   )

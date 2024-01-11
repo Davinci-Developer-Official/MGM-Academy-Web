@@ -19,7 +19,41 @@ function Navbar() {
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
       </label>
       <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52  bg-[#2d545e]  text-[#e1b382] ">
-        <li><Link href="/" >About Us</Link></li>
+        <li><Link href="/" >Home</Link></li>
+        {/*About MGM*/}
+      <li tabIndex={0}>
+        <details>
+          <summary><Link href="/academics" >About MGM </Link></summary>
+          <ul className="p-2  border border-[#e1b382]  bg-[#2d545e]  w-fit  ">
+            <li><Link href="/AboutMGM/AboutUs" >About Us</Link></li>
+            <li><Link href="/" >Mission & Vision  </Link></li>
+            <li><Link href="/">MGM Administration</Link></li>
+          </ul>
+        </details>
+      </li>
+       {/*Admissions*/}
+       <li tabIndex={0}>
+        <details>
+          <summary><Link href="/academics" >Admissions</Link></summary>
+          <ul className="p-2  border border-[#e1b382]  bg-[#2d545e]    ">
+            <li><Link href="/academics/studentPortal/auth" >Application Process</Link></li>
+            <li><Link href="/academics/instructorPortal/auth" >Our Courses </Link></li>
+            <li><Link href="/academics/adminPortal">FAQS</Link></li>
+          </ul>
+        </details>
+      </li>
+       {/*Our Programs*/}
+       <li tabIndex={0}>
+        <details>
+          <summary><Link href="/academics" >Our Courses</Link></summary>
+          <ul className="p-2  border border-[#e1b382]  bg-[#2d545e]    ">
+            <li><Link href="/academics/studentPortal/auth" >Gender Studies</Link></li>
+            <li><Link href="/academics/instructorPortal/auth" >Technical certificate courses </Link></li>
+            <li><Link href="/academics/adminPortal">Short Courses</Link></li>
+          </ul>
+        </details>
+      </li>
+      {/*Academics*/}
         <li>
           <Link href="/academics" >Academics</Link>
           <ul className="p-2  bg-[#2d545e]  text-[#e1b382] ">
@@ -28,15 +62,69 @@ function Navbar() {
             <li><Link href="/academics/adminPortal">Admin portal</Link></li>
           </ul>
         </li>
-        <li><Link href="/founders" >Our Founders</Link></li>
-        <li><Link href="/contribute">Contribute</Link></li>
+        {/*Payment Methods*/}
+     <li tabIndex={0}>
+        <details>
+          <summary><Link href="/academics" >Payment Methods</Link></summary>
+          <ul className="p-2  border border-[#e1b382]  bg-[#2d545e]    ">
+            <li><Link href="/academics/studentPortal/auth" >Paypal</Link></li>
+            <li><Link href="/academics/instructorPortal/auth" >Skrill </Link></li>
+            <li><Link href="/academics/adminPortal">Credit/Debit Card</Link></li>
+          </ul>
+        </details>
+      </li>
+      {/*Contribute*/}
+      <li tabIndex={0}>
+        <details>
+          <summary><Link href="/academics" >Contribute</Link></summary>
+          <ul className="p-2  border border-[#e1b382]  bg-[#2d545e]    ">
+            <li><Link href="/academics/studentPortal/auth" >Become an Instructor</Link></li>
+            <li><Link href="/academics/instructorPortal/auth" >Instructor Portal </Link></li>
+            <li><Link href="/academics/adminPortal">Admin portal</Link></li>
+          </ul>
+        </details>
+      </li>
       </ul>
     </div>
     <a className="btn btn-ghost normal-case text-xl text-white "> MGM Institute </a>
   </div>
   <div className="navbar-center hidden lg:flex  ">
     <ul className="menu menu-horizontal px-1">
-      <li><Link href="/" >About Us</Link></li>
+      <li><Link href="/" >Home</Link></li>
+      {/*About MGM*/}
+      <li tabIndex={0}>
+        <details>
+          <summary><Link href="/academics" >About MGM </Link></summary>
+          <ul className="p-2  border border-[#e1b382]  bg-[#2d545e]  w-fit  ">
+            <li><Link href="/" >About Us</Link></li>
+            <li><Link href="/" >Mission & Vision  </Link></li>
+            <li><Link href="/">MGM Administration</Link></li>
+          </ul>
+        </details>
+      </li>
+      {/*Admissions*/}
+      <li tabIndex={0}>
+        <details>
+          <summary><Link href="/academics" >Admissions</Link></summary>
+          <ul className="p-2  border border-[#e1b382]  bg-[#2d545e]    ">
+            <li><Link href="/academics/studentPortal/auth" >Application Process</Link></li>
+            <li><Link href="/academics/instructorPortal/auth" >Our Courses </Link></li>
+            <li><Link href="/academics/adminPortal">FAQS</Link></li>
+          </ul>
+        </details>
+      </li>
+      {/*Our Programs*/}
+      <li tabIndex={0}>
+        <details>
+          <summary><Link href="/academics" >Our Courses</Link></summary>
+          <ul className="p-2  border border-[#e1b382]  bg-[#2d545e]    ">
+            <li><Link href="/academics/studentPortal/auth" >Gender Studies</Link></li>
+            <li><Link href="/academics/instructorPortal/auth" >Technical certificate courses </Link></li>
+            <li><Link href="/academics/adminPortal">Short Courses</Link></li>
+          </ul>
+        </details>
+      </li>
+      {/*Academics*/}
       <li tabIndex={0}>
         <details>
           <summary><Link href="/academics" >Academics</Link></summary>
@@ -47,8 +135,28 @@ function Navbar() {
           </ul>
         </details>
       </li>
-      <li><Link href="/founders" >Our Founders</Link></li>
-      <li><Link href="/contribute">Contribute</Link></li>
+     {/*Payment Methods*/}
+     <li tabIndex={0}>
+        <details>
+          <summary><Link href="/academics" >Payment Methods</Link></summary>
+          <ul className="p-2  border border-[#e1b382]  bg-[#2d545e]    ">
+            <li><Link href="/academics/studentPortal/auth" >Paypal</Link></li>
+            <li><Link href="/academics/instructorPortal/auth" >Skrill </Link></li>
+            <li><Link href="/academics/adminPortal">Credit/Debit Card</Link></li>
+          </ul>
+        </details>
+      </li>
+      {/*Contribute*/}
+      <li tabIndex={0}>
+        <details>
+          <summary><Link href="/academics" >Contribute</Link></summary>
+          <ul className="p-2  border border-[#e1b382]  bg-[#2d545e]    ">
+            <li><Link href="/academics/studentPortal/auth" >Become an Instructor</Link></li>
+            <li><Link href="/academics/instructorPortal/auth" >Instructor Portal </Link></li>
+            <li><Link href="/academics/adminPortal">Admin portal</Link></li>
+          </ul>
+        </details>
+      </li>
     </ul>
   </div>
   <div className="navbar-end">
