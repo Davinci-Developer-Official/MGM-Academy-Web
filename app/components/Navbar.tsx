@@ -96,7 +96,7 @@ function Navbar() {
         <details>
           <summary><Link href="/academics" >About MGM </Link></summary>
           <ul className="p-2  border border-[#e1b382]  bg-[#2d545e]  w-fit  ">
-            <li><Link href="/" >About Us</Link></li>
+            <li><Link href="/AboutMGM/AboutUs" >About Us</Link></li>
             <li><Link href="/" >Mission & Vision  </Link></li>
             <li><Link href="/">MGM Administration</Link></li>
           </ul>

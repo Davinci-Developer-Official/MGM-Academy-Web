@@ -5,10 +5,10 @@ import bg1 from '../../../public/empowerment/13.jpeg'
 function page() {
   return (
     <div className='h-screen ' >
-        <div className=' transparent lg:h-[500px] md:h-[400px] sm:h-[300px]  w-full  rounded-md '>
+        <div className=' transparent lg:h-[400px] md:h-[400px] sm:h-[300px]  w-full  rounded-md '>
         <Image src={bg1} alt="holder" className='h-full rounded-md w-[98%] mx-auto '  />
       </div>
-        <p className='w-[90%] mx-auto ' >
+        <p className='w-[90%] mx-auto h-[400px] overflow-y-scroll ' >
         The MGM Institute of Gender and Women Empowerment represents a pivotal institution in the pursuit of gender equality and the empowerment of women. Founded on the fundamental principles of inclusivity, equity, and social justice, this institute has emerged as a beacon of progress, challenging societal norms and contributing significantly to the advancement of women's rights.
 
 At the core of the institute's mission is the commitment to creating a space where individuals of all genders can thrive and contribute meaningfully to society. By fostering inclusivity, the institution works towards dismantling discriminatory practices and promoting a more diverse and equal world. This commitment is reflected not only in the educational programs offered but also in the overall ethos and culture of the institute.

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react'
 import UnlockPage from './UnlockPage';
 import Image from 'next/image';
-import bg1 from '../../public/empowerment/11.jpeg'
+import bg1 from '../../public/empowerment/11.png'
 
 function AboutDashBoard() {
   return (
