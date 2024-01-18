@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import FindCourse from './FindCourse'
 import { FaBackspace, FaEraser, FaHome, FaSearch } from 'react-icons/fa'
-import { Course } from '../academics/studentPortal/(baseRoute)/courses/list';
+import { Course } from '../academics/(portals)/studentPortal/(baseRoute)/courses/list';
 
 function HeaderDash() {
   const url = "https://65644addceac41c0761dd04d.mockapi.io/users/api/profile";

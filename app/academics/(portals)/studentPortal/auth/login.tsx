@@ -1,12 +1,16 @@
 
 import Link from 'next/link';
 import React, { useState } from 'react';
+import PocketBase from 'pocketbase'
 
 interface LoginStudentProps {
     setSignIn: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function LoginStudent(props: LoginStudentProps) {
+  //pocket base;
+  const pb = new PocketBase('http://127.0.0.1:8090');
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [secure, setSecure] = useState(false);
