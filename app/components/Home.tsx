@@ -5,7 +5,7 @@ import UnlockPage from './UnlockPage';
 import Image from 'next/image';
 import bg1 from '../../public/empowerment/11.png'
 
-function AboutDashBoard() {
+function Home() {
   return (
     <div style={{
       
@@ -46,4 +46,4 @@ function AboutDashBoard() {
   )
 }
 
-export default AboutDashBoard
+export default Home;

@@ -1,15 +1,15 @@
 import React from 'react'
-import pushing from '@/public/construction/welding.jpg'
+import pushing from '@/public/construction/construction.jpg'
 import Image from 'next/image'
 
 function Construction() {
   return (
-    <div className='background h-[550px] w-full  pt-7  ' style={{
+    <div className=' h-[550px] w-full    ' style={{
         background:"require(../../public/construction/push.gif)"
     }} > 
-        <div className=' rounded-md border-[4px] border-[#e1b382]  bg-gradient-to-r from-[#2d545e] w-60 glass h-60 mx-auto flex flex-col ' >
-            <Image src={pushing} alt="working" className='w-full h-[90%]  rounded-tl-md  rounded-tr-md  ' />
-            <p className='text-center pt-2 text-[#e1b382] ' >We are still working on this page</p>
+        <div className=' card  border-solid  border-[#2d545e] w-[98%] glass h-[98%] mx-auto mt-[1%] flex flex-col ' >
+            <Image src={pushing} alt="working" className='w-full h-full  rounded-md  ' />
+           
         </div>
         
     </div>

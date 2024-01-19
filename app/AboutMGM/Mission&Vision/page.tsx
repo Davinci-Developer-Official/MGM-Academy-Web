@@ -1,8 +1,9 @@
+import Construction from '@/app/components/Construction'
 import React from 'react'
 
 function page() {
   return (
-    <div>page</div>
+    <div><Construction/></div>
   )
 }
 

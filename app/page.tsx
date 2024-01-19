@@ -1,4 +1,4 @@
-import AboutDashBoard from '@/app/components/AboutDashBoard'
+import HomeInfo from '@/app/components/Home'
 //import AboutMGMSection from '@/components/AboutMGMSection'
 import DarkModeButton from '@/app/components/DarkModeButton'
 import Footer from '@/app/components/Footer'
@@ -11,10 +11,10 @@ export default function Home() {
   <div style={{
     width:"100%",
     
-  }} className='text-[#e1b382] bg-gradient-to-r from-[#2d545e] h-screen ' >
+  }} className='  text-[#e1b382]  h-screen ' >
  
   <Navbar/>
-  <AboutDashBoard/>
+  <HomeInfo/>
   <Footer/>
   
   
