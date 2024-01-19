@@ -1,8 +1,8 @@
 //'use client';
 import React, { useState } from 'react'
-import ba from "../../../../../public/placeholders/ba.jpeg";
-import bb from "../../../../../public/placeholders/bb.jpeg";
-import bc from "../../../../../public/placeholders/bc.jpeg";
+import ba from "@/public/placeholders/ba.jpeg";
+import bb from "@/public/placeholders/bb.jpeg";
+import bc from "@/public/placeholders/bc.jpeg";
 import SearchbarAsn from '../../../../../components/SearchbarAsn';
 import Image from 'next/image';
 //import Choices from './Choices';

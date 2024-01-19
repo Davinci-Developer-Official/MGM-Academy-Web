@@ -1,8 +1,8 @@
 'use client'
 import Image from "next/image"
-import ba from "../../../../../public/profile/vlcsnap-2022-06-29-14h22m30s920.png"
-import bb from "../../../../../public/profile/vlcsnap-2022-06-29-14h23m45s921.png"
-import bc from "../../../../../public/profile/vlcsnap-2022-06-29-14h24m31s848.png"
+import ba from "@/public/profile/vlcsnap-2022-06-29-14h22m30s920.png"
+import bb from "@/public/profile/vlcsnap-2022-06-29-14h23m45s921.png"
+import bc from "@/public/profile/vlcsnap-2022-06-29-14h24m31s848.png"
 import { FaCartPlus, FaMoneyBill, FaTrash } from "react-icons/fa"
 import { useState } from "react"
 
