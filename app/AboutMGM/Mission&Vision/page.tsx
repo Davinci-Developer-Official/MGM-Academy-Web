@@ -1,10 +1,9 @@
-import Construction from '@/app/components/Construction'
+
+import MissionAndVision from './MissionAndVision'
 import React from 'react'
 
 function page() {
-  return (
-    <div><Construction/></div>
-  )
+  return <MissionAndVision/>;
 }
 
 export default page

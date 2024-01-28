@@ -1,8 +1,15 @@
 import React from 'react'
+import banner from '@/public/empowerment/12.jpeg'
+import Image from 'next/image';
 
-function FAQS() {
+function MissionAndVision() {
   return (
-    <div><div className="collapse collapse-plus text-[#2d545e] " style={{
+    <div className=' h-screen  text-[#e1b382] mb-5 ' >
+       <div className=' transparent h-[250px] lg:h-[350px]    rounded-md '>
+        <Image src={banner} alt="holder" className='h-full rounded-md w-[98%] lg:w-[90%] mx-auto '  />
+      </div>
+     <div className='h-[500px] pt-5 mt-2 overflow-y-scroll' >
+     <div className="collapse collapse-plus  " style={{
         marginTop:20,
       }}>
         <input type="radio" name="my-accordion-3" checked={true} />
@@ -13,12 +20,12 @@ function FAQS() {
           <p>The institute's vision is a world where gender-based discrimination and inequality are eradicated, and women have equal opportunities and access to resources across all spheres of life.</p>
         </div>
       </div>
-      <div className="collapse collapse-plus  text-[#2d545e] ">
+      <div className="collapse collapse-plus   ">
         <input type="radio" name="my-accordion-3" />
         <div className="collapse-title text-xl font-medium">
           Our Mission
         </div>
-        <div className="collapse-content">
+        <div className="collapse-content h-fit  ">
         <p className='lg:text-xl' style={{
         marginTop:10,
       }} >
@@ -59,7 +66,7 @@ function FAQS() {
       </ol>
         </div>
       </div>
-      <div className="collapse collapse-plus text-[#2d545e]">
+      <div className="collapse collapse-plus ">
         <input type="radio" name="my-accordion-3" />
         <div className="collapse-title text-xl font-medium">
           Our Key initiatives
@@ -93,7 +100,7 @@ function FAQS() {
       </ul>
         </div>
       </div>
-      <div className="collapse collapse-plus text-[#2d545e]">
+      <div className="collapse collapse-plus ">
         <input type="radio" name="my-accordion-3" />
         <div className="collapse-title text-xl font-medium">
           Our Expected Impact
@@ -107,7 +114,7 @@ function FAQS() {
       </p>
         </div>
       </div>
-      <div className="collapse collapse-plus text-[#2d545e]">
+      <div className="collapse collapse-plus ">
         <input type="radio" name="my-accordion-3" />
         <div className="collapse-title text-xl font-medium">
           Our Future Direction
@@ -124,7 +131,7 @@ function FAQS() {
       </p>
         </div>
       </div>
-      <div className="collapse collapse-plus text-[#2d545e]">
+      <div className="collapse collapse-plus ">
         <input type="radio" name="my-accordion-3" />
         <div className="collapse-title text-xl font-medium">
           Our Final Say
@@ -138,8 +145,10 @@ function FAQS() {
         equitable future.
       </p>
         </div>
-      </div></div>
+      </div>
+     </div>
+     </div>
   )
 }
 
-export default FAQS
+export default MissionAndVision;

@@ -1,9 +1,16 @@
+import Image from 'next/image'
 import React from 'react'
+import banner from '@/public/empowerment/1.jpeg'
 
 function Info() {
   return (
-    <div className='h-[400px] ' >
-         <p className='w-[90%] mx-auto   ' >
+    <div className=' h-screen  text-[#e1b382] mb-5 ' >
+    <div className=' transparent h-[250px] lg:h-[350px]    rounded-md '>
+     <Image src={banner} alt="holder" className='h-full rounded-md w-[98%] lg:w-[90%] mx-auto '  />
+   </div>
+   <h1 className='text-center pt-2 text-xl' >About MGM</h1>
+  <div className='h-[400px] lg:h-[400px] sm:h-[500px] pt-2 mt-2  overflow-y-scroll' >
+         <p className='w-[90%] mx-auto  lg:text-xl ' >
         The MGM Institute of Gender and Women Empowerment represents a pivotal institution in the pursuit of gender equality and the empowerment of women. Founded on the fundamental principles of inclusivity, equity, and social justice, this institute has emerged as a beacon of progress, challenging societal norms and contributing significantly to the advancement of women's rights.
 
 At the core of the institute's mission is the commitment to creating a space where individuals of all genders can thrive and contribute meaningfully to society. By fostering inclusivity, the institution works towards dismantling discriminatory practices and promoting a more diverse and equal world. This commitment is reflected not only in the educational programs offered but also in the overall ethos and culture of the institute.
@@ -18,6 +25,7 @@ The commitment to social justice extends beyond the institute's walls, as it col
 
 In essence, the MGM Institute of Gender and Women Empowerment stands as a testament to the transformative power of education and activism in reshaping societal norms. By championing inclusivity, equity, and social justice, this dedicated institution plays a crucial role in the ongoing battle for gender equality and the empowerment of women, leaving a lasting impact on individuals, communities, and society as a whole.
         </p>
+      </div>
     </div>
   )
 }

@@ -5,7 +5,7 @@ function Footer() {
    <div style={{
     width:"100%"
    }}  >
-  <footer className="footer p-8 text-[#e1b382] bg-[#2d545e] h-fit "  >
+  <footer className="footer p-8 text-[#e1b382] bg-[#2d545e] h-fit relative "  >
   <nav>
     <header className="footer-title">Legal</header> 
     <a className="link link-hover">Terms of use</a> 

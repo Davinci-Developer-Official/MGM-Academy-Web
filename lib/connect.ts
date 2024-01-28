@@ -19,3 +19,11 @@ export async function getUsers(){
     });
     return records;
 };
+
+export async function getcourses (){
+  // you can also fetch all records at once via getFullList
+const records = await pbClient .collection('ourcourses').getFullList({
+  sort: '-created',
+});
+return records;
+}

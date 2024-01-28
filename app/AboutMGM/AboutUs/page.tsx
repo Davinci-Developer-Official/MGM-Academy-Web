@@ -17,7 +17,7 @@ function page() {
   */}
   return (
    <>
-   <Construction/>
+   <Info/>
    </>
   )
 }
