@@ -13,7 +13,7 @@ function page() {
     </div>
   }
   return (
-    <div className='lg:flex lg:flex-row' >
+    <div className='lg:flex lg:flex-row background ' >
     <List/>
    {/* <Courses/> */}
     <div className="lg:w-70 bg-green-700 " ><NotificationStudents /></div>

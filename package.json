@@ -36,6 +36,7 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "daisyui": "^3.7.7"
+    "daisyui": "^3.7.7",
+    "prisma": "^5.8.1"
   }
 }

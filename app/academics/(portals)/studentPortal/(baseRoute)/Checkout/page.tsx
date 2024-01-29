@@ -9,10 +9,10 @@ import { useState } from "react"
 export default function page (){
 
     return(
-        <div className="bg-[#e1b382]  " >
-        <p className="text-center h-[50px] text-[#2d545e]  pt-5 font-bold text-xl " >Cart</p>
+        <div className="background  " >
+        <p className="text-center h-[50px] text-[#e1b382]  pt-5 font-bold text-xl " >Cart</p>
 
-        <div className=" w-full bg-[#e1b382]  overflow-y-auto " >                                
+        <div className=" w-full background  overflow-y-auto " >                                
         
         <ProductList/>
         
@@ -29,11 +29,11 @@ const C2P=()=>{
 
     return(
         <div className=" lg:h-[200px] md:h-[200px] h-[150px] flex flex-col w-full justify-evenly " >
-            <div className="   h-[50px] ml-[20%] lg:ml-[30%] w-[60%] lg:w-[40%]  flex flex-row justify-between text-[#2d545e] " >
+            <div className="   h-[50px] ml-[20%] lg:ml-[30%] w-[60%] lg:w-[40%]  flex flex-row justify-between text-[#e1b382] " >
                  <p className="ml-[50px] mt-[15px] text-xl font-bold" >sub total : </p> 
                   <p className="mr-[50px] mt-[15px] text-xl font-bold" > {finalPrice} </p> 
             </div>
-            <button className="btn  lg:h-[100px] md:h-[100px] border border-[#2d545e] bg-[#e1b382] hover:bg-[#5e572d]  text-[#2d545e] hover:text-[#e1b382] h-[50px] ml-[20%] lg:ml-[30%] w-[60%] lg:w-[40%] text-xl  " > pay now   <FaMoneyBill size={20} />  </button>           
+            <button className="btn aligh-center border border-[#2d545e] bg-[#e1b382] hover:bg-[#5e572d]  text-[#2d545e] hover:text-[#e1b382] h-[50px] ml-[20%] lg:ml-[30%] w-[60%] lg:w-[40%] text-xl  " > pay now   <FaMoneyBill size={20} />  </button>           
         </div>
     )
 }
@@ -80,7 +80,7 @@ const ProductList=()=>{
     ]
 
     return(
-        <div className=" lg:h-[500px] md:h-[700px] h-[550px] sm:h-[400px]  w-[90%] lg:w-[60%] lg:mx-auto sm:[416px]  mt-4 mx-auto bg-[#e1b382]      " >
+        <div className=" lg:h-[500px] md:h-[700px] h-[550px] sm:h-[400px]  w-[90%] lg:w-[60%] lg:mx-auto sm:[416px]  mt-4 mx-auto background overflow-y-scroll     " >
 
           {placeholder.map(item=>(
             <div key={item.id} className="flex flex-row  mx-auto lg:w-[700px] sm:w-[500px] mb-4 mt-4 rounded-md border border-[#2d545e] " >

@@ -76,7 +76,7 @@ function Navbar() {
     </div>
     <a className="btn btn-ghost normal-case text-xl text-white "> MGM Institute </a>
   </div>
-  <div className="navbar-center hidden lg:flex  ">
+  <div className="navbar-center hidden lg:flex border-b-2 border-b-[#e1b382] ">
     <ul className="menu menu-horizontal px-1  ">
     <li><Link href="/" > <FaHome size={20} /> Home</Link></li>
         {/*About MGM*/}

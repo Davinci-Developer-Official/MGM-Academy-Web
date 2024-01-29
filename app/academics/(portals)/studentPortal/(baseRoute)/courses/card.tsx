@@ -8,7 +8,7 @@ interface Props{
 }
 function card({items}:Props) {
   return (
-    <div className="w-[80%] mx-auto mt-3 mb-3 h-[300px] flex flex-col border-[3px] border-[#2d545e] rounded-md" key={items.id} >
+    <div className="w-[80%] mx-auto mt-3 mb-3 h-[300px] flex flex-col border-solid border-2 border-[#e1b382] rounded-md" key={items.id} >
         <Image unoptimized
         alt={items.coursename}
         src={items.coverimage}
@@ -16,7 +16,7 @@ function card({items}:Props) {
         width={200}
         height={200}
         />
-    <div className="flex flex-row h-[60px] justify-between text-[#e1b382] bg-[#2d545e] rounded-bl-md rounded-br-md">
+    <div className="flex flex-row h-[60px] justify-between text-[#e1b382] bg-[#2d545e] rounded-bl-md rounded-br-md  ">
         <div className="flex flex-col ml-2 w-[80%]">
           <h2 className="text-base pt-1">{items.coursename}</h2>
           <p className="text-sm">Instructed by: {items.courseinstructor}</p>

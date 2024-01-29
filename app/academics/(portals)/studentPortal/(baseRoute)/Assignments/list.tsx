@@ -135,7 +135,7 @@ function list() {
       ];
    
   return (
-    <div className='lg:w-full sm:w-full  flex flex-col bg-[#e1b382] '>
+    <div className='lg:w-full sm:w-full  flex flex-col  '>
     <SearchbarAsn/>
    
     <div className=' lg:w-[85%] sm:w-full  mx-auto h-[670px]  flex flex-col bg-base  overflow-y-scroll  ' >       

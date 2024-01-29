@@ -8,7 +8,7 @@ import List from './list'
 
 function page() {
   return (
-    <div className='lg:flex lg:flex-row'>
+    <div className='background lg:flex lg:flex-row'>
     {/*<AsContent/>*/}
     <List/>
     <div className="lg:w-70 bg-green-700 " ><NotificationStudents /></div>

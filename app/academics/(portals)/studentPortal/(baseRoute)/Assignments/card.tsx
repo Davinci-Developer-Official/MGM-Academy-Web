@@ -16,7 +16,7 @@ interface holder{
 }
 function card({items}:holder) {
   return (
-    <div key={items.id} className='text-[#e1b382] bg-[#2d545e] mt-[10px] w-[90%] mx-auto mb-[10px] rounded-md flex flex-row h-18 border-[2.7px]  border-[#2d545e] ' >
+    <div key={items.id} className='text-[#e1b382] bg-[#2d545e] mt-[10px] w-[90%] mx-auto mb-[10px] rounded-md flex flex-row h-18 border-[2.7px]  border-[#e1b382] ' >
             <span className=' h-18 rounded-tl-md rounded-bl-md   w-[20%] ' >
             {typeof items.coverImage === "string" ? <Image className='rounded-tl-md rounded-bl-md'  src={items.coverImage} alt={`${items.courseName} cover photo` } style={{
                 height:"100%",

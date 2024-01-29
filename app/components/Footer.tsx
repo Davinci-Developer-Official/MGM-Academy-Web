@@ -2,18 +2,16 @@ import React from 'react'
 
 function Footer() {
   return (
-   <div style={{
-    width:"100%"
-   }}  >
-  <footer className="footer p-8 text-[#e1b382] bg-[#2d545e] h-fit relative "  >
+   <div className='w-full' >
+  <footer className="footer p-8 text-[#e1b382] bg-[#2d545e] h-fit relative border-t-2 border-t-[#e1b382] "  >
   <nav>
-    <header className="footer-title">Legal</header> 
+    <header className="footer-title border-b-2 border-b-[#e1b382] ">Legal</header> 
     <a className="link link-hover">Terms of use</a> 
     <a className="link link-hover">Privacy policy</a> 
     <a className="link link-hover">Cookie policy</a>
   </nav> 
   <form>
-    <header className="footer-title">Newsletter</header> 
+    <header className="footer-title border-b-2 border-b-[#e1b382] ">Newsletter</header> 
     <fieldset className="form-control w-80">
       <label className="label">
         <span className="label-text">Enter your email address</span>

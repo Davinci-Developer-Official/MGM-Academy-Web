@@ -7,33 +7,14 @@ import bg1 from '../../public/empowerment/11.png'
 
 function Home() {
   return (
-    <div style={{
-      
-      marginBottom:30,
-    }} >
-    <div style={{
-      marginTop:10,
-      marginBottom:10,
-    }} >
+    <div className='background p-4  ' >
+    <div >
       {/*<UnlockPage/>*/}
-    <h1 style={{
-        textAlign:"center",
-        fontSize:30,
-        //fontWeight:20,
-        marginTop:10,
-        marginBottom:10,
-        width:"80%",
-      marginLeft:"10%",
-        
-      }} >MGM Institute of Gender and Women Empowerment</h1>
+    <h1 className='text-center text-xl font-bold mb-2 mt-2  ' >MGM Institute of Gender and Women Empowerment</h1>
       <div className=' transparent lg:h-[500px] md:h-[400px] sm:h-[300px]  w-full  rounded-md '>
         <Image src={bg1} alt="holder" className='h-full rounded-md w-[98%] mx-auto '  />
       </div>
-      <p className='lg:text-xl  ' style={{
-        marginTop:20,
-        width:"90%",
-      marginLeft:"5%",
-      }} >
+      <p className='  lg:text-xl w-[90%] mx-auto mt-4   '  >
         The MGM Institute of Gender and Women Empowerment stands as a beacon of
         progress in the ongoing battle for gender equality and the empowerment
         of women. Founded on the principles of inclusivity, equity, and social

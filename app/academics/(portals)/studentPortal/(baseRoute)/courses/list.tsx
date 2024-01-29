@@ -37,7 +37,7 @@ return<div className="lg:w-[85%] sm:w-full mx-auto h-[650px] md:h-[950px] flex f
 //Courses content
 export default function list() {
   return (
-    <div className='lg:w-full sm:w-full  flex flex-col  lg:h-screen  bg-[#e1b382] ' >
+    <div className='lg:w-full sm:w-full  flex flex-col  lg:h-screen   ' >
     <SearchbarAsn/>
     <PreLoaded/>
     </div>
