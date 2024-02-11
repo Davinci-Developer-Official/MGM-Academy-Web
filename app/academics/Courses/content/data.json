@@ -1,0 +1,39 @@
+{
+    "content":[
+        {
+            "id":1,
+            "course_name":"python for beginers",
+            "chapter_id":"1",
+            "chapter_title":"Introduction",
+            "chapter_image":"@/public/logo/code.png",
+            "chapter_content":"Python is an incredibly versatile and beginner-friendly programming language that has gained immense popularity in recent years. Whether you're a complete novice to coding or someone with some prior experience, Python offers an inviting entry point into the world of programming. At its core, Python prides itself on readability and simplicity, making it an ideal choice for those just starting their coding journey. Its syntax is designed to be intuitive, resembling pseudo-code in many ways, which means you can focus more on solving problems rather than wrestling with complex syntax rules.One of the most appealing aspects of Python is its extensive support for various programming paradigms, including procedural, object-oriented, and functional programming. This versatility allows beginners to explore different coding styles and gradually develop a deeper understanding of programming concepts.Moreover, Python's vast ecosystem of libraries and frameworks makes it suitable for a wide range of applications, from web development and data analysis to artificial intelligence and machine learning. This abundance of resources means that as you progress in your coding skills, there will always be new avenues to explore and projects to undertake.Whether you're interested in building simple scripts to automate everyday tasks or diving into more advanced projects, Python provides the tools and support necessary to turn your ideas into reality. With a welcoming community and an abundance of learning resources available online, embarking on your Python journey is not only accessible but also highly rewarding. So why wait? Dive into the world of Python today and unlock a world of endless possibilities in the realm of programming."
+        },
+        {
+            "id":2,
+            "course_name":"python for beginers",
+            "chapter_id":"2",
+            "chapter_title":"code editors",
+            "chapter_image":"@/public/logo/code.png",
+            "chapter_content":"The article's typology encompasses four types of visual communication: idea illustration, idea generation, visual discovery, and everyday dataviz, defined by combining the nature (conceptual or data-driven) and purpose (declarative or exploratory) of the visualization.The axes of the pyramid search visualization employ easily grasped conventions, such as industries plotted from near to far and expertise mapped from low to high."
+
+        }
+        ,{
+            "id":3,
+            "course_name":"python for beginers",
+            "chapter_id":"1",
+            "chapter_title":"Installation",
+            "chapter_image":"@/public/logo/code.png",
+            "chapter_content":"The article's typology encompasses four types of visual communication: idea illustration, idea generation, visual discovery, and everyday dataviz, defined by combining the nature (conceptual or data-driven) and purpose (declarative or exploratory) of the visualization.The axes of the pyramid search visualization employ easily grasped conventions, such as industries plotted from near to far and expertise mapped from low to high."
+
+        },
+        {
+            "id":4,
+            "course_name":"python for beginers",
+            "chapter_id":"1",
+            "chapter_title":"Data Types",
+            "chapter_image":"@/public/logo/code.png",
+            "chapter_content":"The article's typology encompasses four types of visual communication: idea illustration, idea generation, visual discovery, and everyday dataviz, defined by combining the nature (conceptual or data-driven) and purpose (declarative or exploratory) of the visualization.The axes of the pyramid search visualization employ easily grasped conventions, such as industries plotted from near to far and expertise mapped from low to high."
+
+        }
+    ]
+}

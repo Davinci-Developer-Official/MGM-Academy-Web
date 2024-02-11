@@ -3,7 +3,7 @@ import { FaCaretRight, FaPlus, FaTimes } from 'react-icons/fa'
 import dummyPic from "@/public/empowerment/1.jpeg"
 
 
-function CreateCourse({setcreatecourse}:any) {
+function CreateCourse({setcreatecourse,showEditor}:any) {
   return (
     <div>
       <form className='background p-10 overflow-y-scroll h-screen ' >
@@ -79,6 +79,7 @@ function CreateCourse({setcreatecourse}:any) {
       }} ><p>close</p><FaTimes size={15} /></button>
       <button className='btn btn-success flex flex-row ' onClick={()=>{
         setcreatecourse(false);
+        showEditor(true)
       }} ><p>Create Course</p><FaPlus size={15} /></button>
       </div>
 

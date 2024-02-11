@@ -6,6 +6,8 @@ import { FaCaretDown, FaCartPlus,FaEraser,FaStar,FaStarHalfAlt } from 'react-ico
 import Link from 'next/link';
 import { useState } from 'react';
 
+
+
 interface Data {
     id:number,
     category:string,
@@ -68,16 +70,16 @@ export default function Section(){
                 <Image src={img} alt='cover image' className='w-full object-fit h-full '  />
                 </div>
                 {/*Course info*/}
-                <div className=' w-[30%]  rounded-tr-md ' >
+                <div className=' w-[30%] flex flex-col  rounded-tr-md ' >
                 {/*course name*/}
                 <div className='h-fit p-1 rounded-tr-md flex flex-col ' >
                 <p className='text-white' >Course category:</p>
-                <p className='h-[20px] p-1  ' >{item.category}</p>
+                <p className='h-[20px] p-1 sm:text-sm   ' >{item.course_category}</p>
                 </div>
                 {/*course code*/}
                 <div className='flex flex-col p-1 w-full h-[40px]  ' >
                 <p className=' text-white ' >Class code:</p>
-                <p className='p-1 ' > {item.code}</p>
+                <p className='p-1 ' > {item.course_code}</p>
                 </div>
                 {/*course rating*/}
                 <div className=' p-2 mt-6  ' >
@@ -100,17 +102,17 @@ export default function Section(){
                 {/*course name*/}
                 <div className='h-fit p-1 rounded-tr-md flex flex-col ' >
                 <p className='text-white' >course name:</p>
-                <p className='h-[30px]  p-1 ' >{item.name}</p>
+                <p className='h-[30px]  p-1 ' >{item.course_name}</p>
                 </div>
                 {/*course description*/}
                 <div className='p-1 flex flex-col ' >
                 <p className='text-white ' >Course description: </p>
-                <p className='h-[100px] p-2  ' >{item.description}</p>
+                <p className='h-[100px] p-2  ' >{item.course_description}</p>
                 </div>
                 {/*Requirements*/}
                 <div className='p-1 ' >
                 <p className='text-white' >Requirements:</p> 
-                <p className='h-[50px] p-2  ' >{item.requirements}</p>
+                <p className='h-[50px] p-2  ' >{item.course_requirements}</p>
                 </div>  
                 {/*Requirements*/}
                 <div className='p-1 ' >
