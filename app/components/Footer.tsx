@@ -2,7 +2,7 @@ import React from 'react'
 
 function Footer() {
   return (
-   <div className='w-full' >
+  
   <footer className="footer p-8 text-[#e1b382] bg-[#2d545e] h-fit relative border-t-2 border-t-[#e1b382] "  >
   <nav>
     <header className="footer-title border-b-2 border-b-[#e1b382] ">Legal</header> 
@@ -23,7 +23,7 @@ function Footer() {
     </fieldset>
   </form>
 </footer>
-   </div>
+   
   )
 }
 

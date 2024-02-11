@@ -5,8 +5,8 @@ import Image from 'next/image';
 function MissionAndVision() {
   return (
     <div className=' h-screen  text-[#e1b382] mb-5 ' >
-       <div className=' transparent h-[250px] lg:h-[350px]    rounded-md '>
-        <Image src={banner} alt="holder" className='h-full rounded-md w-[98%] lg:w-[90%] mx-auto '  />
+       <div className=' transparent h-[200px] lg:h-[250px]    rounded-md '>
+        <Image src={banner} alt="holder" className='h-full rounded-md w-[90%] lg:w-[90%] mx-auto '  />
       </div>
      <div className='h-[500px] pt-5 mt-2 overflow-y-scroll' >
      <div className="collapse collapse-plus  " style={{
