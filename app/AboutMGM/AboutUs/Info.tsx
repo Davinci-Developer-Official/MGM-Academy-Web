@@ -5,8 +5,8 @@ import banner from '@/public/empowerment/1.jpeg'
 function Info() {
   return (
     <div className=' h-screen  text-[#e1b382] mb-5 ' >
-    <div className=' transparent h-[250px] lg:h-[350px]    rounded-md '>
-     <Image src={banner} alt="holder" className='h-full rounded-md w-[98%] lg:w-[90%] mx-auto '  />
+    <div className=' transparent h-[200px] lg:h-[250px]    rounded-md '>
+     <Image src={banner} alt="holder" className='h-full rounded-md w-[90%] lg:w-[90%] mx-auto '  />
    </div>
    <h1 className='text-center pt-2 text-xl' >About MGM</h1>
   <div className='h-[400px] lg:h-[400px] sm:h-[500px] pt-2 mt-2  overflow-y-scroll' >
