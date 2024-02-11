@@ -1,0 +1,47 @@
+{
+    "courses":[
+        {
+            "id":1,
+            "category":"IT",
+            "name":"Python for beginners",
+            "code":"PT3449",
+            "description":"of progress in the ongoing battle for gender equality and the empowerment of women. Founded on the principles of inclusivity, equity, and social justice. ",
+            "requirements":"none"
+        },{
+            "id":2,
+            "category":"IT",
+            "name":"Python for beginners",
+            "code":"PT3449",
+            "description":"of progress in the ongoing battle for gender equality and the empowerment of women. Founded on the principles of inclusivity, equity, and social justice. ",
+            "requirements":"none"
+        },{
+            "id":3,
+            "category":"IT",
+            "name":"Python for beginners",
+            "code":"PT3449",
+            "description":"of progress in the ongoing battle for gender equality and the empowerment of women. Founded on the principles of inclusivity, equity, and social justice. ",
+            "requirements":"none"
+        },{
+            "id":4,
+            "category":"IT",
+            "name":"Python for beginners",
+            "code":"PT3449",
+            "description":"of progress in the ongoing battle for gender equality and the empowerment of women. Founded on the principles of inclusivity, equity, and social justice. ",
+            "requirements":"none"
+        },{
+            "id":5,
+            "category":"IT",
+            "name":"Python for beginners",
+            "code":"PT3449",
+            "description":"of progress in the ongoing battle for gender equality and the empowerment of women. Founded on the principles of inclusivity, equity, and social justice. ",
+            "requirements":"none"
+        },{
+            "id":6,
+            "category":"IT",
+            "name":"Python for beginners",
+            "code":"PT3449",
+            "description":"of progress in the ongoing battle for gender equality and the empowerment of women. Founded on the principles of inclusivity, equity, and social justice. ",
+            "requirements":"none"
+        }
+    ]
+}

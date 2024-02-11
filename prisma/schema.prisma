@@ -1,31 +1,14 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
 //Generator section: connects to prisma client;
 generator client {
   provider = "prisma-client-js"
 }
 //Datasource section: defines database connection;
 datasource db {
-    provider = "postgresql"
-    url = env("POSTGRES_PRISMA_URL")//uses connection pooling;
-    directUrl = env("POSTGRES_URL_NON_POOLING")//uses a direct connection;
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
-//Model section: 
-//student registration model;
-model StudentProfile {
-  id             Int       @id @default(autoincrement())
-  userId         String    @default(uuid()) // Assuming you want a UUID for userId
-  username       String
-  firstName      String
-  middleName     String?
-  lastName       String
-  profileImage   String?   // Assuming this will store the file path or URL of the profile image
-  email          String
-  gender         String
-  citizenship    String
-  residence      String
-  phoneNumber    String
-  dateOfBirth    DateTime  // Assuming you want to store date and time of birth
-  exposure       String
-  agreement      Boolean  @default(false)
-  
-  @@map(name: "student_profile")
-}
+
+//students-profiles 

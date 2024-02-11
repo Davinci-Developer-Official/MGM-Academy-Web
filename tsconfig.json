@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/Rest/api.js", "app/academics/(portals)/studentPortal/(baseRoute)/courses/dashboard/@content/content.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/Rest/api.js", "app/academics/(portals)/studentPortal/(baseRoute)/courses/dashboard/@content/content.tsx", "app/AboutMGM/Test/page.tsx"],
   "exclude": ["node_modules"]
 }

@@ -23,7 +23,7 @@ function Navbar() {
         {/*About MGM*/}
       <li tabIndex={0}>
         <details>
-          <summary><Link href="/academics" className='flex flex-row ' > <FaInfoCircle size={20} className="mr-2" />  About MGM  </Link></summary>
+          <summary><button className='flex flex-row ' > <FaInfoCircle size={20} className="mr-2" />  About MGM  </button></summary>
           <ul className="p-1  w-fit  ">
             <li><Link href="/AboutMGM/AboutUs" > <FaInfoCircle/> About MGM  </Link></li>
             <li><Link href="/AboutMGM/Mission&Vision" > <FaSun/> Mission & Vision  </Link></li>
@@ -34,11 +34,11 @@ function Navbar() {
         {/*Academics*/}
       <li tabIndex={0}>
         <details>
-          <summary><Link href="/academics" className='flex flex-row' > <FaGraduationCap size={20} className="mr-2" /> Academics</Link></summary>
+          <summary><button className='flex flex-row' > <FaGraduationCap size={20} className="mr-2" /> Academics</button></summary>
           <ul className="p-1    ">
           <li tabIndex={0}>
         <details>
-          <summary><Link href="/academics" className='flex flex-row' > <FaPersonBooth size={20} className="mr-2"  /> Portals</Link></summary>
+          <summary><button className='flex flex-row' > <FaPersonBooth size={20} className="mr-2"  /> Portals</button></summary>
           <ul className="p-1      ">
             <li><Link href="/academics/studentPortal/auth" > <FaPersonBooth/> Student portal</Link></li>
             <li><Link href="/academics/instructorPortal/auth" > <FaPersonBooth/> Instructor Portal </Link></li>
@@ -46,10 +46,10 @@ function Navbar() {
           </ul>
         </details>
       </li>
-            <li><Link href="/academics/studentPortal/auth" className='flex flex-row' > <FaGraduationCap size={20} className="mr-2" /> MGM Courses</Link></li>
+            <li><Link href="/academics/Courses" className='flex flex-row' > <FaGraduationCap size={20} className="mr-2" /> MGM Courses</Link></li>
             <li tabIndex={0}>
         <details>
-          <summary><Link href="/academics" className='flex flex-row' > <FaFile size={20} className="mr-2"  /> Apply</Link></summary>
+          <summary><button className='flex flex-row' > <FaFile size={20} className="mr-2"  /> Apply</button></summary>
           <ul className="p-1  ">
             <li><Link href="/academics/studentApplication" > <FaFile/> student application</Link></li>
             <li><Link href="/academics/InstructorApplication" > <FaFile/> Instructor application </Link></li>
@@ -64,7 +64,7 @@ function Navbar() {
       {/*Contribute*/}
       <li tabIndex={0} >
         <details>
-          <summary><Link href="http://localhost:3000" className='flex flex-row' > <FaHandshake size={20} className="mr-2" /> Contribute</Link></summary>
+          <summary><Link href="/contribute" className='flex flex-row' > <FaHandshake size={20} className="mr-2" /> Contribute</Link></summary>
           <ul className="p-1    ">
             <li><Link href="https://github.com/Davinci-Developer-Official/MGM-Academy-Web.git" > <FaGithub/> Github</Link></li>
             <li><Link href="http://localhost:3000" > <FaMoneyBill/> Donate </Link></li>
@@ -82,7 +82,7 @@ function Navbar() {
         {/*About MGM*/}
       <li tabIndex={0}>
         <details>
-          <summary><Link href="/academics" className='flex flex-row ' > <FaInfoCircle size={20} className="mr-2" />  About MGM  </Link></summary>
+          <summary><button className='flex flex-row ' > <FaInfoCircle size={20} className="mr-2" />  About MGM  </button></summary>
           <ul className="p-1  w-fit  z-10 ">
             <li><Link href="/AboutMGM/AboutUs" > <FaInfoCircle/> About MGM  </Link></li>
             <li><Link href="/AboutMGM/Mission&Vision" > <FaSun/> Mission & Vision  </Link></li>
@@ -93,11 +93,11 @@ function Navbar() {
         {/*Academics*/}
       <li tabIndex={0}>
         <details>
-          <summary><Link href="/academics" className='flex flex-row' > <FaGraduationCap size={20} className="mr-2" /> Academics</Link></summary>
+          <summary><button className='flex flex-row' > <FaGraduationCap size={20} className="mr-2" /> Academics</button></summary>
           <ul className="p-1  z-10  ">
           <li tabIndex={0}>
         <details>
-          <summary><Link href="/academics" className='flex flex-row' > <FaPersonBooth size={20} className="mr-2"  /> Portals</Link></summary>
+          <summary><button className='flex flex-row' > <FaPersonBooth size={20} className="mr-2"  /> Portals</button></summary>
           <ul className="p-1      ">
             <li><Link href="/academics/studentPortal/auth" > <FaPersonBooth/> Student portal</Link></li>
             <li><Link href="/academics/instructorPortal/auth" > <FaPersonBooth/> Instructor Portal </Link></li>
@@ -105,7 +105,7 @@ function Navbar() {
           </ul>
         </details>
       </li>
-            <li><Link href="/academics/studentPortal/auth" className='flex flex-row' > <FaBookOpen size={20} className="mr-2" /> MGM Courses</Link></li>
+            <li><Link href="/academics/Courses" className='flex flex-row' > <FaBookOpen size={20} className="mr-2" /> MGM Courses</Link></li>
             <li tabIndex={0}>
         <details>
           <summary><Link href="/academics" className='flex flex-row' > <FaFolder size={20} className="mr-2"  /> Apply</Link></summary>
@@ -123,7 +123,7 @@ function Navbar() {
       {/*Contribute*/}
       <li tabIndex={0} >
         <details>
-          <summary><Link href="http://localhost:3000" className='flex flex-row' > <FaHandshake size={20} className="mr-2" /> Contribute</Link></summary>
+          <summary><Link href="/contribute" className='flex flex-row' > <FaHandshake size={20} className="mr-2" /> Contribute</Link></summary>
           <ul className="p-1    ">
             <li><Link href="https://github.com/Davinci-Developer-Official/MGM-Academy-Web.git" > <FaGithub/> Github</Link></li>
             <li><Link href="http://localhost:3000" > <FaMoneyBill/> Donate </Link></li>

@@ -3,6 +3,8 @@ import NotificationInstructors from '@/app/components/NotificationInstructor'
 import React, { useEffect } from 'react'
 import UpdatesCard from './UpdatesCard'
 import Cookies from "./Cookies"
+import { FaPlus } from 'react-icons/fa'
+import Link from 'next/link'
 
 function Page() {
   useEffect(()=>{
@@ -13,7 +15,10 @@ function Page() {
   return (
     <div className='' >
     <div className='w-full h-screen  overflow-y-scroll ' >
-    <p className='pt-7 pl-5 text-[25px] text-[#2d545e] font-mono ' >Welcome back Thomas </p> 
+    <div className='flex flex-row ' >
+    <p className='pt-7 pl-5 text-[25px] text-[#2d545e] font-mono  ' >Welcome back Thomas </p> 
+    <Link href="/academics/instructorPortal/Courses/create" className='btn btn-success flex flex-row' ><FaPlus/> add </Link> 
+    </div>
     <UpdatesCard/>
     </div>   
     <NotificationInstructors/>

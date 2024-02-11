@@ -1,8 +1,9 @@
 import React from 'react'
-import Content from './content'
 
 function page() {
-  return <Content/>
+  return (
+    <div>page</div>
+  )
 }
 
 export default page
