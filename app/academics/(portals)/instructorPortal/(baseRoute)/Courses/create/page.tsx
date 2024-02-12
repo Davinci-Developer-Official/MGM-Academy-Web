@@ -10,7 +10,7 @@ function Page() {
     <div className='h-screen w-full  ' >
       {/*--create course--*/}
       {createcourse&&<CreateCourse setcreatecourse={setcreatecourse} showEditor={showEditor} />}
-      {editor&&<Editor showEditor={showEditor} />}
+      {editor&&<Editor  />}
     </div>
   )
 }
