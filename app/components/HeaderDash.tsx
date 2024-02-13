@@ -37,7 +37,7 @@ const filterAndCheck = (searchValue:any) => {
     DataSorting()
   },[filteredStrings,data])
   return (
-    <div className=' flex flex-col  ' >
+    <div className=' flex flex-col background ' >
       
     {/*<div className='flex flex-row  justify-evenly w-full pt-5   ' >*/}
       {/* <button className=" sm:w-[20%] lg:w-[10%] rounded-md border border-[#e1b382] flex flex-row p-[5px] text-[#e1b382] bg-gradient-to-r from-[#2d545e] normal-case text-xl sm:text-base justify-around "  >  
@@ -45,8 +45,8 @@ const filterAndCheck = (searchValue:any) => {
         <p className=' p-[5px] ' >Dashboard</p>
        </button>*/}
        <div className='w-[80%] mx-auto border-none border-0  justify-around flex flex-row rounded-tl-md rounded-bl-md mt-5 ' >
-        <input placeholder=' Search courses ' value={value} className=' w-full h-full border-solid border border-t-0 border-l-0 border-r-0  border-b-[#e1b382] text-[#2d545e] bg-white p-2 rounded-tl-md rounded-bl-md  ' onChange={e=>filterAndCheck(e.target.value)}   />
-      <button className='p-2 text-[#2d545e] hover:text-[#e1b382] bg-white hover:bg-[#2d545e] rounded-tr-md rounded-br-md w-[40px] ' onClick={()=>{
+        <input placeholder=' Search courses ' value={value} className=' w-full h-full border-solid border border-t-0 border-l-0 border-r-0  text-[#2d545e] bg-white p-2 rounded-tl-md rounded-bl-md  ' onChange={e=>filterAndCheck(e.target.value)}   />
+      <button className='p-2  hover:text-[#e97902]  rounded-tr-md rounded-br-md w-[40px] ' onClick={()=>{
         setValue("")
       }} >
         <FaBackspace size={20} />
@@ -55,16 +55,16 @@ const filterAndCheck = (searchValue:any) => {
        </div>
       {/*</div> */}
        {inputString.length !== 0 && (
-        <div className=' rounded-md top-4 h-[400px]  bg-[#2d545e] w-[80%] mx-auto overflow-y-scroll  ' style={{
+        <div className=' rounded-md top-4 h-[400px]  background border-2 border-[#e97902] w-[80%] mx-auto overflow-y-scroll  ' style={{
           zIndex:100
         }}  >
           {filteredStrings.map(item=>(
-            <div key={item.id} className='bg-[#e1b382] text-[#2d545e] btn w-[96%] mx-auto h-[30px] mt-1 mb-1 rounded-md flex flex-row  justify-evenly ' onClick={()=>{
+            <div key={item.id} className=' bg-white btn btn-ghost w-[96%] mx-auto h-[30px] mt-1 mb-1 rounded-md flex flex-row  justify-evenly ' onClick={()=>{
               setValue(item.coursename)
               setInputString("")
             }} >
               <p>{item.coursename}</p>
-              <p>{item.courseinstructor}</p>
+              <p className='text-[#e97902]' >{item.courseinstructor}</p>
             </div>
           ))}
           

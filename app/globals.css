@@ -8,26 +8,45 @@
 
 ::-webkit-scrollbar-track {
     /* Customize the scrollbar track */
-    background-color: #e1b382;
+    /*background-color: #e1b382;*/
+    background-color: white;
     margin-right: 2px;
     border-radius: 10px;
     border-style: solid;
     border-width: 1px;
-    border-color: #2d545e;
+    /*border-color: #2d545e;*/
+    border-color: #0F2027;
 }
 
 ::-webkit-scrollbar-thumb {
     /* Customize the scrollbar thumb */
-    background: /*#2d545e*/ rgb(7, 168, 160);
+    background: /*#2d545e*/ #e97902;
     border-radius: 10px;
     border-style: solid;
     border-width: 1px;
-    border-color: #2d545e;
+    border-color: #0F2027;
 }
 
 .background {
+    background-color: floralwhite;
+    color: #0F2027;
+    
+}
+.theme1 {
     background: #0F2027;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
+}
+
+.cards {
+    border-color: #e1b382;
+    border-width: 1px;
+    color:#2d545e;
+    border-style: solid;
+}
+.cards-label{
+    font-weight: bold;
+    font-style: 'Courier New', Courier, monospace;
+    color: #e1b382 ;
 }

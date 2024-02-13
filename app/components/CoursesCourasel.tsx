@@ -38,12 +38,12 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
           objectFit:"cover",
           backgroundColor:"grey",         
         }} className='rounded-tl-md rounded-tr-md ' /> 
-        <div className='flex flex-row h-[60px]  justify-between text-[#e1b382] bg-[#2d545e] rounded-bl-md rounded-br-md '   >
+        <div className='flex flex-row h-[60px]  justify-between bg-[#e97902] rounded-bl-md rounded-br-md font-mono '   >
          <div className='flex flex-col ml-2 w-[80%] ' >
          <h2 className='text-base  pt-2 ' > {currentItem.courseName}</h2>
          <p className='text-sm  ' >Instructed by: {currentItem.courseInstructor}</p>
          </div>
-         <button className='btn bg-[#e1b382] text-[#2d545e] hover:border hover:border-[#e1b382] hover:text-[#e1b382] hover:bg-[#2d545e] mt-[5px] mr-1 sm:text-sm   w-[20%] ' >
+         <button className='btn btn-ghost hover:border hover:border-[#e1b382] hover:text-[#e97902] hover:bg-[#0f2027] mt-[5px] mr-1 sm:text-sm   w-[20%] ' >
           view course
           
          </button>
@@ -59,7 +59,7 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
       
       <FaCircle
         className={`lower-nav-icon ml-1 h-2 ${
-          currentItemIndex === index ? 'active text-[#2d545e]' : 'hover:opacity-70'
+          currentItemIndex === index ? 'active text-[#e97902]' : 'hover:opacity-70'
         }`}
       />
     </button>

@@ -22,73 +22,63 @@ function LoginStudent(props: LoginStudentProps) {
   };
 
   return (
-    <div className="hero min-h-screen bg-[#e1b382]">
+    <div className="hero min-h-screen background">
       <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="text-center lg:text-left">
-          <h1 className="text-5xl font-bold text-[#2d545e] ">Login now</h1>
+        <div className="text-center lg:text-left   ">
+          <h1 className="text-5xl font-bold  text-[#e97902] font-mono ">Login now</h1>
          
-          <p className="py-6 text-[#2d545e] ">Access the student portal for MGM Institute of Gender And Women Empowerment Courses as a Student</p>
+          <p className="py-6 font-mono ">Access the Instructor portal for MGM Institute of Gender And Women Empowerment Courses as a Student</p>
         </div>
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl  bg-[#e1b382] border border-[#2d545e]  ">
+        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl   border border-[#e97902]   ">
           <div className="card-body  ">
             <div className="form-control  ">
               <label className="label">
-                <span className="label-text text-[#2d545e] ">Email</span>
+                <span className="font-bold font-mono  ">Email</span>
               </label>
               <input
                 type="email"
                 placeholder="eg temp@gmail.com"
                 onChange={(e) => setEmail(e.target.value)}
-                className="input input-bordered  border border-[#2d545e] placeholder-white  "
+                className="input input-bordered  border border-[#e97902] placeholder-[#e97902] text-[#e97902]  "
               />
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text text-[#2d545e] ">Password</span>
+                <span className="font-bold font-mono ">Password</span>
               </label>
               <input
                 type="password"
                 placeholder="eg temp"
                 onChange={(e) => setPassword(e.target.value)}
-                className="input input-bordered  border border-[#2d545e] placeholder-white "
+                className="input input-bordered  border border-[#e1b382] placeholder-[#e97902] text-[#e97902] "
               />
               <label className="label">
-                <a href="#" className="label-text-alt link link-hover text-[#2d545e] ">
+                <a href="#" className="-text-alt link link-hover text-[#e97902] ">
                   Forgot password?
                 </a>
               </label>
             </div>
+            {/*text-[#e1b382] bg-gradient-to-r from-[#2d545e]*/}
             <div className="form-control mt-6">
               {secure ? (
                 <Link href="/academics/instructorPortal/Dashboard">
-                  <button className="btn  bg-[#2d545e] text-[#e1b382]">Login</button>
+                  <button className="btn  bg-[#e97902] text-[#0f2027] hover:bg-[#0f2027] hover:text-[#e97902]  font-bold font-mono ">Login</button>
                 </Link>
               ) : (
                 <>
-                  <button
-                    onClick={handleLogin}
-                    className="btn bg-[#2d545e] text-[#e1b382]"
-                  >
+                  <button onClick={handleLogin} className="btn bg-[#e97902] text-[#0f2027] hover:bg-[0f2027] hover:text-[#e97902] font-bold font-mono " >
                     Verify
                   </button>
-                  {error && <p className="text-red-500">{error}</p>}
+                  {error && <p className="text-red-500 font-bold font-mono ">{error}</p>}
                 </>
               )}
             </div>
           </div>
-          <p  className='text-[#2d545e]' style={{ marginLeft: '5%' }}>
-            You don't have an account? Sign up
-            <button 
-              style={{
-                color: 'purple',
-                marginLeft:2
-              }}
-              onClick={() => {
-                props.setSignIn(false);
-              }}
-            >
-              now
-            </button>
+          <p  className='font-bold font-mono ' style={{ marginLeft: '5%' }}>
+            You don't have an account? 
+            <Link className='ml-2 text-[#e97902]  ' href="/academics/InstructorApplication" >
+              Apply Now
+            </Link>
           </p>
         </div>
       </div>

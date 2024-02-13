@@ -12,7 +12,7 @@ export default function Home() {
   <div style={{
     width:"100%",
     
-  }} className='  text-[#e1b382]  h-screen ' >
+  }} className=' background  h-screen ' >
   <Navbar/>
   <HomeInfo/>
   <Footer/>

@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 function MissionAndVision() {
   return (
-    <div className=' h-screen  text-[#e1b382] mb-5 ' >
+    <div className=' h-screen  background mb-5 ' >
        <div className=' transparent h-[200px] lg:h-[250px]    rounded-md '>
         <Image src={banner} alt="holder" className='h-full rounded-md w-[90%] lg:w-[90%] mx-auto '  />
       </div>

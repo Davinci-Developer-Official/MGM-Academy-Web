@@ -62,7 +62,7 @@ export default function Section(){
             {/*mapped courses*/}
             {data.courses.map((item)=>(
                 //course card;
-                <div key={item.id} className='background card text-[#e1b382] border-[1px]  border-solid  rounded-md w-[95%] mx-auto mb-5 mt-5 h-fit ' >
+                <div key={item.id} className='cards card    rounded-md w-[95%] mx-auto mb-5 mt-5 h-fit ' >
                 {/*course card details*/}
                 <div className='flex flex-row  w-[100%] h-[300px] rounded-tl-md rounded-tr-md ' >
                 {/*cover image*/}
@@ -73,17 +73,17 @@ export default function Section(){
                 <div className=' w-[30%] flex flex-col  rounded-tr-md ' >
                 {/*course name*/}
                 <div className='h-fit p-1 rounded-tr-md flex flex-col ' >
-                <p className='text-white' >Course category:</p>
+                <p className='text-[#e1b382] font-mono font-bold' >Course category:</p>
                 <p className='h-[20px] p-1 sm:text-sm   ' >{item.course_category}</p>
                 </div>
                 {/*course code*/}
                 <div className='flex flex-col p-1 w-full h-[40px]  ' >
-                <p className=' text-white ' >Class code:</p>
+                <p className=' text-[#e1b382] font-mono font-bold  ' >Class code:</p>
                 <p className='p-1 ' > {item.course_code}</p>
                 </div>
                 {/*course rating*/}
                 <div className=' p-2 mt-6  ' >
-                <p className='text-white  ' >Rating:</p>
+                <p className='text-[#e1b382] font-mono font-bold  ' >Rating:</p>
                 <p className='h-[30px]  p-[5px] flex flex-row ' >
                 <FaStar/><FaStar/><FaStar/><FaStar/><FaStarHalfAlt/>
                 </p>
@@ -101,22 +101,22 @@ export default function Section(){
                 </div>
                 {/*course name*/}
                 <div className='h-fit p-1 rounded-tr-md flex flex-col ' >
-                <p className='text-white' >course name:</p>
+                <p className='text-[#e1b382] font-mono font-bold' >course name:</p>
                 <p className='h-[30px]  p-1 ' >{item.course_name}</p>
                 </div>
                 {/*course description*/}
                 <div className='p-1 flex flex-col ' >
-                <p className='text-white ' >Course description: </p>
+                <p className='text-[#e1b382] font-mono font-bold ' >Course description: </p>
                 <p className='h-[100px] p-2  ' >{item.course_description}</p>
                 </div>
                 {/*Requirements*/}
                 <div className='p-1 ' >
-                <p className='text-white' >Requirements:</p> 
+                <p className='text-[#e1b382] font-mono font-bold' >Requirements:</p> 
                 <p className='h-[50px] p-2  ' >{item.course_requirements}</p>
                 </div>  
                 {/*Requirements*/}
                 <div className='p-1 ' >
-                <p className='text-white' >Instructor(s):</p> 
+                <p className='text-[#e1b382] font-mono font-bold' >Instructor(s):</p> 
                 <p className='h-[50px] p-2  ' >JJ Laroche </p>
                 </div>               
                 </div>

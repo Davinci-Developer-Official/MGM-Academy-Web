@@ -39,16 +39,14 @@ function DashContents() {
   }
   ];
   return (
-    <div className='lg:w-full sm:w-full h-screen overflow-y-scroll text-[e1b382] bg-gradient-to-r from-[#2d545e] '  >
+    <div className='lg:w-full sm:w-full h-screen overflow-y-scroll background '  >
        <div className='h-[80px]   w-full ' >
        <HeaderDash/>
        
        </div>
         {/*column*/}
         <div className=' mx-auto w-4/5 flex flex-col  mb-5  ' >
-            <p className='h-10  text-lg text-[#e1b382] ' style={{
-              textAlign:"center"
-            }}  >View Your courses</p>
+            <p className='h-10  text-lg text-[#e97902] text-center font-mono font-bold  '>View Your courses</p>
             <Carousel items={items} />
             <DashMetricsStudents/>
         </div>
