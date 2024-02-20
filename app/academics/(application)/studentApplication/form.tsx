@@ -3,6 +3,7 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import profile from '@/public/profile/user.png';
 import { FaSave } from 'react-icons/fa';
+import Uploader from "./Uploader"
 
 export interface registration {
   profileImage:string,
@@ -54,6 +55,7 @@ function Form() {
     <form className='background  p-2 overflow-y-scroll w-[99%] mx-auto ' > 
      
         {/*Profile Picture*/}
+        {/*
         <div className='sm:w-[80%] lg-[60%]  mx-auto p-4 '  >
         <p className=' p-4 font-mono font-bold ' >Profile picture</p>
         <div className='h-[250px] w-[250px]  bg-red-400  rounded-full border-[#e97902] border ' >
@@ -61,6 +63,8 @@ function Form() {
         </div>
         <input type="file" className='p-2' />
         </div>
+        */}
+        <Uploader/>
         {/*User Name*/}
         <div className='sm:w-[80%] lg-[60%]  mx-auto p-4 '  >
         <p className='font-mono font-bold' >username</p>
