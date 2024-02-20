@@ -31,6 +31,7 @@
     "react-dom": "18.2.0",
     "react-draft-wysiwyg": "^1.15.0",
     "react-icons": "^4.11.0",
+    "react-images-uploading": "^3.1.7",
     "react-intersection-observer": "^9.5.3",
     "react-responsive-carousel": "^3.2.23",
     "sharp": "^0.32.6",
