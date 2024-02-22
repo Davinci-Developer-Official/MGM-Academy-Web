@@ -186,26 +186,12 @@ function Form({setSlide1,setSlide2}:any) {
      }}  />
      </div>
      
-  <div className='justify-end' >
-  <button className='btn btn-success ml-[60%] flex flex-row  ' onClick={(e)=>{
-     e.preventDefault()
-     //alert(JSON.stringify(data)) 
-     alert(initials)
-     setSlide1(false);
-     setSlide2(true);
-     //avatarPlaceholder()
-    }} ><FaSave size={20} /> save </button></div>  
+ 
  </form>
-    <div>
-    {/*back*/}
-    <button className='btn btn-success  flex flex-row  ' onClick={(e)=>{
-     e.preventDefault()
-     alert(JSON.stringify(data))
-     setSlide1(false);
-     setSlide2(true);
-    }} > continue <FaCaretRight size={20} /> </button>
+    <div className=' justify-center w-[60%] mx-auto mb-4 ' >
+    
     {/*continue*/}
-    <button className='btn btn-success flex flex-row  ' onClick={(e)=>{
+    <button className='btn btn-success flex flex-row w-[80%] mx-auto ' onClick={(e)=>{
      e.preventDefault()
      alert(JSON.stringify(data))
      setSlide1(false);

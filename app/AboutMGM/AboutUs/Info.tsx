@@ -8,22 +8,20 @@ function Info() {
     <div className=' transparent h-[200px] lg:h-[250px]    rounded-md '>
      <Image src={banner} alt="holder" className='h-full rounded-md w-[90%] lg:w-[90%] mx-auto '  />
    </div>
-   <h1 className='text-center pt-2 text-xl' >About MGM</h1>
+   <h1 className='text-center pt-2 text-xl font-mono font-bold ' >About MGM</h1>
   <div className='h-[400px] lg:h-[400px] sm:h-[500px] pt-2 mt-2  overflow-y-scroll' >
-         <p className='w-[90%] mx-auto  lg:text-xl ' >
-        The MGM Institute of Gender and Women Empowerment represents a pivotal institution in the pursuit of gender equality and the empowerment of women. Founded on the fundamental principles of inclusivity, equity, and social justice, this institute has emerged as a beacon of progress, challenging societal norms and contributing significantly to the advancement of women's rights.
+         <p className='w-[90%] mx-auto  lg:text-xl font-mono ' >
+         The MGM Institute of Gender and Women Empowerment embodies a significant force in the quest for gender equality and the empowerment of women. Established on the foundational principles of inclusivity, equity, and social justice, this institute has emerged as a beacon of progress, challenging societal norms and contributing significantly to the advancement of women's rights. At its core, the institute is committed to creating a conducive environment where individuals of all genders can flourish and make meaningful contributions to society.
 
-At the core of the institute's mission is the commitment to creating a space where individuals of all genders can thrive and contribute meaningfully to society. By fostering inclusivity, the institution works towards dismantling discriminatory practices and promoting a more diverse and equal world. This commitment is reflected not only in the educational programs offered but also in the overall ethos and culture of the institute.
+Education stands as a cornerstone of the institute's mission, recognized as a potent instrument for social change. The curriculum is meticulously crafted to address gender-based issues comprehensively, equipping students with the requisite understanding and skills to advocate for women's rights and foster gender equality. Through a blend of courses, workshops, and seminars, students are empowered to contribute positively to societal transformation.
 
-One key aspect of the MGM Institute is its focus on education as a powerful tool for social change. The curriculum is designed to address gender-based issues, providing students with a comprehensive understanding of the challenges women face and the strategies for promoting gender equality. Through courses, workshops, and seminars, the institute equips its students with the knowledge and skills necessary to advocate for women's rights and contribute to positive societal transformation.
+Moreover, the institute serves as a pivotal hub for research and activism in the realm of gender studies. Ongoing research initiatives delve into various facets of gender dynamics, providing valuable insights to the academic community and informing policy interventions aimed at advancing gender equality.
 
-The institute also plays a crucial role in research and activism, serving as a hub for scholars, activists, and experts in the field of gender studies. Ongoing research initiatives explore various aspects of gender dynamics, contributing valuable insights to the broader academic community and informing policies that aim to promote gender equality.
+Community outreach programs form another crucial aspect of the institute's endeavors. These initiatives aim to raise awareness, offer support to marginalized communities, and empower women through skill-building workshops, mentorship programs, and access to resources. By actively engaging with local communities, the institute extends its impact beyond academia, actively participating in grassroots efforts for gender equality.
 
-In addition to academic pursuits, the MGM Institute actively engages in community outreach programs. These initiatives aim to create awareness, provide support to marginalized communities, and empower women through skill-building workshops, mentorship programs, and access to resources. By connecting with local communities, the institute extends its impact beyond the academic sphere, actively participating in the ongoing battle for gender equality at the grassroots level.
+Furthermore, the institute collaborates with a diverse array of organizations, governmental bodies, and international agencies dedicated to similar causes. Through strategic partnerships and alliances, the institute amplifies its influence, advocating for policy reforms and contributing to a global movement for gender equality.
 
-The commitment to social justice extends beyond the institute's walls, as it collaborates with other organizations, governmental bodies, and international agencies dedicated to similar causes. Through partnerships and alliances, the MGM Institute leverages its resources and expertise to influence policies, advocate for legal reforms, and contribute to a global movement for gender equality.
-
-In essence, the MGM Institute of Gender and Women Empowerment stands as a testament to the transformative power of education and activism in reshaping societal norms. By championing inclusivity, equity, and social justice, this dedicated institution plays a crucial role in the ongoing battle for gender equality and the empowerment of women, leaving a lasting impact on individuals, communities, and society as a whole.
+In essence, the MGM Institute of Gender and Women Empowerment epitomizes the transformative potential of education and activism in reshaping societal norms. By championing inclusivity, equity, and social justice, this institution plays a pivotal role in the ongoing struggle for gender equality and women's empowerment, leaving an indelible mark on individuals, communities, and society at large.
         </p>
       </div>
     </div>

@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 function MissionAndVision() {
   return (
-    <div className=' h-screen  background mb-5 ' >
+    <div className=' h-screen  background mb-5 font-mono ' >
        <div className=' transparent h-[200px] lg:h-[250px]    rounded-md '>
         <Image src={banner} alt="holder" className='h-full rounded-md w-[90%] lg:w-[90%] mx-auto '  />
       </div>
@@ -13,7 +13,7 @@ function MissionAndVision() {
         marginTop:20,
       }}>
         <input type="radio" name="my-accordion-3" checked={true} />
-        <div className="collapse-title text-xl font-medium">
+        <div className="collapse-title text-xl font-bold">
           Our Vision
         </div>
         <div className="collapse-content">
@@ -22,7 +22,7 @@ function MissionAndVision() {
       </div>
       <div className="collapse collapse-plus   ">
         <input type="radio" name="my-accordion-3" />
-        <div className="collapse-title text-xl font-medium">
+        <div className="collapse-title text-xl font-bold">
           Our Mission
         </div>
         <div className="collapse-content h-fit  ">
@@ -68,7 +68,7 @@ function MissionAndVision() {
       </div>
       <div className="collapse collapse-plus ">
         <input type="radio" name="my-accordion-3" />
-        <div className="collapse-title text-xl font-medium">
+        <div className="collapse-title text-xl font-bold">
           Our Key initiatives
         </div>
         <div className="collapse-content">
@@ -102,7 +102,7 @@ function MissionAndVision() {
       </div>
       <div className="collapse collapse-plus ">
         <input type="radio" name="my-accordion-3" />
-        <div className="collapse-title text-xl font-medium">
+        <div className="collapse-title text-xl font-bold">
           Our Expected Impact
         </div>
         <div className="collapse-content">
@@ -116,7 +116,7 @@ function MissionAndVision() {
       </div>
       <div className="collapse collapse-plus ">
         <input type="radio" name="my-accordion-3" />
-        <div className="collapse-title text-xl font-medium">
+        <div className="collapse-title text-xl font-bold">
           Our Future Direction
         </div>
         <div className="collapse-content">
@@ -133,7 +133,7 @@ function MissionAndVision() {
       </div>
       <div className="collapse collapse-plus ">
         <input type="radio" name="my-accordion-3" />
-        <div className="collapse-title text-xl font-medium">
+        <div className="collapse-title text-xl font-bold">
           Our Final Say
         </div>
         <div className="collapse-content">
