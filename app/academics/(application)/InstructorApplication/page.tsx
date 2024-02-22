@@ -1,9 +1,10 @@
 import Construction from '@/app/components/Construction'
 import React from 'react'
+import Form from "./form"
 
 function Page() {
   return (
-    <div><Construction/></div>
+    <div><Form/></div>
   )
 }
 

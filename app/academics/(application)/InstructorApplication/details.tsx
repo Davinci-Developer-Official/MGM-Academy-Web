@@ -2,8 +2,8 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 import profile from '@/public/profile/user.png';
-import { FaSave } from 'react-icons/fa';
-import Uploader from "./Uploader"
+import { FaCaretRight, FaSave } from 'react-icons/fa';
+//import Uploader from "./Uploader"
 
 
 export interface registration {
@@ -18,10 +18,10 @@ export interface registration {
     residence:string,
     phoneNumber:string
     dateOfBirth:string,
-    exposure:string,
+    //exposure:string,
 }
 
-function Form() {
+function Form({setSlide1,setSlide2}:any) {
   //states
   const[profileimage,setprofileimage]=useState("");
   const[username,setusername]=useState("");
@@ -34,8 +34,7 @@ function Form() {
   const[residence,setresidence]=useState("");
   const[phonenumber,setphonenumber]=useState("");
   const[dateofbirth,setdateofbirth]=useState("");
-  const[exposure,setexposure]=useState("");
-
+ 
   //data
   const data: registration = {
     profileImage:profileimage,
@@ -49,11 +48,11 @@ function Form() {
     residence:residence,
     phoneNumber:phonenumber,
     dateOfBirth:dateofbirth,
-    exposure:exposure
+    //exposure:exposure
   };
 
   return (
-    <form className='background  p-2 overflow-y-scroll w-[99%] mx-auto ' > 
+    <form className='background  p-2  w-[70%] mx-auto ' > 
      
         {/*Profile Picture*/}
         {/*
@@ -65,7 +64,7 @@ function Form() {
         <input type="file" className='p-2' />
         </div>
         */}
-        <Uploader/>
+        
         {/*User Name*/}
         <div className='sm:w-[80%] lg-[60%]  mx-auto p-4 '  >
         <p className='font-mono font-bold' >username</p>
@@ -161,51 +160,13 @@ function Form() {
           setdateofbirth(value)
         }}  />
         </div>
-          {/*exposure*/}
-        <div className='sm:w-[80%] lg-[60%]  mx-auto p-4 '  >
-        <p className='font-mono font-bold' >How did you find out about us</p>
-        <div className='flex flex-row p-2 ' >
-          <input type="radio" onChange={(e:any)=>{
-           setexposure("youtube")
-          }} />
-          <p className='ml-2 font-mono font-bold ' >Youtube ads</p>
-        </div>
-        <div className='flex flex-row p-2 ' >
-          <input type="radio" onChange={(e:any)=>{
-           setexposure("facebook")
-          }} />
-          <p className='ml-2 font-mono font-bold' >Facebook ads</p>
-        </div>
-        <div className='flex flex-row p-2 ' >
-          <input type="radio" onChange={(e:any)=>{
-            setexposure("instagram")
-          }} />
-          <p className='ml-2 font-mono font-bold' >Instagram ads</p>
-        </div>
-        <div className='flex flex-row p-2 ' >
-          <input type="radio" onChange={(e:any)=>{
-            setexposure("twitter(X)")
-          }} />
-          <p className='ml-2 font-mono font-bold' >Twitter(X) ads</p>
-        </div>
-        <div className='flex flex-row p-2 ' >
-          <input type="radio" onChange={(e:any)=>{
-            setexposure("snapchat")
-          }} />
-          <p className='ml-2 font-mono font-bold' >Snapchat ads</p>
-        </div>
-        <div className='flex flex-col p-2 ' >
-          <p className='ml-2 font-mono font-bold ' >Other platforms </p>
-          <input type="text" className='w-full border-solid border-b-2 border-b-[#e97902] bg-transparent ' placeholder='state the platform / influencer /reference / website  ' value={exposure} onChange={(e:any)=>{
-          const value = e.target.value;
-          setexposure(value)
-        }}  />         
-        </div>
-        </div>
-       <button className='btn btn-success ml-[80%]  ' onClick={(e)=>{
+        
+       <button className='btn btn-success ml-[60%] flex flex-row  ' onClick={(e)=>{
         e.preventDefault()
         alert(JSON.stringify(data))
-       }} > <FaSave/> Apply</button>
+        setSlide1(false);
+        setSlide2(true);
+       }} > continue <FaCaretRight size={20} /> </button>
     </form>
   )
 }
