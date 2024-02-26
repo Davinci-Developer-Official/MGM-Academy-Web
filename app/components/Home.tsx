@@ -3,11 +3,11 @@ import Link from 'next/link';
 import React from 'react'
 import UnlockPage from './UnlockPage';
 import Image from 'next/image';
-import bg1 from '../../public/empowerment/11.png'
+import bg1 from '../../public/empowerment/11.png';
 
 function Home() {
   return (
-    <div className='background p-4  ' >
+    <div className='background p-4 font-mono ' >
     <div >
       {/*<UnlockPage/>*/}
     <h1 className='text-center text-xl font-bold mb-2 mt-2  ' >MGM Institute of Gender and Women Empowerment</h1>

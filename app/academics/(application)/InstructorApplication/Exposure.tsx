@@ -1,13 +1,14 @@
 'use client';
 import React, { useState } from 'react'
+import { FaCaretRight } from 'react-icons/fa';
 
-function Exposure() {
+function Exposure({setSlide3,setSlide4}:any) {
     const[exposure,setexposure]=useState("");
 
   return (
    <>
      {/*exposure*/}
-     <div className='sm:w-[80%] lg-[60%]  mx-auto p-4 '  >
+     <div className='sm:w-[80%] lg-[60%]  mx-auto p-4 font-mono '  >
         <p className='font-mono font-bold' >How did you find out about us</p>
         <div className='flex flex-row p-2 ' >
           <input type="radio" onChange={(e:any)=>{
@@ -47,6 +48,16 @@ function Exposure() {
         }}  />         
         </div>
         </div>
+        {/*continue*/}
+        <button className='btn btn-success w-[80%] ml-[10%] mt-5 justify-between  ' onClick={()=>{
+          setSlide3(false);
+          setSlide4(true);
+        }} >continue <FaCaretRight size={20} /> </button>
+        {/*skip*/}
+        <button className='btn btn-ghost ml-[10%] mt-2 ' onClick={()=>{
+          setSlide3(false);
+          setSlide4(true);
+        }} >skip</button>
    </>
   )
 }

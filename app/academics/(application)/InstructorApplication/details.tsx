@@ -75,6 +75,7 @@ function Form({setSlide1,setSlide2}:any) {
       else return setInitials(user.toUpperCase()); 
     };
     avatarPlaceholder();
+    
   }, [firstname, middlename, lastname, username]);
   
   return (
@@ -93,14 +94,7 @@ function Form({setSlide1,setSlide2}:any) {
      </div>
      */}
      
-     {/*User Name*/}
-     <div className='sm:w-[80%] lg-[60%]  mx-auto p-4 '  >
-     <p className='font-mono font-bold' >username</p>
-     <input type="text" className='w-full border-solid border-b-2 border-b-[#e97902] bg-transparent ' placeholder='J Doe' value={username} onChange={(e:any)=>{
-       const value = e.target.value;
-       setusername(value)
-     }} />
-     </div>
+     
      {/*First Name*/}
      <div className='sm:w-[80%] lg-[60%]  mx-auto p-4 '  >
      <p className='font-mono font-bold' >First Name</p>
@@ -124,6 +118,14 @@ function Form({setSlide1,setSlide2}:any) {
        const value = e.target.value;
        setlastname(value)
      }}  />
+     </div>
+     {/*User Name*/}
+     <div className='sm:w-[80%] lg-[60%]  mx-auto p-4 '  >
+     <p className='font-mono font-bold' >username *(optional)</p>
+     <input type="text" className='w-full border-solid border-b-2 border-b-[#e97902] bg-transparent ' placeholder='J Doe' value={username} onChange={(e:any)=>{
+       const value = e.target.value;
+       setusername(value)
+     }} />
      </div>
      {/*Email address*/}
      <div className='sm:w-[80%] lg-[60%]  mx-auto p-4 '  >
@@ -191,7 +193,7 @@ function Form({setSlide1,setSlide2}:any) {
     <div className=' justify-center w-[60%] mx-auto mb-4 ' >
     
     {/*continue*/}
-    <button className='btn btn-success flex flex-row w-[80%] mx-auto ' onClick={(e)=>{
+    <button className='btn btn-success flex flex-row w-[80%] mx-auto justify-between ' onClick={(e)=>{
      e.preventDefault()
      alert(JSON.stringify(data))
      setSlide1(false);
