@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import data from './data.json'
 import img from '@/public/empowerment/1.jpeg';
-import { FaCaretDown, FaCartPlus,FaEraser,FaStar,FaStarHalfAlt } from 'react-icons/fa';
+import { FaArrowAltCircleLeft, FaBars, FaCaretDown, FaCartPlus,FaChevronDown,FaChevronUp,FaEraser,FaFemale,FaGraduationCap,FaStar,FaStarHalfAlt } from 'react-icons/fa';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -14,7 +14,7 @@ interface Data {
 }
 
 
-export default function Section(){
+export default function Section({setHideMenu,hideMenu}:any){
 
     const[category,showCategory]=useState([
         {
@@ -34,93 +34,51 @@ export default function Section(){
         }
     ]);
     const[renderCategory,setRenderCategory]=useState(false);
-    const[selectedCategory,setSelectedCategory]=useState("")
+    const[selectedCategory,setSelectedCategory]=useState("");
+    const[filteredData,setFilteredData]=useState([])
+
+    
     return(
         //rendered courses;
-        <div className='flex flex-col' >
+        <div className='flex flex-col h-screen ' >
             {/*filter course category*/}
-        <div className='flex flex-row justify-evenly ' >
-            <p className='btn btn-ghost font-bold text-xl ' >MGM Courses</p>
+        <div className='flex flex-row h-fit  w-full justify-between p-4 ' >
+            {hideMenu&&<button onClick={()=>{setHideMenu(false)}} ><FaChevronUp size={20} /></button>}
+            {!hideMenu&&<button onClick={()=>{setHideMenu(true)}} ><FaChevronDown size={20} /></button>}
+            
+            <p className='btn btn-ghost font-bold lg:text-xl md:text-lg sm:text-sm ' >MGM Courses</p>
             <div className='flex flex-col' >
-            <button className='btn btn-ghost' onClick={()=>{
+            <button className='btn btn-ghost h-fit  ' onClick={()=>{
                 setRenderCategory(true);
-            }} >Category: 
-                {selectedCategory!==""&&<p>{selectedCategory}</p>}
+            }} >
+                {selectedCategory!==""&&<p className='sm:text-sm' >{selectedCategory}</p>}
                 {selectedCategory==""&&<p>ALL</p>}
                  <FaCaretDown size={20} />
             </button>
-            {renderCategory&&<ul className=' h-[100px] rounded-md  border-[#e1b382] border overflow-y-scroll ' >
+        {renderCategory&&<ul className=' h-[400px] rounded-md background border-[#e1b382] border overflow-y-scroll absolute mt-10 ' >
                 {category.map((items)=>(<div key={items.id} >
-                    <button className='btn btn-ghost' onClick={()=>{
+                    <button className='btn btn-ghost  w-[90%] ml-[5%] mt-2 outset  ' onClick={()=>{
                         setSelectedCategory(items.category);
                         setRenderCategory(false);
-                    }} > <input type='radio'    /> {items.category}</button>
+                    }} > {items.category} </button>
                 </div>))}</ul>}</div>
+        <button className='cursor-none '  ><FaGraduationCap size={30} /></button>
         </div>
         {/*mapping courses*/}
-        <div className=' h-screen overflow-y-scroll grid lg:grid-cols-2 md:grid-cols-2 gap-1  ' >
+        <div className='  overflow-y-scroll  mb-2 ' >
             {/*mapped courses*/}
+            <div className='w-[80%]  mx-auto grid lg:grid-cols-4  md:grid-cols-2 grid-col-1  gap-4 ' >
             {data.courses.map((item)=>(
-                //course card;
-                <div key={item.id} className='cards card    rounded-md w-[95%] mx-auto mb-5 mt-5 h-fit ' >
-                {/*course card details*/}
-                <div className='flex flex-row  w-[100%] h-[300px] rounded-tl-md rounded-tr-md ' >
-                {/*cover image*/}
-                <div className='w-[70%] border-[2px] rounded-tl-md rounded-br-md  ' >
-                <Image src={img} alt='cover image' className='w-full object-fit h-full '  />
-                </div>
-                {/*Course info*/}
-                <div className=' w-[30%] flex flex-col  rounded-tr-md ' >
-                {/*course name*/}
-                <div className='h-fit p-1 rounded-tr-md flex flex-col ' >
-                <p className='text-[#e1b382] font-mono font-bold' >Course category:</p>
-                <p className='h-[20px] p-1 sm:text-sm   ' >{item.course_category}</p>
-                </div>
-                {/*course code*/}
-                <div className='flex flex-col p-1 w-full h-[40px]  ' >
-                <p className=' text-[#e1b382] font-mono font-bold  ' >Class code:</p>
-                <p className='p-1 ' > {item.course_code}</p>
-                </div>
-                {/*course rating*/}
-                <div className=' p-2 mt-6  ' >
-                <p className='text-[#e1b382] font-mono font-bold  ' >Rating:</p>
-                <p className='h-[30px]  p-[5px] flex flex-row ' >
-                <FaStar/><FaStar/><FaStar/><FaStar/><FaStarHalfAlt/>
-                </p>
-                </div>
-                {/*view || purchase course */}
-                <div className='w-full p-1  flex flex-col ' >
-                <Link href='/academics/Courses/content' className='btn btn-ghost bg-[#e1b382] text-[#2d545e] hover:text-[#e1b382] ' >View course (freemium)</Link>
-                {/*Add to cart */}
-                <button className='btn btn-ghost justify-between mt-1 ' >
-                <FaCartPlus size={20} />
-                <p>$50</p>
-                </button>            
-                </div>
-                </div>
-                </div>
-                {/*course name*/}
-                <div className='h-fit p-1 rounded-tr-md flex flex-col ' >
-                <p className='text-[#e1b382] font-mono font-bold' >course name:</p>
-                <p className='h-[30px]  p-1 ' >{item.course_name}</p>
-                </div>
-                {/*course description*/}
-                <div className='p-1 flex flex-col ' >
-                <p className='text-[#e1b382] font-mono font-bold ' >Course description: </p>
-                <p className='h-[100px] p-2  ' >{item.course_description}</p>
-                </div>
-                {/*Requirements*/}
-                <div className='p-1 ' >
-                <p className='text-[#e1b382] font-mono font-bold' >Requirements:</p> 
-                <p className='h-[50px] p-2  ' >{item.course_requirements}</p>
-                </div>  
-                {/*Requirements*/}
-                <div className='p-1 ' >
-                <p className='text-[#e1b382] font-mono font-bold' >Instructor(s):</p> 
-                <p className='h-[50px] p-2  ' >JJ Laroche </p>
-                </div>               
-                </div>
+            <Link href='/academics/Courses/content' key={item.id} className=' w-[300px] h-[300px] bg-white border-2  hover:border-2 hover:border-[#e2c5a6] hover:cursor-pointer rounded-md ' >
+            <div className='  w-full  ' >
+            <Image src={img} alt={`${item.course_name}cover image`} className='w-full object-fit h-full ' />
+            </div>
+            <p className='h-fit  p-[6px]  ' >{item.course_name}</p>
+            <p className='h-[30px]  p-[5px]  ' >{item.course_instructors}</p>
+            <p className='h-[30px]  p-1 ' >$200</p>
+            </Link>
             ))}
+            </div>
         </div>
         </div>
     )

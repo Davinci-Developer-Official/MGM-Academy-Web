@@ -65,6 +65,138 @@
             "course_requirements":"diploma in Law",
             "course_instructors":"Justice Mary Mwangi",
             "course_image":"@/public/logo/1.png"
+        },
+        {
+            "id":7,
+            "course_name":"python for beginers",
+            "course_description":"Begin you programming journey by learning python using a practical approach",
+            "course_code":"PY45",
+            "course_category":" Information technology",
+            "course_avarage_rating":"4",
+            "course_requirements":"basic knowledge of computers",
+            "course_instructors":"Jimmy Morgan",
+            "course_image":"@/public/logo/code.png"
+        },
+        {
+            "id":8,
+            "course_name":"procurement and transport logistics ",
+            "course_description":"learn more about procuring and running a successful transport business",
+            "course_code":"Tsp4567",
+            "course_category":" Business Studies",
+            "course_avarage_rating":"4.5",
+            "course_requirements":"diploma in business studies",
+            "course_instructors":"Grace van anhorlt",
+            "course_image":"@/public/logo/1.png"
+        },
+        {
+            "id":9,
+            "course_name":"Javascript for beginers",
+            "course_description":"Begin you programming journey by learning javascript using a practical approach",
+            "course_code":"Js345",
+            "course_category":" Information technology",
+            "course_avarage_rating":"4",
+            "course_requirements":"basic knowledge of computers",
+            "course_instructors":"Brian Knix",
+            "course_image":"@/public/logo/code.png"
+        },
+        {
+            "id":10,
+            "course_name":"procurement and  logistics ",
+            "course_description":"learn more about procuring and running a successful business",
+            "course_code":"KH334",
+            "course_category":" Business Studies",
+            "course_avarage_rating":"4.5",
+            "course_requirements":"diploma in business studies",
+            "course_instructors":"Greg Maina",
+            "course_image":"@/public/logo/1.png"
+        },
+        {
+            "id":11,
+            "course_name":"Videography",
+            "course_description":"Begin you videography journey by learning python using a practical approach",
+            "course_code":"vd332",
+            "course_category":" Media technology",
+            "course_avarage_rating":"3",
+            "course_requirements":"creative mind",
+            "course_instructors":"Vivian mbugua ",
+            "course_image":"@/public/logo/code.png"
+        },
+        {
+            "id":12,
+            "course_name":"Law ",
+            "course_description":"starter course for law students",
+            "course_code":"Law44",
+            "course_category":" law",
+            "course_avarage_rating":"4.5",
+            "course_requirements":"diploma in Law",
+            "course_instructors":"Justice Mary Mwangi",
+            "course_image":"@/public/logo/1.png"
+        },
+        {
+            "id":13,
+            "course_name":"python for beginers",
+            "course_description":"Begin you programming journey by learning python using a practical approach",
+            "course_code":"PY45",
+            "course_category":" Information technology",
+            "course_avarage_rating":"4",
+            "course_requirements":"basic knowledge of computers",
+            "course_instructors":"Jimmy Morgan",
+            "course_image":"@/public/logo/code.png"
+        },
+        {
+            "id":14,
+            "course_name":"procurement and transport logistics ",
+            "course_description":"learn more about procuring and running a successful transport business",
+            "course_code":"Tsp4567",
+            "course_category":" Business Studies",
+            "course_avarage_rating":"4.5",
+            "course_requirements":"diploma in business studies",
+            "course_instructors":"Grace van anhorlt",
+            "course_image":"@/public/logo/1.png"
+        },
+        {
+            "id":15,
+            "course_name":"Javascript for beginers",
+            "course_description":"Begin you programming journey by learning javascript using a practical approach",
+            "course_code":"Js345",
+            "course_category":" Information technology",
+            "course_avarage_rating":"4",
+            "course_requirements":"basic knowledge of computers",
+            "course_instructors":"Brian Knix",
+            "course_image":"@/public/logo/code.png"
+        },
+        {
+            "id":16,
+            "course_name":"procurement and  logistics ",
+            "course_description":"learn more about procuring and running a successful business",
+            "course_code":"KH334",
+            "course_category":" Business Studies",
+            "course_avarage_rating":"4.5",
+            "course_requirements":"diploma in business studies",
+            "course_instructors":"Greg Maina",
+            "course_image":"@/public/logo/1.png"
+        },
+        {
+            "id":17,
+            "course_name":"Videography",
+            "course_description":"Begin you videography journey by learning python using a practical approach",
+            "course_code":"vd332",
+            "course_category":" Media technology",
+            "course_avarage_rating":"3",
+            "course_requirements":"creative mind",
+            "course_instructors":"Vivian mbugua ",
+            "course_image":"@/public/logo/code.png"
+        },
+        {
+            "id":18,
+            "course_name":"Law ",
+            "course_description":"starter course for law students",
+            "course_code":"Law44",
+            "course_category":" law",
+            "course_avarage_rating":"4.5",
+            "course_requirements":"diploma in Law",
+            "course_instructors":"Justice Mary Mwangi",
+            "course_image":"@/public/logo/1.png"
         }
     ]
 }
