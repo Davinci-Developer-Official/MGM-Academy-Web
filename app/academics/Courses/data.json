@@ -149,7 +149,7 @@
             "course_description":"learn more about procuring and running a successful transport business",
             "course_code":"Tsp4567",
             "course_category":" Business Studies",
-            "course_avarage_rating":"4.5",
+            "course_avarage_rating":"2",
             "course_requirements":"diploma in business studies",
             "course_instructors":"Grace van anhorlt",
             "course_image":"@/public/logo/1.png"
@@ -193,7 +193,7 @@
             "course_description":"starter course for law students",
             "course_code":"Law44",
             "course_category":" law",
-            "course_avarage_rating":"4.5",
+            "course_avarage_rating":"5",
             "course_requirements":"diploma in Law",
             "course_instructors":"Justice Mary Mwangi",
             "course_image":"@/public/logo/1.png"

@@ -67,8 +67,29 @@ const Carousel: React.FC<CarouselProps> = () => {
             </button>
           ))}
         </div>
-        <div className='w-full h-[300px] flex flex-col border border-white rounded-md'>
-            <Image src={currentItem.NavImage} alt={currentItem.NavItem} className='rounded-md object-fit w-full h-full  ' /> 
+        <div className="card w-[80%] mx-auto  bg-base-100 shadow-xl image-full  ">
+          <figure>
+          <Image src={currentItem.NavImage} alt={currentItem.NavItem} />
+          </figure>
+          <div className="card-body">
+            <h2 className="card-title">Shoes!</h2>
+            <p>If a dog chews shoes whose shoes does he choose?</p>
+            <div className="card-actions justify-end">
+              <button className="btn btn-primary">Buy Now</button>
+        </div>
+  </div>
+</div>
+        
+      </div>
+      <button className="next-button btn btn-circle my-auto ml-2 border border-black bg-white text-black " onClick={nextItem}>
+          <FaArrowRight />
+        </button>
+    </div>
+  );
+};
+{/*
+<div className='w-full h-[300px] flex flex-col border border-white rounded-md'>
+             className='rounded-md object-fit w-full h-full  ' /> 
           <div className='absolute p-2 lg:bottom-[30px] sm:bottom-[28px] mt-[50px] flex flex-row h-fit backdrop-blur-sm bg-white/30 w-full justify-between  rounded-bl-md rounded-br-md font-mono  '>              
               <p className='text-sm font-bold p-2 '>{currentItem.NavDescription}</p>           
             <div className='justify-end flex  w-full ' >
@@ -78,13 +99,6 @@ const Carousel: React.FC<CarouselProps> = () => {
             </div>
           </div>      
         </div>
-        
-      </div>
-      <button className="next-button btn btn-circle my-auto ml-2 border border-black bg-white text-black " onClick={nextItem}>
-          <FaArrowRight />
-        </button>
-    </div>
-  );
-};
+*/}
 
 export default Carousel;

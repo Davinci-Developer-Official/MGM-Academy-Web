@@ -5,7 +5,8 @@ import img from '@/public/empowerment/1.jpeg';
 import { FaArrowAltCircleLeft, FaBars, FaCaretDown, FaCartPlus,FaChevronDown,FaChevronUp,FaEraser,FaFemale,FaGraduationCap,FaStar,FaStarHalfAlt } from 'react-icons/fa';
 import Link from 'next/link';
 import { useState } from 'react';
-
+import Card from "./CourseCard"
+import Rating from './Rating';
 
 
 interface Data {
@@ -13,6 +14,17 @@ interface Data {
     category:string,
 }
 
+interface CourseDetails {
+    id: number;
+    course_name: string;
+    course_description: string;
+    course_code: string;
+    course_category: string;
+    course_avarage_rating: string;
+    course_requirements: string;
+    course_instructors: string;
+    course_image: string;
+}
 
 export default function Section({setHideMenu,hideMenu}:any){
 
@@ -55,7 +67,7 @@ export default function Section({setHideMenu,hideMenu}:any){
                 {selectedCategory==""&&<p>ALL</p>}
                  <FaCaretDown size={20} />
             </button>
-        {renderCategory&&<ul className=' h-[400px] rounded-md background border-[#e1b382] border overflow-y-scroll absolute mt-10 ' >
+        {renderCategory&&<ul className=' h-[400px] rounded-md background border-[#e1b382] border overflow-y-scroll absolute mt-10 z-10 ' >
                 {category.map((items)=>(<div key={items.id} >
                     <button className='btn btn-ghost  w-[90%] ml-[5%] mt-2 outset  ' onClick={()=>{
                         setSelectedCategory(items.category);
@@ -67,9 +79,40 @@ export default function Section({setHideMenu,hideMenu}:any){
         {/*mapping courses*/}
         <div className='  overflow-y-scroll  mb-2 ' >
             {/*mapped courses*/}
-            <div className='w-[80%]  mx-auto grid lg:grid-cols-4  md:grid-cols-2 grid-col-1  gap-4 ' >
-            {data.courses.map((item)=>(
-            <Link href='/academics/Courses/content' key={item.id} className=' w-[300px] h-[300px] bg-white border-2  hover:border-2 hover:border-[#e2c5a6] hover:cursor-pointer rounded-md ' >
+            <div className="w-[90%] mx-auto grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
+  {data.courses.map((item) =>{
+    const image = item.course_image
+    return (
+        <Link href="/academics/Courses/content" className="card background w-90 bg-base-100 shadow-xl" key={item.id}>
+        <figure>
+          <Image src={ img} alt="holder"  /> {/* Adjust width and height as per your requirement */}
+        </figure>
+        <div className="card-body">
+          <h2 className="card-title">
+            {item.course_name}
+            <div className="badge badge-secondary">NEW</div>
+          </h2>
+          <p>{item.course_category}</p>
+          <div className="card-actions justify-end">
+            <div className="badge badge-outline">
+              {item.course_instructors}
+              
+            </div>
+            <div className="badge badge-outline ">Rating: <Rating rating={item.course_avarage_rating} /> </div>
+          </div>
+        </div>
+      </Link>
+      
+     )
+  } )}
+</div>
+
+        </div>
+        </div>
+    )
+}
+{/*
+<Link href='/academics/Courses/content' key={item.id} className=' w-[300px] h-[300px] bg-white border-2  hover:border-2 hover:border-[#e2c5a6] hover:cursor-pointer rounded-md ' >
             <div className='  w-full  ' >
             <Image src={img} alt={`${item.course_name}cover image`} className='w-full object-fit h-full ' />
             </div>
@@ -77,9 +120,4 @@ export default function Section({setHideMenu,hideMenu}:any){
             <p className='h-[30px]  p-[5px]  ' >{item.course_instructors}</p>
             <p className='h-[30px]  p-1 ' >$200</p>
             </Link>
-            ))}
-            </div>
-        </div>
-        </div>
-    )
-}
+*/}
