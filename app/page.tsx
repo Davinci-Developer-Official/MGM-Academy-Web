@@ -6,15 +6,13 @@ import Navbar from '@/app/components/Navbar'
 //import Vision from '@/components/Vision'
 import Image from 'next/image'
 import Link from 'next/link'
+import Home from "./Home"
 
-export default function Home() {
+export default function Page() {
   return (
-  <div style={{
-    width:"100%",
-    
-  }} className=' background  h-screen  ' >
+  <div  className=' background w-full ' >
   <Navbar/>
-  <HomeInfo/>
+  <Home/>
   <Footer/>
   
   
