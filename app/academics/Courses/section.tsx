@@ -82,6 +82,7 @@ export default function Section({setHideMenu,hideMenu}:any){
             <div className="w-[90%] mx-auto grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
   {data.courses.map((item) =>{
     const image = item.course_image
+    const rating = parseInt(item.course_avarage_rating)
     return (
         <Link href="/academics/Courses/content" className="card background w-90 bg-base-100 shadow-xl" key={item.id}>
         <figure>
@@ -98,7 +99,7 @@ export default function Section({setHideMenu,hideMenu}:any){
               {item.course_instructors}
               
             </div>
-            <div className="badge badge-outline ">Rating: <Rating rating={item.course_avarage_rating} /> </div>
+            <div className="badge badge-outline ">Rating: <Rating rating={rating} /> </div>
           </div>
         </div>
       </Link>

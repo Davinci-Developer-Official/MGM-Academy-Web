@@ -46,7 +46,7 @@ const Carousel: React.FC<CarouselProps> = () => {
   const currentItem = NavInfo[currentItemIndex];
 
   return (
-    <div className="carousel flex flex-row md:w-[80%] lg:w-[70%] sm:w-[90%] mx-auto h-[300px] mt-6 ">
+    <div className="carousel flex flex-row md:w-[80%] lg:w-[80%] sm:w-[90%] mx-auto h-[300px] mt-6 ">
      <button className="prev-button btn btn-circle my-auto mr-2 border border-black bg-white text-black  " onClick={prevItem}>
           <FaArrowLeft />
         </button>
@@ -67,17 +67,23 @@ const Carousel: React.FC<CarouselProps> = () => {
             </button>
           ))}
         </div>
-        <div className="card w-[80%] mx-auto  bg-base-100 shadow-xl image-full  ">
-          <figure>
-          <Image src={currentItem.NavImage} alt={currentItem.NavItem} />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">Shoes!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
+        <div className="card  w-full mx-auto bg-base-100 shadow-xl image-full h-[400px] ">
+            <figure className=' ' >
+              <Image
+                src={currentItem.NavImage}
+                alt={currentItem.NavItem}
+                layout="fill" // Adjust layout property here
+                objectFit="cover" // Ensure the image covers the entire container
+                className="rounded-t-xl"
+              />
+            </figure>
+          <div className="card-body  ">
+            <h2 className="card-title text-[#e97902] ">{currentItem.NavItem}</h2>
+            <p className='text-[#e97902] ' >{currentItem.NavDescription}</p>
             <div className="card-actions justify-end">
-              <button className="btn btn-primary">Buy Now</button>
-        </div>
-  </div>
+              <button className="btn btn-primary">{currentItem.NavItem}</button>
+          </div>
+      </div>
 </div>
         
       </div>
