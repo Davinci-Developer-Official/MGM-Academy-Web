@@ -1,18 +1,19 @@
 import React from 'react'
 import Carousel from './Carousel'
-import { FaAngleDown, FaAngleUp, FaCaretDown, FaGraduationCap, FaHome } from 'react-icons/fa'
+import { FaAngleDown, FaAngleUp, FaCaretDown, FaCaretUp, FaChevronCircleDown, FaChevronCircleUp, FaGraduationCap, FaHome } from 'react-icons/fa'
+import Link from 'next/link'
 
 
 function Home({navigation,setNavigation,footer,setFooter}:any) {   
   return (
     <div className='h-screen overflow-y-scroll' >
     <div className='flex flex-row w-full justify-between p-4 ' >
-      {!navigation&&<button className='btn btn-ghost  ' onClick={()=>{
+      {!navigation&&<button className='btn btn-ghost flex flex-col ' onClick={()=>{
         setNavigation(true)
-      }} ><FaAngleDown size={20} /></button>}
-      {navigation&&<button className='btn btn-ghost  ' onClick={()=>{
+      }} >show menu<FaChevronCircleDown size={20} /></button>}
+      {navigation&&<button className='btn btn-ghost flex flex-col ' onClick={()=>{
         setNavigation(false);
-      }} ><FaAngleUp size={20} /></button>}
+      }} ><FaChevronCircleUp size={20} />hide menu</button>}
       <div className=" normal-case text-xl  ml-4 p-2 font-mono "> MGM Learning platform  </div>
       <button className='btn btn-ghost hover:cursor-none ' ><FaHome size={20} /></button>
     </div>
@@ -30,7 +31,10 @@ function Home({navigation,setNavigation,footer,setFooter}:any) {
     future success!
     </p>
     <div className='flex justify-end w-full ' >
-    <button className='flex flex-row btn btn-primary  w-fit h-fit  ' >start learning <FaGraduationCap size={20} /> </button>
+    <Link href="/academics/Courses" className='flex flex-row btn btn-primary  w-fit h-fit  ' >
+      <p>start learning</p> 
+      <FaGraduationCap size={20} /> 
+    </Link>
     </div>
     </div>
     </div>

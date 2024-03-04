@@ -5,12 +5,14 @@ import { FaArrowRight, FaArrowLeft, FaCaretRight, FaCaretLeft, FaCircle } from '
 import fs from 'fs';
 import about from "@/public/empowerment/11.png";
 import mv from "@/public/empowerment/12.jpeg"
+import Link from 'next/link';
 
 interface CarouselItem {
   id: number;
   NavItem: string;
   NavDescription: string;
   NavImage: any;
+  link:any
 }
 
 interface CarouselProps {
@@ -26,12 +28,49 @@ const Carousel: React.FC<CarouselProps> = () => {
       NavItem:"About Us",
       NavDescription:"Discover the power of MGM - where learning knows no bounds. Dive deeper and unlock a world of possibilities today!",
       NavImage:about,
+      link:"/AboutMGM/AboutUs"
     },
     {
       id:2,
       NavItem:"Our Mission & Vision",
       NavDescription:"Discover MGM: Empowering minds, shaping futures. Learn more about our mission and vision today!",
       NavImage:mv,
+      link:"/AboutMGM/Mission&Vision"
+    },
+    {
+      id:3,
+      NavItem:"Student Application",
+      NavDescription:"Discover MGM: Empowering minds, shaping futures. Learn more about our mission and vision today!",
+      NavImage:mv,
+      link:"/academics/studentApplication"
+    },
+    {
+      id:4,
+      NavItem:"Instructor Application",
+      NavDescription:"Discover MGM: Empowering minds, shaping futures. Learn more about our mission and vision today!",
+      NavImage:mv,
+      link:"/academics/InstructorApplication"
+    },
+    {
+      id:5,
+      NavItem:"Student Portal",
+      NavDescription:"Discover MGM: Empowering minds, shaping futures. Learn more about our mission and vision today!",
+      NavImage:mv,
+      link:"/academics/studentPortal/auth"
+    },
+    {
+      id:6,
+      NavItem:"Instructor Portal",
+      NavDescription:"Discover MGM: Empowering minds, shaping futures. Learn more about our mission and vision today!",
+      NavImage:mv,
+      link:"/academics/instructorPortal/auth"
+    },
+    {
+      id:7,
+      NavItem:"FAQS",
+      NavDescription:"Discover MGM: Empowering minds, shaping futures. Learn more about our mission and vision today!",
+      NavImage:mv,
+      link:""
     }
   ];
 
@@ -47,7 +86,7 @@ const Carousel: React.FC<CarouselProps> = () => {
 
   return (
     <div className="carousel flex flex-row md:w-[80%] lg:w-[80%] sm:w-[90%] mx-auto h-[300px] mt-6 ">
-     <button className="prev-button btn btn-circle my-auto mr-2 border border-black bg-white text-black  " onClick={prevItem}>
+     <button className="prev-button btn btn-circle my-auto mr-2 border border-black  bg-white text-black hover:text-[#e97902] " onClick={prevItem}>
           <FaArrowLeft />
         </button>
         
@@ -67,7 +106,7 @@ const Carousel: React.FC<CarouselProps> = () => {
             </button>
           ))}
         </div>
-        <div className="card  w-full mx-auto bg-base-100 shadow-xl image-full h-[400px] ">
+        <div className="card  w-full mx-auto bg-base-100 shadow-xl image-full h-[400px]  ">
             <figure className=' ' >
               <Image
                 src={currentItem.NavImage}
@@ -81,13 +120,13 @@ const Carousel: React.FC<CarouselProps> = () => {
             <h2 className="card-title text-[#e97902] ">{currentItem.NavItem}</h2>
             <p className='text-[#e97902] ' >{currentItem.NavDescription}</p>
             <div className="card-actions justify-end">
-              <button className="btn btn-primary">{currentItem.NavItem}</button>
+              <Link href={currentItem.link} className="btn btn-primary">{currentItem.NavItem}</Link>
           </div>
       </div>
 </div>
         
       </div>
-      <button className="next-button btn btn-circle my-auto ml-2 border border-black bg-white text-black " onClick={nextItem}>
+      <button className="next-button btn btn-circle my-auto ml-2 border border-black hover:border-[#e97902] bg-white text-black hover:text-[#e97902] " onClick={nextItem}>
           <FaArrowRight />
         </button>
     </div>
