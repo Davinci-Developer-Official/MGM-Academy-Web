@@ -1,10 +1,8 @@
 'use client'
 import Image from 'next/image'
-import React, { useState } from 'react'
-import { fetchDataById } from '@/app/api/Fetch/get';
+import React, { useState } from 'react';
 import { FaUpload } from 'react-icons/fa';
-import { PostProfileData, ProfileData } from '@/app/api/Fetch/post';
-import {DeleteById}from "@/app/api/Fetch/Delete"
+
 
 
 function Edit({setformData,profiles,formData,update}:any){
