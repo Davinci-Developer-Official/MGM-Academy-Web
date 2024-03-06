@@ -1,4 +1,4 @@
-
+'use server'
 import React, { FormEvent } from 'react'
 import ba from "../../../../../../public/profile/user.png"
 import Image from 'next/image'
