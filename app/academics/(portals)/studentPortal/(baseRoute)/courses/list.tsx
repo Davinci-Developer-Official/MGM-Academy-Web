@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { fetchMappableCourses } from '@/app/api/Fetch/get'
+//import { fetchMappableCourses } from '@/app/api/Fetch/get'
 import SearchbarAsn from '@/app/components/SearchbarAsn'
 import { StaticImageData } from 'next/image';
 import Card from "./card"
