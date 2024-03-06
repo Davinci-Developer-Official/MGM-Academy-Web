@@ -6,12 +6,13 @@ import { FaUpload } from 'react-icons/fa'
 //import get from '@/app/api/get'
 
 import Form from "./form"
-import { fetchDataById } from '@/app/api/Fetch/get'
+//import { fetchDataById } from '@/app/api/Fetch/get'
 
 async function page() {
   const url = "https://65644addceac41c0761dd04d.mockapi.io/users/api/profile";//global api url
     const index = 3 //
-  const profiles = await  fetchDataById(url,index);
+    const response = await fetch(url);
+  const profiles = await  response.json;//new change 06/02/2023;
   //data sets for fetching data
   
   const localApi = "/api/profile";
