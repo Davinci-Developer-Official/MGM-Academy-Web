@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import Image, { StaticImageData } from "next/image";
 import animation from "../../public/animated/Animation - 1701465071077.gif";
-import { fetchData } from "../api/Fetch/get";
+//import { fetchData } from "";
 import SingleCourse, { Placeholders } from "./SingleCourse";
 import { MotionDiv } from "./MotionDiv";
 
@@ -29,16 +29,14 @@ export default function LoadingCourses() {
 
   // Effect to fetch data when the component is in view
   useEffect(() => {
-    if (inView) {
-      fetchData(url)
-        .then((res) => {
-          setData((prevData) => [...prevData, ...res]);
-          // Note: page and index variables are not used in this snippet
-        })
-        .catch((error) => {
-          console.error("Error fetching data:", error);
-        });
-        alert(JSON.stringify(data))
+    async function form (){
+      if (inView) {
+        const response= await fetch('/api/get_student')
+        const info = await response.json();  
+        setData(info);
+  
+          alert(JSON.stringify(data))
+      }
     }
   }, [inView,data]);
 

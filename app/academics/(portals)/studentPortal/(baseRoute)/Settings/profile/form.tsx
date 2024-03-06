@@ -223,7 +223,7 @@ function Edit({setformData,profiles,formData,update}:any){
   }
 
  function Form({url,index,profiles}:any) {
-    const [formData,setformData]=useState<ProfileData>({
+    const [formData,setformData]=useState({
     avatar:"" ,
     username:"",
     email:"",
@@ -234,18 +234,18 @@ function Edit({setformData,profiles,formData,update}:any){
     
     const [makeEdit,setMakeEdit]=useState(false)
     
-    async function update(e:any){
+   {/* async function update(e:any){
       e.preventDefault();
       await PostProfileData(url,index,formData)
     }
     async function deleteAccount(e:any){
       e.preventDefault();
       await DeleteById(url,index);
-    }
+    }*/}
   return (
     <div>
       <p className='text-black ml-[20%] mt-5   ' > Your Profile  settings will be available for everyone to see them </p>
-      {makeEdit?<Edit setformData={setformData} profiles={profiles} formData={formData} update={update} />:<Current setformData={setformData} profiles={profiles} formData={formData} deleteAccount={deleteAccount} />}
+      {makeEdit?<Edit setformData={setformData} profiles={profiles} formData={formData} />:<Current setformData={setformData} profiles={profiles} formData={formData} />}
 
     </div>
   )
