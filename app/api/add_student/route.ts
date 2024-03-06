@@ -48,6 +48,8 @@ CREATE TABLE students (
     residence VARCHAR,
     phone_number VARCHAR,
     date_of_birth DATE,
+    exposure VARCHAR,
+    password VARCHAR,
     time_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

@@ -6,6 +6,7 @@ import Exposure from "./Exposure"
 import Terms from "./Terms";
 import Sendcode from "./Sendcode";
 import Verify from "./Verify";
+import Password from "./PasswordEntry";
 
 export default function Form(){
     const[valueNo,setValueNo]=useState(0);
@@ -14,6 +15,7 @@ export default function Form(){
     const[slide3,setSlide3]=useState(false);
     const[slide4,setSlide4]=useState(false);
     const[slide5,setSlide5]=useState(false);
+    const[addPassword,setAddPassword]=useState(false)
 
     //useEffect hook
     useEffect(()=>{
@@ -45,7 +47,8 @@ export default function Form(){
         {slide2&&(<div className="h-screen" ><Terms setSlide2={setSlide2} setSlide3={setSlide3} /></div>)}
         {slide3&&(<div className="h-screen " ><Exposure setSlide3={setSlide3} setSlide4={setSlide4}  /></div>)}
         {slide4&&(<div className="h-screen " ><Sendcode setSlide4={setSlide4} setSlide5={setSlide5} /></div>)}
-        {slide5&&(<div className="h-screen " ><Verify setSlide5={setSlide5} /></div>)}
+        {slide5&&(<div className="h-screen " ><Verify setSlide5={setSlide5} setAddPassword={setAddPassword} /></div>)}
+        {addPassword&&<div className="h-screen " ><Password  /></div>}
         </>
     );
 }

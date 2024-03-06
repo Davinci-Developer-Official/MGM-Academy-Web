@@ -1,27 +1,67 @@
 
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PocketBase from 'pocketbase'
 
 interface LoginStudentProps {
     setSignIn: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function LoginStudent(props: LoginStudentProps) {
-  //pocket base;
-  const pb = new PocketBase('http://127.0.0.1:8090');
+interface Student {
+  id: number;
+  student_id: string;
+  Avatar: string;
+  first_name: string;
+  middle_name: string;
+  last_name: string;
+  username: string;
+  email: string;
+  gender: string;
+  nationality: string;
+  residence: string;
+  phone_number: string;
+  date_of_birth: string;
+  time_created: string;
+  exposure:string;
+  password:string;
+}
 
+function LoginStudent(props: LoginStudentProps) {
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [secure, setSecure] = useState(false);
   const [error, setError] = useState('');
-
+  const [students, setStudents] = useState<Student[]>([]);
+  
+  //fetch on each render;
+  useEffect(()=>{
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/api/get_student');
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const data = await response.json();
+        console.log('Fetched data:', data);
+        setStudents(data.students);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  },[students]);
   const handleLogin = async () => {
     // Replace this with your actual login logic (e.g., API call)
-    if (email === 'temp@gmail.com' && password === 'temp') {
+    const findEmail = students.find(user=>user.email == email);
+    const findPass = students.find(user=>user.password == password);
+    
+    if (findEmail&&findPass) {
       setSecure(true);
+      alert(JSON.stringify(students))
     } else {
       setError('Email or password is incorrect');
+      
     }
   };
 
@@ -62,6 +102,7 @@ function LoginStudent(props: LoginStudentProps) {
                 </a>
               </label>
             </div>
+            
             {/*text-[#e1b382] bg-gradient-to-r from-[#2d545e]*/}
             <div className="form-control mt-6">
               {secure ? (
