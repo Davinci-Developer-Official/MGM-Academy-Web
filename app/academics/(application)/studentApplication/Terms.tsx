@@ -1,26 +1,56 @@
-import React from 'react'
+'use client';
+import React, { useState } from 'react'
 import TOA from "./terms.json"
-import { FaCaretRight } from 'react-icons/fa'
+import { FaCaretLeft, FaCaretRight } from 'react-icons/fa'
 
-function Terms({setSlide2,setSlide3}:any) {
-  return (
-    <div className='w-[60%] mx-auto  h-[700px] font-mono ' >
-    <div>
-        <p className='text-center font-bold text-xl text-[#e97902] ' >Terms of agreement</p>
-        {/*Terms of Agreements*/}
-        <div className='overflow-y-scroll h-[640px] w-full p-4 border inset ' >
-            <p>{TOA.terms_statement}</p>
+function Terms({setSlide2,setSlide3,setSlide1}:any) {
+  
+    const [accepted, setAccepted] = useState(false);
+
+    const handleAcceptance = () => {
+      setAccepted(true);
+      // You can implement further actions upon acceptance here
+    };
+  
+    return (
+      <div className='w-[70%] mx-auto mt-10 font-mono  ' >
+        <button className='flex flex-row btn btn-ghost ' onClick={()=>{
+          setSlide2(false);
+          setSlide1(true);
+        }} > <FaCaretLeft size={20} /> back</button>
+        <h2 className='text-[#e97902] text-center font-bold ' >Terms of Agreement</h2>
+        <div>
+          <p className='font-semibold text-[18px] ' >
+          MGM Institute champions gender equality and women's empowerment through inclusivity, equity, and social justice. Join us in reshaping norms and advancing women's rights.
+          </p>
+          <div className='overflow-y-scroll h-[400px] mt-3 w-[90%] mx-auto ' >
+            {TOA.map((term)=>(
+              <div key={term.id} >
+                <p className='font-bold  ' >{term.term}</p>
+                <p className=' ' >{term.term_description}</p>
+              </div>
+            ))}
+          </div>
         </div>
-        {/*Agree to terms*/}
-        <div className='flex flex-row w-[90%] mx-auto mt-1 ' ><input type="checkbox" className='h-[20px] w-[20px]   ' /><p className='text-center pl-2 text-[#e97902] font-bold ' > I agree to the terms </p></div>
-    </div>
-    {/*continue*/}
-    <button className='w-[80%] ml-[10%] btn btn-success mt-4 justify-between ' onClick={()=>{
-        setSlide2(false);
-        setSlide3(true);
-    }}  >continue <FaCaretRight size={20} /> </button>
-    </div>
-  )
+        <div className='mt-2' >
+          <input type="checkbox" id="accept" onChange={handleAcceptance} />
+          <label htmlFor="accept" className='font-bold' >I accept the Terms of Agreement</label>
+        </div>
+        {accepted && (
+          <div>
+            <p>Thank you for accepting the Terms of Agreement.</p>
+            {/* You can render further content here upon acceptance */}
+            <button className='btn btn-success w-[80%] mx-auto mt-5 flex flex-row ' onClick={()=>{
+              setSlide2(false);
+              setSlide3(true);
+            }} >
+              continue <FaCaretRight size={20} />
+            </button>
+          </div>
+        )}
+      </div>
+    );
+  
 }
 
-export default Terms
+export default Terms;

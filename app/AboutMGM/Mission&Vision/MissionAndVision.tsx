@@ -1,9 +1,21 @@
 import React from 'react'
 import banner from '@/public/empowerment/12.jpeg'
 import Image from 'next/image';
+import { FaChevronCircleDown, FaChevronCircleUp, FaInfoCircle } from 'react-icons/fa';
 
-function MissionAndVision() {
+function MissionAndVision({setNavigation,navigation}:any) {
   return (
+    <div>
+      <div className='flex flex-row w-full justify-between p-4 ' >
+      {!navigation&&<button className='btn btn-ghost flex flex-col ' onClick={()=>{
+        setNavigation(true)
+      }} >show menu<FaChevronCircleDown size={20} /></button>}
+      {navigation&&<button className='btn btn-ghost flex flex-col ' onClick={()=>{
+        setNavigation(false);
+      }} ><FaChevronCircleUp size={20} />hide menu</button>}
+      <div className=" normal-case text-xl  ml-4 p-2 font-mono "> About Us  </div>
+      <button className='btn btn-ghost hover:cursor-none ' ><FaInfoCircle size={20} /></button>
+    </div>
     <div className=' h-screen  background mb-5 font-mono ' >
        <div className=' transparent h-[200px] lg:h-[250px]    rounded-md '>
         <Image src={banner} alt="holder" className='h-full rounded-md w-[90%] lg:w-[90%] mx-auto '  />
@@ -146,6 +158,7 @@ function MissionAndVision() {
       </p>
         </div>
       </div>
+     </div>
      </div>
      </div>
   )

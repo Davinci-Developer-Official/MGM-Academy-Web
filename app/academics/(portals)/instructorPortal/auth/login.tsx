@@ -1,12 +1,13 @@
 
 import Link from 'next/link';
 import React, { useState } from 'react';
+import { FaChevronCircleDown, FaChevronCircleUp, FaDoorOpen } from 'react-icons/fa';
 
 interface LoginStudentProps {
     setSignIn: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function LoginStudent(props: LoginStudentProps) {
+function LoginStudent({setNavigation,navigation}:any) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [secure, setSecure] = useState(false);
@@ -22,6 +23,17 @@ function LoginStudent(props: LoginStudentProps) {
   };
 
   return (
+    <div>
+    <div className='flex flex-row w-full justify-between p-4 ' >
+      {!navigation&&<button className='btn btn-ghost flex flex-col ' onClick={()=>{
+        setNavigation(true)
+      }} >show menu<FaChevronCircleDown size={20} /></button>}
+      {navigation&&<button className='btn btn-ghost flex flex-col ' onClick={()=>{
+        setNavigation(false);
+      }} ><FaChevronCircleUp size={20} />hide menu</button>}
+      <div className=" normal-case text-xl  ml-4 p-2 font-mono "> instructor portal  </div>
+      <button className='btn btn-ghost hover:cursor-none ' ><FaDoorOpen size={20} /></button>
+    </div>
     <div className="hero min-h-screen background">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left   ">
@@ -82,6 +94,7 @@ function LoginStudent(props: LoginStudentProps) {
           </p>
         </div>
       </div>
+    </div>
     </div>
   );
 }

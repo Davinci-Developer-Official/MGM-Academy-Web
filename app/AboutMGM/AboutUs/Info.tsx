@@ -1,14 +1,27 @@
 import Image from 'next/image'
 import React from 'react'
 import banner from '@/public/empowerment/1.jpeg'
+import { FaChevronCircleDown, FaChevronCircleUp, FaHome, FaInfo, FaInfoCircle } from 'react-icons/fa'
 
-function Info() {
+function Info({setNavigation,navigation}:any) {
   return (
-    <div className=' h-screen  background mb-5 ' >
+    <div>
+    <div className='flex flex-row w-full justify-between p-4 ' >
+      {!navigation&&<button className='btn btn-ghost flex flex-col ' onClick={()=>{
+        setNavigation(true)
+      }} >show menu<FaChevronCircleDown size={20} /></button>}
+      {navigation&&<button className='btn btn-ghost flex flex-col ' onClick={()=>{
+        setNavigation(false);
+      }} ><FaChevronCircleUp size={20} />hide menu</button>}
+      <div className=" normal-case text-xl  ml-4 p-2 font-mono "> About Us  </div>
+      <button className='btn btn-ghost hover:cursor-none ' ><FaInfoCircle size={20} /></button>
+    </div>
+
+    <div>    
     <div className=' transparent h-[200px] lg:h-[250px]    rounded-md '>
      <Image src={banner} alt="holder" className='h-full rounded-md w-[90%] lg:w-[90%] mx-auto '  />
    </div>
-   <h1 className='text-center pt-2 text-xl font-mono font-bold ' >About MGM</h1>
+   <h1 className='text-center pt-2 text-xl font-mono font-bold ' >overview</h1>
   <div className='h-[400px] lg:h-[400px] sm:h-[500px] pt-2 mt-2  overflow-y-scroll' >
          <p className='w-[90%] mx-auto  lg:text-xl font-mono ' >
          The MGM Institute of Gender and Women Empowerment embodies a significant force in the quest for gender equality and the empowerment of women. Established on the foundational principles of inclusivity, equity, and social justice, this institute has emerged as a beacon of progress, challenging societal norms and contributing significantly to the advancement of women's rights. At its core, the institute is committed to creating a conducive environment where individuals of all genders can flourish and make meaningful contributions to society.
@@ -24,6 +37,7 @@ Furthermore, the institute collaborates with a diverse array of organizations, g
 In essence, the MGM Institute of Gender and Women Empowerment epitomizes the transformative potential of education and activism in reshaping societal norms. By championing inclusivity, equity, and social justice, this institution plays a pivotal role in the ongoing struggle for gender equality and women's empowerment, leaving an indelible mark on individuals, communities, and society at large.
         </p>
       </div>
+    </div>
     </div>
   )
 }

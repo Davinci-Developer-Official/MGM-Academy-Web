@@ -20,11 +20,13 @@ export async function GET(request: Request) {
   const residence = searchParams.get('residence');
   const phone_number = searchParams.get('phone_number');
   const date_of_birth = searchParams.get('date_of_birth');
+  const exposure = searchParams.get("exposure");
+  const password = searchParams.get("password");
 
   try {
     if (!username || !first_name) throw new Error('Username and First Name are required');
-    await sql`INSERT INTO students (student_id, Avatar, username, first_name, middle_name, last_name, email, gender, nationality, residence, phone_number, date_of_birth) 
-          VALUES (${student_id}, ${avatar}, ${username}, ${first_name}, ${middle_name}, ${last_name}, ${email}, ${gender}, ${nationality}, ${residence}, ${phone_number}, ${date_of_birth});`;
+    await sql`INSERT INTO students (student_id, Avatar, username, first_name, middle_name, last_name, email, gender, nationality, residence, phone_number, date_of_birth,exposure,password) 
+          VALUES (${student_id}, ${avatar}, ${username}, ${first_name}, ${middle_name}, ${last_name}, ${email}, ${gender}, ${nationality}, ${residence}, ${phone_number}, ${date_of_birth},${exposure},${password});`;
   } catch (error:any) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }

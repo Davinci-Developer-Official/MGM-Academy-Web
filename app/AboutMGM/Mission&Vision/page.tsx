@@ -1,9 +1,16 @@
-
+'use client';
+import Navbar from '@/app/components/Navbar';
 import MissionAndVision from './MissionAndVision'
-import React from 'react'
+import React, { useState } from 'react'
 
-function page() {
-  return <MissionAndVision/>;
+function Page() {
+  const[navigation,setNavigation]= useState(false);
+  return(
+    <>
+    {navigation&&<Navbar/>}
+     <MissionAndVision setNavigation={setNavigation} navigation={navigation} />
+    </>
+  );
 }
 
-export default page
+export default Page;

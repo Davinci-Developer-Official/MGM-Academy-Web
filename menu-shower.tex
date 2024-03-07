@@ -1,0 +1,21 @@
+
+
+
+const[navigation,setNavigation]= useState(false);
+
+{navigation&&<Navbar/>}
+
+setNavigation={setNavigation} navigation={navigation}
+
+{setNavigation,navigation}:any
+
+<div className='flex flex-row w-full justify-between p-4 ' >
+      {!navigation&&<button className='btn btn-ghost flex flex-col ' onClick={()=>{
+        setNavigation(true)
+      }} >show menu<FaChevronCircleDown size={20} /></button>}
+      {navigation&&<button className='btn btn-ghost flex flex-col ' onClick={()=>{
+        setNavigation(false);
+      }} ><FaChevronCircleUp size={20} />hide menu</button>}
+      <div className=" normal-case text-xl  ml-4 p-2 font-mono "> About Us  </div>
+      <button className='btn btn-ghost hover:cursor-none ' ><FaInfoCircle size={20} /></button>
+    </div>

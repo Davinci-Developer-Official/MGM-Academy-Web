@@ -1,13 +1,17 @@
 'use client';
 import React, { useState } from 'react'
 import Login from "./login";
-import Register from "./register"
+//import Register from "./register"
+import Navbar from '@/app/components/Navbar';
 
 function Page() {
     const[signIn,setSignIn]= useState(true)
-  return (
-    <div>
-        {signIn?<Login setSignIn={setSignIn} />:<Register setSignIn={setSignIn} />}
+    const[navigation,setNavigation]= useState(false);
+    
+    return (
+      <div>
+        {navigation&&<Navbar/>}
+        <Login setNavigation={setNavigation} navigation={navigation} />
     </div>
   )
 }

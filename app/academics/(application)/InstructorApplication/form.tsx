@@ -7,8 +7,9 @@ import Terms from "./Terms";
 import Sendcode from "./Sendcode";
 import Verify from "./Verify";
 import Password from "./PasswordEntry";
+import { FaChevronCircleDown, FaChevronCircleUp, FaFile } from "react-icons/fa";
 
-export default function Form(){
+export default function Form({setNavigation,navigation}:any){
     const[valueNo,setValueNo]=useState(0);
     const[slide1,setSlide1]=useState(true);
     const[slide2,setSlide2]=useState(false);
@@ -42,6 +43,16 @@ export default function Form(){
 
     return(
         <>
+        <div className='flex flex-row w-full justify-between p-4 ' >
+      {!navigation&&<button className='btn btn-ghost flex flex-col ' onClick={()=>{
+        setNavigation(true)
+      }} >show menu<FaChevronCircleDown size={20} /></button>}
+      {navigation&&<button className='btn btn-ghost flex flex-col ' onClick={()=>{
+        setNavigation(false);
+      }} ><FaChevronCircleUp size={20} />hide menu</button>}
+      <div className=" normal-case text-xl  ml-4 p-2 font-mono "> instructor application  </div>
+      <button className='btn btn-ghost hover:cursor-none ' ><FaFile size={20} /></button>
+    </div>
         <Progress valueNo={valueNo} />
         {slide1&&(<div className="overflow-y-scroll h-screen " ><Details setSlide1={setSlide1} setSlide2={setSlide2} /></div>)}
         {slide2&&(<div className="h-screen" ><Terms setSlide2={setSlide2} setSlide3={setSlide3} /></div>)}

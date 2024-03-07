@@ -1,3 +1,53 @@
-{
-    "terms_statement":"By agreeing to the terms stipulated by MGM you agree to be held accountable by the terms of agreement. "
-}
+[
+    {
+      "id": 1,
+      "term": "Purpose and Vision",
+      "term_description": "MGM Institute of Gender and Women Empowerment (hereinafter referred to as 'MGM') is committed to championing gender equality and women's empowerment. Our foundation lies in inclusivity, equity, and social justice. The vision of MGM is to reshape societal norms and advance women's rights through education, advocacy, and community engagement."
+    },
+    {
+      "id": 2,
+      "term": "Membership and Participation",
+      "term_description": "By agreeing to these terms, members acknowledge their commitment to the values and goals of MGM. Members are encouraged to actively participate in MGM's activities, including but not limited to workshops, seminars, and advocacy campaigns."
+    },
+    {
+      "id": 3,
+      "term": "Respect and Inclusivity",
+      "term_description": "MGM promotes an environment of respect and inclusivity, where all members are valued regardless of gender, race, ethnicity, sexual orientation, or any other characteristic. Discrimination or harassment of any form will not be tolerated within MGM's community."
+    },
+    {
+      "id": 4,
+      "term": "Confidentiality and Privacy",
+      "term_description": "Members agree to respect the confidentiality and privacy of fellow members and any sensitive information shared within the community. Personal information provided to MGM will be handled in accordance with applicable privacy laws and regulations."
+    },
+    {
+      "id": 5,
+      "term": "Code of Conduct",
+      "term_description": "Members are expected to conduct themselves in a manner that upholds the values of MGM, including honesty, integrity, and mutual respect. Any behavior deemed inconsistent with these values may result in disciplinary action, including but not limited to suspension or termination of membership."
+    },
+    {
+      "id": 6,
+      "term": "Intellectual Property",
+      "term_description": "Members retain ownership of any intellectual property they create or share within MGM's community. By participating in MGM's activities, members grant MGM a non-exclusive license to use, reproduce, and distribute their intellectual property for the purpose of advancing MGM's mission."
+    },
+    {
+      "id": 7,
+      "term": "Collaboration and Partnerships",
+      "term_description": "MGM encourages collaboration with individuals, organizations, and institutions that share our commitment to gender equality and women's empowerment. Partnerships and collaborations will be pursued in alignment with MGM's values and strategic objectives."
+    },
+    {
+      "id": 8,
+      "term": "Amendments and Updates",
+      "term_description": "MGM reserves the right to amend these terms at any time, with notice provided to members. Members are responsible for regularly reviewing these terms and adhering to any updates or changes."
+    },
+    {
+      "id": 9,
+      "term": "Termination of Membership",
+      "term_description": "Membership with MGM may be terminated at any time, at the discretion of MGM's leadership, for reasons including but not limited to violation of these terms or conduct detrimental to MGM's mission and values."
+    },
+    {
+      "id": 10,
+      "term": "Governing Law",
+      "term_description": "These terms of agreement shall be governed by and construed in accordance with the laws of [Jurisdiction]. Any disputes arising from these terms shall be resolved through mediation or arbitration in accordance with the rules of [Arbitration/Mediation Institution], with the prevailing party entitled to reasonable attorney fees and costs."
+    }
+  ]
+  

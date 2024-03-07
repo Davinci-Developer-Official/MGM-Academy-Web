@@ -7,8 +7,26 @@ import Terms from "./Terms";
 import Sendcode from "./Sendcode";
 import Verify from "./Verify";
 import Password from "./PasswordEntry";
+import { FaChevronCircleDown, FaChevronCircleUp, FaFile } from "react-icons/fa";
 
-export default function Form(){
+
+interface User {
+    avatar: string;
+    first_name: string;
+    middle_name: string;
+    last_name: string;
+    username: string;
+    email: string;
+    gender: string;
+    nationality: string;
+    residence: string;
+    phone_number: string;
+    date_of_birth: string;
+    exposure: string;
+    password: string;
+};
+
+export default function Form({setNavigation,navigation}:any){
     const[valueNo,setValueNo]=useState(0);
     const[slide1,setSlide1]=useState(true);
     const[slide2,setSlide2]=useState(false);
@@ -17,6 +35,22 @@ export default function Form(){
     const[slide5,setSlide5]=useState(false);
     const[addPassword,setAddPassword]=useState(false)
 
+    //user data
+    const [user, setUser] = useState<User>({
+        avatar: "",
+        first_name: "",
+        middle_name: "",
+        last_name: "",
+        username: "",
+        email: "",
+        gender: "",
+        nationality: "",
+        residence: "",
+        phone_number: "",
+        date_of_birth: "",
+        exposure: "",
+        password: ""
+      });
     //useEffect hook
     useEffect(()=>{
         //switching between slides
@@ -38,17 +72,27 @@ export default function Form(){
             };
         }//slide switcher function;
         slideSwitcher();//calling the slide switcher function;
-    },[valueNo,slide1,slide2,slide3,slide4,slide5]);
+    },[valueNo,slide1,slide2,slide3,slide4,slide5,user]);
 
     return(
         <>
+    <div className='flex flex-row w-full justify-between p-4 ' >
+      {!navigation&&<button className='btn btn-ghost flex flex-col ' onClick={()=>{
+        setNavigation(true)
+      }} >show menu<FaChevronCircleDown size={20} /></button>}
+      {navigation&&<button className='btn btn-ghost flex flex-col ' onClick={()=>{
+        setNavigation(false);
+      }} ><FaChevronCircleUp size={20} />hide menu</button>}
+      <div className=" normal-case text-xl  ml-4 p-2 font-mono "> student application  </div>
+      <button className='btn btn-ghost hover:cursor-none ' ><FaFile size={20} /></button>
+    </div>
         <Progress valueNo={valueNo} />
-        {slide1&&(<div className="overflow-y-scroll h-screen " ><Details setSlide1={setSlide1} setSlide2={setSlide2} /></div>)}
-        {slide2&&(<div className="h-screen" ><Terms setSlide2={setSlide2} setSlide3={setSlide3} /></div>)}
-        {slide3&&(<div className="h-screen " ><Exposure setSlide3={setSlide3} setSlide4={setSlide4}  /></div>)}
-        {slide4&&(<div className="h-screen " ><Sendcode setSlide4={setSlide4} setSlide5={setSlide5} /></div>)}
-        {slide5&&(<div className="h-screen " ><Verify setSlide5={setSlide5} setAddPassword={setAddPassword} /></div>)}
-        {addPassword&&<div className="h-screen " ><Password  /></div>}
+        {slide1&&(<div className="overflow-y-scroll h-screen " ><Details setSlide1={setSlide1} setSlide2={setSlide2} user={user} setUser={setUser}  /></div>)}
+        {slide2&&(<div className="h-screen" ><Terms setSlide1={setSlide1} setSlide2={setSlide2} setSlide3={setSlide3} /></div>)}
+        {slide3&&(<div className="h-screen " ><Exposure user={user} setUser={setUser} setSlide2={setSlide2} setSlide3={setSlide3} setSlide4={setSlide4}  /></div>)}
+        {slide4&&(<div className="h-screen " ><Sendcode setSlide3={setSlide3} setSlide4={setSlide4} setSlide5={setSlide5} /></div>)}
+        {slide5&&(<div className="h-screen " ><Verify setSlide4={setSlide4} setSlide5={setSlide5} setAddPassword={setAddPassword} /></div>)}
+        {addPassword&&<div className="h-screen " ><Password setSlide5={setSlide5} setAddPassword={setAddPassword} user={user} setUser={setUser} /></div>}
         </>
     );
 }

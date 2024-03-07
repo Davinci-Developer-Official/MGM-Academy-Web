@@ -12,7 +12,7 @@ function CountrySelector({setcitizenship,citizenship}:any) {
 
   const changeHandler = (value:any) => {
     setValue(value);
-    setcitizenship(JSON.stringify(value.label));
+    setcitizenship({nationality:value.label});
     //alert(citizenship)
     //alert(JSON.stringify(value.label))
   }

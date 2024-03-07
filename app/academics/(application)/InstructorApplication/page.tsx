@@ -1,10 +1,17 @@
+'use client';
 import Construction from '@/app/components/Construction'
-import React from 'react'
+import React, { useState } from 'react'
 import Form from "./form"
+import Navbar from '@/app/components/Navbar';
 
 function Page() {
+  const[navigation,setNavigation]= useState(false);
+
   return (
-    <div><Form/></div>
+    <div>
+      {navigation&&<Navbar/>}
+      <Form setNavigation={setNavigation} navigation={navigation} />
+    </div>
   )
 }
 

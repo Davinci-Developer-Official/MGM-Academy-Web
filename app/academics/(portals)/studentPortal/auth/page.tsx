@@ -2,12 +2,16 @@
 import React, { useState } from 'react'
 import Login from "./login";
 import Register from "./register"
+import Navbar from '@/app/components/Navbar';
 
 function Page() {
-    const[signIn,setSignIn]=useState(true)
+    const[signIn,setSignIn]=useState(true);
+    const[navigation,setNavigation]= useState(false);
+    
   return (
     <div>
-        {signIn?<Login setSignIn={setSignIn} />:<Register setSignIn={setSignIn} />}
+      {navigation&&<Navbar/>}
+      <Login setNavigation={setNavigation} navigation={navigation} />
     </div>
   )
 }
