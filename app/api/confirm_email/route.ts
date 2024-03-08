@@ -1,23 +1,24 @@
 // pages/api/sendCodeByEmail.ts
-
 import { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function sendCodeByEmail(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
     const { email, code } = req.body;
 
+    if (!email || !code) {
+      return res.status(400).json({ success: false, error: 'Email and code are required' });
+    }
+
     try {
-      // Create a Nodemailer transporter
       const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: 'your_gmail_address@gmail.com',
-          pass: 'your_gmail_password',
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS,
         },
       });
 
-      // Send mail with defined transport object
       const info = await transporter.sendMail({
         from: '"Your Name" <your_gmail_address@gmail.com>',
         to: email,
@@ -35,3 +36,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.status(405).json({ error: 'Method Not Allowed' });
   }
 }
+

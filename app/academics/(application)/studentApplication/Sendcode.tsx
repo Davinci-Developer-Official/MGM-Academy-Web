@@ -9,7 +9,8 @@ function Sendcode({ setSlide3,setSlide4, setSlide5 }: any) {
     // You need to implement the logic to send the verification code to the provided email
     // You can use fetch or any library to make an API call to your backend to send the email
     // Example:
-    await fetch('/api/confirm_email', {
+    {/*
+  await fetch('/api/confirm_email', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -32,6 +33,7 @@ function Sendcode({ setSlide3,setSlide4, setSlide5 }: any) {
         // Handle error appropriately
         // You might want to display an error message to the user
       });
+  */}
       await setSlide4(false);
       await setSlide5(true);
   };
