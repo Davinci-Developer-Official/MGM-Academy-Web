@@ -24,6 +24,25 @@ function Form({setSlide1,setSlide2,user, setUser}:any) {
     }
   */}
   const[initials,setInitials]=useState("")
+  function submit (e:any){
+    e.preventDefault()
+    //alert(JSON.stringify(data))
+    //alert(JSON.stringify(user))
+    const data= JSON.stringify(user)
+    sessionStorage.setItem("details",data);
+    const v = sessionStorage.getItem("details");
+    //alert("localstorage info"+v)
+    if(v){
+      setSlide1(false);
+      setSlide2(true);
+      alert("zee")
+    }else{
+      alert(v)
+      setSlide1(true);
+      setSlide2(false);
+    }
+    
+   }
 
   useEffect(() => {
     function avatarPlaceholder() {
@@ -159,13 +178,7 @@ function Form({setSlide1,setSlide2,user, setUser}:any) {
     <div className=' justify-center w-[60%] mx-auto mb-4 ' >
     
     {/*continue*/}
-    <button className='btn btn-success flex flex-row w-[80%] mx-auto justify-between ' onClick={(e)=>{
-     e.preventDefault()
-     //alert(JSON.stringify(data))
-     //alert(JSON.stringify(user))
-     setSlide1(false);
-     setSlide2(true);
-    }} > continue <FaCaretRight size={20} /> </button>
+    <button className='btn btn-success flex flex-row w-[80%] mx-auto justify-between ' onClick={submit} > continue <FaCaretRight size={20} /> </button>
     </div>
     </>
   )

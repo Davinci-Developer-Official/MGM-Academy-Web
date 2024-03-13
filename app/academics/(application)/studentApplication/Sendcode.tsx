@@ -1,43 +1,52 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaCaretLeft } from 'react-icons/fa';
+import axios from "axios"
+import Main from "@/app/components/SendMail"
 
 function Sendcode({ setSlide3,setSlide4, setSlide5 }: any) {
   const [email, setEmail] = useState('');
+  const[verificationCode,setVerificationCode]=useState("")
+  const[value,setValue]=useState("")
+  const[error,setError]=useState(false)
 
+  //verification code generator
+  function generateRandomNumber() {
+    // Generate a random number between 100,000 (inclusive) and 999,999 (inclusive)
+    return Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
+  }
+  //onsubmit function;
   const handleSubmit = async () => {
-    // Placeholder for sending email logic
-    // You need to implement the logic to send the verification code to the provided email
-    // You can use fetch or any library to make an API call to your backend to send the email
-    // Example:
-    {/*
-  await fetch('/api/confirm_email', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email }),
+  //send verification email;
+    await Main({
+      email:JSON.stringify(email),
+      code:JSON.stringify(generateRandomNumber())
+    }).then((code)=>{
+      //alert(email+number);      
+      //alert(code);
+      localStorage.setItem("code",code)
+      if(code==null){
+        setSlide5(false);
+        setSlide4(true);      
+        alert("no access");
+        setError(true);
+      }else{
+        const v =localStorage.getItem("code");
+        alert(v)
+        setSlide4(false);
+       setSlide5(true);
+      }
+    }).catch((error:any)=>{
+      console.error(error)
+     
     })
-      .then((response) => {
-        if (response.ok) {
-          // Email sent successfully, navigate to the next slide or perform any other action
-          setSlide4(false);
-          setSlide5(true);
-        } else {
-          // Handle error appropriately
-          console.error('Failed to send verification code');
-          // You might want to display an error message to the user
-        }
-      })
-      .catch((error) => {
-        console.error('Error sending verification code:', error);
-        // Handle error appropriately
-        // You might want to display an error message to the user
-      });
-  */}
-      await setSlide4(false);
-      await setSlide5(true);
-  };
 
+    //alert(email)
+    //  await setSlide4(false);
+    //  await setSlide5(true);
+  };
+  useEffect(()=>{
+    
+  },[value])
   return (
     <div className='w-[60%] mx-auto font-mono  mt-[100px] ' >
       <button className='flex flex-row btn btn-ghost ' onClick={()=>{
@@ -51,7 +60,7 @@ function Sendcode({ setSlide3,setSlide4, setSlide5 }: any) {
         <input
           type='email'
           className='h-[50px] rounded-lg p-2 border-4 bg-white'
-          placeholder='Enter email'
+          placeholder={error ? `🚫 enter email to proceed` : '📧  Enter email'}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
