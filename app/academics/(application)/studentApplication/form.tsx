@@ -11,19 +11,19 @@ import { FaChevronCircleDown, FaChevronCircleUp, FaFile } from "react-icons/fa";
 
 
 interface User {
-    avatar: string;
-    first_name: string;
-    middle_name: string;
-    last_name: string;
-    username: string;
-    email: string;
-    gender: string;
-    nationality: string;
-    residence: string;
-    phone_number: string;
-    date_of_birth: string;
-    exposure: string;
-    password: string;
+    avatar: any;
+    first_name: any;
+    middle_name: any;
+    last_name: any;
+    username: any;
+    email: any;
+    gender: any;
+    nationality: any;
+    residence: any;
+    phone_number: any;
+    date_of_birth: any;
+    exposure: any;
+    password: any;
 };
 
 export default function Form({setNavigation,navigation}:any){
@@ -38,18 +38,18 @@ export default function Form({setNavigation,navigation}:any){
     //user data
     const [user, setUser] = useState<User>({
         avatar: "",
-        first_name: "",
-        middle_name: "",
-        last_name: "",
-        username: "",
-        email: "",
-        gender: "",
-        nationality: "",
-        residence: "",
-        phone_number: "",
-        date_of_birth: "",
-        exposure: "",
-        password: ""
+        first_name: sessionStorage.getItem("s-fname"),
+        middle_name: sessionStorage.getItem("s-mname"),
+        last_name: sessionStorage.getItem("s-lname"),
+        username: sessionStorage.getItem("s-uname"),
+        email: sessionStorage.getItem("s-email"),
+        gender: sessionStorage.getItem("s-gender"),
+        nationality: sessionStorage.getItem("s-nationality"),
+        residence: sessionStorage.getItem("s-residence"),
+        phone_number: sessionStorage.getItem("s-pnumber"),
+        date_of_birth: sessionStorage.getItem("s-dob"),
+        exposure:sessionStorage.getItem("s-exposure"),
+        password: sessionStorage.getItem("s-pass")
       });
     //useEffect hook
     useEffect(()=>{

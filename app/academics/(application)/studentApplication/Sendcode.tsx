@@ -23,14 +23,14 @@ function Sendcode({ setSlide3,setSlide4, setSlide5 }: any) {
     }).then((code)=>{
       //alert(email+number);      
       //alert(code);
-      localStorage.setItem("code",code)
+      sessionStorage.setItem("code",code)
       if(code==null){
         setSlide5(false);
         setSlide4(true);      
         alert("no access");
         setError(true);
       }else{
-        const v =localStorage.getItem("code");
+        const v =sessionStorage.getItem("code");
         alert(v)
         setSlide4(false);
        setSlide5(true);

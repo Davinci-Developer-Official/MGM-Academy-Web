@@ -8,7 +8,7 @@ function Verify({setSlide4,setSlide5,setAddPassword}:any) {
   
   async function verify (){
     //session storage;
-    const data = localStorage.getItem("code");
+    const data = sessionStorage.getItem("code");
     if(data==verificationCode){
       setSlide5(false);
       setAddPassword(true);

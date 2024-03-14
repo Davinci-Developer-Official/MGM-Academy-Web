@@ -13,6 +13,7 @@ function CountrySelector({setcitizenship,citizenship}:any) {
   const changeHandler = (value:any) => {
     setValue(value);
     setcitizenship({nationality:value.label});
+    sessionStorage.setItem("s-nationality",value.label)
     //alert(citizenship)
     //alert(JSON.stringify(value.label))
   }
