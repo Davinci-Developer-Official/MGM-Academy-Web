@@ -81,36 +81,36 @@ export default function Form({setNavigation,navigation}:any){
     async function upload(){
         try {
             axios.post('/api/add_student',{
-                avatar: sessionStorage.getItem("s-avatar"),
-                first_name: sessionStorage.getItem("s-fname"),
-                middle_name: sessionStorage.getItem("s-mname"),
+                avatar: sessionStorage.getItem("s-avatar")||"",
+                first_name: sessionStorage.getItem("s-fname")||"",
+                middle_name: sessionStorage.getItem("s-mname")||"",
                 last_name: sessionStorage.getItem("s-lname"),
-                username: sessionStorage.getItem("s-uname"),
-                email: sessionStorage.getItem("s-email"),
-                gender: sessionStorage.getItem("s-gender"),
-                nationality: sessionStorage.getItem("s-nationality"),
-                residence: sessionStorage.getItem("s-residence"),
-                phone_number: sessionStorage.getItem("s-pnumber"),
-                date_of_birth: sessionStorage.getItem("s-dob"),
-                exposure:sessionStorage.getItem("s-exposure"),
-                password: sessionStorage.getItem("s-pass")
+                username: sessionStorage.getItem("s-uname")||"",
+                email: sessionStorage.getItem("s-email")||"",
+                gender: sessionStorage.getItem("s-gender")||"",
+                nationality: sessionStorage.getItem("s-nationality")||"",
+                residence: sessionStorage.getItem("s-residence")||"",
+                phone_number: sessionStorage.getItem("s-pnumber")||"",
+                date_of_birth: sessionStorage.getItem("s-dob")||"",
+                exposure:sessionStorage.getItem("s-exposure")||"",
+                password: sessionStorage.getItem("s-pass")||""
               }).then((response)=>{
                 //alert(JSON.stringify(response))
                // sessionStorage.clear();
                setUser({
-                avatar: sessionStorage.getItem("s-avatar"),
-                first_name: sessionStorage.getItem("s-fname"),
-                middle_name: sessionStorage.getItem("s-mname"),
-                last_name: sessionStorage.getItem("s-lname"),
-                username: sessionStorage.getItem("s-uname"),
-                email: sessionStorage.getItem("s-email"),
-                gender: sessionStorage.getItem("s-gender"),
-                nationality: sessionStorage.getItem("s-nationality"),
-                residence: sessionStorage.getItem("s-residence"),
-                phone_number: sessionStorage.getItem("s-pnumber"),
-                date_of_birth: sessionStorage.getItem("s-dob"),
-                exposure:sessionStorage.getItem("s-exposure"),
-                password: sessionStorage.getItem("s-pass")
+                avatar: sessionStorage.getItem("s-avatar")||"",
+                first_name: sessionStorage.getItem("s-fname")||"",
+                middle_name: sessionStorage.getItem("s-mname")||"",
+                last_name: sessionStorage.getItem("s-lname")||"",
+                username: sessionStorage.getItem("s-uname")||"",
+                email: sessionStorage.getItem("s-email")||"",
+                gender: sessionStorage.getItem("s-gender")||"",
+                nationality: sessionStorage.getItem("s-nationality")||"",
+                residence: sessionStorage.getItem("s-residence")||"",
+                phone_number: sessionStorage.getItem("s-pnumber")||"",
+                date_of_birth: sessionStorage.getItem("s-dob")||"",
+                exposure:sessionStorage.getItem("s-exposure")||"",
+                password: sessionStorage.getItem("s-pass")||""
               });
                 {/*kv.set("s-avatar", user.avatar).then((res)=>{
                     alert('res')
