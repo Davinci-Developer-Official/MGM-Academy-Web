@@ -80,7 +80,8 @@ export default function Form({setNavigation,navigation}:any){
     async function upload(){
         try {
             axios.post('/api/add_student',{
-                avatar: "https://example.com",
+                body:{
+                avatar: sessionStorage.getItem("s-avatar"),
                 first_name: sessionStorage.getItem("s-fname"),
                 middle_name: sessionStorage.getItem("s-mname"),
                 last_name: sessionStorage.getItem("s-lname"),
@@ -93,7 +94,7 @@ export default function Form({setNavigation,navigation}:any){
                 date_of_birth: sessionStorage.getItem("s-dob"),
                 exposure:sessionStorage.getItem("s-exposure"),
                 password: sessionStorage.getItem("s-pass")
-              }).then((response)=>{
+              }}).then((response)=>{
                 //alert(JSON.stringify(response))
                // sessionStorage.clear();
               }).catch((error)=>{
