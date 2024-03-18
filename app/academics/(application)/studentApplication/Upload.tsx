@@ -32,7 +32,7 @@ export default function App({ initials }: any) {
       console.log('Uploaded image:', blob);
       //alert("booo")
      // alert(JSON.stringify(blob.url))
-      sessionStorage.setItem("s-avatar",JSON.stringify(blob.url));
+      sessionStorage.setItem("s-avatar",blob.url);
       // Remove revalidatePath('/') from client-side code
       return blob;
     } catch (error) {
@@ -41,7 +41,8 @@ export default function App({ initials }: any) {
       //alert(error);
     }
   }
-
+  const avatarSrc = sessionStorage.getItem("s-avatar") || profile;
+ // alert(avatarSrc)
   return (
     <div className="App">
       <ImageUploading
@@ -65,8 +66,8 @@ export default function App({ initials }: any) {
                 <div className='  justify-start p-4 '  >
                   <p className=' p-4 font-mono font-bold ' > Profile picture</p>
                   <div className='h-[200px] w-[200px]  bg-red-400  rounded-lg border-[#e97902] border ' >
-                    {initials === "" && <Image src={profile} alt='profile image' className='object-fit h-full w-full rounded-lg ' />}
-                    {initials !== "" && <p className="mt-[70px] text-center text-[40px] font-bold " >{initials}</p>}
+                    <Image src={avatarSrc} alt='profile image' className='object-fit h-full w-full rounded-lg' width={500} height={500} />
+                    <p className="mt-[70px] text-center text-[40px] font-bold absolute bg-blue-400 " >{initials}</p>
                   </div>
                   <button className="mt-4 text-center "
                     style={isDragging ? { color: "red" } : undefined}

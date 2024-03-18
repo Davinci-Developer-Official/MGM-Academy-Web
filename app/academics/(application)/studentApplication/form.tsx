@@ -10,6 +10,7 @@ import Password from "./PasswordEntry";
 import { FaChevronCircleDown, FaChevronCircleUp, FaFile } from "react-icons/fa";
 import axios from "axios";
 import Link from "next/link";
+//import {kv}from "@vercel/kv"
 
 
 interface User {
@@ -40,19 +41,19 @@ export default function Form({setNavigation,navigation}:any){
 
     //user data
     const [user, setUser] = useState<User>({
-        avatar: sessionStorage.getItem("s-avatar"),
-        first_name: sessionStorage.getItem("s-fname"),
-        middle_name: sessionStorage.getItem("s-mname"),
-        last_name: sessionStorage.getItem("s-lname"),
-        username: sessionStorage.getItem("s-uname"),
-        email: sessionStorage.getItem("s-email"),
-        gender: sessionStorage.getItem("s-gender"),
-        nationality: sessionStorage.getItem("s-nationality"),
-        residence: sessionStorage.getItem("s-residence"),
-        phone_number: sessionStorage.getItem("s-pnumber"),
-        date_of_birth: sessionStorage.getItem("s-dob"),
-        exposure:sessionStorage.getItem("s-exposure"),
-        password: sessionStorage.getItem("s-pass")
+        avatar: '',
+        first_name: '',
+        middle_name: '',
+        last_name: '',
+        username: '',
+        email: '',
+        gender: '',
+        nationality: '',
+        residence: '',
+        phone_number:'',
+        date_of_birth: '',
+        exposure:'',
+        password: ''
       });
     //useEffect hook
     useEffect(()=>{
@@ -96,6 +97,25 @@ export default function Form({setNavigation,navigation}:any){
               }).then((response)=>{
                 //alert(JSON.stringify(response))
                // sessionStorage.clear();
+               setUser({
+                avatar: sessionStorage.getItem("s-avatar"),
+                first_name: sessionStorage.getItem("s-fname"),
+                middle_name: sessionStorage.getItem("s-mname"),
+                last_name: sessionStorage.getItem("s-lname"),
+                username: sessionStorage.getItem("s-uname"),
+                email: sessionStorage.getItem("s-email"),
+                gender: sessionStorage.getItem("s-gender"),
+                nationality: sessionStorage.getItem("s-nationality"),
+                residence: sessionStorage.getItem("s-residence"),
+                phone_number: sessionStorage.getItem("s-pnumber"),
+                date_of_birth: sessionStorage.getItem("s-dob"),
+                exposure:sessionStorage.getItem("s-exposure"),
+                password: sessionStorage.getItem("s-pass")
+              });
+                {/*kv.set("s-avatar", user.avatar).then((res)=>{
+                    alert('res')
+                })*/}
+
               }).catch((error)=>{
                 //alert("error it failed"+error)
                 console.error(error)

@@ -4,7 +4,7 @@ const nextConfig = {
         serverActions:true,
     },
     images: {
-        domains: ['loremflickr.com'],
+        domains: ['swkzw6evztkyfvae.public.blob.vercel-storage.com'],
       },
 }
 

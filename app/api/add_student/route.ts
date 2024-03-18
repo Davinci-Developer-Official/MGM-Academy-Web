@@ -35,7 +35,7 @@ export async function POST(request: Request) {
 CREATE TABLE students (
     id SERIAL PRIMARY KEY,
     student_id UUID NOT NULL,
-    Avatar VARCHAR,
+    avatar VARCHAR,
     first_name VARCHAR,
     middle_name VARCHAR,
     last_name VARCHAR,
