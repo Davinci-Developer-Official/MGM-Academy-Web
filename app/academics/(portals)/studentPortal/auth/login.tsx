@@ -59,7 +59,7 @@ function LoginStudent({setNavigation,navigation}:any) {
     
     if (findEmail&&findPass) {
       setSecure(true);
-      alert(JSON.stringify(students))
+     // alert(JSON.stringify(students))
     } else {
       setError('Email or password is incorrect');
       

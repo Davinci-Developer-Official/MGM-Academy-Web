@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 interface Student {
   id: number;
   student_id: string;
-  Avatar: string;
+  avatar: string;
   first_name: string;
   middle_name: string;
   last_name: string;
@@ -48,6 +48,7 @@ const IndexPage = () => {
         {students.map(student => (
           <li key={student.id} className='bg-red-400 mt-1 w-[96%] mx-auto rounded-md ' >
             <div>ID: {student.id}</div>
+            <div>Avatar: {student.avatar}</div>
             <div>Student ID: {student.student_id}</div>
             <div>First Name: {student.first_name}</div>
             <div>middle name: {student.middle_name} </div>

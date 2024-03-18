@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FaCaretLeft } from 'react-icons/fa';
+import { FaCaretLeft, FaEdit } from 'react-icons/fa';
 import axios from "axios"
 import Main from "@/app/components/SendMail"
 
@@ -8,6 +8,13 @@ function Sendcode({ setSlide3,setSlide4, setSlide5 }: any) {
   const[verificationCode,setVerificationCode]=useState("")
   const[value,setValue]=useState("")
   const[error,setError]=useState(false)
+  const[session,setSession]=useState("")
+  useEffect(()=>{
+    const x = sessionStorage.getItem("s-email")
+    //@ts-ignore;
+    setSession(x)
+    //alert(session)
+  },[session])
 
   //verification code generator
   function generateRandomNumber() {
@@ -31,7 +38,7 @@ function Sendcode({ setSlide3,setSlide4, setSlide5 }: any) {
         setError(true);
       }else{
         const v =sessionStorage.getItem("code");
-        alert(v)
+        //alert(v)
         setSlide4(false);
        setSlide5(true);
       }
@@ -57,13 +64,25 @@ function Sendcode({ setSlide3,setSlide4, setSlide5 }: any) {
       
       <div className='flex flex-col  '>
         <p className='mb-4'>Verification code will be sent to the email address you provide.</p>
-        <input
+      <div className='w-full flex row   ' >
+      <input
           type='email'
-          className='h-[50px] rounded-lg p-2 border-4 bg-white'
+          className='h-[50px] w-[85%] rounded-lg p-2 border-4 bg-white'
           placeholder={error ? `🚫 enter email to proceed` : '📧  Enter email'}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+        <button className='btn  ' onClick={()=>{
+          setEmail("");
+          
+        }} ><FaEdit  /></button>
+      </div>
+        <div  >
+          suggestion:
+        <p className='btn btn-ghost ' onClick={()=>{
+          setEmail(session);
+        }} >{session}</p>
+        </div>
         <button className='btn btn-success mt-4 w-[80%] mx-auto' onClick={handleSubmit}>
           Send Verification Code
         </button>

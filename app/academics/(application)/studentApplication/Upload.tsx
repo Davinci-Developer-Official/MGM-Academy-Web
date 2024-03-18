@@ -4,9 +4,10 @@ import React, { useState } from "react";
 import ImageUploading, { ImageListType } from "react-images-uploading";
 import profile from '@/public/profile/user.png'
 import { FaEraser, FaPen, FaSave, FaTrash } from "react-icons/fa";
+import { put } from "@vercel/blob";
 
-export default function App({initials}:any) {
-  const [image, setImage] =useState(null); // Change to single image state
+export default function App({ initials }: any) {
+  const [image, setImage] = useState(null); // Change to single image state
   const maxNumber = 1; // Limit to a single image
 
   const onChange = (
@@ -21,6 +22,25 @@ export default function App({initials}:any) {
       setImage(null); // Reset image if no image is selected
     }
   };
+
+  async function uploadImage(imageFile: any) {
+    try {
+      const blob = await put(imageFile.name, imageFile, {
+        access: 'public',
+        token: "vercel_blob_rw_SWkzW6EvztKyfVAE_ckiMkh9Y1t1EB3k3VAF7VZ8ZKhG106"// Pass the access token
+      });
+      console.log('Uploaded image:', blob);
+      //alert("booo")
+     // alert(JSON.stringify(blob.url))
+      sessionStorage.setItem("s-avatar",JSON.stringify(blob.url));
+      // Remove revalidatePath('/') from client-side code
+      return blob;
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      // Handle error as needed
+      //alert(error);
+    }
+  }
 
   return (
     <div className="App">
@@ -40,43 +60,37 @@ export default function App({initials}:any) {
         }) => (
           // write your building UI
           <div className="upload__image-wrapper w-[55%] mx-auto ">
-
-            {image==null&&(
-                 <div className="image-item flex flex-col justify-evenly ">
+            {image == null && (
+              <div className="image-item flex flex-col justify-evenly ">
                 <div className='  justify-start p-4 '  >
-                <p className=' p-4 font-mono font-bold ' > Profile picture</p>
-                <div className='h-[200px] w-[200px]  bg-red-400  rounded-lg border-[#e97902] border ' >
-                   {initials==""&& <Image src={profile} alt='profile image' className='object-fit h-full w-full rounded-lg ' />}
-                   {initials!==""&&<p className="mt-[70px] text-center text-[40px] font-bold " >{initials}</p>}
+                  <p className=' p-4 font-mono font-bold ' > Profile picture</p>
+                  <div className='h-[200px] w-[200px]  bg-red-400  rounded-lg border-[#e97902] border ' >
+                    {initials === "" && <Image src={profile} alt='profile image' className='object-fit h-full w-full rounded-lg ' />}
+                    {initials !== "" && <p className="mt-[70px] text-center text-[40px] font-bold " >{initials}</p>}
+                  </div>
+                  <button className="mt-4 text-center "
+                    style={isDragging ? { color: "red" } : undefined}
+                    onClick={onImageUpload}
+                    {...dragProps}
+                  >
+                    Click or Drop here
+                  </button>
                 </div>
-                <button className="mt-4 text-center "
-                        style={isDragging ? { color: "red" } : undefined}
-                        onClick={onImageUpload}
-                        {...dragProps}
-                >
-                        Click or Drop here
-                </button>
-                </div>
-                </div>
-             )}
-
-            
+              </div>
+            )}
             &nbsp;
-           
-            {imageList.map((image:any, index) => (
+            {imageList.map((image: any, index) => (
               <div key={index} className="image-item flex flex-col justify-evenly ">
-                    
-                    <div className='  justify-start p-4 '  >
-                        <p className=' p-4 font-mono font-bold ' >  Profile picture</p>
-                            <div className='h-[200px] w-[200px]  bg-red-400  rounded-lg border-[#e97902] border ' >
-                              <Image src={image.dataURL} alt='profile image' className='object-fit h-full w-full rounded-lg ' width="200" height="200" />
-                            </div>
-                    </div>
-                    
+                <div className='  justify-start p-4 '  >
+                  <p className=' p-4 font-mono font-bold ' >  Profile picture</p>
+                  <div className='h-[200px] w-[200px]  bg-red-400  rounded-lg border-[#e97902] border ' >
+                    <Image src={image.dataURL} alt='profile image' className='object-fit h-full w-full rounded-lg ' width="200" height="200" />
+                  </div>
+                </div>
                 <div className="image-item__btn-wrapper my-auto mx-auto w-full flex flex-row  justify-start ">
                   <button className="btn btn-ghost " onClick={() => onImageUpdate(index)}><FaPen size={20} className="" /></button>
-                  <button className="btn btn-ghost " onClick={() => onImageRemove(index)}><FaTrash size={20} className="text-[#e92502]"  /></button>
-                  <button className="btn btn-ghost " onClick={() => onImageRemove(index)}><FaSave size={20} className="text-[#42b626]"  /></button>
+                  <button className="btn btn-ghost " onClick={() => onImageRemove(index)}><FaTrash size={20} className="text-[#e92502]" /></button>
+                  <button className="btn btn-ghost " onClick={() => uploadImage(image.file)}><FaSave size={20} className="text-[#42b626]" /></button>
                 </div>
               </div>
             ))}

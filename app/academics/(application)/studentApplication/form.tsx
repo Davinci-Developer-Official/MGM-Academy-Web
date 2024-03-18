@@ -8,6 +8,8 @@ import Sendcode from "./Sendcode";
 import Verify from "./Verify";
 import Password from "./PasswordEntry";
 import { FaChevronCircleDown, FaChevronCircleUp, FaFile } from "react-icons/fa";
+import axios from "axios";
+import Link from "next/link";
 
 
 interface User {
@@ -28,16 +30,17 @@ interface User {
 
 export default function Form({setNavigation,navigation}:any){
     const[valueNo,setValueNo]=useState(0);
-    const[slide1,setSlide1]=useState(true);
+    const[slide1,setSlide1]=useState(true);//true
     const[slide2,setSlide2]=useState(false);
     const[slide3,setSlide3]=useState(false);
     const[slide4,setSlide4]=useState(false);
     const[slide5,setSlide5]=useState(false);
     const[addPassword,setAddPassword]=useState(false)
+    const[uploading,setUploading]=useState(false)//false
 
     //user data
     const [user, setUser] = useState<User>({
-        avatar: "",
+        avatar: sessionStorage.getItem("s-avatar"),
         first_name: sessionStorage.getItem("s-fname"),
         middle_name: sessionStorage.getItem("s-mname"),
         last_name: sessionStorage.getItem("s-lname"),
@@ -74,6 +77,36 @@ export default function Form({setNavigation,navigation}:any){
         slideSwitcher();//calling the slide switcher function;
     },[valueNo,slide1,slide2,slide3,slide4,slide5,user]);
 
+    async function upload(){
+        try {
+            axios.post('/api/add_student',{
+                avatar: "https://example.com",
+                first_name: sessionStorage.getItem("s-fname"),
+                middle_name: sessionStorage.getItem("s-mname"),
+                last_name: sessionStorage.getItem("s-lname"),
+                username: sessionStorage.getItem("s-uname"),
+                email: sessionStorage.getItem("s-email"),
+                gender: sessionStorage.getItem("s-gender"),
+                nationality: sessionStorage.getItem("s-nationality"),
+                residence: sessionStorage.getItem("s-residence"),
+                phone_number: sessionStorage.getItem("s-pnumber"),
+                date_of_birth: sessionStorage.getItem("s-dob"),
+                exposure:sessionStorage.getItem("s-exposure"),
+                password: sessionStorage.getItem("s-pass")
+              }).then((response)=>{
+                //alert(JSON.stringify(response))
+               // sessionStorage.clear();
+              }).catch((error)=>{
+                //alert("error it failed"+error)
+                console.error(error)
+              })
+
+            // Handle success
+        } catch(error){
+        alert(error)
+        console.error(error)
+    }
+    }
     return(
         <>
     <div className='flex flex-row w-full justify-between p-4 ' >
@@ -92,7 +125,13 @@ export default function Form({setNavigation,navigation}:any){
         {slide3&&(<div className="h-screen " ><Exposure user={user} setUser={setUser} setSlide2={setSlide2} setSlide3={setSlide3} setSlide4={setSlide4}  /></div>)}
         {slide4&&(<div className="h-screen " ><Sendcode setSlide3={setSlide3} setSlide4={setSlide4} setSlide5={setSlide5} /></div>)}
         {slide5&&(<div className="h-screen " ><Verify setSlide4={setSlide4} setSlide5={setSlide5} setAddPassword={setAddPassword} /></div>)}
-        {addPassword&&<div className="h-screen " ><Password setSlide5={setSlide5} setAddPassword={setAddPassword} user={user} setUser={setUser} /></div>}
+        {addPassword&&<div className="h-screen " ><Password setUploading={setUploading} setSlide5={setSlide5} setAddPassword={setAddPassword} user={user} setUser={setUser}  /></div>}
+        {uploading&&<div className="h-screen bg-red-400 w-full pt-20 " >
+           <div className="Card bg-blue-500 w-[60%] mx-auto h-[300px]   " >
+           <p className="card-item" >Welcome: {user.first_name} to MGM</p>
+           <Link href="/academics/studentPortal/auth" className="btn btn-sucesss w-[60%] ml-[20%] " onClick={upload} >proceed</Link>
+           </div>
+            </div>}
         </>
     );
 }
