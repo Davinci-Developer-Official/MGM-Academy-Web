@@ -55,30 +55,8 @@ export default function Form({setNavigation,navigation}:any){
         exposure:'',
         password: ''
       });
-    //useEffect hook
-    useEffect(()=>{
-        //switching between slides
-        function slideSwitcher(){
-            if(slide1){
-                setValueNo(20);
-            }; 
-            if(slide2){
-                setValueNo(40);
-            };
-            if(slide3){
-                setValueNo(60);
-            };
-            if(slide4) {
-                setValueNo(80);
-            };
-            if(slide5) {
-                setValueNo(100);
-            };
-        }//slide switcher function;
-        slideSwitcher();//calling the slide switcher function;
-    },[valueNo,slide1,slide2,slide3,slide4,slide5,user]);
 
-    async function upload(){
+      async function upload(){
         try {
             axios.post('/api/add_student',{
                 avatar: sessionStorage.getItem("s-avatar")||"",
@@ -127,6 +105,32 @@ export default function Form({setNavigation,navigation}:any){
         console.error(error)
     }
     }
+    //useEffect hook
+    useEffect(()=>{
+        //switching between slides
+        function slideSwitcher(){
+            if(slide1){
+                setValueNo(20);
+            }; 
+            if(slide2){
+                setValueNo(40);
+            };
+            if(slide3){
+                setValueNo(60);
+            };
+            if(slide4) {
+                setValueNo(80);
+            };
+            if(slide5) {
+                setValueNo(100);
+                upload()
+            };
+        }//slide switcher function;
+        slideSwitcher();//calling the slide switcher function;
+    },[valueNo,slide1,slide2,slide3,slide4,slide5,user]);
+
+    
+    
     return(
         <>
     <div className='flex flex-row w-full justify-between p-4 ' >
@@ -149,7 +153,7 @@ export default function Form({setNavigation,navigation}:any){
         {uploading&&<div className="h-screen bg-red-400 w-full pt-20 " >
            <div className="Card bg-blue-500 w-[60%] mx-auto h-[300px]   " >
            <p className="card-item" >Welcome: {user.first_name} to MGM</p>
-           <Link href="/academics/studentPortal/auth" className="btn btn-sucesss w-[60%] ml-[20%] " onClick={upload} >proceed</Link>
+           <Link href="/academics/studentPortal/auth" className="btn btn-sucesss w-[60%] ml-[20%] "  >proceed</Link>
            </div>
             </div>}
         </>
