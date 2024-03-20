@@ -75,7 +75,8 @@ export default function Form({setNavigation,navigation}:any){
               }).then((response)=>{
                 //alert(JSON.stringify(response))
                // sessionStorage.clear();
-               setUser({
+               alert(user)
+                {/* setUser({
                 avatar: sessionStorage.getItem("s-avatar")||"",
                 first_name: sessionStorage.getItem("s-fname")||"",
                 middle_name: sessionStorage.getItem("s-mname")||"",
@@ -89,7 +90,7 @@ export default function Form({setNavigation,navigation}:any){
                 date_of_birth: sessionStorage.getItem("s-dob")||"",
                 exposure:sessionStorage.getItem("s-exposure")||"",
                 password: sessionStorage.getItem("s-pass")||""
-              });
+              });*/}
                 {/*kv.set("s-avatar", user.avatar).then((res)=>{
                     alert('res')
                 })*/}

@@ -1,5 +1,6 @@
 // pages/index.tsx
 "use client";
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
 interface Student {
@@ -48,10 +49,11 @@ const IndexPage = () => {
         {students.map(student => (
           <li key={student.id} className='bg-red-400 mt-1 w-[96%] mx-auto rounded-md ' >
             <div>ID: {student.id}</div>
-            <div>Avatar: {student.avatar}</div>
+            <div>Avatar{student.avatar}:<Image src={student.avatar} alt="placeholder" height={200} width={200} /> </div>
             <div>Student ID: {student.student_id}</div>
             <div>First Name: {student.first_name}</div>
             <div>middle name: {student.middle_name} </div>
+            <div>username: {student.username} </div>
             <div>Last Name: {student.last_name}</div>
             <div>created at: {student.time_created} </div>
             {/* Add more fields as needed */}
