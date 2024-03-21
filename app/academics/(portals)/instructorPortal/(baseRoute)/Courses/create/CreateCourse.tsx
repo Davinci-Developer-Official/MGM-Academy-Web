@@ -2,6 +2,9 @@
 import React, { useState } from 'react'
 import { FaCaretRight, FaPlus, FaTimes } from 'react-icons/fa'
 import dummyPic from "@/public/empowerment/1.jpeg"
+import axios from 'axios';
+import Image from 'next/image';
+import { put } from "@vercel/blob";
 
 
 function CreateCourse({setcreatecourse,showEditor}:any) {
@@ -15,6 +18,88 @@ function CreateCourse({setcreatecourse,showEditor}:any) {
     courseinstructor:"",
     courserequirements:""
   })
+  //image change event;
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+
+  const handleImageChange = async(event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    
+    if (!file) return;
+
+    try {
+      // Create a URL for the selected file
+      const url = URL.createObjectURL(file);
+      const data = await file.arrayBuffer();
+      
+        // Upload the file data using put
+        const imageBlob = await put(file.name, data, {
+            access: 'public',
+            token: "vercel_blob_rw_SWkzW6EvztKyfVAE_ckiMkh9Y1t1EB3k3VAF7VZ8ZKhG106" // Pass the access token
+        });
+
+      // Set the URL in state to display the image
+      setImageUrl(imageBlob.url);
+      setCourseInfo(prevUser => ({ ...prevUser, coverimage: imageBlob.url }));
+    } catch (error) {
+      console.error('Error reading file:', error);
+    }
+  };
+
+  //video change event;
+  const [videoUrl, setVideoUrl] = useState<string | null>(null);
+  const handleVideoChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    
+    if (!file) return;
+
+    try {
+        // Read the file data
+        const url = URL.createObjectURL(file);
+        const data = await file.arrayBuffer();
+      
+        // Upload the file data using put
+        const videoBlob = await put(file.name, data, {
+            access: 'public',
+            token: "vercel_blob_rw_SWkzW6EvztKyfVAE_ckiMkh9Y1t1EB3k3VAF7VZ8ZKhG106" // Pass the access token
+        });
+
+         // Check if videoBlob is not empty
+    if (videoBlob && videoBlob.url) {
+      // Set the URL in state to display the video
+      setVideoUrl(videoBlob.url);
+      setCourseInfo(prevUser => ({ ...prevUser, covervideo: videoBlob.url }));
+  } else {
+      console.error('VideoBlob is empty or does not have a URL');
+  }
+    } catch (error) {
+        console.error('Error reading file:', error);
+    }
+};
+
+
+
+  //uploading course data;
+  async function createCourse(e:any){
+    e.preventDefault()
+    if(courseInfo.covervideo){
+      await axios.post("/api/add_course",{
+        cover_image:courseInfo.coverimage,
+        cover_video:courseInfo.covervideo,
+        course_name:courseInfo.coursename,
+        course_category:courseInfo.coursecategory,
+        unit_code:courseInfo.unitcode,
+        course_description:courseInfo.coursedescription,
+        course_instructor:courseInfo.courseinstructor,
+        course_requirements:courseInfo.courserequirements
+      }).then(()=>{
+          setcreatecourse(false);
+          showEditor(true)
+          alert("nooo")
+      })
+    }else{
+      alert("zii")
+    }
+  }
   return (
     <div>
       <form className='background p-10 overflow-y-scroll h-screen flex flex-col ' >
@@ -22,32 +107,36 @@ function CreateCourse({setcreatecourse,showEditor}:any) {
       {/*-----course details-----*/}
       {/*----cover photo----*/}
       <div>
-      <div className='h-[70px] flex flex-row w-[90%] mx-auto background mt-5 ' >
+      <div className='h-fit flex flex-row w-[90%] mx-auto background mt-5 ' >
         <div className='w-[20%] sm:w-[30%] text-center ' >
           <p className='  h-[98%] my-auto lg:p-6 sm:p-4  ' >cover image</p>
         </div>
-        <input className='w-[80%] sm:w-[70%] p-6 ' type='file' placeholder='eg basic computer knowledge ' onChange={(e:any)=>{
-      const value = e.target.value;
-      //sessionStorage.setItem("s-fname",value);
-      //@ts-ignore
-      setCourseInfo(prevUser => ({ ...prevUser, coverimage: value }));
-    }} />
+        <div className='w-[80%] sm:w-[70%] p-6 flex flex-col ' >
+        <input  type='file' accept="image/*" placeholder='eg basic computer knowledge ' onChange={handleImageChange} />
+        <div  >
+        {imageUrl && (
+         <div className='h-[200px]' >
+           <Image className='object-fit ' width={500} height={200} src={courseInfo.coverimage} alt="Uploaded Image" style={{ maxWidth: '100%' }} />
+         </div>
+        )}
+        </div>
+        </div>
       </div>
       
      
       </div>
        {/*----cover photo----*/}
        <div>
-      <div className='h-[70px] flex flex-row w-[90%] mx-auto background mt-5 ' >
+      <div className='h-fit flex flex-row w-[90%] mx-auto background mt-5 ' >
         <div className='w-[20%] sm:w-[30%] text-center ' >
           <p className='  h-[98%] my-auto lg:p-6 sm:p-4  ' >cover video</p>
         </div>
-        <input className='w-[80%] sm:w-[70%] p-6 ' type='file' placeholder='eg basic computer knowledge 'onChange={(e:any)=>{
-      const value = e.target.value;
-      //sessionStorage.setItem("s-fname",value);
-      //@ts-ignore
-      setCourseInfo(prevUser => ({ ...prevUser, covervideo: value }));
-    }} />
+        <div className='w-[80%] sm:w-[70%] p-6 flex flex-col '>
+        <input  type='file'  accept="video/*" placeholder='eg basic computer knowledge 'onChange={handleVideoChange}/>
+        <div >
+        {videoUrl && (<video controls height={200} width={400} src={courseInfo.covervideo} />)}
+      </div>
+        </div>
       </div>
       
      
@@ -138,12 +227,10 @@ function CreateCourse({setcreatecourse,showEditor}:any) {
       <button className='btn flex flex-row btn-error  ' onClick={()=>{
         setcreatecourse(false);
       }} ><p>close</p><FaTimes size={15} /></button>
-      <button className='btn btn-success flex flex-row ' onClick={(e)=>{
-        e.preventDefault()
-       // setcreatecourse(false);
-       // showEditor(true)
-        alert(JSON.stringify(courseInfo))
-      }} ><p>Create Course</p><FaPlus size={15} /></button>
+      {/*if(courseInfo.covervideo){
+          alert(JSON.stringify(courseInfo)+`${imageUrl}`+`${videoUrl}`)
+        }*/}
+      <button className='btn btn-success flex flex-row ' onClick={createCourse} ><p>Create Course</p><FaPlus size={15} /></button>
       </div>
 
     </form>

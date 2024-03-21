@@ -6,6 +6,7 @@ const nextConfig = {
     images: {
         domains: ['swkzw6evztkyfvae.public.blob.vercel-storage.com'],
       },
+      
 }
 
 module.exports = nextConfig

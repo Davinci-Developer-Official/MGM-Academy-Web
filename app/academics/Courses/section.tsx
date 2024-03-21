@@ -4,9 +4,10 @@ import data from './data.json'
 import img from '@/public/empowerment/1.jpeg';
 import { FaArrowAltCircleLeft, FaBars, FaCaretDown, FaCartPlus,FaChevronCircleDown,FaChevronCircleUp,FaChevronDown,FaChevronUp,FaEraser,FaFemale,FaGraduationCap,FaStar,FaStarHalfAlt } from 'react-icons/fa';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Card from "./CourseCard"
 import Rating from './Rating';
+import axios from 'axios';
 
 
 interface Data {
@@ -47,9 +48,25 @@ export default function Section({setHideMenu,hideMenu}:any){
     ]);
     const[renderCategory,setRenderCategory]=useState(false);
     const[selectedCategory,setSelectedCategory]=useState("");
-    const[filteredData,setFilteredData]=useState([])
+    const[filteredData,setFilteredData]=useState("")
+    const[newCourses,setNewCourses]=useState("")
 
+    useEffect(()=>{
+        const fetchData = async () => {
+          try {
+            await axios.get('/api/get_course').then((res)=>{
+                setNewCourses(JSON.stringify(res.data))
+                alert(newCourses)
+            })
     
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+        fetchData();
+        
+      },[newCourses]);//left here
+
     return(
         //rendered courses;
         <div className='flex flex-col h-screen ' >

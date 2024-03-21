@@ -1,7 +1,7 @@
 'use client'
 // ComponentA.js
 import React from 'react';
-import { useColorTheme } from '@/hooks/useColorTheme'; 
+import { useColorTheme } from '@/app/hooks/useColorTheme'; 
 
 function ComponentA() {
   const [colorTheme, toggleTheme] = useColorTheme();
