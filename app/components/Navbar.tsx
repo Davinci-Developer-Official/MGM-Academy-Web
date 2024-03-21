@@ -66,7 +66,7 @@ function Navbar() {
         <details>
           <summary><Link href="/contribute" className='flex flex-row' > <FaHandshake size={20} className="mr-2 text-[#e97902] " /> Contribute</Link></summary>
           <ul className="p-1 border-b-2 border-b-[#e97902] ">
-            <li><Link href="https://github.com/Davinci-Developer-Official/MGM-Academy-Web.git" > <FaGithub size={20} className='text-[#e97902] ' /> Github</Link></li>
+            <li><Link href="https://github.com" > <FaGithub size={20} className='text-[#e97902] ' /> Github</Link></li>
             <li><Link href="http://localhost:3000" > <FaMoneyBill size={20} className='text-[#e97902] ' /> Donate </Link></li>
             <li><Link href="http://localhost:3000"> <FaIntercom size={20} className='text-[#e97902] ' /> Social Media</Link></li>
           </ul>
@@ -125,7 +125,7 @@ function Navbar() {
         <details>
           <summary><Link href="/contribute" className='flex flex-row  ' > <FaHandshake size={20} className="mr-2 text-[#e97902] " /> Contribute</Link></summary>
           <ul className="p-1 background border-b-2 border-b-[#e97902] ">
-            <li><Link href="https://github.com/Davinci-Developer-Official/MGM-Academy-Web.git" > <FaGithub size={20} className='text-[#e97902] '  /> Github</Link></li>
+            <li><Link href="https://github.com" > <FaGithub size={20} className='text-[#e97902] '  /> Github</Link></li>
             <li><Link href="http://localhost:3000" > <FaMoneyBill size={20} className='text-[#e97902] ' /> Donate </Link></li>
             <li><Link href="http://localhost:3000"> <FaIntercom size={20} className='text-[#e97902] ' /> Social Media</Link></li>
           </ul>
