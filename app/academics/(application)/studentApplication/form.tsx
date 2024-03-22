@@ -59,19 +59,19 @@ export default function Form({setNavigation,navigation}:any){
       async function upload(){
         try {
             axios.post('/api/add_student',{
-                avatar: sessionStorage.getItem("s-avatar")||"",
-                first_name: sessionStorage.getItem("s-fname")||"",
-                middle_name: sessionStorage.getItem("s-mname")||"",
-                last_name: sessionStorage.getItem("s-lname"),
-                username: sessionStorage.getItem("s-uname")||"",
-                email: sessionStorage.getItem("s-email")||"",
-                gender: sessionStorage.getItem("s-gender")||"",
-                nationality: sessionStorage.getItem("s-nationality")||"",
-                residence: sessionStorage.getItem("s-residence")||"",
-                phone_number: sessionStorage.getItem("s-pnumber")||"",
-                date_of_birth: sessionStorage.getItem("s-dob")||"",
-                exposure:sessionStorage.getItem("s-exposure")||"",
-                password: sessionStorage.getItem("s-pass")||""
+                avatar: user.avatar,
+                first_name: user.first_name,
+                middle_name: user.middle_name,
+                last_name:user.last_name,
+                username: user.username,
+                email: user.email,
+                gender: user.gender,
+                nationality: user.nationality,
+                residence: user.residence,
+                phone_number:user.phone_number,
+                date_of_birth:user.date_of_birth,
+                exposure:user.exposure,
+                password: user.password
               }).then((response)=>{
                 //alert(JSON.stringify(response))
                // sessionStorage.clear();
@@ -128,7 +128,8 @@ export default function Form({setNavigation,navigation}:any){
             };
         }//slide switcher function;
         slideSwitcher();//calling the slide switcher function;
-    },[valueNo,slide1,slide2,slide3,slide4,slide5,user]);
+        
+    },[valueNo,slide1,slide2,slide3,slide4,slide5,user]);//left here
 
     
     

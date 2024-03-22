@@ -90,7 +90,8 @@ function CreateCourse({setcreatecourse,showEditor}:any) {
         unit_code:courseInfo.unitcode,
         course_description:courseInfo.coursedescription,
         course_instructor:courseInfo.courseinstructor,
-        course_requirements:courseInfo.courserequirements
+        course_requirements:courseInfo.courserequirements,
+        course_rating:"4"
       }).then(()=>{
           setcreatecourse(false);
           showEditor(true)
