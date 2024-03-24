@@ -128,22 +128,7 @@ const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_c
         {/*mapping courses*/}
         
             {/*mapped courses*/}
-            <div className='flex justify-center mt-4'>
-        <ul className='flex space-x-2'>
-          {Array.from({ length: totalPages }).map((_, index) => (
-            <li key={index}>
-              <button
-                className={`${
-                  currentPage === index + 1 ? 'bg-gray-300' : 'bg-gray-100'
-                } px-3 py-1 rounded`}
-                onClick={() => paginate(index + 1)}
-              >
-                {index + 1}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+     
 
 
       <div className='  overflow-y-scroll  mb-2 h-screen'>
@@ -228,7 +213,22 @@ const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_c
           <p>No courses available</p>
         )}
       </div>
-
+      <div className='flex justify-center mt-4'>
+        <ul className='flex space-x-2'>
+          {Array.from({ length: totalPages }).map((_, index) => (
+            <li key={index}>
+              <button
+                className={`${
+                  currentPage === index + 1 ? 'bg-gray-300' : 'bg-gray-100'
+                } px-3 py-1 rounded`}
+                onClick={() => paginate(index + 1)}
+              >
+                {index + 1}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
         </div>
         
     )

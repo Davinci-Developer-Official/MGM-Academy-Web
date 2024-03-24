@@ -27,7 +27,7 @@ function Form({setSlide1,setSlide2,user, setUser}:any) {
   function submit (e:any){
     e.preventDefault()
     //alert(JSON.stringify(data))
-    //alert(JSON.stringify(user))
+    //alert(JSON.stringify(user))//left  here
     const data= JSON.stringify(user)
     sessionStorage.setItem("s-details",data);
     const g = sessionStorage.getItem("s-details");

@@ -39,24 +39,23 @@ export default function Form({setNavigation,navigation}:any){
     const[addPassword,setAddPassword]=useState(false)
     const[uploading,setUploading]=useState(false)//false
 
-    //user data
     const [user, setUser] = useState<User>({
-        avatar: '',
-        first_name: '',
-        middle_name: '',
-        last_name: '',
-        username: '',
-        email: '',
-        gender: '',
-        nationality: '',
-        residence: '',
-        phone_number:'',
-        date_of_birth: '',
-        exposure:'',
-        password: ''
-      });
-
+      avatar: '',
+      first_name: '',
+      middle_name: '',
+      last_name: '',
+      username: '',
+      email: '',
+      gender: '',
+      nationality: '',
+      residence: '',
+      phone_number:'',
+      date_of_birth: '',
+      exposure:'',
+      password: ''
+    });
       async function upload(){
+       
         try {
             axios.post('/api/add_student',{
                 avatar: user.avatar,
