@@ -103,8 +103,7 @@ export default function Form({setNavigation,navigation}:any){
         } catch(error){
         alert(error)
         console.error(error)
-    }
-    }
+      }}
     //useEffect hook
     useEffect(()=>{
         //switching between slides
