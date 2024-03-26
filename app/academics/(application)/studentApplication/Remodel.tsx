@@ -5,8 +5,9 @@ import b from "@/public/empowerment/11.png";
 import CountrySelector from './Countries';
 import Uploader from "./Upload";
 import axios from 'axios';
-import { FaCaretLeft } from 'react-icons/fa';
+import { FaCaretLeft, FaEye, FaEyeSlash } from 'react-icons/fa';
 import Main from "@/app/components/SendMail"
+import Link from 'next/link';
 
 //user details
 interface User {
@@ -44,11 +45,12 @@ function Remodel() {
       const[initials,setInitials]=useState("")
       const[personalDetails,setPersonalDetails]=useState(true);
       const[verifyEmail,setVerifyEmail]=useState(false);
-      const[passCode,setUpPasscode]=useState(false);
-      const[proceed,setProceed]=useState(false)
+      const[passCode,setUpPasscode]=useState(true);//false
+      const[proceed,setProceed]=useState(false)//false
 
       async function upload(){
-       
+        if (user.avatar !== '' && user.first_name !== '' && user.email !== '') {
+          alert("boo")
         try {
             axios.post('/api/add_student',{
                 avatar: user.avatar,
@@ -77,7 +79,10 @@ function Remodel() {
         } catch(error){
         alert(error)
         console.error(error)
-      }}
+      }}else{
+        alert("no entries")
+      }
+    }
 
       //verification code generator
   function generateRandomNumber() {
@@ -87,36 +92,100 @@ function Remodel() {
   const[newCode,setNewCode]=useState("")
   async function sendVerificationCode(e:any){
     const x = generateRandomNumber();
-    setNewCode(JSON.stringify(x));
+    
     e.preventDefault();
-    await Main({
-      email:user.email,
-      code:JSON.stringify(generateRandomNumber())
-    }).then((code)=>{
-     
-      setVerifyEmail(true)
-      alert(verificationCode)
-    })
+   
+    if(user.email!==""){
+      await Main({
+        email:user.email,
+        code:JSON.stringify(x)
+      }).then((code)=>{
+        const ncode = JSON.stringify(code)
+        setVerificationCode(JSON.stringify(code))
+        setVerifyEmail(true)
+        //alert(verificationCode)
+      })
+    }
   }
 
       const[verificationCode,setVerificationCode]=useState("");
+      const[responder,setresponder]=useState("")
       async function verify (){
+        //alert(newCode)
         //session storage;
         //const data = sessionStorage.getItem("code");
-        alert(verificationCode)
-        if(parseInt(newCode)==parseInt(verificationCode)){
+        if(newCode){
+          //alert(newCode)
+          //alert(verificationCode+"nyee")
+          console.log("processing verification code")
+          setresponder("processing verification code")
+        }else{
+          //alert("no access");
+          console.log(`please enter verification code sent to ${user.email}`)
+          setresponder(`please enter verification code sent to ${user.email}`)
+        }
+        if(newCode===verificationCode){
           
          setUpPasscode(true)
-          alert("passing...");
+          //alert("passing...");
+          console.log("proceeding to adding password")
+          setresponder("proceeding to adding password")
         }else{
-          alert("boo")
+          // alert("boo")
+          console.log("the code you entered does not exist")
+          setresponder("the code you entered does not exist")
         }
         if(verificationCode==null){
          // alert(newCode)
-        alert(verificationCode)
-          setUpPasscode(false)
+        //alert(verificationCode)
+        console.log("Error generating verification code please reload")  
+        setUpPasscode(false)
+        setresponder("Error generating verification code please reload")
         }
         
+      }
+
+      const [newPass, setNewPass] = useState("");
+      const [confirmPass, setConfirmPass] = useState("");
+      const [hidden, setHidden] = useState<boolean>(true);
+      const [hidden1, setHidden1] = useState<boolean>(true);
+      const [showSessionStorageInfo, setShowSessionStorageInfo] = useState<boolean>(false);
+
+      const[msg,setMsg]=useState("");
+      const[msg1,setMsg1]=useState("");
+      const[match,setMatch]=useState("");
+
+      function verification() {
+        if (newPass === confirmPass && newPass !== "" && confirmPass !== "") {
+         //@ts-ignore
+          setUser({ password: confirmPass });
+          const final = confirmPass;
+          //sessionStorage.setItem("s-pass", final);
+          if (newPass === confirmPass) {
+           //alert("damn")
+           setMatch("password looks good ")
+           //@ts-ignore
+           setUser((prevData)=>({...prevData,password:confirmPass}))
+           if(user.password){
+            
+            if(msg=="password looks good"||msg1=="password looks good"){
+              setProceed(true)
+              alert("ovua")
+              
+            }else{
+              setMatch("the password is not upto standard")
+            }
+            
+           }else{
+            setMatch("retry saving password")
+           }
+          }
+        } else {
+          setMatch("password do not match")
+
+          // Handle password mismatch or empty fields
+          // You can show an error message or handle it in your UI logic
+        }
       }
     useEffect(()=>{
 
@@ -128,7 +197,7 @@ function Remodel() {
             
       {/*personal details*/}
   <div className="flex flex-col mt-2 mb-2  ">
-    <button className={personalDetails?'btn btn-success flex flex-row ':'btn btn-ghost flex flex-row '}>
+    <button className={personalDetails?'btn btn-ghost text-[#e97902] flex flex-row ':'btn btn-ghost flex flex-row '}>
       <p>Personal details</p>
 
     </button>
@@ -142,7 +211,7 @@ function Remodel() {
       const value = e.target.value;
       //sessionStorage.setItem("s-fname",value);
       //@ts-ignore
-      setUser({first_name:value})
+      setUser({first_name:value}) 
     }}  />
   </div>
   {/*Middle Name*/}
@@ -258,7 +327,7 @@ function Remodel() {
     </div>}
   </div>
   <div className="flex flex-col mt-2 mb-2  ">
-    <button className={verifyEmail?'btn btn-success flex flex-row ':'btn btn-error flex flex-row '}>
+    <button className={verifyEmail?'btn btn-ghost text-[#e97902] flex flex-row ':'btn btn-error flex flex-row '}>
       <p>Verify Email</p>
 
     </button>
@@ -266,32 +335,101 @@ function Remodel() {
     <div className='w-[60%] mx-auto font-mono mt-[20px] mb-[20px] ' >
      
     <div className='flex flex-col  ' >
-        <p className='mb-4  ' >Enter the verification code that was sent to {user.email}.<p className='text-[#e97902]' > b@gmail.com</p></p>
+        <p className='mb-4  ' >Enter the verification code that was sent to .<p className='text-[#e97902]' >{user.email}</p></p>
         <input type='email' className='h-[50px] rounded-lg p-2  border-4 bg-white ' placeholder='enter 6 digit code.' onChange={(e)=>{
+          const value = e.target.value;
           //@ts-ignore
-          setVerificationCode(JSON.stringify(e.target.value))}
-        } />
+          setNewCode((JSON.stringify(value)));
+        }}/>
+        <p className='text-sm' >{responder}</p>
         <button className='btn btn-success mt-4 w-[80%] mx-auto ' onClick={verify} > verify your account</button>
     </div>
     </div>
     </div>}
   </div>
-  <div className="flex flex-col mt-2 mb-2 bg-red-400 ">
-    <button className={passCode?'btn btn-success flex flex-row ':'btn btn-error flex flex-row '}>
+  <div className="flex flex-col mt-2 mb-2  ">
+    <button className={passCode?'btn btn-ghost flex flex-row ':'btn btn-error flex flex-row '}>
       <p>setup Password</p>
 
     </button>
-    {passCode&&<div className=""> 
-      <p>hello</p>
+    {passCode&&<div className="w-[95%] mx-auto  "> 
+      <div className='flex flex-col p-8 ' >
+        
+        <div className='w-full ' >
+          <p>enter password</p>
+          <div className='flex flex-row '>
+            <input 
+            type={hidden ? 'password' : 'text'} 
+            className=' h-[50px] rounded-lg p-2  border-4 bg-white w-[90%] ' value={newPass} 
+            placeholder='Enter password.' 
+            onChange={(e) => {
+              const value = e.target.value;
+              setNewPass(value);
+              const regex = /^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\d\W])|(?=.*\W)(?=.*\d))|(?=.*\W)(?=.*[A-Z])(?=.*\d)).{8,}$/;
+                if (!regex.test(value)) {
+                       setMsg('Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one digit, and one special character.');
+                 } else {
+                        setMsg("password looks good")
+                   }
+            }} 
+            
+            />
+            <button
+              className=" btn btn-ghost"
+              onClick={() => { setHidden(!hidden); }}
+            >
+              {hidden ? <FaEyeSlash className=" h-6 w-6 text-gray-400 hover:text-gray-700" size={30} /> : <FaEye className="  h-6 w-6 text-gray-400 hover:text-gray-" size={30} />}
+            </button>
+          </div>
+          <p className='text-sm  text-[#e97902] ' >{msg}</p>
+        </div>
+        <div className='w-full ' >
+          <p>confirm password</p>
+          <div className='flex flex-row '>
+          <input 
+            type={hidden ? 'password' : 'text'} 
+            className=' h-[50px] rounded-lg p-2  border-4 bg-white w-[90%] ' value={confirmPass} 
+            placeholder='Enter password.' 
+            onChange={(e) => {
+              const value = e.target.value;
+              setConfirmPass(value);
+              const regex = /^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\d\W])|(?=.*\W)(?=.*\d))|(?=.*\W)(?=.*[A-Z])(?=.*\d)).{8,}$/;
+                if (!regex.test(value)) {
+                       setMsg1('Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one digit, and one special character.');
+                 } else {
+                        setMsg1("password looks good")
+                   }
+            }} 
+            
+            />
+            <button
+              className=" btn btn-ghost"
+              onClick={() => { setHidden1(!hidden1); }}
+            >
+              {hidden1 ? <FaEyeSlash className=" h-6 w-6 text-gray-400 hover:text-gray-700" size={30} /> : <FaEye className="  h-6 w-6 text-gray-400 hover:text-gray-" size={30} />}
+            </button>
+          </div>
+          <p className='text-sm text-[#e97902] ' >{msg1}</p>
+        </div>
+        <p className="text-green-600" >{match}</p>
+        <button className='btn btn-success mt-4 w-[80%] mx-auto ' onClick={verification} > Save Password</button>
+       
+      </div>
     </div>}
   </div>
-  <div className="flex flex-col mt-2 mb-2 bg-red-400 ">
-    <button className={proceed?'btn btn-success flex flex-row ':'btn btn-error flex flex-row '}>
+  <div className="flex flex-col mt-2 mb-2  ">
+    <button className={proceed?'btn btn-ghost flex flex-row text-[#e97902] ':'btn btn-error flex flex-row '}>
       <p>proceed to login</p>
 
     </button>
     {proceed&&<div className=""> 
-      <p>hello</p>
+    <div className="h-fit  w-full pt-20 " >
+           <div className="Card  w-[60%] mx-auto h-[300px]   " >
+           <p className="card-item" >Welcome: {user.first_name} to MGM</p>
+           {/*"/academics/studentPortal/auth"*/}
+           <Link href="" className="btn btn-sucesss w-[60%] ml-[20%] " onClick={upload}  >proceed</Link>
+           </div>
+            </div>
     </div>}
   </div>
 </div> 
