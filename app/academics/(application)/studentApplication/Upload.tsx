@@ -1,15 +1,15 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ImageUploading, { ImageListType } from "react-images-uploading";
 import profile from '@/public/profile/user.png'
-import { FaEraser, FaPen, FaSave, FaTrash } from "react-icons/fa";
+import { FaEraser, FaMarker, FaPen, FaSave, FaTrash } from "react-icons/fa";
 import { put } from "@vercel/blob";
 
-export default function App({ initials }: any) {
+export default function App({ initials , user,setUser }: any) {
   const [image, setImage] = useState(null); // Change to single image state
   const maxNumber = 1; // Limit to a single image
-
+useEffect(()=>{},[user.avatar])
   const onChange = (
     imageList: ImageListType,
     addUpdateIndex: number[] | undefined
@@ -18,6 +18,7 @@ export default function App({ initials }: any) {
     console.log(imageList, addUpdateIndex);
     if (imageList.length > 0) {
       setImage(imageList[0] as never); // Set only the first image
+
     } else {
       setImage(null); // Reset image if no image is selected
     }
@@ -32,8 +33,14 @@ export default function App({ initials }: any) {
       console.log('Uploaded image:', blob);
       //alert("booo")
      // alert(JSON.stringify(blob.url))
-      sessionStorage.setItem("s-avatar",blob.url);
+      //sessionStorage.setItem("s-avatar",blob.url);
       // Remove revalidatePath('/') from client-side code
+     
+      //alert(user.avatar)
+      if(user.avatar==""){
+        //alert("boo")
+        setUser((prevData:any)=>({...prevData,avatar: blob.url}));//(prevData:any)=>({...prevData,blob.url})
+      }
       return blob;
     } catch (error) {
       console.error('Error uploading image:', error);
@@ -41,7 +48,7 @@ export default function App({ initials }: any) {
       //alert(error); 
     }
   }
-  const avatarSrc = sessionStorage.getItem("s-avatar") || profile;
+  //const avatarSrc = sessionStorage.getItem("s-avatar") || profile;
  // alert(avatarSrc)
   return (
     <div className="App">
@@ -66,7 +73,7 @@ export default function App({ initials }: any) {
                 <div className='  justify-start p-4 '  >
                   <p className=' p-4 font-mono font-bold ' > Profile picture</p>
                   <div className='h-[200px] w-[200px]  bg-red-400  rounded-lg border-[#e97902] border ' >
-                    <Image src={avatarSrc} alt='profile image' className='object-fit h-full w-full rounded-lg' width={500} height={500} />
+                    <Image src={user} alt='profile image' className='object-fit h-full w-full rounded-lg' width={500} height={500} />
                     {/*<p className="mt-[70px] text-center text-[40px] font-bold absolute bg-blue-400 " >{initials}</p>*/}
                   </div>
                   <button className="mt-4 text-center "
@@ -88,10 +95,11 @@ export default function App({ initials }: any) {
                     <Image src={image.dataURL} alt='profile image' className='object-fit h-full w-full rounded-lg ' width="200" height="200" />
                   </div>
                 </div>
+               {user.avatar!==""?<p className="text-green-500 " >saved successfully </p>:<p className="text-red-500" >you have not saved the image</p>}
                 <div className="image-item__btn-wrapper my-auto mx-auto w-full flex flex-row  justify-start ">
-                  <button className="btn btn-ghost " onClick={() => onImageUpdate(index)}><FaPen size={20} className="" /></button>
+                  
                   <button className="btn btn-ghost " onClick={() => onImageRemove(index)}><FaTrash size={20} className="text-[#e92502]" /></button>
-                  <button className="btn btn-ghost " onClick={() => uploadImage(image.file)}><FaSave size={20} className="text-[#42b626]" /></button>
+                  {user.avatar==""?<button className="btn btn-ghost " onClick={() => uploadImage(image.file)}><FaSave size={20} className="text-[#42b626]" /></button>:<button className="btn btn-ghost " onClick={() => onImageUpdate(index)}><FaMarker size={20} className="" /></button>}
                 </div>
               </div>
             ))}

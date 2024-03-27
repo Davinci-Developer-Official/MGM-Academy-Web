@@ -1,8 +1,9 @@
-import React, { useState, useMemo } from 'react'
+'use client';
+import React, { useState, useMemo, useEffect } from 'react'
 import Select from 'react-select'
 import countryList from 'react-select-country-list'
 
-function CountrySelector({setcitizenship,citizenship}:any) {
+function CountrySelector({setUser,user}:any) {
   const [value, setValue] = useState('')
   const options:any = useMemo(() => countryList().getData().map(country => ({
     label: country.label,
@@ -10,15 +11,20 @@ function CountrySelector({setcitizenship,citizenship}:any) {
   })), []);
   
 
+const[placeholder,setplaceholder]=useState("");
   const changeHandler = (value:any) => {
     setValue(value);
-    setcitizenship({nationality:value.label});
-    sessionStorage.setItem("s-nationality",value.label)
+   
+    setUser((prevData:any)=>({...prevData,nationality:value.label}));
+    //sessionStorage.setItem("s-nationality",value.label)
     //alert(citizenship)
     //alert(JSON.stringify(value.label))
+    //alert(user.nationality)
+    
   }
+    useEffect(()=>{},[user])
   
-
+  
   return <Select options={options} value={value} onChange={changeHandler} />
 }
 

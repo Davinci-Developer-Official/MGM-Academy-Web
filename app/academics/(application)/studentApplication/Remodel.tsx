@@ -11,19 +11,19 @@ import Link from 'next/link';
 
 //user details
 interface User {
-    avatar: any;
-    first_name: any;
-    middle_name: any;
-    last_name: any;
-    username: any;
-    email: any;
-    gender: any;
-    nationality: any;
-    residence: any;
-    phone_number: any;
-    date_of_birth: any;
-    exposure: any;
-    password: any;
+    avatar: string;
+    first_name: string;
+    middle_name: string;
+    last_name: string;
+    username: string;
+    email: string;
+    gender: string;
+    nationality: string;
+    residence: string;
+    phone_number: string;
+    date_of_birth: string;
+    exposure: string;
+    password: string;
 };
 
 function Remodel() {
@@ -45,11 +45,11 @@ function Remodel() {
       const[initials,setInitials]=useState("")
       const[personalDetails,setPersonalDetails]=useState(true);
       const[verifyEmail,setVerifyEmail]=useState(false);
-      const[passCode,setUpPasscode]=useState(true);//false
+      const[passCode,setUpPasscode]=useState(false);//false
       const[proceed,setProceed]=useState(false)//false
 
       async function upload(){
-        if (user.avatar !== '' && user.first_name !== '' && user.email !== '') {
+        if(user.avatar!==""&&user.first_name!==""&&user.middle_name!==""&&user.last_name!==""&&user.email!==""&&user.gender!==""&&user.nationality!==""&&user.residence!==""&&user.phone_number!==""&&user.date_of_birth!==""&&user.password!==""){
           alert("boo")
         try {
             axios.post('/api/add_student',{
@@ -69,7 +69,7 @@ function Remodel() {
               }).then((response)=>{
                 //alert(JSON.stringify(response))
                // sessionStorage.clear();
-               alert(user)
+               //alert(user)
               }).catch((error:any)=>{
                 //alert("error it failed"+error)
                 console.error(error)
@@ -95,7 +95,7 @@ function Remodel() {
     
     e.preventDefault();
    
-    if(user.email!==""){
+    if(user.avatar!==""&&user.first_name!==""&&user.middle_name!==""&&user.last_name!==""&&user.email!==""&&user.gender!==""&&user.nationality!==""&&user.residence!==""&&user.phone_number!==""&&user.date_of_birth!==""){
       await Main({
         email:user.email,
         code:JSON.stringify(x)
@@ -105,6 +105,9 @@ function Remodel() {
         setVerifyEmail(true)
         //alert(verificationCode)
       })
+      alert(JSON.stringify(user.avatar))
+    }else{
+      alert("Err"+JSON.stringify(user))
     }
   }
 
@@ -158,7 +161,7 @@ function Remodel() {
       function verification() {
         if (newPass === confirmPass && newPass !== "" && confirmPass !== "") {
          //@ts-ignore
-          setUser({ password: confirmPass });
+         setUser((prevData)=>({...prevData,password:confirmPass}))
           const final = confirmPass;
           //sessionStorage.setItem("s-pass", final);
           if (newPass === confirmPass) {
@@ -168,9 +171,10 @@ function Remodel() {
            setUser((prevData)=>({...prevData,password:confirmPass}))
            if(user.password){
             
-            if(msg=="password looks good"||msg1=="password looks good"){
+            if(msg=="password looks good"&&msg1=="password looks good"){
               setProceed(true)
-              alert("ovua")
+              //alert("ovua")
+              upload();
               
             }else{
               setMatch("the password is not upto standard")
@@ -188,6 +192,7 @@ function Remodel() {
         }
       }
     useEffect(()=>{
+      //alert(JSON.stringify(user));
 
     },[user,verificationCode])
   return (
@@ -202,7 +207,7 @@ function Remodel() {
 
     </button>
   {personalDetails&&<div className="overflow-y-scroll h-[650px] ">
-  <Uploader initials={initials} /> 
+  <Uploader initials={initials} user={user} setUser={setUser} /> 
   <form className='background  p-2  w-[99%] mx-auto ' > 
   {/*First Name*/}
   <div className='sm:w-[80%] lg-[60%]  mx-auto p-4 '  >
@@ -211,7 +216,8 @@ function Remodel() {
       const value = e.target.value;
       //sessionStorage.setItem("s-fname",value);
       //@ts-ignore
-      setUser({first_name:value}) 
+      setUser((prevData)=>({...prevData,first_name:value})) 
+      //alert(JSON.stringify(value))
     }}  />
   </div>
   {/*Middle Name*/}
@@ -221,7 +227,7 @@ function Remodel() {
       const value = e.target.value;
       //sessionStorage.setItem("s-mname",value);
       //@ts-ignore
-      setUser({middle_name:value})
+      setUser((prevData)=>({...prevData,middle_name:value}))
     }}  />
   </div>
   {/*Last Name*/}
@@ -231,7 +237,7 @@ function Remodel() {
       const value = e.target.value;
       //sessionStorage.setItem("s-lname",value);
       //@ts-ignore
-      setUser({ last_name: value });
+      setUser((prevData)=>({...prevData,last_name:value}))
     }}  />
   </div>
   {/*User Name*/}
@@ -241,7 +247,7 @@ function Remodel() {
       const value = e.target.value;
       //sessionStorage.setItem("s-uname",value);
       //@ts-ignore
-      setUser({ username: value });
+      setUser((prevData)=>({...prevData,username:value}))
     }} />
   </div>
   {/*Email address*/}
@@ -251,7 +257,7 @@ function Remodel() {
       const value = e.target.value;
       //sessionStorage.setItem("s-email",value)
       //@ts-ignore
-      setUser({ email: value });
+      setUser((prevData)=>({...prevData,email:value}))
     }}  />
   </div>
   {/*gender selection*/}
@@ -261,7 +267,7 @@ function Remodel() {
   <input type="radio" checked={user.gender === "male"} onChange={(e:any)=>{
     //sessionStorage.setItem("s-gender","male")
     //@ts-ignore
-    setUser({ gender: "male" });
+    setUser((prevData)=>({...prevData,gender:"male"}))
   }} />
   <p className='ml-2 font-mono font-bold ' >Male</p>
 </div>
@@ -269,7 +275,7 @@ function Remodel() {
   <input type="radio" checked={user.gender === "female"} onChange={(e:any)=>{
     //sessionStorage.setItem("s-gender","female")
     //@ts-ignore
-    setUser({gender: "female" });
+    setUser((prevData)=>({...prevData,gender:"female"}))
   }} />
   <p className='ml-2 font-mono font-bold ' >Female</p>
 </div>
@@ -280,7 +286,7 @@ function Remodel() {
         const value = e.target.value;
         //sessionStorage.setItem("s-gender",value)
         //@ts-ignore
-        setUser({ gender: value });
+        setUser((prevData)=>({...prevData,gender:value}))
       }}  />         
     </div>
   </div>
@@ -288,8 +294,8 @@ function Remodel() {
   <div className='sm:w-[80%] lg-[60%]  mx-auto p-4 '  >
     <p className='font-mono font-bold' > Nation of origin / citizenship </p>
     {/* edited 07/03/2024: You may need to update CountrySelector accordingly  */}
-    <CountrySelector setcitizenship={setUser} citizenship={user.nationality} /> 
-    <input type="text" className='w-full border-solid border-b-2 border-b-[#e97902] bg-transparent ' value={"Please select your country"} />
+    <CountrySelector setUser={setUser} user={user} /> 
+    <input type="text" className='w-full border-solid border-b-2 border-b-[#e97902] bg-transparent ' value={user.nationality==""?"Please select your country":user.nationality} />
   </div>
   
   {/*Residence*/}
@@ -299,7 +305,7 @@ function Remodel() {
       const value = e.target.value;
      // sessionStorage.setItem("s-residence",value)
       //@ts-ignore
-      setUser({residence: value });
+      setUser((prevData)=>({...prevData,residence:value}))
     }}  />
   </div>
   {/*phone number*/}
@@ -309,7 +315,7 @@ function Remodel() {
       const value = e.target.value;
      // sessionStorage.setItem("s-pnumber",value);
       //@ts-ignore
-      setUser({phone_number: value });
+      setUser((prevData)=>({...prevData,phone_number:value}))
     }}  />
   </div>
   {/*Date of birth*/}
@@ -319,7 +325,7 @@ function Remodel() {
       const value = e.target.value;
       //sessionStorage.setItem("s-dob",value)
       //@ts-ignore
-      setUser({date_of_birth: value });
+      setUser((prevData)=>({...prevData,date_of_birth:value}))
     }}  />
   </div>
   <button type='submit'className='btn btn-success w-[80%] ml-[10%] ' onClick={sendVerificationCode} >Next</button>
