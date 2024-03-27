@@ -6,7 +6,7 @@ import Navbar from '@/app/components/Navbar';
 import Remodel from './Remodel';
 
 function Page() {
-  const[navigation,setNavigation]= useState(false);
+  const[navigation,setNavigation]= useState(true);
 
   return (
     <div>

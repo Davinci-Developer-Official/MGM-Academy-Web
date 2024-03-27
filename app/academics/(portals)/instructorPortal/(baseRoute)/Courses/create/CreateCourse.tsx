@@ -47,7 +47,9 @@ function CreateCourse({setcreatecourse,showEditor}:any) {
 
   //video change event;
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
+  const[files,setFiles]=useState("")
   const handleVideoChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  
     const file = event.target.files?.[0];
     
     if (!file) return;
@@ -56,26 +58,49 @@ function CreateCourse({setcreatecourse,showEditor}:any) {
         // Read the file data
         const url = URL.createObjectURL(file);
         const data = await file.arrayBuffer();
+        setFiles(JSON.stringify(data))
       
         // Upload the file data using put
-        const videoBlob = await put(file.name, data, {
+        {/*
+       const videoBlob = await put(file.name, data, {
             access: 'public',
             token: "vercel_blob_rw_SWkzW6EvztKyfVAE_ckiMkh9Y1t1EB3k3VAF7VZ8ZKhG106" // Pass the access token
         });
-
-         // Check if videoBlob is not empty
-    if (videoBlob && videoBlob.url) {
-      // Set the URL in state to display the video
-      setVideoUrl(videoBlob.url);
-      setCourseInfo(prevUser => ({ ...prevUser, covervideo: videoBlob.url }));
-  } else {
-      console.error('VideoBlob is empty or does not have a URL');
-  }
+      */}
+      const videoBlob = await put(file.name, JSON.parse(files), {
+        access: 'public',
+        token: "vercel_blob_rw_SWkzW6EvztKyfVAE_ckiMkh9Y1t1EB3k3VAF7VZ8ZKhG106" // Pass the access token
+    });
+  
+          // Check if videoBlob is not empty
+          if (videoBlob && videoBlob.url) {
+            // Set the URL in state to display the video
+            setVideoUrl(videoBlob.url);
+            setCourseInfo(prevUser => ({ ...prevUser, covervideo: videoBlob.url }));
+        } else {
+            console.error('VideoBlob is empty or does not have a URL');
+        }
+   
     } catch (error) {
         console.error('Error reading file:', error);
     }
 };
+  async function uploadVideo(file:any){
+    const videoBlob = await put(file.name, JSON.parse(files), {
+      access: 'public',
+      token: "vercel_blob_rw_SWkzW6EvztKyfVAE_ckiMkh9Y1t1EB3k3VAF7VZ8ZKhG106" // Pass the access token
+  });
 
+        // Check if videoBlob is not empty
+        if (videoBlob && videoBlob.url) {
+          // Set the URL in state to display the video
+          setVideoUrl(videoBlob.url);
+          setCourseInfo(prevUser => ({ ...prevUser, covervideo: videoBlob.url }));
+      } else {
+          console.error('VideoBlob is empty or does not have a URL');
+      }
+
+  }
 
 
   //uploading course data;
@@ -114,6 +139,9 @@ function CreateCourse({setcreatecourse,showEditor}:any) {
         </div>
         <div className='w-[80%] sm:w-[70%] p-6 flex flex-col ' >
         <input  type='file' accept="image/*" placeholder='eg basic computer knowledge ' onChange={handleImageChange} />
+        <div className='p-2' >
+          <button className='bg-green-500 h-[30px] w-[100px]  ' >save</button>
+        </div>
         <div  >
         {imageUrl && (
          <div className='h-[200px]' >
@@ -134,6 +162,9 @@ function CreateCourse({setcreatecourse,showEditor}:any) {
         </div>
         <div className='w-[80%] sm:w-[70%] p-6 flex flex-col '>
         <input  type='file'  accept="video/*" placeholder='eg basic computer knowledge 'onChange={handleVideoChange}/>
+        <div className='p-2' >
+          <button className='bg-green-500 h-[30px] w-[100px]  ' onClick={()=>{uploadVideo()}} >save</button>
+        </div>
         <div >
         {videoUrl && (<video controls height={200} width={400} src={courseInfo.covervideo} />)}
       </div>

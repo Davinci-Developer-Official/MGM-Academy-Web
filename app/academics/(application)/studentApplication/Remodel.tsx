@@ -5,7 +5,7 @@ import b from "@/public/empowerment/11.png";
 import CountrySelector from './Countries';
 import Uploader from "./Upload";
 import axios from 'axios';
-import { FaCaretLeft, FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaCaretLeft, FaCheck, FaEye, FaEyeSlash, FaMarker, FaStopCircle } from 'react-icons/fa';
 import Main from "@/app/components/SendMail"
 import Link from 'next/link';
 
@@ -50,7 +50,7 @@ function Remodel() {
 
       async function upload(){
         if(user.avatar!==""&&user.first_name!==""&&user.middle_name!==""&&user.last_name!==""&&user.email!==""&&user.gender!==""&&user.nationality!==""&&user.residence!==""&&user.phone_number!==""&&user.date_of_birth!==""&&user.password!==""){
-          alert("boo")
+          //alert("boo")
         try {
             axios.post('/api/add_student',{
                 avatar: user.avatar,
@@ -77,10 +77,10 @@ function Remodel() {
 
             // Handle success
         } catch(error){
-        alert(error)
+        //alert(error)
         console.error(error)
       }}else{
-        alert("no entries")
+        //alert("no entries")
       }
     }
 
@@ -105,9 +105,9 @@ function Remodel() {
         setVerifyEmail(true)
         //alert(verificationCode)
       })
-      alert(JSON.stringify(user.avatar))
+      //alert(JSON.stringify(user.avatar))
     }else{
-      alert("Err"+JSON.stringify(user))
+      //alert("Err"+JSON.stringify(user))
     }
   }
 
@@ -191,10 +191,35 @@ function Remodel() {
           // You can show an error message or handle it in your UI logic
         }
       }
+    const[students,setStudents]=useState<User[]>([])
     useEffect(()=>{
       //alert(JSON.stringify(user));
-
-    },[user,verificationCode])
+      async function fetchStudents() {
+        try {
+            const response = await axios.get("/api/get_student");
+            const students = response.data;
+    
+            // Logging to check the data structure
+            console.log("Response data:", students);
+    
+            // Check if students is an array
+            if (Array.isArray(students)) {
+                // Use find method
+                const findUser = students.find(user => user.username === user.username);
+                const findEmail = students.find(user => user.email === user.email);
+              alert(JSON.stringify(students))
+                // Continue with your logic
+            } else {
+                console.error("Response data is not an array.");
+            }
+        } catch (error) {
+            console.error(error);
+            return error;
+        }
+    }
+    
+     fetchStudents()
+    },[user,verificationCode,students])
   return (
     
         <div className={personalDetails?'w-[80%] mx-auto h-fit pb-4 ': 'w-[80%] mx-auto h-screen '} >
@@ -329,6 +354,7 @@ function Remodel() {
     }}  />
   </div>
   <button type='submit'className='btn btn-success w-[80%] ml-[10%] ' onClick={sendVerificationCode} >Next</button>
+  {verificationCode==""?<div className=' w-full pt-2 text-red-500  justify-around flex flex-row  ' ><FaMarker size={20} className="" /> <p className=' ' >fill out the student form</p> </div>:<div className=' w-full pt-2 text-green-500  justify-around flex flex-row  ' ><FaCheck size={20} className="" /> <p className=' ' >form filled successfully</p> </div>}
 </form>
     </div>}
   </div>
@@ -433,7 +459,7 @@ function Remodel() {
            <div className="Card  w-[60%] mx-auto h-[300px]   " >
            <p className="card-item" >Welcome: {user.first_name} to MGM</p>
            {/*"/academics/studentPortal/auth"*/}
-           <Link href="" className="btn btn-sucesss w-[60%] ml-[20%] " onClick={upload}  >proceed</Link>
+           <Link href="/academics/studentPortal/auth" className="btn btn-sucesss w-[60%] ml-[20%] "  >proceed</Link>
            </div>
             </div>
     </div>}
