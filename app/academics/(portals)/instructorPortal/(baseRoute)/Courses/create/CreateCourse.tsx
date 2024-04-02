@@ -1,10 +1,11 @@
 'use client';
 import React, { useEffect, useState } from 'react'
-import { FaCaretRight, FaPlus, FaTimes } from 'react-icons/fa'
+import { FaCaretRight, FaPen, FaPlus, FaTimes, FaTrash, FaUpload } from 'react-icons/fa'
 import dummyPic from "@/public/empowerment/1.jpeg"
 import axios from 'axios';
 import Image from 'next/image';
-import { put ,del } from "@vercel/blob";
+import { put ,del  } from "@vercel/blob";
+import { revalidatePath } from 'next/cache';
 
 
 function CreateCourse({setcreatecourse,showEditor}:any) {
@@ -21,7 +22,8 @@ function CreateCourse({setcreatecourse,showEditor}:any) {
   //image change event;
   const [imageUrl, setImageUrl] =useState<string>("")
 
-  const handleImageChange = async(event: React.ChangeEvent<HTMLInputElement>) => {
+  {/*
+     const handleImageChange = async(event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     
     if (!file) return;
@@ -44,7 +46,45 @@ function CreateCourse({setcreatecourse,showEditor}:any) {
       console.error('Error reading file:', error);
     }
   };
+  */}
+  const[loadingImage,setImageLoading]=useState<boolean>(false);
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    //@ts-ignore
+    setSelectedFile(file);
+};
+  const handleImageUpload = async (e:any) => {
+    e.preventDefault();
+      if (!selectedFile) return;
+      setImageLoading(true)//loading when image uploads
+      try {
+        // Create a URL for the selected file
+        const url = URL.createObjectURL(selectedFile);
+        const data = await selectedFile.arrayBuffer();
+        
+          // Upload the file data using put
+          const imageBlob = await put(selectedFile.name, data, {
+              access: 'public',
+              token: "vercel_blob_rw_SWkzW6EvztKyfVAE_ckiMkh9Y1t1EB3k3VAF7VZ8ZKhG106" // Pass the access token
+          });
+          if(imageBlob){
+            setImageLoading(false)
+          }
+  
+        // Set the URL in state to display the image
+        setImageUrl(imageBlob.url);
+        setCourseInfo(prevUser => ({ ...prevUser, coverimage: imageBlob.url }));
+      } catch (error) {
+          console.error('Error reading file:', error);
+         // alert(error)
+      }
+  };
+  
 
+  const [videoUrl, setVideoUrl] = useState<string>("");
+  const[loadingVideo,setVideoLoading]=useState<boolean>(false);
+  //const [courseInfo, setCourseInfo] = useState<{ covervideo: string }>({ covervideo: "" });
+  const [selectedFile, setSelectedFile] = useState<File | null>(null); // State to hold the selected file
   const handleDeleteImage = async (e:any) => {
     e.preventDefault();
     try {
@@ -54,27 +94,30 @@ function CreateCourse({setcreatecourse,showEditor}:any) {
         // Optionally, update your state or UI to reflect the deletion
     } catch (error) {
         // Handle errors
+        console.error(error)
     }
   };
 
   //video change event;
-  const [videoUrl, setVideoUrl] = useState<string>("");
+//const [videoUrl, setVideoUrl] = useState<string>("");
   //const [files, setFiles] = useState<ArrayBuffer | null>(null); // Assuming files will be stored as a string
   const [courseInfos, setCourseInfos] = useState<{ covervideo: string }>({ covervideo: "" });
-  const handleVideoChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleVideoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    
-    if (!file) return;
+    //@ts-ignore
+    setSelectedFile(file);
+};
 
+const handleVideoUpload = async (e:any) => {
+  e.preventDefault();
+    if (!selectedFile) return;
+    setVideoLoading(true)//loading when image uploads
     try {
         // Read the file data
-        const url = URL.createObjectURL(file);
-        const data = await file.arrayBuffer();
-        //setFiles(data);
+        const data = await selectedFile.arrayBuffer();
       
-      
-      // Upload the file data using put
-        const videoBlob = await put(file.name, data, {
+        // Upload the file data using put
+        const videoBlob = await put(selectedFile.name, data, {
             access: 'public',
             token: "vercel_blob_rw_SWkzW6EvztKyfVAE_ckiMkh9Y1t1EB3k3VAF7VZ8ZKhG106" // Pass the access token
         });
@@ -83,27 +126,45 @@ function CreateCourse({setcreatecourse,showEditor}:any) {
         if (videoBlob && videoBlob.url) {
             // Set the URL in state to display the video
             setVideoUrl(videoBlob.url);
-            setCourseInfo(prevUser => ({ ...prevUser, covervideo: videoBlob.url }));
-        } else {
+            setCourseInfo(prevInfo => ({ ...prevInfo, covervideo: videoBlob.url }));
+           setVideoLoading(true); 
+          } else {
             console.error('VideoBlob is empty or does not have a URL');
         }
     
     } catch (error) {
         console.error('Error reading file:', error);
+       // alert(error)
     }
 };
 
 // If you still want uploadVideo function
-const handleDeleteVideo = async (event:any) => {
-  event.preventDefault(); // Prevents the default behavior (page reload)
-
+const[deletingLoading,setDeletingLoading]=useState<boolean>(false)
+const handleDeleteVideo = async (video:any) => {
   try {
-    await del(videoUrl,{token: "vercel_blob_rw_SWkzW6EvztKyfVAE_ckiMkh9Y1t1EB3k3VAF7VZ8ZKhG106"});
-    setVideoUrl("");
-    // Optionally, update your state or UI to reflect the deletion
+      // Perform the deletion request to Vercel Blob
+     if(video!==""){
+      //alert("deleting")
+     
+      await del(video, {
+       // access: 'public',
+        token: "vercel_blob_rw_SWkzW6EvztKyfVAE_ckiMkh9Y1t1EB3k3VAF7VZ8ZKhG106" // Pass the access token
+    }).catch((error:any)=>{
+        console.error(error);
+       // alert(error)
+      })
+       
+      revalidatePath("/");
+     }
+
+      {/*
+    // Reset states
+      setVideoUrl("");
+      //@ts-ignore
+      setCourseInfo({ covervideo: "" });
+    */}
   } catch (error) {
-    // Handle errors
-    alert(error)
+      console.error('Error deleting video:', error);
   }
 };
   //uploading course data;
@@ -123,13 +184,15 @@ const handleDeleteVideo = async (event:any) => {
       }).then(()=>{
           setcreatecourse(false);
           showEditor(true)
-          alert("nooo")
+          //alert("nooo")
+          console.log("uploaded sucessfully")
       })
     }else{
-      alert("zii")
+      //alert("zii")
+      console.log("error uploading")
     }
   }
-  useEffect(()=>{},[videoUrl])
+  useEffect(()=>{},[videoUrl,imageUrl,loadingImage,loadingVideo,deletingLoading])
   return (
     <div>
       <form className='background p-10 overflow-y-scroll h-screen flex flex-col ' >
@@ -144,39 +207,70 @@ const handleDeleteVideo = async (event:any) => {
         <div className='w-[80%] sm:w-[70%] p-6 flex flex-col ' >
         {!imageUrl&&<input  type='file' accept="image/*" placeholder='eg basic computer knowledge ' onChange={handleImageChange} />}
         <div className='p-2' >
-          {imageUrl&&<button className='bg-red-500 h-[30px] w-[100px]  ' >delete</button>}
+          {imageUrl&&<button className='text-red-500 h-[30px] w-[100px]  ' onClick={async(e:any)=>{
+            e.preventDefault();
+            //alert(courseInfo.coverimage)
+            setImageUrl("")
+            await del(courseInfo.coverimage,{
+              // access: 'public',
+               token: "vercel_blob_rw_SWkzW6EvztKyfVAE_ckiMkh9Y1t1EB3k3VAF7VZ8ZKhG106" // Pass the access token
+           })
+          }} ><FaTrash size={20} /></button>}
         </div>
         <div  >
         {imageUrl && (
          <div className='h-[200px]' >
-           {imageUrl&&<Image className='object-fit ' width={500} height={200} src={courseInfo.coverimage} alt="Uploaded Image" style={{ maxWidth: '100%' }} />}
+           {imageUrl&&<Image className='object-fit mb-5  ' width={500} height={200} src={courseInfo.coverimage} alt="Uploaded Image" style={{ maxWidth: '100%' }} />}
+           
          </div>
         )}
+        {loadingImage&&<span className="loading loading-bars loading-lg text-[#e97902] "></span>}
+        {!imageUrl&&<button className={`btn btn-ghost  h-[30px] w-[100px] mt-2`} onClick={handleImageUpload}><FaUpload size={20} /></button>}
+        
         </div>
         </div>
       </div>
       
      
-      </div>
+      
        {/*----cover photo----*/}
        <div>
-      <div className='h-fit flex flex-row w-[90%] mx-auto background mt-5 ' >
-        <div className='w-[20%] sm:w-[30%] text-center ' >
-          <p className='  h-[98%] my-auto lg:p-6 sm:p-4  ' >cover video</p>
+       <div className='h-fit flex flex-row w-[90%] mx-auto background mt-5'>
+        <div className='w-[20%] sm:w-[30%] text-center'>
+            <p className='h-[98%] my-auto lg:p-6 sm:p-4'>cover video</p>
         </div>
-        <div className='w-[80%] sm:w-[70%] p-6 flex flex-col '>
-        {!videoUrl&&<input  type='file'  accept="video/*" placeholder='eg basic computer knowledge 'onChange={handleVideoChange}/>}
-        <div className='p-2' >
-          {videoUrl && <button className='bg-red-500 h-[30px] w-[100px]  ' onClick={handleDeleteVideo} >delete</button>}
+        <div className='w-[80%] sm:w-[70%] p-6 flex flex-col'>
+            {!videoUrl && (
+                <>
+                    <input type='file' accept="video/*" placeholder='eg basic computer knowledge' onChange={handleVideoChange} />
+                   {loadingVideo?<span className="loading loading-bars loading-lg text-[#e97902] "></span>:null}
+                   {!videoUrl&& <button className='btn btn-ghost  h-[30px] w-[100px] mt-2 flex flex-row' onClick={handleVideoUpload}><FaUpload size={20} /><p></p></button>}
+                </>
+            )}
+            <div className='p-2'>
+                {videoUrl &&<button className='text-red-500 h-[30px] w-[100px]' onClick={async(e:any)=>{
+                  e.preventDefault();
+                  
+                  //alert(courseInfo.covervideo)
+                  setVideoUrl("")
+                  await del(courseInfo.covervideo,{
+                    // access: 'public',
+                     token: "vercel_blob_rw_SWkzW6EvztKyfVAE_ckiMkh9Y1t1EB3k3VAF7VZ8ZKhG106" // Pass the access token
+                 })
+                 setVideoLoading(false)
+                }}><FaTrash size={20} /></button>}
+                </div>
+            
+            <div>
+                {videoUrl && <video controls height={200} width={400} src={courseInfo.covervideo} />}
+            </div>
         </div>
-        <div >
-        {videoUrl && (<video controls height={200} width={400} src={courseInfo.covervideo} />)}
-      </div>
+    </div>
         </div>
       </div>
       
      
-      </div>
+      
       {/*---course name / Title ---*/}
       <div className='h-[70px] flex flex-row w-[90%] mx-auto background ' >
         <div className='w-[20%] sm:w-[30%] text-center ' >
@@ -248,7 +342,7 @@ const handleDeleteVideo = async (event:any) => {
         </div>
         <textarea className='w-[80%] sm:w-[70%] pl-3 p-2 re h-[100px] ' placeholder='eg basic computer knowledge' onChange={(e:any)=>{
       const value = e.target.value;
-      sessionStorage.setItem("s-fname",value);
+      //sessionStorage.setItem("s-fname",value);
       //@ts-ignore
       setCourseInfo(prevUser => ({ ...prevUser, courserequirements: value }));
     }} />
