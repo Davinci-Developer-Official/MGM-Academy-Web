@@ -135,9 +135,19 @@ const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_c
         {currentCourses.length > 0 ? (
           <div className="w-[98%] mx-auto grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
             {currentCourses.map((item) => (
-              <div className={parseInt(details) === item.id ? "mb-4 card background w-[400px] mx-auto   shadow-lg shadow-indigo-500/50 " : "card background w-[400px] h-[550px] mx-auto  mb-4  shadow-lg shadow-indigo-500/50 "} key={item.id}>
-                <figure>
-                  <Image src={item.cover_image} width={400} height={400} alt="holder" /> {/* Adjust width and height as per your requirement */}
+              <div className="mb-4 card background w-[400px] mx-auto   shadow-lg shadow-indigo-500/50 border borde-t-[#e97902] border-t-3 "   key={item.id}>
+                <figure className='w-full h-[300px]  ' >
+                  {parseInt(details) !== item.id &&<Image src={item.cover_image} width={400} height={400} alt="holder" />} {/* Adjust width and height as per your requirement */}
+                  {parseInt(details) === item.id && <video autoPlay loop={false} muted={true} width="400" height="400" controls preload="none">
+                            <source src={item.cover_video} type="video/mp4" />
+                            <track
+                              src="/path/to/captions.vtt"
+                              kind="subtitles"
+                              srcLang="en"
+                              label="English"
+                            />
+                            Your browser does not support the video tag.
+                          </video>}
                 </figure>
                 <div className="card-body">
                   <h2 className="card-title">
@@ -186,8 +196,9 @@ const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_c
                           <p className='font-mono font-bold text-[#e97902] '>requirements:</p>
                           <p>{item.course_requirements}</p>
                         </div>
+                        {/*
                         <div>
-                          <video autoPlay loop muted={false} width="320" height="240" controls preload="none">
+                          <video autoPlay={false} loop muted={false} width="320" height="240" controls preload="none">
                             <source src={item.cover_video} type="video/mp4" />
                             <track
                               src="/path/to/captions.vtt"
@@ -198,6 +209,7 @@ const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_c
                             Your browser does not support the video tag.
                           </video>
                         </div>
+                        */}
                       </div>
                     ) : ""}
                   </div>
