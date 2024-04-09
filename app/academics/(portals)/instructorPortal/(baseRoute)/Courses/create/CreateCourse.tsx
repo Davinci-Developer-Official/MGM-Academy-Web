@@ -170,7 +170,7 @@ const handleDeleteVideo = async (video:any) => {
   //uploading course data;
   async function createCourse(e:any){
     e.preventDefault()
-    if(courseInfo.covervideo){
+    if(courseInfo.covervideo||courseInfo.coverimage){
       await axios.post("/api/add_course",{
         cover_image:courseInfo.coverimage,
         cover_video:courseInfo.covervideo,

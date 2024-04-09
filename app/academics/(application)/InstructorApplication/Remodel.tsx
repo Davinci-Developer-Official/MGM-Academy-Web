@@ -52,7 +52,7 @@ function Remodel() {
         if(user.avatar!==""&&user.first_name!==""&&user.middle_name!==""&&user.last_name!==""&&user.email!==""&&user.gender!==""&&user.nationality!==""&&user.residence!==""&&user.phone_number!==""&&user.date_of_birth!==""&&user.password!==""){
           //alert("boo")
         try {
-            axios.post('/api/add_student',{
+            axios.post('/api/add_instructor',{
                 avatar: user.avatar,
                 first_name: user.first_name,
                 middle_name: user.middle_name,
@@ -70,7 +70,6 @@ function Remodel() {
                 //alert(JSON.stringify(response))
                // sessionStorage.clear();
                //alert(user)
-               localStorage.setItem("username",user.username);
               }).catch((error:any)=>{
                 //alert("error it failed"+error)
                 console.error(error)
@@ -197,7 +196,7 @@ function Remodel() {
       //alert(JSON.stringify(user));
       async function fetchStudents() {
         try {
-            const response = await axios.get("/api/get_student");
+            const response = await axios.get("/api/get_instructor");
             const students = response.data;
     
             // Logging to check the data structure
@@ -460,7 +459,7 @@ function Remodel() {
            <div className="Card  w-[60%] mx-auto h-[300px]   " >
            <p className="card-item" >Welcome: {user.first_name} to MGM</p>
            {/*"/academics/studentPortal/auth"*/}
-           <Link href="/academics/studentPortal/auth" className="btn btn-sucesss w-[60%] ml-[20%] "  >proceed</Link>
+           <Link href="/academics/instructorPortal/auth" className="btn btn-sucesss w-[60%] ml-[20%] "  >proceed</Link>
            </div>
             </div>
     </div>}

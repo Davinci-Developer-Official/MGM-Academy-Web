@@ -77,11 +77,23 @@ if(selectedCategory!==""){
 }else{
   const fetchData = async () => {
     try {
-      await axios.get('/api/get_course').then((res)=>{
+      {/*
+        await axios.get('/api/get_course').then((res)=>{
           setNewCourses(res.data)
           setFilteredData(res.data)
           //alert(JSON.stringify(newCourses))
       })
+      */}
+      const response = await axios.get('/api/get_course');
+    
+    // Check if the response status is successful
+    if (response.status === 200) {
+        setNewCourses(response.data)
+        setFilteredData(response.data)
+    }else {
+      // If the response status is not successful, log an error
+      console.error('Unexpected status code:', response.status);
+    }
 
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -135,9 +147,9 @@ const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_c
         {currentCourses.length > 0 ? (
           <div className="w-[98%] mx-auto grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
             {currentCourses.map((item) => (
-              <div className="mb-4 card background w-[400px] mx-auto   shadow-lg shadow-indigo-500/50 border borde-t-[#e97902] border-t-3 "   key={item.id}>
-                <figure className='w-full h-[300px]  ' >
-                  {parseInt(details) !== item.id &&<Image src={item.cover_image} width={400} height={400} alt="holder" />} {/* Adjust width and height as per your requirement */}
+              <div className="mb-4 h-fit card background w-[400px] mx-auto   shadow-lg shadow-indigo-500/50 border borde-t-[#e97902] border-t-3 "   key={item.id}>
+                <figure className='w-full h-fit  ' >
+                  {parseInt(details) !== item.id &&<Image src={item.cover_image}  width={400} height={400} alt="holder" />} {/* Adjust width and height as per your requirement */}
                   {parseInt(details) === item.id && <video autoPlay loop={false} muted={true} width="400" height="400" controls preload="none">
                             <source src={item.cover_video} type="video/mp4" />
                             <track
