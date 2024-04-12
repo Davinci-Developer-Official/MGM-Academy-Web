@@ -167,6 +167,7 @@ const handleDeleteVideo = async (video:any) => {
       console.error('Error deleting video:', error);
   }
 };
+const[msg,setMsg]=useState("")
   //uploading course data;
   async function createCourse(e:any){
     e.preventDefault()
@@ -183,28 +184,31 @@ const handleDeleteVideo = async (video:any) => {
         course_rating:"4"
       }).then(()=>{
           setcreatecourse(false);
-          showEditor(true)
+         // //showEditor(true)
           //alert("nooo")
           console.log("uploaded sucessfully")
+          setMsg("uploaded sucessfully")
       })
     }else{
       //alert("zii")
       console.log("error uploading")
+      setMsg("cover image or cover video is empty unable to upload")
     }
   }
   useEffect(()=>{},[videoUrl,imageUrl,loadingImage,loadingVideo,deletingLoading])
   return (
     <div>
-      <form className='background p-10 overflow-y-scroll h-screen flex flex-col ' >
+      {/*overflow-y-scroll*/}
+      <form className='background p-10 w-full h-fit flex flex-col ' >
         <p className='w-[90%] mx-auto text-center font-bold  ' >CREATE A NEW COURSE</p>
       {/*-----course details-----*/}
       {/*----cover photo----*/}
       <div>
-      <div className='h-fit flex flex-row w-[90%] mx-auto background mt-5 ' >
-        <div className='w-[20%] sm:w-[30%] text-center ' >
-          <p className='  h-[98%] my-auto lg:p-6 sm:p-4  ' >cover image</p>
+      <div className='h-fit w-full flex flex-col  mx-auto background mt-5 ' >{/*w-[90%]*/}
+        <div className='font-mono ' >
+          <p className='  italic  ' >cover image</p>
         </div>
-        <div className='w-[80%] sm:w-[70%] p-6 flex flex-col ' >
+        <div className=' p-6 flex flex-col ' >{/*w-[80%] sm:w-[70%]*/}
         {!imageUrl&&<input  type='file' accept="image/*" placeholder='eg basic computer knowledge ' onChange={handleImageChange} />}
         <div className='p-2' >
           {imageUrl&&<button className='text-red-500 h-[30px] w-[100px]  ' onClick={async(e:any)=>{
@@ -235,9 +239,9 @@ const handleDeleteVideo = async (video:any) => {
       
        {/*----cover photo----*/}
        <div>
-       <div className='h-fit flex flex-row w-[90%] mx-auto background mt-5'>
-        <div className='w-[20%] sm:w-[30%] text-center'>
-            <p className='h-[98%] my-auto lg:p-6 sm:p-4'>cover video</p>
+       <div className='h-fit flex flex-col w-[90%] mx-auto background mt-5'>
+        <div className='font-mono'>
+            <p className='italic'>cover video</p>
         </div>
         <div className='w-[80%] sm:w-[70%] p-6 flex flex-col'>
             {!videoUrl && (
@@ -272,11 +276,11 @@ const handleDeleteVideo = async (video:any) => {
      
       
       {/*---course name / Title ---*/}
-      <div className='h-[70px] flex flex-row w-[90%] mx-auto background ' >
-        <div className='w-[20%] sm:w-[30%] text-center ' >
-          <p className='  h-[98%] my-auto lg:p-6 sm:p-4  ' >course name</p>
+      <div className=' flex flex-col justify-between mx-auto background w-full ' >
+        <div className='font-mono ' >
+          <p className='italic' > course  name</p>
         </div>
-        <input className='w-[80%] sm:w-[70%] pl-3 ' type='text' placeholder='eg Project Managment ' onChange={(e:any)=>{
+        <input className='w-[90%] h-[70px] pl-3 ' type='text' placeholder='eg Project Managment ' onChange={(e:any)=>{
       const value = e.target.value;
       sessionStorage.setItem("s-fname",value);
       //@ts-ignore
@@ -284,11 +288,11 @@ const handleDeleteVideo = async (video:any) => {
     }} />
       </div>
       {/*---course category---*/}
-      <div className='h-[70px] flex flex-row w-[90%] mx-auto background mt-5 ' >
-        <div className='w-[20%] sm:w-[30%] text-center ' >
-          <p className=' h-[98%] my-auto lg:p-6 sm:p-4  ' >course category</p>
+      <div className=' flex flex-col justify-evenly w-full mx-auto background mt-5 ' >
+        <div className='font-mono ' >
+          <p className='italic' > course category</p>
         </div>
-        <input className='w-[80%] sm:w-[70%] pl-3 ' type='text' placeholder='eg Information Technology ' onChange={(e:any)=>{
+        <input className='w-[90%] h-[70px] pl-3 ' type='text' placeholder='eg Information Technology ' onChange={(e:any)=>{
       const value = e.target.value;
       //sessionStorage.setItem("s-fname",value);
       //@ts-ignore
@@ -296,11 +300,11 @@ const handleDeleteVideo = async (video:any) => {
     }} />
       </div>
       {/*---course code---*/}
-      <div className='h-[70px] flex flex-row w-[90%] mx-auto background mt-5 ' >
-        <div className='w-[20%] sm:w-[30%] text-center ' >
-          <p className='  h-[98%] my-auto lg:p-6 sm:p-4  ' >unit code</p>
+      <div className=' flex flex-col w-full justify-evenly mx-auto background mt-5 ' >
+        <div className='font-mono ' >
+          <p className='  italic' > course code</p>
         </div>
-        <input className='w-[80%] sm:w-[70%] pl-3 ' type='text' placeholder='eg IT245 ' onChange={(e:any)=>{
+        <input className='w-[90%] h-[60px] pl-3 ' type='text' placeholder='eg IT245 ' onChange={(e:any)=>{
       const value = e.target.value;
       //sessionStorage.setItem("s-fname",value);
       //@ts-ignore
@@ -308,11 +312,11 @@ const handleDeleteVideo = async (video:any) => {
     }} />
       </div>
       {/*course description */}
-      <div className='h-[70px] flex flex-row w-[90%] mx-auto background mt-5 ' >
-        <div className='w-[20%] sm:w-[30%] text-center ' >
-          <p className='  h-[98%] my-auto lg:p-6 sm:p-4  ' >course description</p>
+      <div className=' flex flex-col w-full justify-between mx-auto background mt-5 ' >
+        <div className='font-mono' >
+          <p className=' italic' > course description</p>
         </div>
-        <input className='w-[80%] sm:w-[70%] pl-3 ' type='text' placeholder='eg Learn to manage projects ' onChange={(e:any)=>{
+        <input className='w-[90%] h-[70px]  pl-3 ' type='text' placeholder='eg Learn to manage projects ' onChange={(e:any)=>{
       const value = e.target.value;
       //sessionStorage.setItem("s-fname",value);
       //@ts-ignore
@@ -321,11 +325,11 @@ const handleDeleteVideo = async (video:any) => {
       </div>
       {/*---course instructor(s)---*/}
       <div className='mt-4 ' >
-      <div className='h-[70px] flex flex-row w-[90%] mx-auto background mt-5 ' >
-        <div className='w-[20%] sm:w-[30%] text-center ' >
-          <p className='  h-[98%] my-auto lg:p-6 sm:p-4  ' >course Instructors</p>
+      <div className=' flex flex-col w-full mx-auto background mt-5 ' >
+        <div className='font-mono ' >
+          <p className=' italic  ' >course Instructors</p>
         </div>
-        <input className='w-[80%] sm:w-[70%] pl-3 ' type='text' placeholder='eg basic computer knowledge ' onChange={(e:any)=>{
+        <input className='w-[90%] mx-auto h-[70px] pl-3 ' type='text' placeholder='eg basic computer knowledge ' onChange={(e:any)=>{
       const value = e.target.value;
       //sessionStorage.setItem("s-fname",value);
       //@ts-ignore
@@ -336,11 +340,11 @@ const handleDeleteVideo = async (video:any) => {
       </div>
       {/*course requirements*/}
       <div>
-      <div className='h-[70px] flex flex-row w-[90%] mx-auto background mt-5'>
-        <div className='w-[20%] sm:w-[30%] text-center'>
-          <p className='h-[98%] my-auto lg:p-6 sm:p-4'>course requirements</p>
+      <div className='h-[170px] flex flex-col w-full mx-auto background mt-5'>
+        <div className='font-mono  '>
+          <p className='italic'>course requirements</p>
         </div>
-        <textarea className='w-[80%] sm:w-[70%] pl-3 p-2 re h-[100px] ' placeholder='eg basic computer knowledge' onChange={(e:any)=>{
+        <textarea className='w-[90%] mx-auto pl-3 p-2 re h-[100px] ' placeholder='eg basic computer knowledge' onChange={(e:any)=>{
       const value = e.target.value;
       //sessionStorage.setItem("s-fname",value);
       //@ts-ignore
@@ -351,17 +355,15 @@ const handleDeleteVideo = async (video:any) => {
       
       </div>
       
-
-      {/*----create course button----*/}
-      <div className='mt-10 justify-between flex flex-row' >
-      <button className='btn flex flex-row btn-error  ' onClick={()=>{
-        setcreatecourse(false);
-      }} ><p>close</p><FaTimes size={15} /></button>
+     {/*----create course button----*/}
+     
+      
       {/*if(courseInfo.covervideo){
           alert(JSON.stringify(courseInfo)+`${imageUrl}`+`${videoUrl}`)
         }*/}
-      <button className='btn btn-success flex flex-row ' onClick={createCourse} ><p>Create Course</p><FaPlus size={15} /></button>
-      </div>
+      <button className='btn btn-success flex flex-row '  onClick={createCourse} > <p>Create Course</p> <FaUpload size={15} /></button>
+     
+      <p>{msg}</p>
 
     </form>
     </div>
