@@ -94,19 +94,7 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
     const [loadingVideo, setVideoLoading] = useState<boolean>(false);
     //const [courseInfo, setCourseInfo] = useState<{ covervideo: string }>({ covervideo: "" });
     const [selectedFile1, setSelectedFile1] = useState<File | null>(null); // State to hold the selected file
-    const handleDeleteImage = async (e: any) => {
-        e.preventDefault();
-        try {
-            await del(imageUrl).then(() => {
-                setImageUrl("")
-            })
-            // Optionally, update your state or UI to reflect the deletion
-        } catch (error) {
-            // Handle errors
-            console.error(error)
-        }
-    };
-
+    
     //video change event;
     //const [videoUrl, setVideoUrl] = useState<string>("");
     //const [files, setFiles] = useState<ArrayBuffer | null>(null); // Assuming files will be stored as a string
@@ -147,35 +135,8 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
         }
     };
 
-    // If you still want uploadVideo function
-    const [deletingLoading, setDeletingLoading] = useState<boolean>(false)
-    const handleDeleteVideo = async (video: any) => {
-        try {
-            // Perform the deletion request to Vercel Blob
-            if (video !== "") {
-                //alert("deleting")
-
-                await del(video, {
-                    // access: 'public',
-                    token: "vercel_blob_rw_SWkzW6EvztKyfVAE_ckiMkh9Y1t1EB3k3VAF7VZ8ZKhG106" // Pass the access token
-                }).catch((error: any) => {
-                    console.error(error);
-                    // alert(error)
-                })
-
-                revalidatePath("/");
-            }
-
-            {/*
-    // Reset states
-      setVideoUrl("");
-      //@ts-ignore
-      setCourseInfo({ covervideo: "" });
-    */}
-        } catch (error) {
-            console.error('Error deleting video:', error);
-        }
-    };
+   
+       
     const [msg, setMsg] = useState("")
     //uploading course data;
     async function createCourse(e: any) {
@@ -214,21 +175,21 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
     }
     const [fileData, setFileData] = useState([]);
     const[fileDetails,setFileDetails]=useState(false)
-    const [selectedFile2, setSelectedFile2] = useState<File[] | null>(null); // State to hold the selected file
+    const [selectedFile2, setSelectedFile2] = useState<File | null>(null); // State to hold the selected file
     const[newFile,setNewFile]=useState(false)
     const[indexing,setIndexing]=useState(0)
     const [uploadedFiles, setUploadedFiles] = useState(Array(fileData.length).fill(false));
-
+    const [loadingFile, setLoadingFile] = useState(false);
     function handleChangeFile(e: any) {
         e.preventDefault();
-        const files = e.target.files;
+        const files = e.target.files[0];
         //alert(files)
         if (!files || files.length === 0) {
             console.error('No files selected.');
             return;
         }else{
-            setSelectedFile2(files)
-           // alert(JSON.stringify(selectedFile2))
+            //files to be uploaded
+            setSelectedFile2(files);
         }
         //@ts-ignore
         const newFiles = Array.from(files).map((file:any) => file.name);
@@ -240,13 +201,13 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
         //const selectedFilez = newFiles[indexing];
         if(fileData.length==0){
             //@ts-ignore
-        setFileData(prevFiles => [...prevFiles, ...newFiles]);
+        setFileData(prevFiles => [...prevFiles, files.name]);
         //alert(JSON.stringify(fileData))
         //alert(JSON.stringify(newFiles))
         //alert("null")
         }else if (fileData.length!==0) {
              //@ts-ignore
-        setFileData(prevFiles => [...prevFiles, ...newFiles]);
+        setFileData(prevFiles => [...prevFiles, files.name]);
         setNewFile(true)
             //@ts-ignore
             //setSelectedFile2(selectedFilez); // Set the first file as the selected file
@@ -257,43 +218,37 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
     }
     
     
-    async function uploadFiles(files: File[]) {
-        const uploadedFiles = [];
+    async function uploadFile(file: File) {
+        try {
+            setLoadingFile(true);
+            // Read the file data
+            const data = await file.arrayBuffer();
+            
+            // Upload the file data using @vercel/storage
+            const response = await put(file.name, data, {
+                access: 'public',
+                token: "vercel_blob_rw_SWkzW6EvztKyfVAE_ckiMkh9Y1t1EB3k3VAF7VZ8ZKhG106" // Pass the access token
+            });
     
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            try {
-                // Read the file data
-                const data = await file.arrayBuffer();
-                //alert(data)
-    
-                // Upload the file data using @vercel/storage
-                const response = await put(file.name, data, {
-                    access: 'public',
-                    token: "vercel_blob_rw_SWkzW6EvztKyfVAE_ckiMkh9Y1t1EB3k3VAF7VZ8ZKhG106" // Pass the access token
-                });
-                
-                // Check if videoBlob is not empty
+            // Check if response is not empty and contains a URL
             if (response && response.url) {
                 // Set the URL in state to display the video
-                //alert(response.url+i);
-                setNewFile(false)
+                setNewFile(false);
                 setChapterInfo(prev => ({
                     ...prev,
                     fileData: [...prev.fileData, response.url]
                 }));
-                
             } else {
-                console.error('file is empty or does not have a URL');
+                console.error('Uploaded file is empty or does not have a URL');
             }
-                uploadedFiles.push(response); // Push uploaded file data to the array
-            } catch (error) {
-                console.error('Error uploading file:', error);
-            }
-        }
     
-        return uploadedFiles;
+            return response; // Return the uploaded file data
+        } catch (error) {
+            console.error('Error uploading file:', error);
+            return null; // Return null in case of error
+        }
     }
+    
     
    {/* // Example usage
     async function handleFileUpload(files) {
@@ -306,7 +261,7 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
         }
     }*/}
     
-    useEffect(() => { }, [indexing,newFile,selectedFile2,fileData,videoUrl, imageUrl, loadingImage, loadingVideo, deletingLoading, msg])
+    useEffect(() => { }, [selectedFile2,uploadedFiles,fileData,chapterInfo,indexing,newFile,selectedFile2,fileData,videoUrl, imageUrl, loadingImage, loadingVideo,  msg])
     return (
         <div>
             {/*overflow-y-scroll*/}
@@ -425,7 +380,13 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
                         </div>
                         {/*files*/}
                         <div>
-    <input onChange={handleChangeFile} type='file' accept='.pdf,.zip,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' multiple />
+    {selectedFile2==null?<input onChange={handleChangeFile} type='file' accept='.pdf,.zip,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' multiple={false} />:
+    <button className='btn ' onClick={()=>{
+        if (selectedFile2 !== null) {
+                
+            setSelectedFile2(null); // Clear selectedFile2 if it's not empty
+        }
+    }} >add file </button>}
     {indexing==0?<p className='text-xs text-red-600'>no file uploaded</p>:
     <p className='font-mono text-sm  p-2 ' >{indexing} file uploaded</p>}
         <div className='h-[150px] w-full overflow-y-auto'>
@@ -441,7 +402,7 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
                         <button className='btn btn-ghost text-xs' onClick={async(e) => {
                         e.preventDefault();                            
                         if(selectedFile2!==null){
-                        await uploadFiles(selectedFile2)
+                        await uploadFile(selectedFile2)
                         .then(()=>{
                             const newUploadedFiles = [...uploadedFiles];
                             newUploadedFiles[index] = true;
@@ -467,6 +428,7 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
             // Create a new array without the item at indexToRemove
             const updatedFileData = chapterInfo.fileData.filter((_, index) => index !== indexToRemove);
             const updatedFileDatas = fileData.filter((_, index) => index !== indexToRemove);
+            const newRemovedFiles = uploadedFiles.filter((_, i) => i !== index);
             // Update the state with the new array
             setChapterInfo(prev => ({
                 ...prev,
@@ -476,11 +438,13 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
             setFileData(updatedFileDatas);
             const x = indexing-1
             setIndexing(x)
+            
+            setUploadedFiles(newRemovedFiles);
             //alert(chapterInfo.fileData)
 
             // You may want to uncomment and use this code to delete the file from storage
             
-            await del(chapterInfo.fileData[indexToRemove], {
+            await del(chapterInfo.fileData[index], {
                 token: "vercel_blob_rw_SWkzW6EvztKyfVAE_ckiMkh9Y1t1EB3k3VAF7VZ8ZKhG106" // Pass the access token
             })
 
