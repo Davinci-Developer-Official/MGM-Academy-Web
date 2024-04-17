@@ -37,7 +37,7 @@ export async function POST(request: Request) {
     subtopic_id UUID PRIMARY KEY,
     chapter_id UUID ,
     subtopic_cover VARCHAR,
-    subtopic_title VARCHAR(100),
+    subtopic_title VARCHAR[(100)],
     subtopic_content VARCHAR,
     subtopic_video VARCHAR
 );
@@ -46,6 +46,6 @@ export async function POST(request: Request) {
 {/*CREATE TABLE subTopicFiles (
     file_id SERIAL PRIMARY KEY,
     subtopic_id UUID,
-    file_url VARCHAR(255)
+    file_url VARCHAR[]
   )
 */}

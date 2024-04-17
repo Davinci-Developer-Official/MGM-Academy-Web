@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react'
-import { FaCaretRight, FaFile, FaFilePdf, FaFileWord, FaPen, FaPlus, FaTimes, FaTrash, FaUpload } from 'react-icons/fa'
+import { FaCaretRight, FaCheckCircle, FaCheckDouble, FaFile, FaFilePdf, FaFileWord, FaPen, FaPlus, FaTicketAlt, FaTimes, FaTrash, FaUpload } from 'react-icons/fa'
 import dummyPic from "@/public/empowerment/1.jpeg"
 import axios from 'axios';
 import Image from 'next/image';
@@ -9,16 +9,24 @@ import { revalidatePath } from 'next/cache';
 
 
 function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload }: any) {
-    const [courseInfo, setCourseInfo] = useState({
-        coverimage: "",
-        covervideo: "",
-        coursename: "",
-        coursecategory: "",
-        unitcode: "",
-        coursedescription: "",
-        courseinstructor: "",
-        courserequirements: ""
-    })
+    const [chapterInfo, setChapterInfo] = useState<{
+        course_id: string;
+        chapter_cover: string;
+        chapter_title: string;
+        chapter_description: string;
+        chapter_content: string;
+        chapter_video: string;
+        fileData: string[]; // Specify the correct type for fileData
+    }>({
+        course_id: "",
+        chapter_cover: "",
+        chapter_title: "",
+        chapter_description: "",
+        chapter_content: "",
+        chapter_video: "",
+        fileData: []
+    });
+    
     //image change event;
     const [imageUrl, setImageUrl] = useState<string>("")
 
@@ -74,7 +82,7 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
 
             // Set the URL in state to display the image
             setImageUrl(imageBlob.url);
-            setCourseInfo(prevUser => ({ ...prevUser, coverimage: imageBlob.url }));
+            setChapterInfo(prevUser => ({ ...prevUser, chapter_cover: imageBlob.url }));
         } catch (error) {
             console.error('Error reading file:', error);
             // alert(error)
@@ -127,7 +135,7 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
             if (videoBlob && videoBlob.url) {
                 // Set the URL in state to display the video
                 setVideoUrl(videoBlob.url);
-                setCourseInfo(prevInfo => ({ ...prevInfo, covervideo: videoBlob.url }));
+                setChapterInfo(prevInfo => ({ ...prevInfo, chapter_video: videoBlob.url }));
                 setVideoLoading(true);
             } else {
                 console.error('VideoBlob is empty or does not have a URL');
@@ -172,17 +180,16 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
     //uploading course data;
     async function createCourse(e: any) {
         e.preventDefault()
-        if (courseInfo.covervideo || courseInfo.coverimage) {
+        if (chapterInfo.chapter_video || chapterInfo.chapter_cover) {
             await axios.post("/api/add_course", {
-                cover_image: courseInfo.coverimage,
-                cover_video: courseInfo.covervideo,
-                course_name: courseInfo.coursename,
-                course_category: courseInfo.coursecategory,
-                unit_code: courseInfo.unitcode,
-                course_description: courseInfo.coursedescription,
-                course_instructor: courseInfo.courseinstructor,
-                course_requirements: courseInfo.courserequirements,
-                course_rating: "4"
+                chapter_cover:chapterInfo.chapter_cover,
+                chapter_video: chapterInfo.chapter_video,
+                chapter_title: chapterInfo.chapter_title,
+                chapter_description: chapterInfo.chapter_description,
+                chapter_content: chapterInfo.chapter_content,
+                course_id: chapterInfo.course_id,
+                fileData: chapterInfo.fileData,
+                
             }).then(() => {
                 setCreateChapter(false);
                 setSuccessfulUpload(true);
@@ -208,67 +215,98 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
     const [fileData, setFileData] = useState([]);
     const[fileDetails,setFileDetails]=useState(false)
     const [selectedFile2, setSelectedFile2] = useState<File[] | null>(null); // State to hold the selected file
+    const[newFile,setNewFile]=useState(false)
     const[indexing,setIndexing]=useState(0)
+    const [uploadedFiles, setUploadedFiles] = useState(Array(fileData.length).fill(false));
+
     function handleChangeFile(e: any) {
         e.preventDefault();
         const files = e.target.files;
+        //alert(files)
+        if (!files || files.length === 0) {
+            console.error('No files selected.');
+            return;
+        }else{
+            setSelectedFile2(files)
+           // alert(JSON.stringify(selectedFile2))
+        }
         //@ts-ignore
-        const newFiles = Array.from(files).map(file => ({
-            //@ts-ignore
-            name: file.name,
-            //@ts-ignore
-            type: file.type,
-            //@ts-ignore
-            size: file.size,
-            //@ts-ignore
-            lastModified: file.lastModified,
-            // Add any other properties you want to store about the file
-        }));
-        //@ts-ignore
-        setFileData(prevFiles => [...prevFiles, ...newFiles]);
+        const newFiles = Array.from(files).map((file:any) => file.name);
+        const format = Array.from(files).map((file:any) => file.type)
+        const uploadTime = Array.from(files).map((file:any) => file.lastModified)
+        const size = Array.from(files).map((file:any) => file.size)
         
         // Select the first file from the list of files
-        const selectedFilez = newFiles[indexing];
-        if (selectedFilez) {
+        //const selectedFilez = newFiles[indexing];
+        if(fileData.length==0){
             //@ts-ignore
-            setSelectedFile2(selectedFilez); // Set the first file as the selected file
+        setFileData(prevFiles => [...prevFiles, ...newFiles]);
+        //alert(JSON.stringify(fileData))
+        //alert(JSON.stringify(newFiles))
+        //alert("null")
+        }else if (fileData.length!==0) {
+             //@ts-ignore
+        setFileData(prevFiles => [...prevFiles, ...newFiles]);
+        setNewFile(true)
+            //@ts-ignore
+            //setSelectedFile2(selectedFilez); // Set the first file as the selected file
+           // alert(JSON.stringify(fileData))
         } else {
             console.error('No files selected.');
         }
     }
     
     
-    async function handleUploadFiles(e:any){
-        e.preventDefault();
-        try {
-            // Read the file data
-            //@ts-ignore
-            const data = await selectedFile2.arrayBuffer();
-
-            // Upload the file data using put
-            //@ts-ignore
-            const videoBlob = await put(selectedFile2.name, data, {
-                access: 'public',
-                token: "vercel_blob_rw_SWkzW6EvztKyfVAE_ckiMkh9Y1t1EB3k3VAF7VZ8ZKhG106" // Pass the access token
-            });
-
-            // Check if videoBlob is not empty
-            if (videoBlob && videoBlob.url) {
+    async function uploadFiles(files: File[]) {
+        const uploadedFiles = [];
+    
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            try {
+                // Read the file data
+                const data = await file.arrayBuffer();
+                //alert(data)
+    
+                // Upload the file data using @vercel/storage
+                const response = await put(file.name, data, {
+                    access: 'public',
+                    token: "vercel_blob_rw_SWkzW6EvztKyfVAE_ckiMkh9Y1t1EB3k3VAF7VZ8ZKhG106" // Pass the access token
+                });
+                
+                // Check if videoBlob is not empty
+            if (response && response.url) {
                 // Set the URL in state to display the video
-                setVideoUrl(videoBlob.url);
-                setCourseInfo(prevInfo => ({ ...prevInfo, covervideo: videoBlob.url }));
-                setVideoLoading(true);
+                //alert(response.url+i);
+                setNewFile(false)
+                setChapterInfo(prev => ({
+                    ...prev,
+                    fileData: [...prev.fileData, response.url]
+                }));
+                
             } else {
-                console.error('VideoBlob is empty or does not have a URL');
+                console.error('file is empty or does not have a URL');
             }
-
-        } catch (error) {
-            console.error('Error reading file:', error);
-            // alert(error)
+                uploadedFiles.push(response); // Push uploaded file data to the array
+            } catch (error) {
+                console.error('Error uploading file:', error);
+            }
         }
+    
+        return uploadedFiles;
     }
     
-    useEffect(() => { }, [indexing,selectedFile2,fileData,videoUrl, imageUrl, loadingImage, loadingVideo, deletingLoading, msg])
+   {/* // Example usage
+    async function handleFileUpload(files) {
+        try {
+            const uploadedFiles = await uploadFiles(files);
+            console.log('Uploaded files:', uploadedFiles);
+            // Do something with the uploaded files
+        } catch (error) {
+            console.error('Error uploading files:', error);
+        }
+    }*/}
+    
+    useEffect(() => { }, [indexing,newFile,selectedFile2,fileData,videoUrl, imageUrl, loadingImage, loadingVideo, deletingLoading, msg])
     return (
         <div>
             {/*overflow-y-scroll*/}
@@ -288,7 +326,7 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
                                     e.preventDefault();
                                     //alert(courseInfo.coverimage)
                                     setImageUrl("")
-                                    await del(courseInfo.coverimage, {
+                                    await del(chapterInfo.chapter_cover, {
                                         // access: 'public',
                                         token: "vercel_blob_rw_SWkzW6EvztKyfVAE_ckiMkh9Y1t1EB3k3VAF7VZ8ZKhG106" // Pass the access token
                                     })
@@ -297,7 +335,7 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
                             <div  >
                                 {imageUrl && (
                                     <div className='h-[200px]' >
-                                        {imageUrl && <Image className='object-fit mb-5  ' width={500} height={200} src={courseInfo.coverimage} alt="Uploaded Image" style={{ maxWidth: '100%' }} />}
+                                        {imageUrl && <Image className='object-fit mb-5  ' width={500} height={200} src={chapterInfo.chapter_cover} alt="Uploaded Image" style={{ maxWidth: '100%' }} />}
 
                                     </div>
                                 )}
@@ -372,7 +410,7 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
 
                                         //alert(courseInfo.covervideo)
                                         setVideoUrl("")
-                                        await del(courseInfo.covervideo, {
+                                        await del(chapterInfo.chapter_video, {
                                             // access: 'public',
                                             token: "vercel_blob_rw_SWkzW6EvztKyfVAE_ckiMkh9Y1t1EB3k3VAF7VZ8ZKhG106" // Pass the access token
                                         })
@@ -381,60 +419,99 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
                                 </div>
 
                                 <div>
-                                    {videoUrl && <video controls height={200} width={400} src={courseInfo.covervideo} />}
+                                    {videoUrl && <video controls height={200} width={400} src={chapterInfo.chapter_video} />}
                                 </div>
                             </div>
                         </div>
                         {/*files*/}
                         <div>
     <input onChange={handleChangeFile} type='file' accept='.pdf,.zip,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' multiple />
-    <p className='text-xs text-red-600'>note: all files should be in pdf format other formats may be accepted but pdf is our chosen format</p>
-    <div className='h-[150px] w-full overflow-y-auto'>
-        {fileData.map((file, index) => (
-            <div className='flex flex-row justify-between '  key={index}>
-                <div className='w-[50px] p-4 h-[50px] bg-red-500 mt-2 mb-2 rounded' >
-                    {/*onMouseEnter={() => {
-                    setFileDetails(true)
-                }} onMouseLeave={() => {
-                    setFileDetails(false)
-                }}*/}
-                    <FaFilePdf size={20} className='mx-auto' />
+    {indexing==0?<p className='text-xs text-red-600'>no file uploaded</p>:
+    <p className='font-mono text-sm  p-2 ' >{indexing} file uploaded</p>}
+        <div className='h-[150px] w-full overflow-y-auto'>
+            {fileData.map((file, index) => (
+                <div className='flex flex-row justify-between w-full '  key={index}>
+                    <div className='w-[50px] p-4 h-[50px] bg-red-500 mt-2 mb-2 rounded'>
+                        <FaFilePdf size={20} className='mx-auto' />
+                    </div>
+                    <div className='text-xs font-mono pt-6 pl-2 '>{file}</div>
+                    {uploadedFiles[index] ? (
+                        <p className='text-xs font-mono pt-6 pl-2 text-green-600 ' ><FaCheckCircle size={15} /></p>
+                    ) : (
+                        <button className='btn btn-ghost text-xs' onClick={async(e) => {
+                        e.preventDefault();                            
+                        if(selectedFile2!==null){
+                        await uploadFiles(selectedFile2)
+                        .then(()=>{
+                            const newUploadedFiles = [...uploadedFiles];
+                            newUploadedFiles[index] = true;
+                            setUploadedFiles(newUploadedFiles);
+                            //alert("yes")                            
+                            let newIndex= index+1
+                            setIndexing(newIndex)
+                            //alert(indexing)                            
+                        })                         
+                        };
+                        }}>
+                            <FaUpload size={15} /> Upload
+                        </button>
+                    )}
+                    {uploadedFiles[index] && (
+    <button
+        className='text-red-500 h-[10px] btn btn-ghost btn-circle bg-[#f1ede8] w-[20px]  mt-2 ml-5'
+        onClick={async (e: any) => {
+            e.preventDefault();
+
+            const indexToRemove = index;
+
+            // Create a new array without the item at indexToRemove
+            const updatedFileData = chapterInfo.fileData.filter((_, index) => index !== indexToRemove);
+            const updatedFileDatas = fileData.filter((_, index) => index !== indexToRemove);
+            // Update the state with the new array
+            setChapterInfo(prev => ({
+                ...prev,
+                fileData: updatedFileData
+            }));
+                 //@ts-ignore
+            setFileData(updatedFileDatas);
+            const x = indexing-1
+            setIndexing(x)
+            //alert(chapterInfo.fileData)
+
+            // You may want to uncomment and use this code to delete the file from storage
+            
+            await del(chapterInfo.fileData[indexToRemove], {
+                token: "vercel_blob_rw_SWkzW6EvztKyfVAE_ckiMkh9Y1t1EB3k3VAF7VZ8ZKhG106" // Pass the access token
+            })
+
+            
+
+            console.log(updatedFileData);
+        }}
+    >
+        <FaTrash size={15} />
+    </button>
+)}
+
                 </div>
-                {/*//@ts-ignore*/}
-                <div className='text-xs font-mono pt-6 pl-2 ' >{file.name}</div>
-                <button className='btn btn-ghost text-xs ' onClick={(e)=>{
-                    e.preventDefault();
-                    setIndexing(index)
-                    if(index!==0&&indexing!==0){
-                        setIndexing(index)
-                        alert("boo"+indexing)
-                    }
-                    if(index===0&&indexing===0){
-                        setIndexing(index)
-                        alert("nae"+indexing)
-                    }
-                }} > <FaUpload size={15}  /> upload</button>
-                {/*old option*/}
-                {fileDetails && <div className='text-xs'>
-                    {/*//@ts-ignore*/}
-                    <div>Name: {file.name}</div>
-                    {/*//@ts-ignore*/}
-                    <div>Type: {file.type}</div>
-                    {/*//@ts-ignore*/}
-                    <div>Size: {file.size}</div>
-                    {/*//@ts-ignore*/}
-                    <div>Last Modified: {file.lastModified}</div>
-                    {/* Add any other file data you want to display */}
-                </div>}
-            </div>
-        ))}
+            ))}
+        </div>
     </div>
-</div>
 
                     </div>
                 </div>
 
-
+                {/*{fileDetails && <div className='text-xs'>
+                    
+                    <div>Name: {file.name}</div>
+                    
+                    <div>Type: {file.type}</div>
+                    
+                    <div>Size: {file.size}</div>
+                   
+                    <div>Last Modified: {file.lastModified}</div>
+                   
+                </div>}*/}
                 {/*----create course button----*/}
 
 
@@ -444,7 +521,7 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
                 <button className='btn btn-success flex flex-row ' onClick={createCourse} > <p>Create Chapter</p> <FaUpload size={15} /></button>
 
                 <p>{msg}</p>
-
+               
             </form>
         </div>
     )
