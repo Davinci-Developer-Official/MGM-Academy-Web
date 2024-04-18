@@ -18,7 +18,7 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
         chapter_video: string;
         fileData: string[]; // Specify the correct type for fileData
     }>({
-        course_id: "",
+        course_id: "6df323g344dsas34344d4r73gd37gd239ha3byd384bj344323",
         chapter_cover: "",
         chapter_title: "",
         chapter_description: "",
@@ -141,8 +141,9 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
     //uploading course data;
     async function createCourse(e: any) {
         e.preventDefault()
+        alert(JSON.stringify(chapterInfo))
         if (chapterInfo.chapter_video || chapterInfo.chapter_cover) {
-            await axios.post("/api/add_course", {
+            await axios.post("/api/add_chapter", {
                 chapter_cover:chapterInfo.chapter_cover,
                 chapter_video: chapterInfo.chapter_video,
                 chapter_title: chapterInfo.chapter_title,
@@ -310,7 +311,7 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
                             const value = e.target.value;
                             //sessionStorage.setItem("s-fname",value);
                             //@ts-ignore
-                            setCourseInfo(prevUser => ({ ...prevUser, coursedescription: value }));
+                            setChapterInfo(prevUser => ({ ...prevUser, chapter_title: value }));
                         }} />
                     </div>
                     {/*---course instructor(s)---*/}
@@ -323,7 +324,7 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
                                 const value = e.target.value;
                                 //sessionStorage.setItem("s-fname",value);
                                 //@ts-ignore
-                                setCourseInfo(prevUser => ({ ...prevUser, courserequirements: value }));
+                                setChapterInfo(prevUser => ({ ...prevUser, chapter_description: value }));
                             }} />
                         </div>
 
@@ -338,7 +339,7 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
                                 const value = e.target.value;
                                 //sessionStorage.setItem("s-fname",value);
                                 //@ts-ignore
-                                setCourseInfo(prevUser => ({ ...prevUser, courserequirements: value }));
+                                setChapterInfo(prevUser => ({ ...prevUser, chapter_content: value }));
                             }} />
                         </div>
 
