@@ -142,6 +142,7 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
     async function createCourse(e: any) {
         e.preventDefault()
         alert(JSON.stringify(chapterInfo))
+        //Todo(22/04/2024): remake the chapter upload to be simpler
         if (chapterInfo.chapter_video || chapterInfo.chapter_cover) {
             await axios.post("/api/add_chapter", {
                 chapter_cover:chapterInfo.chapter_cover,
@@ -262,6 +263,7 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
         }
     }*/}
     
+   
     useEffect(() => { }, [selectedFile2,uploadedFiles,fileData,chapterInfo,indexing,newFile,selectedFile2,fileData,videoUrl, imageUrl, loadingImage, loadingVideo,  msg])
     return (
         <div>

@@ -9,6 +9,7 @@ import Card from "./CourseCard"
 import Rating from './Rating';
 import axios from 'axios';
 import { Course } from '../(portals)/studentPortal/(baseRoute)/courses/list';
+import noImage from "@/public/icons/noImageFound.png"
 
 
 interface Data {
@@ -59,6 +60,7 @@ export default function Section({setHideMenu,hideMenu}:any){
     const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(6); // Number of items per page
   const[details,setDetails]=useState("")
+  const [imageError, setImageError] = useState(false);
 
   // Pagination logic
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -107,9 +109,8 @@ const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_c
     useEffect(()=>{
         
         
-      },[newCourses,selectedCategory,details]);//left here
-      
-
+      },[newCourses,selectedCategory,details,imageError]);//left here
+    
     return(
         //rendered courses;
         <div className='flex flex-col h-screen ' >
@@ -146,11 +147,23 @@ const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_c
       <div className='  overflow-y-scroll  mb-2 h-screen'>
         {currentCourses.length > 0 ? (
           <div className="w-[98%] mx-auto grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
+            {/*purpose:loaded courses from server*/}
             {currentCourses.map((item) => (
-              <div className="mb-4 h-fit card background w-[400px] mx-auto   shadow-lg shadow-indigo-500/50 border borde-t-[#e97902] border-t-3 "   key={item.id}>
-                <figure className='w-full h-fit  ' >
-                  {parseInt(details) !== item.id &&<Image src={item.cover_image}  width={400} height={400} alt="holder" />} {/* Adjust width and height as per your requirement */}
-                  {parseInt(details) === item.id && <video autoPlay loop={false} muted={true} width="400" height="400" controls preload="none">
+              <div className="mb-4 h-[430px] card background w-[320px] mx-auto   shadow-lg shadow-indigo-500/50 border borde-t-[#e97902] border-t-3 "   key={item.id}>
+               <h2 className="card-title pt-2 justify-center ">
+                    <p>{item.course_name}</p>
+                    
+                  </h2>
+                  {parseInt(details) !== item.id &&<figure className='w-full h-[200px]  ' >
+                  {parseInt(details) !== item.id &&
+                  <div className="avatar ">
+                  <div className="w-[150px] rounded-xl">
+                
+                  {imageError?<Image src={noImage}  width={200} height={200} alt="holder"/>:<Image src={item.cover_image}  width={200} height={200} alt="holder"  onError={() => setImageError(true)} />}
+                  </div>
+                  </div>
+                  } {/* Adjust width and height as per your requirement */}
+                  {/* {parseInt(details) === item.id && <video autoPlay loop={false} muted={true} width="400" height="400" controls preload="none">
                             <source src={item.cover_video} type="video/mp4" />
                             <track
                               src="/path/to/captions.vtt"
@@ -159,32 +172,26 @@ const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_c
                               label="English"
                             />
                             Your browser does not support the video tag.
-                          </video>}
-                </figure>
+                          </video>}*/}
+                </figure>}
                 <div className="card-body">
-                  <h2 className="card-title">
-                    {item.course_name}
-                    <div className="badge badge-secondary">NEW</div>
-                  </h2>
-                  <div className='flex flex-col w-full '>
-                    <p className='p-2 text-[#e97902] font-bold font-mono '>category:</p>
-                    <p className='p-2 '>{item.course_category}</p>
-                  </div>
+                  
+                  
                   <div className="w-full  justify-between flex flex-row ">
 
                     <div className="flex flex-col ">
-                      <p className='p-2 text-[#e97902] font-bold font-mono '>instructor(s): </p>
+                      <p className='p-2 text-[#e97902] font-bold font-mono text-xs '>instructor(s): </p>
                       <p className='p-2 '>{item.course_instructor}</p>
 
                     </div>
-                    <div className="flex flex-col   "><p className='p-2 text-[#e97902] font-bold font-mono '>Rating:</p><p className='p-2 '> <Rating rating={parseInt(item.course_rating)} /></p> </div>
+                    <div className="flex flex-col text-xs "><p className='p-2 text-[#e97902] font-bold font-mono '>Rating:</p><p className='p-2 '> <Rating rating={parseInt(item.course_rating)} /></p> </div>
 
                   </div>
                   <div className='flex flex-col w-full  '>
-                    <button className=' p-2 flex flex-row justify-around ' onClick={() => {
+                  {parseInt(details) !== item.id &&<button className=' p-2 flex flex-row justify-around ' onClick={() => {
                       setDetails(JSON.stringify(item.id));
                     }}  >
-                      {parseInt(details) === item.id ? <button className="  btn btn-ghost  " onClick={() => {
+                      {parseInt(details) === item.id ? <button className="  btn btn-ghost h-[40px] " onClick={() => {
                         setDetails("")
                       }}>
                         <FaInfo size={20} />
@@ -193,24 +200,10 @@ const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_c
                       }}><FaInfo size={20} /></button>}
 
                       <p className='font-mono font-bold btn btn-ghost '>details</p>
-                    </button>
+                    </button>}
                     {parseInt(details) === item.id ? (
-                      <div className="card-body overflow-y-scroll h-[200px] " >
-                        <div>
-                          <p className='font-mono font-bold text-[#e97902] ' >unit code:</p>
-                          <p>{item.unit_code}</p>
-                        </div>
-                        <div>
-                          <p className='font-mono font-bold text-[#e97902] '>description:</p>
-                          <p>{item.course_description}</p>
-                        </div>
-                        <div>
-                          <p className='font-mono font-bold text-[#e97902] '>requirements:</p>
-                          <p>{item.course_requirements}</p>
-                        </div>
-                        {/*
-                        <div>
-                          <video autoPlay={false} loop muted={false} width="320" height="240" controls preload="none">
+                      <div className="  card-body overflow-y-scroll h-[200px] bg-red-500 " >
+                        <video autoPlay loop={false} muted={true} width="400" height="400" controls preload="none">
                             <source src={item.cover_video} type="video/mp4" />
                             <track
                               src="/path/to/captions.vtt"
@@ -220,8 +213,22 @@ const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_c
                             />
                             Your browser does not support the video tag.
                           </video>
+                        <div>
+                          <p className='font-mono font-bold text-[#e97902] ' >unit code:</p>
+                          <p>{item.unit_code}</p>
                         </div>
-                        */}
+                        <div className='flex flex-col w-full '>
+                        <p className='p-2 text-[#e97902] font-bold font-mono '>category:</p>
+                        <p className='p-2 '>{item.course_category}</p>
+                        </div>
+                        <div>
+                          <p className='font-mono font-bold text-[#e97902] '>description:</p>
+                          <p>{item.course_description}</p>
+                        </div>
+                        <div>
+                          <p className='font-mono font-bold text-[#e97902] '>requirements:</p>
+                          <p>{item.course_requirements}</p>
+                        </div>
                       </div>
                     ) : ""}
                   </div>
@@ -229,11 +236,7 @@ const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_c
                     <Link href="/academics/Courses/content">Buy</Link>
                   </button>
                 </div>
-              </div>
-
-            )
-            )}
-          </div>) : (
+              </div>))}</div>) : (
           <p>No courses available</p>
         )}
       </div>

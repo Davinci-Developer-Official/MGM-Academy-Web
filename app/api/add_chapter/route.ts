@@ -12,23 +12,30 @@ export async function POST(request: Request) {
     const requestBody = await request.json();
     const { course_id, chapter_cover, chapter_title, chapter_description, chapter_content, chapter_video, fileData } = requestBody;
 
-    if (!chapter_title ) {
-      throw new Error('chapter title required');
+    if (!chapter_title) {
+      throw new Error('Chapter title is required');
     }
 
     const chapter_id = id_generator();
-    //const avatar = '/public/avatar.png'; // assuming this is a static path
 
-    await sql`INSERT INTO chapters (chapter_id,course_id, chapter_cover, chapter_title, chapter_description, chapter_content, chapter_video)  VALUES (${chapter_id},${course_id}, ${chapter_cover},  ${chapter_title}, ${chapter_description}, ${chapter_content},${chapter_video});`;
+    // Insert chapter into database
+    await sql`INSERT INTO chapters (chapter_id, course_id, chapter_cover, chapter_title, chapter_description, chapter_content, chapter_video) VALUES (${chapter_id}, ${course_id}, ${chapter_cover}, ${chapter_title}, ${chapter_description}, ${chapter_content}, ${chapter_video})`;
+
+    // Insert files into database
     for (const fileUrl of fileData) {
-      await sql`INSERT INTO chaptersFiles (chapter_id, file_url) VALUES (${chapter_id},${fileUrl})`;
+      await sql`INSERT INTO chaptersFiles (chapter_id, file_url) VALUES (${chapter_id}, ${fileUrl})`;
     }
-    const students = await sql`SELECT * FROM chapters;`;
-    return NextResponse.json( students.rows , { status: 200 });
+
+    // Retrieve all chapters (just for demonstration, you might not need this)
+    const chapters = await sql`SELECT * FROM chapters`;
+
+    return NextResponse.json(chapters.rows, { status: 200 });
   } catch (error:any) {
+    console.error('Error:', error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
+
 
 
 {/*CREATE TABLE chapters (
