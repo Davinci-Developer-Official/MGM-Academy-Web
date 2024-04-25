@@ -10,7 +10,9 @@ import Rating from './Rating';
 import axios from 'axios';
 import { Course } from '../(portals)/studentPortal/(baseRoute)/courses/list';
 import noImage from "@/public/icons/noImageFound.png"
-
+import noVideo from "@/public/icons/noVideoFound.png"
+import collect from 'collect.js';
+import loading from '@/public/animated/loading.gif';
 
 interface Data {
     id:number,
@@ -61,6 +63,7 @@ export default function Section({setHideMenu,hideMenu}:any){
   const [itemsPerPage] = useState(6); // Number of items per page
   const[details,setDetails]=useState("")
   const [imageError, setImageError] = useState(false);
+  const [videoError, setVideoError] = useState(false);
 
   // Pagination logic
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -73,10 +76,8 @@ export default function Section({setHideMenu,hideMenu}:any){
 
     const [selectedItemId, setSelectedItemId] = useState(null); // State to store the ID of the selected item
 //const selectedCategorys = "Your desired category"; // Set your desired category here
-if(selectedCategory!==""){
-  const filteredCourses = newCourses.filter(item => item.course_category === selectedCategory);
-  setFilteredData(filteredCourses)
-}else{
+const [loading, setLoading] = useState(false);
+
   const fetchData = async () => {
     try {
       {/*
@@ -90,8 +91,19 @@ if(selectedCategory!==""){
     
     // Check if the response status is successful
     if (response.status === 200) {
-        setNewCourses(response.data)
-        setFilteredData(response.data)
+      const collection = collect(response.data);
+      const uniqueCategories = collection.pluck('course_category').unique().all();
+      //@ts-ignore
+      setFilteredData(uniqueCategories);
+        if(selectedCategory!==""){
+          const collection = collect(response.data);
+          const filter = collection.where('course_category', selectedCategory).all();
+          //@ts-ignore
+          setNewCourses(filter)
+        }else{
+          setNewCourses(response.data)
+        
+        }
     }else {
       // If the response status is not successful, log an error
       console.error('Unexpected status code:', response.status);
@@ -99,17 +111,19 @@ if(selectedCategory!==""){
 
     } catch (error) {
       console.error('Error fetching data:', error);
+    } finally{
+      setLoading(false)
     }
   };
   fetchData();
   
-}
+
 const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_category)));
 
     useEffect(()=>{
         
         
-      },[newCourses,selectedCategory,details,imageError]);//left here
+      },[newCourses,selectedCategory,details,imageError,loading]);//left here
     
     return(
         //rendered courses;
@@ -129,13 +143,23 @@ const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_c
                  <FaCaretDown size={20} />
             </button>
         {renderCategory&&<ul className=' h-fit rounded-md background border-[#e1b382] border overflow-y-scroll absolute mt-10 z-10 ' >
-                {uniqueCategories.map((items)=>(<div key={items} >
-                    <button className='btn btn-ghost  w-[90%] ml-[5%] mt-2 outset  ' onClick={()=>{
-                        setSelectedCategory(items);
-                        setRenderCategory(false);
-                        alert(selectedCategory)
-                    }} > {items} </button>
-                </div>))}</ul>}</div>
+        {filteredData.map((category, index) => (
+  <div key={index}>
+    
+    <button 
+      className='btn btn-ghost w-[90%] ml-[5%] mt-2 outset' 
+      onClick={() => {
+        //@ts-ignore
+        setSelectedCategory(category);
+        setRenderCategory(false);
+        //alert(category); // Changed from selectedCategory to category
+      }}
+    >
+      {/* @ts-ignore */}
+      {category}
+    </button>
+  </div>
+))}</ul>}</div>
         <button className='cursor-none '  ><FaGraduationCap size={30} /></button>
         </div>
         {/*mapping courses*/}
@@ -145,12 +169,19 @@ const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_c
 
 
       <div className='  overflow-y-scroll  mb-2 h-screen'>
+        {loading&&(<div className="bg-green-500 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          loading...
+        </div>)}
         {currentCourses.length > 0 ? (
           <div className="w-[98%] mx-auto grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
             {/*purpose:loaded courses from server*/}
             {currentCourses.map((item) => (
-              <div className="mb-4 h-[430px] card background w-[320px] mx-auto   shadow-lg shadow-indigo-500/50 border borde-t-[#e97902] border-t-3 "   key={item.id}>
-               <h2 className="card-title pt-2 justify-center ">
+              <div  className={`${
+                parseInt(details) !== item.id
+                  ? " h-[430px] card background w-[320px] mx-auto shadow-lg shadow-indigo-500/50 border borde-t-[#e97902] border-t-3"
+                  : " h-[530px] card background w-[320px] mx-auto shadow-lg shadow-indigo-500/50 border borde-t-[#e97902] border-t-3"
+              }`}  key={item.id}>
+               <h2 className="card-title pt-1 justify-center text-[#e97902] rounded-tl-xl rounded-tr-xl ">
                     <p>{item.course_name}</p>
                     
                   </h2>
@@ -177,7 +208,7 @@ const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_c
                 <div className="card-body">
                   
                   
-                  <div className="w-full  justify-between flex flex-row ">
+                {parseInt(details) !== item.id &&<div className="w-full  justify-between flex flex-row ">
 
                     <div className="flex flex-col ">
                       <p className='p-2 text-[#e97902] font-bold font-mono text-xs '>instructor(s): </p>
@@ -186,7 +217,7 @@ const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_c
                     </div>
                     <div className="flex flex-col text-xs "><p className='p-2 text-[#e97902] font-bold font-mono '>Rating:</p><p className='p-2 '> <Rating rating={parseInt(item.course_rating)} /></p> </div>
 
-                  </div>
+                  </div>}
                   <div className='flex flex-col w-full  '>
                   {parseInt(details) !== item.id &&<button className=' p-2 flex flex-row justify-around ' onClick={() => {
                       setDetails(JSON.stringify(item.id));
@@ -202,8 +233,11 @@ const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_c
                       <p className='font-mono font-bold btn btn-ghost '>details</p>
                     </button>}
                     {parseInt(details) === item.id ? (
-                      <div className="  card-body overflow-y-scroll h-[200px] bg-red-500 " >
-                        <video autoPlay loop={false} muted={true} width="400" height="400" controls preload="none">
+                      <div className="     overflow-y-scroll h-[400px]  " >{/*testing color: bg-red-500*/}
+                        {videoError?<Image src={noVideo}  width={280} height={200} alt="holder"/>:
+                        <video autoPlay loop={false} muted={true} width="290" height="200" className='mx-auto' controls preload="none" onError={()=>{
+                          setVideoError(true)
+                        }} >
                             <source src={item.cover_video} type="video/mp4" />
                             <track
                               src="/path/to/captions.vtt"
@@ -212,7 +246,7 @@ const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_c
                               label="English"
                             />
                             Your browser does not support the video tag.
-                          </video>
+                          </video>}
                         <div>
                           <p className='font-mono font-bold text-[#e97902] ' >unit code:</p>
                           <p>{item.unit_code}</p>
@@ -225,6 +259,18 @@ const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_c
                           <p className='font-mono font-bold text-[#e97902] '>description:</p>
                           <p>{item.course_description}</p>
                         </div>
+                        
+
+                    <div className="flex flex-col ">
+                      <p className='p-2 text-[#e97902] font-bold font-mono text-xs '>instructor(s): </p>
+                      <p className='p-2 '>{item.course_instructor}</p>
+
+                    </div>
+                    <div className="flex flex-col text-xs ">
+                      <p className='p-2 text-[#e97902] font-bold font-mono '>Rating:</p>
+                      <p className='p-2 '> <Rating rating={parseInt(item.course_rating)} /></p> </div>
+
+                  
                         <div>
                           <p className='font-mono font-bold text-[#e97902] '>requirements:</p>
                           <p>{item.course_requirements}</p>
