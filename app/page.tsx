@@ -11,7 +11,7 @@ import Home from "./Home"
 import { useState } from 'react';
 
 export default function Page() {
-  const[navigation,setNavigation]=useState(false);
+  const[navigation,setNavigation]=useState(true);
   const[footer,setFooter]=useState(false);
   return (
   <div  className=' background w-full ' >

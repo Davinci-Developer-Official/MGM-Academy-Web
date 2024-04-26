@@ -74,7 +74,7 @@ function Navbar() {
       </li>
       </ul>
     </div>
-    <div className=" font-mono font-bold normal-case lg:text-xl text-sm text-[#0f2027] border-b-[#e97902] border-b-[2px] ml-4 p-2 "> MGM Institute of gender & women empowerment </div>
+    <div className=" font-mono font-bold normal-case lg:text-xl text-sm text-[#0f2027] border-b-[#e97902] border-b-[2px] ml-4 p-2 "> MGM Institute  </div>
   </div>
   <div className="navbar-center hidden lg:flex border-b-2 border-b-[#e97902] ">
     <ul className="menu menu-horizontal px-1 border-b-2 border-b-[#e97902] ">

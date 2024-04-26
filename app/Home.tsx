@@ -1,6 +1,6 @@
 import React from 'react'
 import Carousel from './Carousel'
-import { FaAngleDown, FaAngleUp, FaCaretDown, FaCaretUp, FaChevronCircleDown, FaChevronCircleUp, FaGraduationCap, FaHome } from 'react-icons/fa'
+import { FaAngleDown, FaAngleUp, FaCaretDown, FaCaretUp, FaChevronCircleDown, FaChevronCircleUp, FaCompress, FaExpand, FaGraduationCap, FaHome } from 'react-icons/fa'
 import Link from 'next/link'
 
 
@@ -8,12 +8,8 @@ function Home({navigation,setNavigation,footer,setFooter}:any) {
   return (
     <div className='h-screen overflow-y-scroll' >
     <div className='flex flex-row w-full justify-between p-4 ' >
-      {!navigation&&<button className='btn btn-ghost flex flex-col ' onClick={()=>{
-        setNavigation(true)
-      }} >show menu<FaChevronCircleDown size={20} /></button>}
-      {navigation&&<button className='btn btn-ghost flex flex-col ' onClick={()=>{
-        setNavigation(false);
-      }} ><FaChevronCircleUp size={20} />hide menu</button>}
+    {!navigation&&<button onClick={()=>{setNavigation(true)}} className='btn btn-ghost flex flex-col ' ><FaCompress size={15} /></button>}
+            {navigation&&<button onClick={()=>{setNavigation(false)}} className='btn btn-ghost  flex flex-col ' ><FaExpand size={15} /></button>}
       <div className=" normal-case text-xl  ml-4 p-2 font-mono "> MGM Learning platform  </div>
       <button className='btn btn-ghost hover:cursor-none ' ><FaHome size={20} /></button>
     </div>

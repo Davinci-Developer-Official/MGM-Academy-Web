@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import data from './data.json'
 import img from '@/public/empowerment/1.jpeg';
-import { FaArrowAltCircleLeft, FaArrowDown, FaArrowUp, FaBars, FaCaretDown, FaCartPlus,FaChevronCircleDown,FaChevronCircleUp,FaChevronDown,FaChevronUp,FaEraser,FaFemale,FaGraduationCap,FaInfo,FaInfoCircle,FaStar,FaStarHalfAlt } from 'react-icons/fa';
+import { FaArrowAltCircleLeft, FaArrowDown, FaArrowUp, FaBars, FaCaretDown, FaCartPlus,FaChevronCircleDown,FaChevronCircleUp,FaChevronDown,FaChevronUp,FaCompress,FaEraser,FaExpand,FaFemale,FaGraduationCap,FaInfo,FaInfoCircle,FaStar,FaStarHalfAlt } from 'react-icons/fa';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Card from "./CourseCard"
@@ -130,8 +130,8 @@ const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_c
         <div className='flex flex-col h-screen ' >
             {/*filter course category*/}
         <div className='flex flex-row h-fit  w-full justify-between p-4 ' >
-            {!hideMenu&&<button onClick={()=>{setHideMenu(true)}} className='btn btn-ghost flex flex-col ' >show menu<FaChevronCircleDown size={20} /></button>}
-            {hideMenu&&<button onClick={()=>{setHideMenu(false)}} className='btn btn-ghost  flex flex-col ' ><FaChevronCircleUp size={20} />hide menu</button>}
+            {!hideMenu&&<button onClick={()=>{setHideMenu(true)}} className='btn btn-ghost flex flex-col ' ><FaCompress size={15} /></button>}
+            {hideMenu&&<button onClick={()=>{setHideMenu(false)}} className='btn btn-ghost  flex flex-col ' ><FaExpand size={15} /></button>}
             
             <p className='btn btn-ghost font-bold lg:text-xl md:text-lg sm:text-sm ' >MGM Courses</p>
             <div className='flex flex-col' >
