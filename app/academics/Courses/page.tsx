@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react'
 import Section from './section'
 
 function Page() {
-  const[hideMenu,setHideMenu]=useState(false);
+  const[hideMenu,setHideMenu]=useState(true);
   useEffect(()=>{
     console.log("listenning to hideMenu")
   },[hideMenu])

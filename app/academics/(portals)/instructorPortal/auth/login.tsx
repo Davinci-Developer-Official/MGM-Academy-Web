@@ -1,7 +1,7 @@
 
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { FaChevronCircleDown, FaChevronCircleUp, FaDoorOpen } from 'react-icons/fa';
+import { FaChevronCircleDown, FaChevronCircleUp, FaCompress, FaDoorOpen, FaExpand } from 'react-icons/fa';
 
 interface LoginStudentProps {
     setSignIn: React.Dispatch<React.SetStateAction<boolean>>;
@@ -25,12 +25,8 @@ function LoginStudent({setNavigation,navigation}:any) {
   return (
     <div>
     <div className='flex flex-row w-full justify-between p-4 ' >
-      {!navigation&&<button className='btn btn-ghost flex flex-col ' onClick={()=>{
-        setNavigation(true)
-      }} >show menu<FaChevronCircleDown size={20} /></button>}
-      {navigation&&<button className='btn btn-ghost flex flex-col ' onClick={()=>{
-        setNavigation(false);
-      }} ><FaChevronCircleUp size={20} />hide menu</button>}
+    {!navigation&&<button onClick={()=>{setNavigation(true)}} className='btn btn-ghost flex flex-col ' ><FaCompress size={15} /></button>}
+            {navigation&&<button onClick={()=>{setNavigation(false)}} className='btn btn-ghost  flex flex-col ' ><FaExpand size={15} /></button>}
       <div className=" normal-case text-xl  ml-4 p-2 font-mono "> instructor portal  </div>
       <button className='btn btn-ghost hover:cursor-none ' ><FaDoorOpen size={20} /></button>
     </div>

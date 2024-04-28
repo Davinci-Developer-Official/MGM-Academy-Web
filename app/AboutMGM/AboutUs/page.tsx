@@ -8,7 +8,7 @@ import Navbar from '@/app/components/Navbar';
 
 
 function Page() {
-  const[navigation,setNavigation]= useState(false);
+  const[navigation,setNavigation]= useState(true);
   return (
    <div  >
    {navigation&&<Navbar/>}

@@ -4,7 +4,7 @@ import MissionAndVision from './MissionAndVision'
 import React, { useState } from 'react'
 
 function Page() {
-  const[navigation,setNavigation]= useState(false);
+  const[navigation,setNavigation]= useState(true );
   return(
     <>
     {navigation&&<Navbar/>}

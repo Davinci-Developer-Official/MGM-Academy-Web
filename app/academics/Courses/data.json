@@ -198,5 +198,37 @@
             "course_instructors":"Justice Mary Mwangi",
             "course_image":"@/public/logo/1.png"
         }
+    ],
+    "category":[
+        {
+            "category_id":1,
+            "category_name":"Women Studies",
+            "category_description":"This code snippet adds a close button to the top right corner of the loading component. You can customize the appearance and functionality of the close button as needed.",
+            "category_icon":"https://swkzw6evztkyfvae.public.blob.vercel-storage.com/women-studies-1yGyZfLICKnAbMyt3m49yqRYrNyL7z.jpg"
+        },
+        {
+            "category_id":2,
+            "category_name":"information technology",
+            "category_description":"This code snippet adds a close button to the top right corner of the loading component. You can customize the appearance and functionality of the close button as needed.",
+            "category_icon":"https://swkzw6evztkyfvae.public.blob.vercel-storage.com/information-technology-tAWVunP5IRkNXj8Kki1ag1par6sHp3.jpg"
+        },
+        {
+            "category_id":4,
+            "category_name":"business Studies",
+            "category_description":"This code snippet adds a close button to the top right corner of the loading component. You can customize the appearance and functionality of the close button as needed.",
+            "category_icon":"https://swkzw6evztkyfvae.public.blob.vercel-storage.com/business-studies-FO8nWoT6OnZ7DXO6xYA2TnRK4kzhwt.jpg"
+        },
+        {
+            "category_id":5,
+            "category_name":"Gender Studies",
+            "category_description":"This code snippet adds a close button to the top right corner of the loading component. You can customize the appearance and functionality of the close button as needed.",
+            "category_icon":"https://swkzw6evztkyfvae.public.blob.vercel-storage.com/gender-studies-bhKL1gX6GJuKKDS350LR72h2qwnh7N.jpg"
+        },
+        {
+            "category_id":7,
+            "category_name":"Health studies ",
+            "category_description":"This code snippet adds a close button to the top right corner of the loading component. You can customize the appearance and functionality of the close button as needed.",
+            "category_icon":"https://swkzw6evztkyfvae.public.blob.vercel-storage.com/health-studies-f0bmY3nrL0NMvN5DhZLr2K6zeCX6py.jpg"
+        }
     ]
 }

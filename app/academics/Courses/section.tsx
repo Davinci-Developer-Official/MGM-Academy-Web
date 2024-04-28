@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image'
-import data from './data.json'
+import {category} from './data.json'
 import img from '@/public/empowerment/1.jpeg';
 import { FaArrowAltCircleLeft, FaArrowDown, FaArrowUp, FaBars, FaCaretDown, FaCartPlus,FaChevronCircleDown,FaChevronCircleUp,FaChevronDown,FaChevronUp,FaCompress,FaEraser,FaExpand,FaFemale,FaGraduationCap,FaInfo,FaInfoCircle,FaStar,FaStarHalfAlt } from 'react-icons/fa';
 import Link from 'next/link';
@@ -77,7 +77,7 @@ export default function Section({setHideMenu,hideMenu}:any){
     const [selectedItemId, setSelectedItemId] = useState(null); // State to store the ID of the selected item
 //const selectedCategorys = "Your desired category"; // Set your desired category here
 const [loading, setLoading] = useState(false);
-
+const [xloading, setXloading] = useState(false);
   const fetchData = async () => {
     try {
       {/*
@@ -123,7 +123,7 @@ const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_c
     useEffect(()=>{
         
         
-      },[newCourses,selectedCategory,details,imageError,loading]);//left here
+      },[newCourses,selectedCategory,details,imageError,loading,xloading]);//left here
     
     return(
         //rendered courses;
@@ -152,6 +152,12 @@ const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_c
         //@ts-ignore
         setSelectedCategory(category);
         setRenderCategory(false);
+        setXloading(true)
+        setTimeout(() => {
+          console.log('My function stopped after 50 seconds.');
+          setXloading(false); // Stop the function
+          //alert("loading")
+        }, 40000);
         //alert(category); // Changed from selectedCategory to category
       }}
     >
@@ -167,11 +173,47 @@ const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_c
             {/*mapped courses*/}
      
 
+        
+        {xloading&&(
 
+<div className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-transparent">
+  <div className="relative max-w-sm p-6 bg-white border border-gray-100 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-800 dark:hover:bg-gray-700">
+    <button
+      onClick={() => {
+        setSelectedCategory("")
+        setXloading(false); // Set isLoading state to false to hide the loading component
+      }} // Add your cancel function here
+      className="absolute top-2 right-2 p-1 rounded-full bg-gray-200 dark:bg-gray-700"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-5 w-5 text-gray-600 dark:text-gray-300"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fillRule="evenodd"
+          d="M2.646 2.646a.5.5 0 0 1 .708 0L10 9.293l6.646-6.647a.5.5 0 0 1 .708.708L10.707 10l6.647 6.646a.5.5 0 0 1-.708.708L10 10.707l-6.646 6.647a.5.5 0 1 1-.708-.708L9.293 10 2.646 3.354a.5.5 0 0 1 0-.708z"
+        />
+      </svg>
+    </button>
+    {selectedCategory&&<h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white opacity-20">{selectedCategory}.</h5>}
+    <p className="font-normal text-gray-700 dark:text-gray-400 opacity-20">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+    <div role="status" className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <svg aria-hidden="true" className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+        <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+      </svg>
+      <span className="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>
+
+
+)}
+       
       <div className='  overflow-y-scroll  mb-2 h-screen'>
-        {loading&&(<div className="bg-green-500 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          loading...
-        </div>)}
+        
         {currentCourses.length > 0 ? (
           <div className="w-[98%] mx-auto grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
             {/*purpose:loaded courses from server*/}
@@ -303,6 +345,7 @@ const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_c
         </ul>
       </div>
         </div>
+        
         
     )
 }
