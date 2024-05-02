@@ -67,7 +67,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         const data = await response.json();
         console.log('Fetched data:', data);
         setStudents(data.students);
-        alert(JSON.stringify(data))
+        //alert(JSON.stringify(data))
       } catch (error) {
         console.error('Error fetching data:', error);
         // Handle the error gracefully, e.g., show a message to the user
@@ -78,11 +78,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     fetchData();
   }, []);
   
-
-
-
-  return (
-    <div className="lg:flex lg:flex-row   sm:flex-none h-screen w-full   " style={{
+  {/*<div className="lg:flex lg:flex-row   sm:flex-none h-screen w-full   " style={{
      msOverflowStyle:'none',
      overflow:'hidden'
     }} >
@@ -94,6 +90,24 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </main>
      
         
-    </div>
+    </div>*/}
+
+
+  return (
+    <div className="flex flex-col lg:flex-row h-screen w-full bg-white ">
+  <div className="lg:w-auto ">
+    <DrawerStudent/>
+  </div>
+  <div className="lg:w-full w-full sm:w-full sm:mx-auto">
+    {children}
+  </div>
+  <div className="lg:w-auto ">
+    <NotificationStudents/>
+  </div>
+</div>
+
+
+    
   );
 }
+

@@ -18,6 +18,7 @@ interface Student {
   phone_number: string;
   date_of_birth: string;
   time_created: string;
+  password:any
 }
 
 const IndexPage = () => {
@@ -55,6 +56,8 @@ const IndexPage = () => {
             <div>middle name: {student.middle_name} </div>
             <div>username: {student.username} </div>
             <div>Last Name: {student.last_name}</div>
+            <p>email: {student.email} </p>
+            <p>password: {student.password} </p>
             <div>created at: {student.time_created} </div>
             {/* Add more fields as needed */}
           </li>

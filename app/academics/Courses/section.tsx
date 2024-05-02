@@ -120,6 +120,7 @@ const [xloading, setXloading] = useState(false);
 
 const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_category)));
 
+  //useEffect
     useEffect(()=>{
         
         
@@ -325,7 +326,19 @@ const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_c
                   </button>
                 </div>
               </div>))}</div>) : (
-          <p>No courses available</p>
+          //when courses are unavailable in the server ie no courses added.
+          <div className='flex flex-col w-full h-screen  ' >
+            <p className="text-center w-full bg-red-400   " >No courses available</p>
+            <div className='shadow-lg shadow-[#e97902] card w-[90%] lg:w-[60%] mx-auto mt-4  ' >
+              <div className='text-center card-body  ' >
+                <p className=' card-title text-center ' >It seems there are no courses available.</p>
+                <p className='' > To add a new course you need create an account with us as an instructor</p> 
+                <Link href="/academics/InstructorApplication" className='btn btn-success ' >register now</Link>
+                <p>if you are an already registered instructor you can create a course  now !</p>
+                <Link href="/academics/instructorPortal/Courses/create" className='btn btn-secondary '  >create course</Link>
+              </div>
+            </div>
+          </div>
         )}
       </div>
       <div className='flex justify-center mt-4'>

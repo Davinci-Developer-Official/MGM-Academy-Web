@@ -1,26 +1,27 @@
 import React from 'react'
 import banner from '@/public/empowerment/12.jpeg'
 import Image from 'next/image';
-import { FaChevronCircleDown, FaChevronCircleUp, FaInfoCircle } from 'react-icons/fa';
+import { FaChevronCircleDown, FaChevronCircleUp, FaCompress, FaExpand, FaInfoCircle } from 'react-icons/fa';
 
 function MissionAndVision({setNavigation,navigation}:any) {
   return (
-    <div>
+    <div className='h-screen ' >
+      <div  >
       <div className='flex flex-row w-full justify-between p-4 ' >
       {!navigation&&<button className='btn btn-ghost flex flex-col ' onClick={()=>{
         setNavigation(true)
-      }} >show menu<FaChevronCircleDown size={20} /></button>}
+      }} ><FaExpand size={15} /></button>}
       {navigation&&<button className='btn btn-ghost flex flex-col ' onClick={()=>{
         setNavigation(false);
-      }} ><FaChevronCircleUp size={20} />hide menu</button>}
+      }} ><FaCompress size={15} /></button>}
       <div className=" normal-case text-xl  ml-4 p-2 font-mono "> About Us  </div>
       <button className='btn btn-ghost hover:cursor-none ' ><FaInfoCircle size={20} /></button>
     </div>
-    <div className=' h-screen  background mb-5 font-mono ' >
-       <div className=' transparent h-[200px] lg:h-[250px]    rounded-md '>
+    <div className='   background  font-mono ' >{/*mb-5*/}
+       <div className=' transparent h-[200px] lg:h-[200px]    rounded-md '>
         <Image src={banner} alt="holder" className='h-full rounded-md w-[90%] lg:w-[90%] mx-auto '  />
       </div>
-     <div className='h-[500px] pt-5 mt-2 overflow-y-scroll' >
+     <div className='h-[500px] pt-5 mt-2 overflow-y-scroll w-[90%] mx-auto ' >
      <div className="collapse collapse-plus  " style={{
         marginTop:20,
       }}>
@@ -161,6 +162,7 @@ function MissionAndVision({setNavigation,navigation}:any) {
      </div>
      </div>
      </div>
+    </div>
   )
 }
 
