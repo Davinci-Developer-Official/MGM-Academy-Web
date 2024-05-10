@@ -65,7 +65,7 @@ function NotificationStudents() {
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content items-center justify-right flex flex-col" style={{ marginLeft: "90%" }}>
       {/*Open drawer*/}  
-      <label htmlFor="my-drawer-4" className="btn drawer-button   fixed   text-[#e1b382]  top-[68px] right-6 lg:right-8 lg:top-[20px] btn-ghost" ><FaBell size={20} />{notifications.length!==0 && <p className="animate-pulse  " >{notifications.length}</p> }</label>       
+      <label htmlFor="my-drawer-4" className="btn drawer-button   fixed   text-black  top-[2px] right-[-5px]  btn-ghost" ><FaBell size={20} />{notifications.length!==0 && <p className="animate-pulse  " >{notifications.length}</p> }</label>       
       {/* Page content here */}
       </div>
       <div className="drawer-side  ">
@@ -80,7 +80,7 @@ function NotificationStudents() {
 
           {/*Switching states using buttons*/}
           <div className=" normal-case bg-[#e1b382] text-[#2d545e] text-xl flex flex-row justify-evenly rounded-md "> 
-            <button className='p-[10px] btn btn-ghost  ' onClick={()=>{setShowEvent(false);}} > <FaBell size={20} className="text-black" />  Notifications</button>
+            <button className='p-[10px] btn  ' onClick={()=>{setShowEvent(false);}} > <FaBell size={20} className="text-black" />  Notifications</button>
             <button className='btn btn-ghost' onClick={()=>{setShowEvent(true);}} > Events <FaCalendarAlt size={20} className="text-black" /></button> 
           </div>
           <li className='w-[380px]' >

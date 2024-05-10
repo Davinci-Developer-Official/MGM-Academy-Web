@@ -95,7 +95,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex flex-col lg:flex-row h-screen w-full bg-white ">
-  <div className="lg:w-auto ">
+  <div className="lg:w-auto z-10 ">
     <DrawerStudent/>
   </div>
   <div className="lg:w-full w-full sm:w-full sm:mx-auto">

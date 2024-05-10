@@ -1,5 +1,6 @@
 "use client";
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useState } from 'react';
 import { FaArrowRight, FaArrowLeft, FaCaretRight, FaCaretLeft, FaCircle } from 'react-icons/fa';
 
@@ -30,7 +31,7 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
   const currentItem = items[currentItemIndex];
 
   return (
-    <div className="carousel w-full flex flex-col h-[400px] p-2 mb-2  ">
+    <div className="carousel w-full flex flex-col h-[400px] p-2   ">
       <div className="item flex flex-col w-full relative">
         <button className="prev-button btn absolute top-1/2 left-0 transform -translate-y-1/2" onClick={prevItem}>
           <FaArrowLeft />
@@ -50,9 +51,9 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
               <h2 className='text-base pt-2'>{currentItem.courseName}</h2>
               <p className='text-sm'>Instructed by: {currentItem.courseInstructor}</p>
             </div>
-            <button className='btn btn-ghost hover:border hover:border-[#e1b382] hover:text-[#e97902] hover:bg-[#0f2027] mt-[5px] mr-1 sm:text-sm w-[20%]'>
+            <Link href='/academics/studentPortal/Assignments/dashboard' className='btn btn-success hover:border hover:border-[#e1b382] hover:text-[#e97902] hover:bg-[#0f2027] mt-[5px] mr-1 sm:text-sm w-[20%]'>
               Chapter 1
-            </button>
+            </Link>
           </div>      
         </div>
         <div className={`lower-navigation h-10 w-full flex justify-center items-center`}>
