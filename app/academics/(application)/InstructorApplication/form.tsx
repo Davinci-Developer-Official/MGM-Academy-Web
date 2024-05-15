@@ -127,6 +127,7 @@ export default function Form({setNavigation,navigation}:any){
         }//slide switcher function;
         slideSwitcher();//calling the slide switcher function;
         
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[valueNo,slide1,slide2,slide3,slide4,slide5,user]);//left here
 
     
