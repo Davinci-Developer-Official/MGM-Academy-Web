@@ -93,8 +93,8 @@ function LoginStudent({setNavigation,navigation}:any) {
       <div className="card w-99 bg-base-100 shadow-xl image-full">
       <figure><Image src={image} alt="Shoes" /></figure>
       <div className="card-body">
-        <h1 className="font-bold  text-center text-lg w-full ">Login</h1>
-        <p className="py-6 font-mono  ">Step into the vibrant world of MGM Institute of Gender And Women Empowerment's Student Portal. Here, learning is more than just textbooks; it's a journey of self-discovery and empowerment. Dive into engaging courses, connect with fellow students, and explore a wealth of resources designed to fuel your passion for gender equality.
+        <h1 className="font-bold  text-center text-lg w-full text-white ">Login</h1>
+        <p className=" h-fit  font-mono hover:cursor-pointer hover:rounded-lg hover:bg-gray-500 text-white  ">Step into the vibrant world of MGM Institute of Gender And Women Empowerment's Student Portal. Here, learning is more than just textbooks; it's a journey of self-discovery and empowerment. Dive into engaging courses, connect with fellow students, and explore a wealth of resources designed to fuel your passion for gender equality.
 
         With a user-friendly interface and personalized features, navigating your academic journey has never been easier. Gain access to exclusive internships, job opportunities, and networking events that pave the way for a bright future.
 
