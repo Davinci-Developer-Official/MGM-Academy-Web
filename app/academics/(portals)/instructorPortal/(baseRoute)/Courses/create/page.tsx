@@ -62,6 +62,16 @@ function Page() {
     <div className=' w-[80%] h-[96%]  mx-auto my-auto ' >
       <div className='flex flex-row  h-[10%] ' >
         <button className="btn" onClick={openModal}>add course</button>
+        <button className='btn btn-neutral ' onClick={async()=>{
+         const response= await fetch("/api",{
+            method:"GET"
+          })
+          if(response.ok){
+            alert(response.body)
+          }else{
+            return 'server is  down'
+          }
+        }} >test db</button>
         <dialog id="my_modal_3" className="modal  ">
         <div className="modal-box background w-[80%] mx-auto ">
           <form method="dialog">

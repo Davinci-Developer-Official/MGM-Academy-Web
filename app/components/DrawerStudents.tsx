@@ -26,37 +26,27 @@ const DrawerStudent: React.FC = () => {
   </div> 
   <div className="drawer-side  ">
     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label> 
-    <ul className="menu  p-2 w-60 min-h-full z-100 text-white  h-screen flex flex-col overflow-y-scroll  "  style={{
-      backgroundColor:"#2d545e"
-    }}  >
+    <ul className="menu  p-2 w-60 min-h-full z-100 bg-white  h-screen flex flex-col overflow-y-scroll  font-serif   "    >
       {/* Sidebar content here */}
-      <a className=" w-[90%] h-fit  text-white justify-center pt-[10px]  flex flex-row normal-case text-xl mt-2  font-bold "> <FaFemale size={30} /> MGM Institute</a>
+      <a className=" w-[90%] h-fit   justify-center pt-[10px]  flex flex-row normal-case text-xl mt-2  font-bold "> <FaFemale size={30} /> MGM Institute</a>
       
       {/*className={` rounded-xl h-10 pt-1 ${selectedItem === "Dashboard" && "bg-white text-black" }`}*/}
       <li style={{
         marginTop:"20%",
         marginBottom:"5%"
-      }}  ><Link href="/academics/studentPortal/Dashboard" onClick={() => handleItemClick('Dashboard')} className={` rounded-xl h-10 pt-1 text-xl  ${selectedItem === "Dashboard" && " border border-[#e1b382]" }`} style={{
-        color:" #e1b382"
-      }} ><FaHome size={30} /> Dashboard </Link></li>
+      }}  ><Link href="/academics/studentPortal/Dashboard" onClick={() => handleItemClick('Dashboard')} className={` rounded-xl h-10 pt-1 text-xl  ${selectedItem === "Dashboard" && " border border-[#e1b382]" }`} ><FaHome size={30} /> Dashboard </Link></li>
       <li style={{
         marginTop:"5%",
         marginBottom:"5%"
-      }}  ><Link href="/academics/studentPortal/Assignments" onClick={() => handleItemClick('Assignments')} className={` rounded-xl h-10 pt-1 text-xl  ${selectedItem === "Assignments" && "border border-[#e1b382]" }`}  style={{
-        color:" #e1b382"
-      }} ><FaBook size={25} /> Assignments</Link></li>
+      }}  ><Link href="/academics/studentPortal/Assignments" onClick={() => handleItemClick('Assignments')} className={` rounded-xl h-10 pt-1 text-xl  ${selectedItem === "Assignments" && "border border-[#e1b382]" }`}  ><FaBook size={25} /> Assignments</Link></li>
       <li style={{
         marginTop:"5%",
         marginBottom:"10%"
-      }}  ><Link href="/academics/studentPortal/courses" onClick={() => handleItemClick('Courses')} className={` rounded-xl h-10 pt-1 text-xl  ${selectedItem === "Courses" && "border border-[#e1b382]" }`}  style={{
-        color:" #e1b382"
-      }} ><FaGraduationCap size={30} /> Courses</Link></li>
+      }}  ><Link href="/academics/studentPortal/courses" onClick={() => handleItemClick('Courses')} className={` rounded-xl h-10 pt-1 text-xl  ${selectedItem === "Courses" && "border border-[#e1b382]" }`}  ><FaGraduationCap size={30} /> Courses</Link></li>
        <li style={{
         marginTop:"5%",
         marginBottom:"10%"
-      }}  ><Link href="/academics/studentPortal/inbox" onClick={() => handleItemClick('history')} className={` rounded-xl h-10 pt-1 text-xl  ${selectedItem === "inbox" && "border border-[#e1b382]" }`}  style={{
-        color:" #e1b382"
-      }} ><FaInbox size={20} /> inbox</Link></li>
+      }}  ><Link href="/academics/studentPortal/inbox" onClick={() => handleItemClick('history')} className={` rounded-xl h-10 pt-1 text-xl  ${selectedItem === "inbox" && "border border-[#e1b382]" }`}   ><FaInbox size={20} /> inbox</Link></li>
      {/* <li style={{
         marginTop:"5%"
       }}  ><Link href="" onClick={() => handleItemClick('Settings')} className='text-base' ><FaWrench size={20} /> Settings</Link></li>

@@ -1,11 +1,19 @@
 import { sql } from '@vercel/postgres';
 import { NextResponse } from 'next/server';
 import crypto from 'crypto';
+import { v5 as uuidv5 } from 'uuid';
+
+// Define a namespace for UUID generation
+const NAMESPACE = '6ba7b810-9dad-11d1-80b4-00c04fd430c8'; // Example namespace UUID
 
 export async function POST(request: Request) {
   const id_generator = () => {
     const id = crypto.randomUUID().toString();
     return id;
+  };
+
+  const stringToUUID = (name: string) => {
+    return uuidv5(name, NAMESPACE);
   };
 
   try {
@@ -17,9 +25,10 @@ export async function POST(request: Request) {
     }
 
     const chapter_id = id_generator();
+    const course_uuid = stringToUUID(course_id); // Convert course_id to UUID
 
     // Insert chapter into database
-    await sql`INSERT INTO chapters (chapter_id, course_id, chapter_cover, chapter_title, chapter_description, chapter_content, chapter_video) VALUES (${chapter_id}, ${course_id}, ${chapter_cover}, ${chapter_title}, ${chapter_description}, ${chapter_content}, ${chapter_video})`;
+    await sql`INSERT INTO chapters (chapter_id, course_id, chapter_cover, chapter_title, chapter_description, chapter_content, chapter_video) VALUES (${chapter_id}, ${course_uuid}, ${chapter_cover}, ${chapter_title}, ${chapter_description}, ${chapter_content}, ${chapter_video})`;
 
     // Insert files into database
     for (const fileUrl of fileData) {
@@ -30,11 +39,12 @@ export async function POST(request: Request) {
     const chapters = await sql`SELECT * FROM chapters`;
 
     return NextResponse.json(chapters.rows, { status: 200 });
-  } catch (error:any) {
+  } catch (error: any) {
     console.error('Error:', error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
+
 
 
 

@@ -236,6 +236,7 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
             if (response && response.url) {
                 // Set the URL in state to display the video
                 setNewFile(false);
+               // alert("ziii")
                 setChapterInfo(prev => ({
                     ...prev,
                     fileData: [...prev.fileData, response.url]
