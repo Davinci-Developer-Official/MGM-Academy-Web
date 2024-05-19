@@ -43,20 +43,24 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
           <FaArrowRight />
         </button>
         {/*carousel content*/}
-          <div className='flex flex-col  w-[80%] mx-auto ' >
-          <div className='flex flex-row bg-gray-200' >
-            <figure className='avatar rounded-full w-[15%] bg-red-500  ' >
-              {showProgress?<Image src={currentItem.coverImage} alt={currentItem.courseName} className='object-fit w-full h-full  ' />:
+          <div className='flex flex-col  w-[80%] mx-auto mt-2 ' >
+          <Link href='/academics/studentPortal/Assignments/dashboard' className='flex flex-row bg-gray-300 cursor-pointer ' onMouseEnter={()=>{
+            setShowProgress(true)
+          }} onMouseLeave={()=>{
+            setShowProgress(false)
+          }} >
+            <figure className='avatar rounded-full w-[15%]   ' >
+              {!showProgress?<Image src={currentItem.coverImage} alt={currentItem.courseName} className='object-fit rounded-full w-full h-full  ' />:
               <RadialProgress value={70} />}
             </figure>
             <div className='w-[85%] text-center pt-4 flex flex-col ' >
-              <div>Chapter 1: Introduction to Integers</div>
-              <div className='flex flex-row justify-evenly p-2 ' >
+              <div className='font-serif font-semibold ' >Chapter 1: Introduction to Integers</div>
+              <div className='font-mono  flex flex-row justify-evenly p-2 ' >
                 <p className='pt-2 ' >{currentItem.courseName}</p>
                 <p className='pt-2 ' >{currentItem.courseInstructor}</p>
               </div>
             </div>      
-          </div>
+          </Link>
           <Link href='/academics/studentPortal/Assignments/dashboard' className='btn btn-success hover:border hover:border-[#e1b382] hover:text-[#e97902] hover:bg-[#0f2027] w-full '>
           
               continue learning

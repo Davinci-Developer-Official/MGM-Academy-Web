@@ -12,7 +12,7 @@ const RadialProgress: React.FC<RadialProgressProps> = ({ value }) => {
       };
     return (
     <div 
-      className="radial-progress bg-primary text-primary-content border-4 border-primary mt-5 ml-6 "
+      className="radial-progress bg-primary text-primary-content border-4 border-primary mt-3.5 ml-3 "
       style={{ ...sizeStyle,"--value": value } as React.CSSProperties} 
       role="progressbar"
     >
