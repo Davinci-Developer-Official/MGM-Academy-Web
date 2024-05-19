@@ -47,21 +47,28 @@ function Segment() {
     }
   };
   return (
-    <div className=' h-screen flex flex-col  p-1 ' >
+    <div className=' h-screen flex flex-col  p-1  ' >
         <HeaderDash/>
-        <h1 className='text-center font-serif font-bold  ' >Welcome back Thomas </h1>
-        <h2 className='text-center font-serif font-semibold  ' >Continue learning </h2>
-
-      <div className='overflow-y-scroll h-screen flex flex-col  ' >
-      <Carousel items={items}/>
         
-        <div tabIndex={0} className="collapse collapse-arrow font-serif text-center font-semibold  border border-base-300 bg-base-200">
-      <div className="collapse-title text-xl font-medium bg-white ">
+        <div className="title p-2 text-center font-serif font bold flex flex-row justify-evenly " >
+          <p>11-05-2024</p>
+          <p>Upcoming activity</p>
+          <p>welcome back: Thomas</p>
+        </div>
+
+      
+      <Carousel items={items}/>
+        {/*
+        tabIndex={0}
+        styling:"collapse collapse-arrow font-serif text-center font-semibold  border border-base-300 bg-base-200"*/}
+    <div  className="flex flex-col  backdrop: w-full  text-black font-serrif  ">
+      <div className="collapse-title text-xl font-medium bg-white text-center ">
         Track your progress
       </div>
-      <div className="collapse-content overflow-y-scroll h-full  "> 
+      {/*styling:"collapse-content overflow-y-scroll h-full  "*/}
       
-      <div className="overflow-x-auto  ">
+      
+      <div className="overflow-y-scroll h-[400px]  ">
       <table className="table">
         {/* head */}
         <thead>
@@ -85,7 +92,7 @@ function Segment() {
         <tbody>
           {/* Map over the data array to render rows dynamically */}
           {items.map(item => (
-            <tr key={item.id}>
+            <tr key={item.id}  >
               <td>
                 <label>
                 <input
@@ -153,13 +160,13 @@ function Segment() {
     </div>
       </div>
       </div>
-    </div>
+   
           
          
         
         
         
-    </div>
+  
   )
 }
 
