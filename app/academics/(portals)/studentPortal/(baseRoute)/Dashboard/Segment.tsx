@@ -48,7 +48,7 @@ function Segment() {
   };
   return (
     <div className=' h-screen flex flex-col  p-1  ' >
-        <HeaderDash/>
+       {/* <HeaderDash/>*/}
         
         <div className="title p-2 text-center font-serif font bold flex flex-row justify-evenly " >
           <p>11-05-2024</p>

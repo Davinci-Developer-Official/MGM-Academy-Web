@@ -1,5 +1,7 @@
 'use client';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import placeholder from "@/public/profile/user.png"
+import Image from 'next/image';
 
 function ElearningStudentNavbar() {
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -7,10 +9,19 @@ function ElearningStudentNavbar() {
     const toggleDropdown = () => {
       setDropdownOpen(!dropdownOpen);
     };
-  
+    const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown1 = () => {
+    setIsOpen(!isOpen);
+  };
+  const[spContent,showSPConctent]=useState(false)
+  const[financeContent,showFinanceContent]=useState(false)
+  const[academicContent,showAcademicContent]=useState(false)
+  const[moreContent,showMoreContent]=useState(false)
+  useEffect(()=>{},[spContent,financeContent,academicContent,moreContent,dropdownOpen,isOpen])
     return (
-      <div className="navbar bg-white">
-        <div className="navbar-start">
+      <div className="navbar justify-between bg-white">
+        <div className="">
           <div className="dropdown">
             <div
               tabIndex={0}
@@ -36,48 +47,56 @@ function ElearningStudentNavbar() {
             {dropdownOpen && (
               <ul
                 tabIndex={0}
-                className="menu  menu-sm dropdown-content mt-3 ] p-2 shadow bg-white z-10 text-2xl font-serif font-semibold rounded-box w-52"
+                className="menu  menu-sm dropdown-content mt-3  p-2 shadow bg-white z-10 text-2xl font-serif font-semibold rounded-box w-52"
               >
                 <li><p>Home</p></li>
                 <li><p>Dashboard</p></li>
                 <li><p>My Courses</p></li>
                 <li><p>Support</p></li>
                 <li>
-                  <p>Student Portal</p>
-                  <ul className="p-2">
+                  <button onClick={()=>{
+                    showSPConctent(true)
+                  }} >Student Portal</button>
+                  {spContent&&<ul className="p-2">
                     <li><p>TimeTable</p></li>
                     <li>
-                      <p>Finance</p>
-                      <ul className="p-2">
+                      <button onClick={()=>{
+                        showFinanceContent(true)
+                      }} >Finance</button>
+                      {financeContent&&<ul className="p-2">
                         <li><a>Purchases</a></li>
                         <li><a>Offers/Discounts</a></li>
                         <li><p>Payment Plan</p></li>
                         <li><p>Payment Methods</p></li>
-                      </ul>
+                      </ul>}
                     </li>
                     <li>
-                      <p>Academic</p>
-                      <ul className="p-2">
+                      <button onClick={()=>{
+                        showAcademicContent(true)
+                      }} >Academic</button>
+                      {academicContent&&<ul className="p-2">
                         <li><a>Units/Curriculum</a></li>
                         <li><a>ResultSlip/Transcripts</a></li>
                         <li><p>Passlist</p></li>
-                      </ul>
+                      </ul>}
                     </li>
-                  </ul>
+                  </ul>}
                 </li>
                 <li>
-                  <p>More</p>
-                  <ul className="p-2">
+                  <button onClick={()=>{
+                    showMoreContent(true)
+                  }} >More</button>
+                  {moreContent&&<ul className="p-2">
                     <li><p>Contact Us</p></li>
                     <li><p>FAQS</p></li>
-                  </ul>
+                  </ul>}
                 </li>
               </ul>
             )}
           </div>
           <a className="btn btn-ghost text-xl lowercase">MGM e-learning</a>
         </div>
-        <div className="navbar-center hidden lg:flex text-xl font-serif font-bold">
+        <div className=" hidden lg:flex text-xl font-serif font-bold">
           <ul className="menu menu-horizontal px-1">
             <li><p>Home</p></li>
             <li><p>Dashboard</p></li>
@@ -86,7 +105,7 @@ function ElearningStudentNavbar() {
             <li>
               <details>
                 <summary>Student Portal</summary>
-                <ul className="p-2">
+                <ul className="p-2 bg-white z-10 ">
                   <li><p>TimeTable</p></li>
                   <li>
                     <details>
@@ -102,7 +121,7 @@ function ElearningStudentNavbar() {
                   <li>
                     <details>
                       <summary>Academic</summary>
-                      <ul className="p-2">
+                      <ul className="p-2  ">
                         <li><a>Units/Curriculum</a></li>
                         <li><a>ResultSlip/Transcripts</a></li>
                         <li><p>Passlist</p></li>
@@ -115,7 +134,7 @@ function ElearningStudentNavbar() {
             <li>
               <details>
                 <summary>More</summary>
-                <ul className="p-2">
+                <ul className="p-2 bg-white z-10 ">
                   <li><p>Contact Us</p></li>
                   <li><p>FAQS</p></li>
                 </ul>
@@ -123,9 +142,43 @@ function ElearningStudentNavbar() {
             </li>
           </ul>
         </div>
-        <div className="navbar-end">
-          <a className="btn">Button</a>
+        <div className="form-control">
+      <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
+    </div>
+
+    <div className="dropdown dropdown-end">  
+      <div
+        tabIndex={0}
+        role="button"
+        className="btn btn-ghost btn-circle avatar"
+        onClick={toggleDropdown1}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleDropdown1();
+          }
+        }}
+      >
+        <div className="w-10 rounded-full">
+          <Image src={placeholder} alt='avatar' />
         </div>
+      </div>
+      {isOpen && (
+        <ul
+          tabIndex={0}
+          className="mt-3 z-10 bg-red-400 p-2 shadow menu menu-sm dropdown-content  rounded-box w-52"
+        >
+          <li>
+            <a className="justify-between">
+              Profile
+              <span className="badge">New</span>
+            </a>
+          </li>
+          <li><a>Settings</a></li>
+          <li><a>Logout</a></li>
+        </ul>
+      )}
+    </div>
       </div>
     );
 }
