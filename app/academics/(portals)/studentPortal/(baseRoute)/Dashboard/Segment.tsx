@@ -72,7 +72,7 @@ function Segment() {
       <table className="table">
         {/* head */}
         <thead>
-          <tr>
+          <tr className='text-black text-lg font-serif '>
             <th>
               <label>
                 <input type="checkbox" className="checkbox" />
@@ -92,12 +92,12 @@ function Segment() {
         <tbody>
           {/* Map over the data array to render rows dynamically */}
           {items.map(item => (
-            <tr key={item.id}  >
+            <tr key={item.id} className='text-black text-lg font-serif   '  >
               <td>
                 <label>
                 <input
                         type="checkbox"
-                        className="checkbox"
+                        className="checkbox  bg-gray-400 "
                         checked={selectedItems.includes(item.id)}
                         onChange={() => handleCheckboxChange(item.id)}
                       />
@@ -114,36 +114,36 @@ function Segment() {
                 </div>
               </td>
               <td>
-              <div className="font-bold text-red-400 ">{item.courseName}</div>
+              <div className="font-bold  ">{item.courseName}</div>
 
               </td>
               <td>
-              <div className="text-sm opacity-50 text-red-400 ">{item.courseInstructor}</div>
+              <div className="text-sm font-semibold font-serif  ">{item.courseInstructor}</div>
               </td>
               <td>
-                <div className="text-sm opacity-50 text-red-400 " >100</div>
+                <div className="text-sm font-semibold font-serif  " >100</div>
               </td>
               <td>
-                <div className="text-sm opacity-50 text-red-400 " >80</div>
+                <div className="text-sm font-semibold font-serif  " >80</div>
               </td>
               <td>
-              <div className="text-sm opacity-50 text-red-400 " >70</div>
+              <div className="text-sm font-semibold font-serif   " >70</div>
               </td>
               <td>
-              <div className="text-sm opacity-50 text-red-400 " >80</div>
+              <div className="text-sm font-semibold font-serif   " >80</div>
               </td>
               <td>
-              <div className="text-sm opacity-50 text-red-400 " >80</div>
+              <div className="text-sm font-semibold font-serif   " >80</div>
               </td>
               <td>
-              <div className="text-sm opacity-50 text-red-400 " >B+ (70)</div>
+              <div className="text-sm font-semibold font-serif   " >B+ (70)</div>
               </td>
             </tr>
           ))}
         </tbody>
         {/* foot */}
         <tfoot>
-          <tr>
+          <tr className='text-black text-lg font-serif ' >
             <th></th>
             <th>cover image</th>
             <th>Course Name</th>

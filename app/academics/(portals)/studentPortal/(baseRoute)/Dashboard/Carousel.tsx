@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import { FaArrowRight, FaArrowLeft, FaCaretRight, FaCaretLeft, FaCircle } from 'react-icons/fa';
+import { FaArrowRight, FaArrowLeft, FaCaretRight, FaCaretLeft, FaCircle, FaAngleRight, FaAngleLeft } from 'react-icons/fa';
 import RadialProgress from "./Radial"
 
 
@@ -35,33 +35,33 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
   useEffect(()=>{},[progress,showProgress])
   return (
     <div className="carousel w-full flex flex-col h-[240px]   ">
-      <div className="item flex flex-col w-full relative">
-        <button className="prev-button btn absolute top-[25%] left-0 transform -translate-y-1/2" onClick={prevItem}>
-          <FaArrowLeft />
+      <div className="item flex flex-col w-[97%] mx-auto relative">
+        <button className=" prev-button btn absolute top-[25%] left-0 transform -translate-y-1/2 bg-white text-black hover:text-[#e97902] hover:bg-white rounded-full border-none mt-5  " onClick={prevItem}>
+          <FaAngleLeft size={30} />
         </button>
-        <button className="next-button btn  absolute top-[30%] right-0 transform -translate-y-1/2" onClick={nextItem}>
-          <FaArrowRight />
+        <button className=" next-button btn  absolute top-[30%] right-0 transform -translate-y-1/2 bg-white text-black hover:text-[#e97902] hover:bg-white rounded-full border-none mt-5  " onClick={nextItem}>
+          <FaAngleRight size={30} />
         </button>
         {/*carousel content*/}
-          <div className='flex flex-col  w-[80%] mx-auto mt-2 ' >
-          <Link href='/academics/studentPortal/Assignments/dashboard' className='flex flex-row bg-gray-300 cursor-pointer ' onMouseEnter={()=>{
+          <div className='flex flex-col  w-[80%] mx-auto mt-2 bg-gray-500 ' >
+          <Link href='/academics/studentPortal/Assignments/dashboard' className='flex flex-row justify-between bg-gray-500 hover:bg-gray-500 cursor-pointer text-white hover:text-white ' onMouseEnter={()=>{
             setShowProgress(true)
           }} onMouseLeave={()=>{
             setShowProgress(false)
           }} >
-            <figure className='avatar rounded-full w-[15%]   ' >
-              {!showProgress?<Image src={currentItem.coverImage} alt={currentItem.courseName} className='object-fit rounded-full w-full h-full  ' />:
-              <RadialProgress value={70} />}
-            </figure>
-            <div className='w-[85%] text-center pt-4 flex flex-col ' >
+            
+            <div className='w-full text-center pt-4 flex flex-col ' >
               <div className='font-serif font-semibold ' >Chapter 1: Introduction to Integers</div>
               <div className='font-mono  flex flex-row justify-evenly p-2 ' >
                 <p className='pt-2 ' >{currentItem.courseName}</p>
                 <p className='pt-2 ' >{currentItem.courseInstructor}</p>
               </div>
-            </div>      
+            </div> 
+            <figure className='pt-[8px] pr-[8px] bg-gray-400 ' >
+              <RadialProgress value={70} />
+            </figure>     
           </Link>
-          <Link href='/academics/studentPortal/Assignments/dashboard' className='btn btn-success hover:border hover:border-[#e1b382] hover:text-[#e97902] hover:bg-[#0f2027] w-full '>
+          <Link href='/academics/studentPortal/Assignments/dashboard' className='btn bg-grey-400 hover:border hover:border-[#e1b382] hover:text-[#e97902] hover:bg-[#0f2027] w-full '>
           
               continue learning
             </Link>

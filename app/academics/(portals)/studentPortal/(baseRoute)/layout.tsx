@@ -3,6 +3,7 @@
 // layout.tsx
 
 import DrawerStudent from "@/app/components/DrawerStudents";
+import ElearningStudentNavbar from "@/app/components/ElearningStudentNavbar";
 import NotificationStudents from "@/app/components/NotificationStudents";
 import { NodeNextRequest } from "next/dist/server/base-http/node";
 import { useEffect, useState } from "react";
@@ -94,7 +95,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
 
   return (
+    <div className="flex flex-col" >
+    <ElearningStudentNavbar/>
     <div className="flex flex-col lg:flex-row h-screen w-full bg-white ">
+    
   <div className="lg:w-auto z-10 ">
     <DrawerStudent/>
   </div>
@@ -105,6 +109,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <NotificationStudents/>
   </div>
 </div>
+    </div>
 
 
     

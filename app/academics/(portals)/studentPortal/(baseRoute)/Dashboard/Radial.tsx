@@ -7,12 +7,12 @@ interface RadialProgressProps {
 const RadialProgress: React.FC<RadialProgressProps> = ({ value }) => {
  
     const sizeStyle = {
-        width: `${50}px`,
-        height: `${50}px`
+        width: `${70}px`,
+        height: `${70}px`
       };
     return (
     <div 
-      className="radial-progress bg-primary text-primary-content border-4 border-primary mt-3.5 ml-3 "
+      className="radial-progress "
       style={{ ...sizeStyle,"--value": value } as React.CSSProperties} 
       role="progressbar"
     >

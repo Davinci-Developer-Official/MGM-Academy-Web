@@ -65,7 +65,7 @@ function NotificationStudents() {
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content items-center justify-right flex flex-col" style={{ marginLeft: "90%" }}>
       {/*Open drawer*/}  
-      <label htmlFor="my-drawer-4" className="btn drawer-button   fixed   text-black  top-[2px] right-[-5px]  btn-ghost" ><FaBell size={20} />{notifications.length!==0 && <p className="animate-pulse  " >{notifications.length}</p> }</label>       
+      <label htmlFor="my-drawer-4" className="btn drawer-button   fixed   text-black  top-[55px] right-[-5px]  btn-ghost" ><FaBell size={20} />{notifications.length!==0 && <p className="animate-pulse  " >{notifications.length}</p> }</label>       
       {/* Page content here */}
       </div>
       <div className="drawer-side  ">

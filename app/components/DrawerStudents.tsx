@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import ba from "../../public/profile/user.png"
 import Image from 'next/image';
-import { FaBars, FaBook, FaCaretRight, FaChevronCircleRight, FaCog, FaEllipsisV, FaFemale, FaGraduationCap, FaHistory, FaHome, FaInbox, FaSave, FaWrench } from 'react-icons/fa';
+import { FaBars, FaBook, FaCaretRight, FaChevronCircleRight, FaCog, FaCompass, FaEllipsisV, FaFemale, FaGraduationCap, FaHistory, FaHome, FaInbox, FaSave, FaWrench } from 'react-icons/fa';
 import DarkModeButton from './DarkModeButton';
 import CartBtn from './CartBtn';
 import ProfileBtn from './ProfileBtn';
@@ -21,7 +21,7 @@ const DrawerStudent: React.FC = () => {
   <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
   <div className="drawer-content flex flex-col items-left justify-center">
     {/* Page content here */}
-    <label htmlFor="my-drawer-2" className="btn btn-ghost drawer-button lg:hidden fixed top-1 ml-[-20px]   text-black  "> <FaBars size={20} /> </label>
+    <label htmlFor="my-drawer-2" className="btn btn-ghost drawer-button lg:hidden fixed top-[55px]    text-black  "> <FaCompass size={25} /> </label>
   
   </div> 
   <div className="drawer-side  ">
