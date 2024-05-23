@@ -7,6 +7,7 @@ import ba from "@/public/placeholders/ba.jpeg";
 import bb from "@/public/placeholders/bb.jpeg";
 import bc from "@/public/placeholders/bc.jpeg";
 import Image from 'next/image';
+import BootstrapCarousel from './BootstrapCarousel';
 
 function Segment() {
   const items = [
@@ -57,11 +58,12 @@ function Segment() {
         </div>
 
       
-      <Carousel items={items}/>
+      {/*<Carousel items={items}/>*/}
+      <BootstrapCarousel/>
         {/*
         tabIndex={0}
         styling:"collapse collapse-arrow font-serif text-center font-semibold  border border-base-300 bg-base-200"*/}
-    <div  className="flex flex-col  backdrop: w-full  text-black font-serrif  ">
+    <div  className="flex flex-col  backdrop: w-[99%] mx-auto  text-black font-serrif  ">
       <div className="collapse-title text-xl font-medium bg-white text-center ">
         Track your progress
       </div>

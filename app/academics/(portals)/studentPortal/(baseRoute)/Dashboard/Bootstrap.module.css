@@ -1,0 +1,14 @@
+/* styles/Bootstrap.module.css */
+.itemP {
+    /* Example styles for carousel items */
+    padding: 20px;
+  }
+  
+  .caption {
+    /* Example styles for carousel captions */
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  

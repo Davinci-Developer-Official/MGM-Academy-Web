@@ -44,7 +44,7 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
         </button>
         {/*carousel content*/}
           <div className='flex flex-col  w-[80%] mx-auto mt-2 bg-gray-500 ' >
-          <Link href='/academics/studentPortal/Assignments/dashboard' className='flex flex-row justify-between bg-gray-500 hover:bg-gray-500 cursor-pointer text-white hover:text-white ' onMouseEnter={()=>{
+          <Link href='/academics/studentPortal/Assignments/dashboard' className=' card rounded-lg flex flex-row justify-between bg-gray-500 hover:bg-gray-500 cursor-pointer text-white hover:text-white ' onMouseEnter={()=>{
             setShowProgress(true)
           }} onMouseLeave={()=>{
             setShowProgress(false)
