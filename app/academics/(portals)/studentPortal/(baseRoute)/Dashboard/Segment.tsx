@@ -58,8 +58,8 @@ function Segment() {
         </div>
 
       
-      {/*<Carousel items={items}/>*/}
-      <BootstrapCarousel/>
+      <Carousel items={items}/>
+      {/*<BootstrapCarousel/>*/}
         {/*
         tabIndex={0}
         styling:"collapse collapse-arrow font-serif text-center font-semibold  border border-base-300 bg-base-200"*/}

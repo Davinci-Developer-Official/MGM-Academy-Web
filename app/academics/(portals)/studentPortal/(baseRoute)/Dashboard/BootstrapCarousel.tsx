@@ -4,6 +4,8 @@ import { Carousel } from "react-bootstrap";
 import "./Bootstrap.module.css";
 import styles from "./Bootstrap.module.css";
 import items from "./Items.json";
+import Image from "next/image";
+import placeholder from '@/public/empowerment/12.jpeg'
 
 
 type CarouselItem = {
@@ -27,7 +29,7 @@ export default function BootstrapCarousel() {
     <Carousel activeIndex={index} onSelect={handleSelect}>
       {bootstrap.map((item) => (
         <Carousel.Item key={item.id} className={styles.itemP} interval={4000}>
-          <img src={item.imageUrl} alt="slides" />
+          <Image src={placeholder}  alt="slides" />
           <Carousel.Caption className={styles.caption}>
             <h3>{item.title}</h3>
             <p>{item.body}</p>

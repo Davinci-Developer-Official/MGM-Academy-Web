@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react'
-import { FaCaretRight, FaPen, FaPlus, FaTimes, FaTrash, FaUpload } from 'react-icons/fa'
+import { FaCaretRight, FaInfo, FaInfoCircle, FaPen, FaPlus, FaTimes, FaTimesCircle, FaTrash, FaUpload } from 'react-icons/fa'
 import dummyPic from "@/public/empowerment/1.jpeg"
 import axios from 'axios';
 import Image from 'next/image';
@@ -195,7 +195,17 @@ const[msg,setMsg]=useState("")
       setMsg("cover image or cover video is empty unable to upload")
     }
   }
-  useEffect(()=>{},[videoUrl,imageUrl,loadingImage,loadingVideo,deletingLoading])
+  const[info,setInfo]=useState({
+    "coverImage":false,
+    "coverVideo":false,
+    "courseName":false,
+    "courseCategory":false,
+    "courseCode":false,
+    "courseDescription":false,
+    "courseInstructor":false,
+    "courseRequirements":false,
+  })
+  useEffect(()=>{},[info,videoUrl,imageUrl,loadingImage,loadingVideo,deletingLoading])
   return (
     <div>
       {/*overflow-y-scroll*/}
@@ -246,7 +256,7 @@ const[msg,setMsg]=useState("")
         <div className='w-[80%] sm:w-[70%] p-6 flex flex-col'>
             {!videoUrl && (
                 <>
-                    <input type='file' accept="video/*" placeholder='eg basic computer knowledge' onChange={handleVideoChange} />
+                    <input type="file" id="videoUpload" accept="video/*" placeholder='eg basic computer knowledge' onChange={handleVideoChange} />
                    {loadingVideo?<span className="loading loading-bars loading-lg text-[#e97902] "></span>:null}
                    {!videoUrl&& <button className='btn btn-ghost  h-[30px] w-[100px] mt-2 flex flex-row' onClick={handleVideoUpload}><FaUpload size={20} /><p></p></button>}
                 </>
@@ -276,6 +286,7 @@ const[msg,setMsg]=useState("")
      
       
       {/*---course name / Title ---*/}
+      {/*
       <div className=' flex flex-col justify-between mx-auto background w-full ' >
         <div className='font-mono ' >
           <p className='italic' > course  name</p>
@@ -287,7 +298,33 @@ const[msg,setMsg]=useState("")
       setCourseInfo(prevUser => ({ ...prevUser, coursename: value }));
     }} />
       </div>
+      */}
+      <label className="form-control  ">
+  <div className="label">
+    <span className="label-text text-[#e97902] font-mono font-bold text-xl ">course name</span>
+    <span className="label-text-alt text-black font-mono font-semibold text-[14px] ">{info.courseName?<div className='flex flex-row justify-between  ' onClick={(e:any)=>{
+      e.preventDefault();
+      //@ts-ignore
+      setInfo({courseName:false})
+    }} ><p className='pt-4 text-center text-sm  pl-[7.5px]' > eg web development 1</p><button className='btn btn-ghost' ><FaTimesCircle size={15} /></button>  </div>:<button className='btn btn-ghost' onClick={(e:any)=>{
+      e.preventDefault();
+      //@ts-ignore
+      setInfo({courseName:true})
+    }}  ><FaInfoCircle className=' text-black ' size={20} /></button>}</span>
+  </div>
+  <textarea className="textarea textarea-bordered h-24 bg-slate-200 placeholder-black  " placeholder="enter course name" onChange={(e:any)=>{
+      const value = e.target.value;
+      sessionStorage.setItem("s-fname",value);
+      //@ts-ignore
+      setCourseInfo(prevUser => ({ ...prevUser, coursename: value }));
+    }} ></textarea>
+  <div className="label  ">
+    <span className="label-text-alt text-black font-mono font-bold text-[12px] ">max length 100 words</span>
+    <span className="label-text-alt text-black font-mono font-bold text-[12px] ">Expand</span>
+  </div>
+</label>
       {/*---course category---*/}
+      {/*
       <div className=' flex flex-col justify-evenly w-full mx-auto background mt-5 ' >
         <div className='font-mono ' >
           <p className='italic' > course category</p>
@@ -299,7 +336,36 @@ const[msg,setMsg]=useState("")
       setCourseInfo(prevUser => ({ ...prevUser, coursecategory: value }));
     }} />
       </div>
+      */}
+
+      <label className="form-control">
+      <div className="label">
+    <span className="label-text text-[#e97902] font-mono font-bold text-xl ">category</span>
+    <span className="label-text-alt text-black font-mono font-semibold text-[16px] ">{info.courseCategory?<div className='flex flex-row justify-between  ' onClick={(e:any)=>{
+      e.preventDefault();
+      //@ts-ignore
+      setInfo({courseCategory:false})
+    }} ><p className='pt-4 text-center text-sm  pl-[7.5px]' > eg information technology</p><button className='btn btn-ghost' ><FaTimesCircle size={15} /></button>  </div>:<button className='btn btn-ghost' onClick={(e:any)=>{
+      e.preventDefault();
+      //@ts-ignore
+      setInfo({courseCategory:true})
+    }}  ><FaInfoCircle className=' text-black ' size={20} /></button>}</span>
+  </div>
+  <textarea className="textarea textarea-bordered h-24 bg-slate-200 placeholder-black " placeholder=" enter course category " onChange={(e:any)=>{
+      const value = e.target.value;
+      //sessionStorage.setItem("s-fname",value);
+      //@ts-ignore
+      setCourseInfo(prevUser => ({ ...prevUser, coursecategory: value }));
+    }} ></textarea>
+  <div className="label  ">
+    <span className="label-text-alt text-black font-mono font-bold text-[12px] ">max length 500 words</span>
+    <span className="label-text-alt text-black font-mono font-bold text-[12px] ">Expand</span>
+  </div>
+</label>
+
+
       {/*---course code---*/}
+      {/*
       <div className=' flex flex-col w-full justify-evenly mx-auto background mt-5 ' >
         <div className='font-mono ' >
           <p className='  italic' > course code</p>
@@ -311,7 +377,37 @@ const[msg,setMsg]=useState("")
       setCourseInfo(prevUser => ({ ...prevUser, unitcode: value }));
     }} />
       </div>
+      */}
+
+      <label className="form-control">
+      <div className="label">
+    <span className="label-text  text-[#e97902] font-mono font-bold text-xl "> course code</span>
+    <span className="label-text-alt text-black font-mono font-semibold text-[16px] ">
+    {info.courseCode?<div className='flex flex-row justify-between  ' onClick={(e:any)=>{
+      e.preventDefault();
+      //@ts-ignore
+      setInfo({courseCode:false})
+    }} ><p className='pt-4 text-center text-sm  pl-[7.5px]' > eg IT 205</p><button className='btn btn-ghost' ><FaTimesCircle size={15} /></button>  </div>:<button className='btn btn-ghost' onClick={(e:any)=>{
+      e.preventDefault();
+      //@ts-ignore
+      setInfo({courseCode:true})
+    }}  ><FaInfoCircle className=' text-black ' size={20} /></button>}
+    </span>
+  </div>
+  <textarea className="textarea textarea-bordered h-24 bg-slate-200 placeholder-black " placeholder=" enter course code " onChange={(e:any)=>{
+      const value = e.target.value;
+      //sessionStorage.setItem("s-fname",value);
+      //@ts-ignore
+      setCourseInfo(prevUser => ({ ...prevUser, unitcode: value }));
+    }} ></textarea>
+  <div className="label  ">
+    <span className="label-text-alt text-black font-mono font-bold text-[12px] ">max length 500 words</span>
+    <span className="label-text-alt text-black font-mono font-bold text-[12px] ">Expand</span>
+  </div>
+</label>
+
       {/*course description */}
+      {/*
       <div className=' flex flex-col w-full justify-between mx-auto background mt-5 ' >
         <div className='font-mono' >
           <p className=' italic' > course description</p>
@@ -323,7 +419,35 @@ const[msg,setMsg]=useState("")
       setCourseInfo(prevUser => ({ ...prevUser, coursedescription: value }));
     }} />
       </div>
+      */}
+
+      <label className="form-control">
+      <div className="label">
+    <span className="label-text text-[#e97902] font-mono font-bold text-xl"> description</span>
+    <span className="label-text-alt text-black font-mono font-semibold text-[16px] ">{info.courseDescription?<div className='flex flex-row justify-between  ' onClick={(e:any)=>{
+      e.preventDefault();
+      //@ts-ignore
+      setInfo({courseDescription:false})
+    }} ><p className='pt-4 text-center text-sm  pl-[7.5px]' > describe your project</p><button className='btn btn-ghost' ><FaTimesCircle size={15} /></button>  </div>:<button className='btn btn-ghost' onClick={(e:any)=>{
+      e.preventDefault();
+      //@ts-ignore
+      setInfo({courseDescription:true})
+    }}  ><FaInfoCircle className=' text-black ' size={20} /></button>} </span>
+  </div>
+  <textarea className="textarea textarea-bordered h-24 bg-slate-200 placeholder-black " placeholder=" describe what your course here "  onChange={(e:any)=>{
+      const value = e.target.value;
+      //sessionStorage.setItem("s-fname",value);
+      //@ts-ignore
+      setCourseInfo(prevUser => ({ ...prevUser, coursedescription: value }));
+    }} ></textarea>
+  <div className="label  ">
+    <span className="label-text-alt text-black font-mono font-bold text-[12px] ">max length 500 words</span>
+    <span className="label-text-alt text-black font-mono font-bold text-[12px] ">Expand</span>
+  </div>
+</label>
+
       {/*---course instructor(s)---*/}
+     {/*
       <div className='mt-4 ' >
       <div className=' flex flex-col w-full mx-auto background mt-5 ' >
         <div className='font-mono ' >
@@ -338,7 +462,34 @@ const[msg,setMsg]=useState("")
       </div>
      
       </div>
+     */}
+
+      <label className="form-control">
+      <div className="label">
+    <span className="label-text text-[#e97902] font-mono font-bold text-xl "> Instructor(s)</span>
+    <span className="label-text-alt text-black font-mono font-semibold text-[16px] ">{info.courseInstructor?<div className='flex flex-row justify-between  ' onClick={(e:any)=>{
+      e.preventDefault();
+      //@ts-ignore
+      setInfo({courseInstructor:false})
+    }} ><p className='pt-4 text-center text-sm  pl-[7.5px]' > who made the course?</p><button className='btn btn-ghost' ><FaTimesCircle size={15} /></button>  </div>:<button className='btn btn-ghost' onClick={(e:any)=>{
+      e.preventDefault();
+      //@ts-ignore
+      setInfo({courseInstructor:true})
+    }}  ><FaInfoCircle className=' text-black ' size={20} /></button>} </span>
+  </div>
+  <textarea className="textarea textarea-bordered h-24 bg-slate-200 placeholder-black  " placeholder=" add your course instructors eg Joe Mwangi , Brian Morgan "  onChange={(e:any)=>{
+      const value = e.target.value;
+      //sessionStorage.setItem("s-fname",value);
+      //@ts-ignore
+      setCourseInfo(prevUser => ({ ...prevUser, courseinstructor: value }));
+    }} ></textarea>
+  <div className="label  ">
+    <span className="label-text-alt text-black font-mono font-bold text-[12px] ">max length 500 words</span>
+    <span className="label-text-alt text-black font-mono font-bold text-[12px] ">Expand</span>
+  </div>
+</label>
       {/*course requirements*/}
+     {/*
       <div>
       <div className='h-[170px] flex flex-col w-full mx-auto background mt-5'>
         <div className='font-mono  '>
@@ -354,7 +505,33 @@ const[msg,setMsg]=useState("")
 
       
       </div>
+     */}
       
+
+      <label className="form-control">
+      <div className="label">
+    <span className="label-text text-[#e97902] font-mono font-bold text-xl "> requirements(s)</span>
+    <span className="label-text-alt text-black font-mono font-semibold text-[16px] ">{info.courseRequirements?<div className='flex flex-row justify-between  ' onClick={(e:any)=>{
+      e.preventDefault();
+      //@ts-ignore
+      setInfo({courseRequirements:false})
+    }} ><p className='pt-4 text-center text-sm ' > eg basic computer knowledge </p><button className='btn btn-ghost' ><FaTimesCircle size={15} /></button>  </div>:<button className='btn btn-ghost' onClick={(e:any)=>{
+      e.preventDefault();
+      //@ts-ignore
+      setInfo({courseRequirements:true})
+    }}  ><FaInfoCircle className=' text-black ' size={20} /></button>} </span>
+  </div>
+  <textarea className="textarea textarea-bordered h-24 bg-slate-200 placeholder-black " placeholder=" add your course instructors eg Joe Mwangi , Brian Morgan "  onChange={(e:any)=>{
+      const value = e.target.value;
+      //sessionStorage.setItem("s-fname",value);
+      //@ts-ignore
+      setCourseInfo(prevUser => ({ ...prevUser, courserequirements: value }));
+    }} ></textarea>
+  <div className="label  ">
+    <span className="label-text-alt text-black font-mono font-bold text-[12px] ">max length 500 words</span>
+    <span className="label-text-alt text-black font-mono font-bold text-[12px] ">Expand</span>
+  </div>
+</label>
      {/*----create course button----*/}
      
       

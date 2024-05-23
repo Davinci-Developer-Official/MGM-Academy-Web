@@ -34,7 +34,7 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
   //track realtime changes;
   useEffect(()=>{},[progress,showProgress])
   return (
-    <div className="carousel w-full flex flex-col h-[240px]   ">
+    <div className="carousel w-full flex flex-col h-[300px]   ">
       <div className="item flex flex-col w-[97%] mx-auto relative">
         <button className=" prev-button btn absolute top-[25%] left-0 transform -translate-y-1/2 bg-white text-black hover:text-[#e97902] hover:bg-white rounded-full border-none mt-5  " onClick={prevItem}>
           <FaAngleLeft size={30} />
@@ -43,28 +43,30 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
           <FaAngleRight size={30} />
         </button>
         {/*carousel content*/}
-          <div className='flex flex-col  w-[80%] mx-auto mt-2 bg-gray-500 ' >
-          <Link href='/academics/studentPortal/Assignments/dashboard' className=' card rounded-lg flex flex-row justify-between bg-gray-500 hover:bg-gray-500 cursor-pointer text-white hover:text-white ' onMouseEnter={()=>{
+          <div className='card flex flex-col  w-[80%] mx-auto mt-2 bg-gray-500 h-[230px] ' >
+          <Link href='/academics/studentPortal/Assignments/dashboard' className=' card rounded-lg flex flex-row justify-between bg-gray-500 hover:bg-gray-500 cursor-pointer text-white hover:text-white h-[200px] ' onMouseEnter={()=>{
             setShowProgress(true)
           }} onMouseLeave={()=>{
             setShowProgress(false)
           }} >
             
-            <div className='w-full text-center pt-4 flex flex-col ' >
-              <div className='font-serif font-semibold ' >Chapter 1: Introduction to Integers</div>
-              <div className='font-mono  flex flex-row justify-evenly p-2 ' >
+            <div className='w-full text-center  flex flex-col ' >
+              <div className='font-serif font-semibold card-title pl-5 h-[80%] bg-red-400 ' >Chapter 1: Introduction to Integers</div>
+              <div className='card-body h-[10%] font-mono  flex flex-row justify-evenly p-1 bg-green-500 ' >
                 <p className='pt-2 ' >{currentItem.courseName}</p>
                 <p className='pt-2 ' >{currentItem.courseInstructor}</p>
               </div>
             </div> 
-            <figure className='pt-[8px] pr-[8px] bg-gray-400 ' >
+            <figure className='pt-[8px] pr-[8px] bg-gray-400 absolute left-[90%] ' >
               <RadialProgress value={70} />
             </figure>     
           </Link>
           <Link href='/academics/studentPortal/Assignments/dashboard' className='btn bg-grey-400 hover:border hover:border-[#e1b382] hover:text-[#e97902] hover:bg-[#0f2027] w-full '>
           
-              continue learning
-            </Link>
+          <p>50%</p>
+          <progress className="progress progress-success w-56" value={50} max="100"></progress>
+          <button></button>  
+          </Link>
           </div>
              {/*
           <Image src={currentItem.coverImage} alt={currentItem.courseName} style={{
