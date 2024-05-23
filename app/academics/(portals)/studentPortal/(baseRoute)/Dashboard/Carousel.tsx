@@ -61,12 +61,12 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
               <RadialProgress value={70} />
             </figure>     
           </Link>
-          <Link href='/academics/studentPortal/Assignments/dashboard' className='btn bg-grey-400 hover:border hover:border-[#e1b382] hover:text-[#e97902] hover:bg-[#0f2027] w-full '>
+          <div className='flex flex-row p-2 justify-evenly bg-grey-400 hover:border hover:border-[#e1b382] hover:text-[#e97902] hover:bg-[#0f2027] w-full '>
           
           <p>50%</p>
           <progress className="progress progress-success w-56" value={50} max="100"></progress>
-          <button></button>  
-          </Link>
+          <Link href='/academics/studentPortal/Assignments/dashboard' className='btn btn-success ' > continue </Link>
+          </div>
           </div>
              {/*
           <Image src={currentItem.coverImage} alt={currentItem.courseName} style={{

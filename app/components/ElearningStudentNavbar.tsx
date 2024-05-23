@@ -142,9 +142,11 @@ function ElearningStudentNavbar() {
             </li>
           </ul>
         </div>
-        <div className="form-control">
-      <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
-    </div>
+        <label className="border border-black bg-white input input-bordered flex items-center gap-1">
+  <input type="text" className="grow bg-white " placeholder="Search" />
+  <kbd className="kbd kbd-sm text-black bg-white ">⌘</kbd>
+  <kbd className="kbd kbd-sm text-black bg-white ">K</kbd>
+</label>
 
     <div className="dropdown dropdown-end">  
       <div

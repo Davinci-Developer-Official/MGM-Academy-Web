@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react'
-import { FaCaretRight, FaCheckCircle, FaCheckDouble, FaFile, FaFilePdf, FaFileWord, FaPen, FaPlus, FaTicketAlt, FaTimes, FaTrash, FaUpload } from 'react-icons/fa'
+import { FaCaretRight, FaCheckCircle, FaCheckDouble, FaFile, FaFilePdf, FaFileWord, FaInfoCircle, FaPen, FaPlus, FaTicketAlt, FaTimes, FaTimesCircle, FaTrash, FaUpload } from 'react-icons/fa'
 import dummyPic from "@/public/empowerment/1.jpeg"
 import axios from 'axios';
 import Image from 'next/image';
@@ -264,8 +264,17 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
         }
     }*/}
     
-   
-    useEffect(() => { }, [selectedFile2,uploadedFiles,fileData,chapterInfo,indexing,newFile,selectedFile2,fileData,videoUrl, imageUrl, loadingImage, loadingVideo,  msg])
+    const[info,setInfo]=useState({
+        "coverImage":false,
+        "coverVideo":false,
+        "courseName":false,
+        "courseCategory":false,
+        "courseCode":false,
+        "courseDescription":false,
+        "courseInstructor":false,
+        "courseRequirements":false,
+      })
+    useEffect(() => { }, [info,selectedFile2,uploadedFiles,fileData,chapterInfo,indexing,newFile,selectedFile2,fileData,videoUrl, imageUrl, loadingImage, loadingVideo,  msg])
     return (
         <div>
             {/*overflow-y-scroll*/}
@@ -306,7 +315,7 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
                     </div>
 
                     {/*course description */}
-                    <div className=' flex flex-col w-full justify-between mx-auto background mt-5 ' >
+                    {/*<div className=' flex flex-col w-full justify-between mx-auto background mt-5 ' >
                         <div className='font-mono' >
                             <p className=' italic' > chapter title</p>
                         </div>
@@ -316,8 +325,35 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
                             //@ts-ignore
                             setChapterInfo(prevUser => ({ ...prevUser, chapter_title: value }));
                         }} />
-                    </div>
+                    </div>*/}
+
+                    <label className="form-control  ">
+  <div className="label">
+    <span className="label-text text-[#e97902] font-mono font-bold text-xl "> chapter title </span>
+    <span className="label-text-alt text-black font-mono font-semibold text-[14px] ">{info.courseName?<div className='flex flex-row justify-between  ' onClick={(e:any)=>{
+      e.preventDefault();
+      //@ts-ignore
+      setInfo({courseName:false})
+    }} ><p className='pt-4 text-center text-sm  pl-[7.5px]' > eg Introduction </p><button className='btn btn-ghost' ><FaTimesCircle size={15} /></button>  </div>:<button className='btn btn-ghost' onClick={(e:any)=>{
+      e.preventDefault();
+      //@ts-ignore
+      setInfo({courseName:true})
+    }}  ><FaInfoCircle className=' text-black ' size={20} /></button>}</span>
+  </div>
+  <textarea className="textarea textarea-bordered h-24 bg-slate-200 placeholder-black  " placeholder="enter chapter title " onChange={(e: any) => {
+                            const value = e.target.value;
+                            //sessionStorage.setItem("s-fname",value);
+                            //@ts-ignore
+                            setChapterInfo(prevUser => ({ ...prevUser, chapter_title: value }));
+                        }} ></textarea>
+  <div className="label  ">
+    <span className="label-text-alt text-black font-mono font-bold text-[12px] ">max length 100 words</span>
+    <span className="label-text-alt text-black font-mono font-bold text-[12px] ">Expand</span>
+  </div>
+</label>
+
                     {/*---course instructor(s)---*/}
+                   {/*
                     <div className='mt-4 ' >
                         <div className=' flex flex-col w-full mx-auto background mt-5 ' >
                             <div className='font-mono ' >
@@ -332,7 +368,34 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
                         </div>
 
                     </div>
+                   */}
+
+                    <label className="form-control  ">
+  <div className="label">
+    <span className="label-text text-[#e97902] font-mono font-bold text-xl "> description </span>
+    <span className="label-text-alt text-black font-mono font-semibold text-[14px] ">{info.courseName?<div className='flex flex-row justify-between  ' onClick={(e:any)=>{
+      e.preventDefault();
+      //@ts-ignore
+      setInfo({courseName:false})
+    }} ><p className='pt-4 text-center text-sm  pl-[7.5px]' > eg Introduction </p><button className='btn btn-ghost' ><FaTimesCircle size={15} /></button>  </div>:<button className='btn btn-ghost' onClick={(e:any)=>{
+      e.preventDefault();
+      //@ts-ignore
+      setInfo({courseName:true})
+    }}  ><FaInfoCircle className=' text-black ' size={20} /></button>}</span>
+  </div>
+  <textarea className="textarea textarea-bordered h-24 bg-slate-200 placeholder-black  " placeholder="enter chapter title " onChange={(e: any) => {
+                                const value = e.target.value;
+                                //sessionStorage.setItem("s-fname",value);
+                                //@ts-ignore
+                                setChapterInfo(prevUser => ({ ...prevUser, chapter_description: value }));
+                            }} ></textarea>
+  <div className="label  ">
+    <span className="label-text-alt text-black font-mono font-bold text-[12px] ">max length 100 words</span>
+    <span className="label-text-alt text-black font-mono font-bold text-[12px] ">Expand</span>
+  </div>
+</label>
                     {/*course requirements*/}
+                    {/* 
                     <div>
                         <div className='h-fit flex flex-col w-full mx-auto background mt-5'>
                             <div className='font-mono  '>
@@ -348,6 +411,32 @@ function CreateChapter({ setCreateChapter, setSuccessfulUpload, setFailedUpload 
 
 
                     </div>
+                    */}
+
+                    <label className="form-control  ">
+  <div className="label">
+    <span className="label-text text-[#e97902] font-mono font-bold text-xl "> content  </span>
+    <span className="label-text-alt text-black font-mono font-semibold text-[14px] ">{info.courseName?<div className='flex flex-row justify-between  ' onClick={(e:any)=>{
+      e.preventDefault();
+      //@ts-ignore
+      setInfo({courseName:false})
+    }} ><p className='pt-4 text-center text-sm  pl-[7.5px]' > eg Introduction </p><button className='btn btn-ghost' ><FaTimesCircle size={15} /></button>  </div>:<button className='btn btn-ghost' onClick={(e:any)=>{
+      e.preventDefault();
+      //@ts-ignore
+      setInfo({courseName:true})
+    }}  ><FaInfoCircle className=' text-black ' size={20} /></button>}</span>
+  </div>
+  <textarea className="textarea textarea-bordered h-24 bg-slate-200 placeholder-black  " placeholder="enter chapter title " onChange={(e: any) => {
+                                const value = e.target.value;
+                                //sessionStorage.setItem("s-fname",value);
+                                //@ts-ignore
+                                setChapterInfo(prevUser => ({ ...prevUser, chapter_content: value }));
+                            }} ></textarea>
+  <div className="label  ">
+    <span className="label-text-alt text-black font-mono font-bold text-[12px] ">max length 2,000 words</span>
+    <span className="label-text-alt text-black font-mono font-bold text-[12px] ">Expand</span>
+  </div>
+</label>
 
                     {/*----cover video----*/}
                     <div>
