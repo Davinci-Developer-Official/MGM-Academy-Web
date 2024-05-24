@@ -23,7 +23,7 @@ function Navbar() {
         {/*About MGM*/}
       <li tabIndex={0}>
         <details>
-          <summary><button className='flex flex-row ' > <FaInfoCircle size={20} className="mr-2 text-[#e97902] " />  About MGM  </button></summary>
+          <summary><Link href="/AboutMGM" className='flex flex-row ' > <FaInfoCircle size={20} className="mr-2 text-[#e97902] " />  About MGM  </Link></summary>
           <ul className="p-1  w-fit border-b-2 border-b-[#e97902] ">
             <li><Link href="/AboutMGM/AboutUs" > <FaInfoCircle size={20} className='text-[#e97902] ' /> About MGM  </Link></li>
             <li><Link href="/AboutMGM/Mission&Vision" > <FaSun size={20} className='text-[#e97902] ' /> Mission & Vision  </Link></li>
@@ -82,7 +82,7 @@ function Navbar() {
         {/*About MGM*/}
       <li tabIndex={0}>
         <details>
-          <summary><button className='flex flex-row ' > <FaInfoCircle size={20} className="mr-2 text-[#e97902] " />  About MGM  </button></summary>
+          <summary><Link href="/AboutMGM" className='flex flex-row ' > <FaInfoCircle size={20} className="mr-2 text-[#e97902] " />  About MGM  </Link></summary>
           <ul className="p-1  w-fit  z-10 background border-b-2 border-b-[#e97902] ">
             <li><Link href="/AboutMGM/AboutUs" > <FaInfoCircle className="text-[#e97902] " size={20} /> About MGM  </Link></li>
             <li><Link href="/AboutMGM/Mission&Vision" > <FaSun className='text-[#e97902] ' size={20} /> Mission & Vision  </Link></li>

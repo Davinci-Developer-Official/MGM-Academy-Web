@@ -1,0 +1,84 @@
+/* styles/timeline.css */
+.timeline {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #e5e7eb; /* Tailwind gray-200 */
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .timeline li {
+    position: relative;
+    margin-bottom: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  .timeline-middle {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    background: white;
+    border-radius: 50%;
+    padding: 0.5rem;
+    box-shadow: 0 0 0 2px #e5e7eb; /* Tailwind gray-200 */
+  }
+  
+  .timeline-start,
+  .timeline-end {
+    position: relative;
+    width: 50%;
+  }
+  
+  .timeline-start {
+    left: -50%;
+    text-align: right;
+  }
+  
+  .timeline-end {
+    left: 50%;
+    text-align: left;
+  }
+  
+  .timeline hr {
+    margin: 2rem 0;
+  }
+  
+  @media (max-width: 768px) {
+    .timeline::before {
+      left: 10%;
+      transform: translateX(0);
+    }
+  
+    .timeline li {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  
+    .timeline-start,
+    .timeline-end {
+      width: 80%;
+      left: 10%;
+    }
+  
+    .timeline-start {
+      text-align: left;
+     
+    }
+  
+    .timeline-end {
+      text-align: left;
+    }
+  }
+  
