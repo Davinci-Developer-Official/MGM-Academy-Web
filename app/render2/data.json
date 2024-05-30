@@ -1,0 +1,760 @@
+{
+    "courses": [
+      {
+        "title": "Intersections of Identity: Understanding Gender through Multiple Lenses",
+        "courseRequirements": [
+          "No prerequisites",
+          "Open to undergraduates and graduates",
+          "Access to course readings and materials (provided online)"
+        ],
+        "unitCode": "GS101",
+        "topics": [
+          {
+            "unit": "Introduction to Intersectionality",
+            "subtopics": [
+              "Definition and Origins",
+              "Key Theorists (e.g., Kimberlé Crenshaw)",
+              "Case Studies in Intersectionality"
+            ]
+          },
+          {
+            "unit": "Gender and Race",
+            "subtopics": [
+              "Historical Context of Race and Gender",
+              "Impact on Social and Economic Opportunities",
+              "Media Representation"
+            ]
+          },
+          {
+            "unit": "Gender and Class",
+            "subtopics": [
+              "Economic Inequality and Class",
+              "Intersection with Gender Roles",
+              "Feminization of Poverty"
+            ]
+          },
+          {
+            "unit": "Gender and Sexuality",
+            "subtopics": [
+              "Sexual Orientation and Gender Identity",
+              "Discrimination and Legal Rights",
+              "Intersectional Queer Theories"
+            ]
+          },
+          {
+            "unit": "Gender and Disability",
+            "subtopics": [
+              "Gendered Experiences of Disability",
+              "Access and Inclusion",
+              "Disability Rights Movement"
+            ]
+          },
+          {
+            "unit": "Policy and Advocacy",
+            "subtopics": [
+              "Intersectional Policy Analysis",
+              "Advocacy Strategies",
+              "Case Studies in Intersectional Activism"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Media Mirrors: Gender Representation on Screen and Page",
+        "courseRequirements": [
+          "No prerequisites",
+          "Open to undergraduates and graduates",
+          "Access to a variety of media examples (provided online or suggested)"
+        ],
+        "unitCode": "GS102",
+        "topics": [
+          {
+            "unit": "Introduction to Media Representation",
+            "subtopics": [
+              "Defining Media Representation",
+              "Historical Overview"
+            ]
+          },
+          {
+            "unit": "Gender in Film",
+            "subtopics": [
+              "Analysis of Classic and Contemporary Films",
+              "Gender Stereotypes in Cinema",
+              "Role of Women and Men Behind the Camera"
+            ]
+          },
+          {
+            "unit": "Television and Gender",
+            "subtopics": [
+              "Gender Dynamics in TV Shows",
+              "Impact of Soap Operas, Sitcoms, and Dramas",
+              "Representation in Children’s Television"
+            ]
+          },
+          {
+            "unit": "Literature and Gender",
+            "subtopics": [
+              "Gender Roles in Classic and Modern Literature",
+              "Feminist Literary Criticism",
+              "Gender in Young Adult and Popular Fiction"
+            ]
+          },
+          {
+            "unit": "Social Media and Digital Platforms",
+            "subtopics": [
+              "Gender Representation on Social Media",
+              "Influencers and Gendered Branding",
+              "Online Harassment and Gender"
+            ]
+          },
+          {
+            "unit": "Changing the Narrative",
+            "subtopics": [
+              "Media Literacy and Critical Viewing",
+              "Strategies for More Inclusive Media",
+              "Case Studies of Successful Interventions"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Bridging the Gap: The Gender Pay Disparity Explained",
+        "courseRequirements": [
+          "No prerequisites",
+          "Open to undergraduates and graduates",
+          "Access to statistical tools and reports (provided online)"
+        ],
+        "unitCode": "GS103",
+        "topics": [
+          {
+            "unit": "Introduction to the Gender Pay Gap",
+            "subtopics": [
+              "Definition and Measurement",
+              "Historical Context"
+            ]
+          },
+          {
+            "unit": "Causes of the Gender Pay Gap",
+            "subtopics": [
+              "Occupational Segregation",
+              "Discrimination and Bias",
+              "Education and Training Differences"
+            ]
+          },
+          {
+            "unit": "Economic Impact",
+            "subtopics": [
+              "Impact on Individuals and Families",
+              "Broader Economic Consequences",
+              "Global Comparisons"
+            ]
+          },
+          {
+            "unit": "Legal and Policy Framework",
+            "subtopics": [
+              "Equal Pay Legislation",
+              "Policies for Closing the Gap",
+              "Case Studies of Effective Policies"
+            ]
+          },
+          {
+            "unit": "Corporate and Organizational Practices",
+            "subtopics": [
+              "Best Practices for Employers",
+              "Gender Pay Audits",
+              "Strategies for Advocacy"
+            ]
+          },
+          {
+            "unit": "Future Directions",
+            "subtopics": [
+              "Emerging Trends and Research",
+              "Advocacy and Activism",
+              "Personal Strategies for Negotiation"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Classrooms of Equality: Gender Dynamics in Education",
+        "courseRequirements": [
+          "No prerequisites",
+          "Open to undergraduates and graduates",
+          "Access to educational case studies and reports (provided online)"
+        ],
+        "unitCode": "GS104",
+        "topics": [
+          {
+            "unit": "Introduction to Gender and Education",
+            "subtopics": [
+              "Overview of Gender Disparities in Education",
+              "Historical Context"
+            ]
+          },
+          {
+            "unit": "Gender Bias in Curricula",
+            "subtopics": [
+              "Gender Stereotypes in Textbooks",
+              "Inclusive Teaching Materials",
+              "Case Studies of Curriculum Reforms"
+            ]
+          },
+          {
+            "unit": "Gender and Educational Attainment",
+            "subtopics": [
+              "Performance Differences Between Genders",
+              "Impact of Socioeconomic Status",
+              "Gender Differences in STEM and Humanities"
+            ]
+          },
+          {
+            "unit": "Gender Dynamics in the Classroom",
+            "subtopics": [
+              "Teacher Expectations and Student Performance",
+              "Classroom Interaction Patterns",
+              "Strategies for Gender-Inclusive Teaching"
+            ]
+          },
+          {
+            "unit": "Policy and Institutional Responses",
+            "subtopics": [
+              "Gender Equity Policies in Education",
+              "Role of Educational Institutions",
+              "Case Studies of Successful Programs"
+            ]
+          },
+          {
+            "unit": "Global Perspectives",
+            "subtopics": [
+              "Comparative Analysis of Gender in Education",
+              "International Education Programs",
+              "Future Directions in Educational Gender Equity"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Trans Lives Matter: Understanding Transgender Rights and Issues",
+        "courseRequirements": [
+          "No prerequisites",
+          "Open to undergraduates and graduates",
+          "Access to legal documents and activist materials (provided online)"
+        ],
+        "unitCode": "GS105",
+        "topics": [
+          {
+            "unit": "Introduction to Transgender Identities",
+            "subtopics": [
+              "Definitions and Terminology",
+              "Historical and Cultural Contexts"
+            ]
+          },
+          {
+            "unit": "Legal Rights and Protections",
+            "subtopics": [
+              "Overview of Legal Challenges",
+              "Key Legislation and Court Cases",
+              "International Comparisons"
+            ]
+          },
+          {
+            "unit": "Healthcare and Medical Issues",
+            "subtopics": [
+              "Access to Healthcare",
+              "Medical Transition and Insurance",
+              "Mental Health Challenges"
+            ]
+          },
+          {
+            "unit": "Social and Cultural Issues",
+            "subtopics": [
+              "Representation in Media and Culture",
+              "Experiences in Education and Employment",
+              "Family Dynamics and Social Support"
+            ]
+          },
+          {
+            "unit": "Advocacy and Activism",
+            "subtopics": [
+              "Key Figures and Movements",
+              "Strategies for Advocacy",
+              "Case Studies of Successful Campaigns"
+            ]
+          },
+          {
+            "unit": "Future Directions",
+            "subtopics": [
+              "Emerging Issues in Trans Rights",
+              "Intersectional Approaches",
+              "Building Inclusive Communities"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Redefining Masculinity: From Stereotypes to Strength",
+        "courseRequirements": [
+          "No prerequisites",
+          "Open to undergraduates and graduates",
+          "Access to multimedia resources (provided online)"
+        ],
+        "unitCode": "GS106",
+        "topics": [
+          {
+            "unit": "Introduction to Masculinity Studies",
+            "subtopics": [
+              "Definitions and Key Concepts",
+              "Historical Context"
+            ]
+          },
+          {
+            "unit": "Constructions of Masculinity",
+            "subtopics": [
+              "Traditional Masculine Norms",
+              "Media Representations",
+              "Masculinity Across Cultures"
+            ]
+          },
+          {
+            "unit": "Masculinity and Health",
+            "subtopics": [
+              "Impact on Physical Health",
+              "Mental Health Challenges",
+              "Substance Use and Risk Behaviors"
+            ]
+          },
+          {
+            "unit": "Masculinity and Relationships",
+            "subtopics": [
+              "Masculinity in Friendships and Romantic Relationships",
+              "Parenting and Fatherhood",
+              "Impact on Work-Life Balance"
+            ]
+          },
+          {
+            "unit": "Changing Norms",
+            "subtopics": [
+              "Movements for Positive Masculinity",
+              "Role of Education and Media",
+              "Case Studies of Change"
+            ]
+          },
+          {
+            "unit": "Future Directions",
+            "subtopics": [
+              "Emerging Trends in Masculinity Studies",
+              "Intersectional Approaches",
+              "Building Inclusive Masculine Identities"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "The Gendered Body: Identity, Politics, and Society",
+        "courseRequirements": [
+          "No prerequisites",
+          "Open to undergraduates and graduates",
+          "Access to multimedia resources (provided online)"
+        ],
+        "unitCode": "GS107",
+        "topics": [
+          {
+            "unit": "Introduction to the Gendered Body",
+            "subtopics": [
+              "Definitions and Key Concepts",
+              "Historical Context"
+            ]
+          },
+          {
+            "unit": "Body Politics",
+            "subtopics": [
+              "Reproductive Rights",
+              "Body Autonomy and Consent",
+              "Legal and Ethical Issues"
+            ]
+          },
+          {
+            "unit": "Body Image and Society",
+            "subtopics": [
+              "Media Representations",
+              "Impact of Social Media",
+              "Cultural Differences"
+            ]
+          },
+          {
+            "unit": "Health and Wellness",
+            "subtopics": [
+              "Gender Differences in Healthcare",
+              "Mental Health and Body Image",
+              "Access to Health Services"
+            ]
+          },
+          {
+            "unit": "Transgender and Non-Binary Bodies",
+            "subtopics": [
+              "Medical Transition and Healthcare",
+              "Legal and Social Challenges",
+              "Case Studies"
+            ]
+          },
+          {
+            "unit": "Future Directions",
+            "subtopics": [
+              "Emerging Trends in Body Politics",
+              "Intersectional Approaches",
+              "Strategies for Advocacy"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Queer Theory and Gender",
+        "courseRequirements": [
+          "No prerequisites",
+          "Open to undergraduates and graduates",
+          "Access to queer literature and critical essays (provided online)"
+        ],
+        "unitCode": "GS108",
+        "topics": [
+          {
+            "unit": "Introduction to Queer Theory",
+            "subtopics": [
+              "Definitions and Key Concepts",
+              "Historical Context"
+            ]
+          },
+          {
+            "unit": "Foundations of Queer Theory",
+            "subtopics": [
+              "Key Thinkers (e.g., Judith Butler, Michel Foucault)",
+              "Influential Texts",
+              "Intersection with Feminist Theory"
+            ]
+          },
+          {
+            "unit": "Queer Theory and Identity",
+            "subtopics": [
+              "Construction of Sexual and Gender Identities",
+              "Intersectionality in Queer Identities",
+              "Case Studies"
+            ]
+          },
+          {
+            "unit": "Queer Representation in Media",
+            "subtopics": [
+              "Film and Television",
+              "Literature and Art",
+              "Impact of Representation on Society"
+            ]
+          },
+          {
+            "unit": "Queer Activism and Politics",
+            "subtopics": [
+              "Historical and Contemporary Movements",
+              "Strategies for Social Change",
+              "Case Studies of Activism"
+            ]
+          },
+          {
+            "unit": "Future Directions in Queer Theory",
+            "subtopics": [
+              "Emerging Trends and Debates",
+              "Global Perspectives",
+              "Building Inclusive Movements"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Breaking the Silence: Understanding and Preventing Gender-Based Violence",
+        "courseRequirements": [
+          "No prerequisites",
+          "Open to undergraduates and graduates",
+          "Access to legal cases and advocacy materials (provided online)"
+        ],
+        "unitCode": "GS109",
+        "topics": [
+          {
+            "unit": "Introduction to Gender-Based Violence",
+            "subtopics": [
+              "Definitions and Key Concepts",
+              "Historical Context"
+            ]
+          },
+          {
+            "unit": "Types of Gender-Based Violence",
+            "subtopics": [
+              "Domestic and Intimate Partner Violence",
+              "Sexual Violence and Harassment",
+              "Human Trafficking and Exploitation"
+            ]
+          },
+          {
+            "unit": "Impact on Victims",
+            "subtopics": [
+              "Physical and Psychological Effects",
+              "Economic and Social Consequences",
+              "Case Studies of Survivors"
+            ]
+          },
+          {
+            "unit": "Legal and Policy Frameworks",
+            "subtopics": [
+              "Key Legislation and International Conventions",
+              "Law Enforcement and Judicial Responses",
+              "Policy Analysis and Recommendations"
+            ]
+          },
+          {
+            "unit": "Prevention and Intervention",
+            "subtopics": [
+              "Strategies for Prevention",
+              "Support Services and Resources for Victims",
+              "Case Studies of Successful Interventions"
+            ]
+          },
+          {
+            "unit": "Advocacy and Activism",
+            "subtopics": [
+              "Key Figures and Movements",
+              "Strategies for Advocacy",
+              "Building Supportive Communities"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Waves of Change: The Evolution of Feminist Movements",
+        "courseRequirements": [
+          "No prerequisites",
+          "Open to undergraduates and graduates",
+          "Access to historical documents and feminist literature (provided online)"
+        ],
+        "unitCode": "GS110",
+        "topics": [
+          {
+            "unit": "Introduction to Feminism",
+            "subtopics": [
+              "Definitions and Key Concepts",
+              "Historical Overview"
+            ]
+          },
+          {
+            "unit": "First Wave Feminism",
+            "subtopics": [
+              "Key Figures and Movements",
+              "Achievements and Limitations",
+              "Case Studies"
+            ]
+          },
+          {
+            "unit": "Second Wave Feminism",
+            "subtopics": [
+              "Key Figures and Movements",
+              "Achievements and Limitations",
+              "Case Studies"
+            ]
+          },
+          {
+            "unit": "Third Wave Feminism",
+            "subtopics": [
+              "Key Figures and Movements",
+              "Achievements and Limitations",
+              "Case Studies"
+            ]
+          },
+          {
+            "unit": "Contemporary Feminist Theories",
+            "subtopics": [
+              "Intersectional Feminism",
+              "Ecofeminism and Global Feminism",
+              "Critical Analysis of Contemporary Issues"
+            ]
+          },
+          {
+            "unit": "Feminism in Practice",
+            "subtopics": [
+              "Advocacy and Activism Strategies",
+              "Feminist Policy Analysis",
+              "Building Inclusive Movements"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Balancing Act: Navigating Gender and Work-Life Integration",
+        "courseRequirements": [
+          "No prerequisites",
+          "Open to undergraduates and graduates",
+          "Access to policy documents and case studies (provided online)"
+        ],
+        "unitCode": "GS111",
+        "topics": [
+          {
+            "unit": "Introduction to Work-Life Balance",
+            "subtopics": [
+              "Definitions and Key Concepts",
+              "Historical Context"
+            ]
+          },
+          {
+            "unit": "Gender Roles in the Workplace",
+            "subtopics": [
+              "Gendered Expectations and Norms",
+              "Impact on Career Advancement",
+              "Case Studies"
+            ]
+          },
+          {
+            "unit": "Work-Life Integration Strategies",
+            "subtopics": [
+              "Time Management and Prioritization",
+              "Flexible Work Arrangements",
+              "Case Studies of Best Practices"
+            ]
+          },
+          {
+            "unit": "Parental Leave Policies",
+            "subtopics": [
+              "Overview of Global Policies",
+              "Impact on Gender Equality",
+              "Policy Analysis and Recommendations"
+            ]
+          },
+          {
+            "unit": "Caregiving Responsibilities",
+            "subtopics": [
+              "Gender and Caregiving",
+              "Impact on Professional and Personal Life",
+              "Strategies for Support"
+            ]
+          },
+          {
+            "unit": "Building Supportive Work Environments",
+            "subtopics": [
+              "Corporate Policies and Practices",
+              "Role of Leadership in Promoting Balance",
+              "Case Studies of Successful Programs"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Beyond Binaries: Navigating LGBTQ+ Challenges and Rights",
+        "courseRequirements": [
+          "No prerequisites",
+          "Open to undergraduates and graduates",
+          "Access to activist materials and legal documents (provided online)"
+        ],
+        "unitCode": "GS112",
+        "topics": [
+          {
+            "unit": "Introduction to LGBTQ+ Studies",
+            "subtopics": [
+              "Definitions and Key Concepts",
+              "Historical Context"
+            ]
+          },
+          {
+            "unit": "Legal Rights and Protections",
+            "subtopics": [
+              "Key Legislation and Court Cases",
+              "International Comparisons",
+              "Ongoing Legal Challenges"
+            ]
+          },
+          {
+            "unit": "Social and Cultural Issues",
+            "subtopics": [
+              "Representation in Media and Culture",
+              "Experiences in Education and Employment",
+              "Family Dynamics and Social Support"
+            ]
+          },
+          {
+            "unit": "Health and Well-Being",
+            "subtopics": [
+              "Physical and Mental Health Issues",
+              "Access to Healthcare",
+              "Strategies for Inclusive Healthcare"
+            ]
+          },
+          {
+            "unit": "Advocacy and Activism",
+            "subtopics": [
+              "Key Figures and Movements",
+              "Strategies for Advocacy",
+              "Case Studies of Successful Campaigns"
+            ]
+          },
+          {
+            "unit": "Future Directions",
+            "subtopics": [
+              "Emerging Issues in LGBTQ+ Rights",
+              "Intersectional Approaches",
+              "Building Inclusive Communities"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Power and Parity: Gender Dynamics in Politics",
+        "courseRequirements": [
+          "No prerequisites",
+          "Open to undergraduates and graduates",
+          "Access to political science literature and case studies (provided online)"
+        ],
+        "unitCode": "GS113",
+        "topics": [
+          {
+            "unit": "Introduction to Gender and Politics",
+            "subtopics": [
+              "Definitions and Key Concepts",
+              "Historical Context"
+            ]
+          },
+          {
+            "unit": "Women in Political History",
+            "subtopics": [
+              "Key Figures and Milestones",
+              "Case Studies of Female Leaders",
+              "Impact of Women's Suffrage Movements"
+            ]
+          },
+          {
+            "unit": "Gender and Political Representation",
+            "subtopics": [
+              "Barriers to Political Participation",
+              "Strategies for Increasing Representation",
+              "Case Studies of Success"
+            ]
+          },
+          {
+            "unit": "Gendered Policy Issues",
+            "subtopics": [
+              "Reproductive Rights and Health",
+              "Economic Policies and Gender",
+              "Education and Gender Equality"
+            ]
+          },
+          {
+            "unit": "Advocacy and Activism",
+            "subtopics": [
+              "Key Movements and Figures",
+              "Strategies for Political Change",
+              "Building Inclusive Political Campaigns"
+            ]
+          },
+          {
+            "unit": "Future Directions",
+            "subtopics": [
+              "Emerging Trends in Gender and Politics",
+              "Intersectional Approaches",
+              "Global Perspectives"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  
