@@ -8,6 +8,7 @@
           "Access to course readings and materials (provided online)"
         ],
         "unitCode": "GS101",
+        "category":" gender studies ",
         "topics": [
           {
             "unit": "Introduction to Intersectionality",
@@ -67,6 +68,7 @@
           "Access to a variety of media examples (provided online or suggested)"
         ],
         "unitCode": "GS102",
+        "category":" media gender bias ",
         "topics": [
           {
             "unit": "Introduction to Media Representation",
@@ -125,6 +127,7 @@
           "Access to statistical tools and reports (provided online)"
         ],
         "unitCode": "GS103",
+        "category":" gender studies ",
         "topics": [
           {
             "unit": "Introduction to the Gender Pay Gap",
@@ -183,6 +186,7 @@
           "Access to educational case studies and reports (provided online)"
         ],
         "unitCode": "GS104",
+        "category":" gender philosophy ",
         "topics": [
           {
             "unit": "Introduction to Gender and Education",
@@ -241,6 +245,7 @@
           "Access to legal documents and activist materials (provided online)"
         ],
         "unitCode": "GS105",
+        "category":" gender studies ",
         "topics": [
           {
             "unit": "Introduction to Transgender Identities",
@@ -299,6 +304,7 @@
           "Access to multimedia resources (provided online)"
         ],
         "unitCode": "GS106",
+        "category":" gender studies ",
         "topics": [
           {
             "unit": "Introduction to Masculinity Studies",
@@ -357,6 +363,7 @@
           "Access to multimedia resources (provided online)"
         ],
         "unitCode": "GS107",
+        "category":" gender politics ",
         "topics": [
           {
             "unit": "Introduction to the Gendered Body",
@@ -415,6 +422,7 @@
           "Access to queer literature and critical essays (provided online)"
         ],
         "unitCode": "GS108",
+        "category":" gender studies ",
         "topics": [
           {
             "unit": "Introduction to Queer Theory",
@@ -473,6 +481,7 @@
           "Access to legal cases and advocacy materials (provided online)"
         ],
         "unitCode": "GS109",
+        "category":" gender studies ",
         "topics": [
           {
             "unit": "Introduction to Gender-Based Violence",
@@ -531,6 +540,7 @@
           "Access to historical documents and feminist literature (provided online)"
         ],
         "unitCode": "GS110",
+        "category":" feminism ",
         "topics": [
           {
             "unit": "Introduction to Feminism",
@@ -589,6 +599,7 @@
           "Access to policy documents and case studies (provided online)"
         ],
         "unitCode": "GS111",
+        "category":" feminism ",
         "topics": [
           {
             "unit": "Introduction to Work-Life Balance",
@@ -647,6 +658,7 @@
           "Access to activist materials and legal documents (provided online)"
         ],
         "unitCode": "GS112",
+        "category":" gender studies ",
         "topics": [
           {
             "unit": "Introduction to LGBTQ+ Studies",
@@ -705,6 +717,7 @@
           "Access to political science literature and case studies (provided online)"
         ],
         "unitCode": "GS113",
+        "category":" gender politics ",
         "topics": [
           {
             "unit": "Introduction to Gender and Politics",

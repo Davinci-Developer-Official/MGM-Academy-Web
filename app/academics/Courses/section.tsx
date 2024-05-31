@@ -130,7 +130,7 @@ const uniqueCategories = Array.from(new Set(newCourses.map(item => item.course_c
         //rendered courses;
         <div className='flex flex-col h-screen ' >
             {/*filter course category*/}
-        <div className='flex flex-row h-fit  w-full justify-between p-4 ' >
+            <div className='flex flex-row h-fit  w-full justify-between p-4 ' >
             {!hideMenu&&<button onClick={()=>{setHideMenu(true)}} className='btn btn-ghost flex flex-col ' ><FaCompress size={15} /></button>}
             {hideMenu&&<button onClick={()=>{setHideMenu(false)}} className='btn btn-ghost  flex flex-col ' ><FaExpand size={15} /></button>}
             
