@@ -4,7 +4,7 @@ import { FaArrowRight, FaCaretDown, FaCaretRight, FaCaretUp, FaCartPlus, FaCompr
 import { useEffect, useState } from "react";
 import data from "./data.json";
 import Image from "next/image";
-import Rating from "../academics/Courses/Rating";
+import Rating from "../Rating";
 import Link from "next/link";
 import collect from "collect.js";
 import placeholder from '@/public/categories/business-studies-FO8nWoT6OnZ7DXO6xYA2TnRK4kzhwt.jpg'

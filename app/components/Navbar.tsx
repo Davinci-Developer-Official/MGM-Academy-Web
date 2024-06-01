@@ -34,7 +34,7 @@ function Navbar() {
         {/*Academics*/}
       <li tabIndex={0}>
         <details>
-          <summary><button className='flex flex-row' > <FaGraduationCap size={20} className="mr-2 text-[#e97902] " /> Academics</button></summary>
+          <summary><button className='flex flex-row' > <FaGraduationCap size={20} className="mr-2 text-[#e97902] " /> E-Learning </button></summary>
           <ul className="p-1 border-b-2 border-b-[#e97902] ">
           <li tabIndex={0}>
         <details>
@@ -46,7 +46,8 @@ function Navbar() {
           </ul>
         </details>
       </li>
-            <li><Link href="/academics/Courses" className='flex flex-row' > <FaGraduationCap size={20} className="mr-2 text-[#e97902] " /> MGM Courses</Link></li>
+      {/* href="/academics/Courses"*/}
+            <li><Link href="/academics/Courses/remodelledGrid" className='flex flex-row' > <FaGraduationCap size={20} className="mr-2 text-[#e97902] " /> Available Courses </Link></li>
             <li tabIndex={0}>
         <details>
           <summary><button className='flex flex-row' > <FaFile size={20} className="mr-2 text-[#e97902] "  /> Apply</button></summary>
@@ -93,7 +94,7 @@ function Navbar() {
         {/*Academics*/}
       <li tabIndex={0}>
         <details>
-          <summary><button className='flex flex-row' > <FaGraduationCap size={20} className="mr-2 text-[#e97902] " /> Academics</button></summary>
+          <summary><button className='flex flex-row' > <FaGraduationCap size={20} className="mr-2 text-[#e97902] " /> E-Learning </button></summary>
           <ul className="p-1  z-10 background border-b-2 border-b-[#e97902] ">
           <li tabIndex={0}>
         <details>
@@ -105,7 +106,8 @@ function Navbar() {
           </ul>
         </details>
       </li>
-            <li><Link href="/academics/Courses" className='flex flex-row' > <FaBookOpen size={20} className="mr-2 text-[#e97902] " /> MGM Courses</Link></li>
+      {/*href="/academics/Courses"*/}
+            <li><Link href="/academics/Courses/remodelledGrid" className='flex flex-row' > <FaGraduationCap size={20} className="mr-2 text-[#e97902] " /> Available Courses </Link></li>
             <li tabIndex={0}>
         <details>
           <summary><Link href="/academics" className='flex flex-row' > <FaFolder size={20} className="mr-2 text-[#e97902] "  /> Apply</Link></summary>
