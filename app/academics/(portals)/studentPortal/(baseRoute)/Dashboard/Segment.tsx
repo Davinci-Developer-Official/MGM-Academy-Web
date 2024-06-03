@@ -1,6 +1,6 @@
 'use client';
 import HeaderDash from '@/app/components/HeaderDash'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Metrics from "./Metrics"
 import Carousel from './Carousel'
 import ba from "@/public/placeholders/ba.jpeg";
@@ -47,6 +47,9 @@ function Segment() {
       setSelectedItems([...selectedItems, id]);
     }
   };
+  const[progress,showProgress]=useState(false);
+
+  useEffect(()=>{},[progress]);
   return (
     <div className=' h-screen flex flex-col  p-1  ' >
        {/* <HeaderDash/>*/}
@@ -64,13 +67,48 @@ function Segment() {
         tabIndex={0}
         styling:"collapse collapse-arrow font-serif text-center font-semibold  border border-base-300 bg-base-200"*/}
     <div  className="flex flex-col  backdrop: w-[99%] mx-auto  text-black font-serrif  ">
-      <div className="collapse-title text-xl font-medium bg-white text-center ">
-        Track your progress
+      
+    <div className='w-full justify-center  flex flex-col  ' >
+      <div className="  w-[350px] lg:ml-[60%] sm:mx-auto grid grid-flow-col gap-5 text-center auto-cols-max">
+    <div className='flex flex-col btn btn-primary h-[100px] w-[80px] rounded-lg ' >
+      <p className='text-4xl' >12</p>
+      <div>
+
       </div>
+    </div>
+  
+    <div className="  w-[350px] lg:ml-[60%] sm:mx-auto grid grid-flow-col gap-5 text-center auto-cols-max">
+    <div className='flex flex-col btn btn-primary h-[100px] w-[80px] rounded-lg ' >
+      <p className='text-4xl' >12</p>
+      <div>
+
+      </div>
+    </div>
+    <div className="  w-[350px] lg:ml-[60%] sm:mx-auto grid grid-flow-col gap-5 text-center auto-cols-max">
+    <div className='flex flex-col btn btn-primary h-[100px] w-[80px] rounded-lg ' >
+      <p className='text-4xl' >12</p>
+      <div>
+
+      </div>
+    </div>
+    <div className="  w-[350px] lg:ml-[60%] sm:mx-auto grid grid-flow-col gap-5 text-center auto-cols-max">
+    <div className='flex flex-col btn btn-primary h-[100px] w-[80px] rounded-lg ' >
+      <p className='text-4xl' >12</p>
+      <div>
+
+      </div>
+    </div>
+      <button className="btn w-[290px] lg:ml-[60%] sm:mx-auto text-black hover:bg-gray-300 text-xl font-medium bg-white text-center "
+      onClick={()=>{
+        showProgress(true);
+      }}
+      >
+        Track your progress
+      </button></div>
       {/*styling:"collapse-content overflow-y-scroll h-full  "*/}
       
       
-      <div className="overflow-y-scroll h-[400px]  ">
+      {progress&&<div className="overflow-y-scroll h-[400px]  ">
       <table className="table">
         {/* head */}
         <thead>
@@ -159,8 +197,10 @@ function Segment() {
           </tr>
         </tfoot>
       </table>
-    </div>
+    </div>}
+
       </div>
+      
       </div>
    
           
