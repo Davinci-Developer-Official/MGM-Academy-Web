@@ -2,8 +2,12 @@
 import React, { useEffect, useState } from 'react'
 import placeholder from "@/public/profile/user.png"
 import Image from 'next/image';
+import { useHotkeys } from 'react-hotkeys-hook';
+import Link from 'next/link';
+
 
 function ElearningStudentNavbar() {
+   //useHotkeys('ctrl+b', () => alert('Ctrl+A pressed!'));
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
     const toggleDropdown = () => {
@@ -18,6 +22,9 @@ function ElearningStudentNavbar() {
   const[financeContent,showFinanceContent]=useState(false)
   const[academicContent,showAcademicContent]=useState(false)
   const[moreContent,showMoreContent]=useState(false)
+  const[searchBar,showSearchBar]=useState(false);
+  useHotkeys("ctrl+b",()=>{showSearchBar(true)})
+
   useEffect(()=>{},[spContent,financeContent,academicContent,moreContent,dropdownOpen,isOpen])
     return (
       <div className="navbar justify-between bg-white">
@@ -49,9 +56,9 @@ function ElearningStudentNavbar() {
                 tabIndex={0}
                 className="menu  menu-sm dropdown-content mt-3  p-2 shadow bg-white z-10 text-2xl font-serif font-semibold rounded-box w-52"
               >
-                <li><p>Home</p></li>
-                <li><p>Dashboard</p></li>
-                <li><p>My Courses</p></li>
+                {/*<li><p>Home</p></li>*/}
+                <li><Link href="/academics/studentPortal/Dashboard" >Dashboard</Link></li>
+                {/*<li><p>My Courses</p></li>*/}
                 <li><p>Support</p></li>
                 <li>
                   <button onClick={()=>{
@@ -98,9 +105,9 @@ function ElearningStudentNavbar() {
         </div>
         <div className=" hidden lg:flex text-xl font-serif font-bold">
           <ul className="menu menu-horizontal px-1">
-            <li><p>Home</p></li>
-            <li><p>Dashboard</p></li>
-            <li><p>My Courses</p></li>
+            {/*<li><p>Home</p></li>*/}
+            <li><Link href="/academics/studentPortal/Dashboard"  >Dashboard</Link></li>
+            {/*<li><p>My Courses</p></li>*/}
             <li><p>Support</p></li>
             <li>
               <details>
@@ -144,8 +151,11 @@ function ElearningStudentNavbar() {
         </div>
         <label className="border border-black bg-white input input-bordered flex items-center gap-1">
   <input type="text" className="grow bg-white " placeholder="Search" />
-  <kbd className="kbd kbd-sm text-black bg-white ">⌘</kbd>
-  <kbd className="kbd kbd-sm text-black bg-white ">K</kbd>
+  <kbd className="kbd kbd-sm text-black bg-white "> ⌘ </kbd>
+  <kbd className="kbd kbd-sm text-black bg-white "> B </kbd>
+  {searchBar&&(<div className='absolute z-10  bg-purple-400 mt-10 w-[300px] h-[200px]  ' >
+    <p>search param</p>
+  </div>)}
 </label>
 
     <div className="dropdown dropdown-end">  
