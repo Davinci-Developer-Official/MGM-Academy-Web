@@ -48,6 +48,12 @@ function Segment() {
     }
   };
   const[progress,showProgress]=useState(false);
+  const images = [
+    "https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.jpg",
+    "https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.jpg",
+    "https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.jpg",
+    "https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.jpg"
+  ];
 
   useEffect(()=>{},[progress]);
   return (
@@ -60,44 +66,57 @@ function Segment() {
           <p>welcome back: Thomas</p>
         </div>
 
+        {/* carousel */}
+        <div className="carousel w-full">
+        {images.map((image, index) => (
+          <div id={`item${index + 1}`} className="carousel-item w-full" key={index}>
+            <img src={image} className="w-full" />
+          </div>
+        ))}
+      </div>
+      <div className="flex justify-center w-full py-2 gap-2">
+        {images.map((_, index) => (
+          <a href={`#item${index + 1}`} className="btn btn-xs" key={index}>
+            {index + 1}
+          </a>
+        ))}
+      </div>
       
-      <Carousel items={items}/>
+      {/*<Carousel items={items}/>*/}
       {/*<BootstrapCarousel/>*/}
         {/*
         tabIndex={0}
         styling:"collapse collapse-arrow font-serif text-center font-semibold  border border-base-300 bg-base-200"*/}
     <div  className="flex flex-col  backdrop: w-[99%] mx-auto  text-black font-serrif  ">
       
-    <div className='w-full justify-center  flex flex-col  ' >
-      <div className="  w-[350px] lg:ml-[60%] sm:mx-auto grid grid-flow-col gap-5 text-center auto-cols-max">
-    <div className='flex flex-col btn btn-primary h-[100px] w-[80px] rounded-lg ' >
-      <p className='text-4xl' >12</p>
-      <div>
-
+    <div className='w-full justify-center  flex flex-col p-1  ' >
+      <p className=' text-center text-lg p-1 font-bold ' >course overview</p>
+      <div className='justify-center flex flex-row w-full  p-1 ' >
+      {/*courses Taken*/}
+      <div className='flex flex-col btn btn-ghost bg-gray-200 h-[100px] w-[100px] ml-2 p-1 rounded-lg text-center ' >
+      <p className='text-xs  ' > Topics </p>
+      <p className='text-4xl' >20%</p>
+      <p className='text-xs  ' >completion </p>
       </div>
-    </div>
+      {/*completion % */}
+      <div className='flex flex-col btn btn-ghost bg-gray-200 h-[100px] w-[100px] ml-2 p-1 rounded-lg text-center ' >
+      <p className='text-xs  ' >Assignments </p>
+      <p className='text-4xl' >12%</p>
+      <p className='text-xs  ' >completion </p>
+      </div>
+      {/*notifications*/}
+      <div className='flex flex-col btn btn-ghost bg-gray-200 h-[100px] w-[100px] ml-2 p-1 rounded-lg text-center ' >
+      <p className='text-xs  ' >quizes </p>
+      <p className='text-4xl' >12%</p>
+      <p className='text-xs  ' >completion </p>
+      </div>
+      
+      </div>
   
-    <div className="  w-[350px] lg:ml-[60%] sm:mx-auto grid grid-flow-col gap-5 text-center auto-cols-max">
-    <div className='flex flex-col btn btn-primary h-[100px] w-[80px] rounded-lg ' >
-      <p className='text-4xl' >12</p>
-      <div>
-
-      </div>
-    </div>
-    <div className="  w-[350px] lg:ml-[60%] sm:mx-auto grid grid-flow-col gap-5 text-center auto-cols-max">
-    <div className='flex flex-col btn btn-primary h-[100px] w-[80px] rounded-lg ' >
-      <p className='text-4xl' >12</p>
-      <div>
-
-      </div>
-    </div>
-    <div className="  w-[350px] lg:ml-[60%] sm:mx-auto grid grid-flow-col gap-5 text-center auto-cols-max">
-    <div className='flex flex-col btn btn-primary h-[100px] w-[80px] rounded-lg ' >
-      <p className='text-4xl' >12</p>
-      <div>
-
-      </div>
-    </div>
+    
+    
+    
+    
       <button className="btn w-[290px] lg:ml-[60%] sm:mx-auto text-black hover:bg-gray-300 text-xl font-medium bg-white text-center "
       onClick={()=>{
         showProgress(true);
