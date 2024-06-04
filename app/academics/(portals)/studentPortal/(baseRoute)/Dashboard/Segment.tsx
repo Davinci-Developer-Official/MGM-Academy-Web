@@ -57,7 +57,7 @@ function Segment() {
 
   useEffect(()=>{},[progress]);
   return (
-    <div className=' h-screen flex flex-col  p-1  ' >
+    <div className='bg-white rounded-lg border border-b-[#e97902] h-screen flex flex-col  p-1  ' >
        {/* <HeaderDash/>*/}
         
         <div className="title p-2 text-center font-serif font bold flex flex-row justify-evenly " >
@@ -76,7 +76,7 @@ function Segment() {
       </div>
       <div className="flex justify-center w-full py-2 gap-2">
         {images.map((_, index) => (
-          <a href={`#item${index + 1}`} className="btn btn-xs" key={index}>
+          <a href={`#item${index + 1}`} className="btn btn-ghost" key={index}>
             {index + 1}
           </a>
         ))}

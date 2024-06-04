@@ -6,7 +6,7 @@ export default function Layout({ children,upcoming,topDeals }: { children: React
     const [activeTab, setActiveTab] = useState(1); // Setting the default active tab to 2
     useEffect(()=>{},[activeTab])
    
-   return <div className="w-full h-screen " >
+   return <div className="w-full h-screen bg-white " >
      <div role="tablist" className="tabs tabs-bordered justify-center p-2  ">
         <button name="my_tabs_1" 
         role="tab" 
