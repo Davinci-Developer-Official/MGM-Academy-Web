@@ -10,26 +10,26 @@ export default function Layout({ children,upcoming,topDeals }: { children: React
      <div role="tablist" className="tabs tabs-bordered justify-center p-2  ">
         <button name="my_tabs_1" 
         role="tab" 
-        className="tab text-black " 
+        className="tab text-black lg:tooltip " 
         aria-label="Tab 3" 
         //onClick={activeTab === 3} 
-        onClick={() => setActiveTab(1)}  > My Courses </button>
+        onClick={() => setActiveTab(1)} data-tip="get all course info"  > My Courses </button>
       
 
         <button name="my_tabs_1" 
         role="tab" 
-        className="tab text-black " 
+        className="tab text-black lg:tooltip " 
         aria-label="Tab 3" 
         //onClick={activeTab === 3} 
-        onClick={() => setActiveTab(2)}  > Upcoming Activities <div className="badge badge-primary text-white ml-1  "> 5 </div> </button>
+        onClick={() => setActiveTab(2)} data-tip="scheduled activities and notifications" > Upcoming Activities <div className="badge badge-primary text-white ml-1  "> 5 </div> </button>
      
 
         <button name="my_tabs_1" 
         role="tab" 
-        className="tab text-black " 
+        className="tab text-black lg:tooltip " 
         aria-label="Tab 3" 
         //onClick={activeTab === 3} 
-        onClick={() => setActiveTab(3)}  > Top Deals <div className="badge badge-secondary text-white ml-1  "> new </div> </button>
+        onClick={() => setActiveTab(3)} data-tip="recommended courses for you" > Top Deals <div className="badge badge-secondary text-white ml-1  "> new </div> </button>
      
     </div>
     {/*contents*/}

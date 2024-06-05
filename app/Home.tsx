@@ -20,7 +20,7 @@ function Home({navigation,setNavigation,footer,setFooter}:any) {
     <p className=' text-center font-mono    w-[90%] mx-auto  card-body '  >
      {statement}
     </p>
-    <Link href="/academics/Courses" className='flex flex-row btn btn-primary  w-fit h-fit mx-auto ' >
+    <Link href="/academics/Courses/remodelledGrid" className='flex flex-row btn btn-primary  w-fit h-fit mx-auto ' >
       <p>start learning</p> 
       <FaGraduationCap size={20} /> 
     </Link>

@@ -1,0 +1,63 @@
+{
+    "records":[
+        {
+            "id":1,
+            "student_id":"23ef44e23ddjas34id4e3423455",
+            "course_name":"MGM E-learning Guide",
+            "course_code":"Admin 202",
+            "course_category":"portal guide",
+            "course_instructor":"mgm assistant ",
+            "student_involvement_status":"active",
+            "course_status":"available",
+            "overall_completion":"0",
+            "topic_completion":"0",
+            "assignment_completion":"0",
+            "quizes_completion":"0",
+            "cat_completion":"0",
+            "attendance":"0"
+        },
+        {
+            "id":2,
+            "student_id":"23ef44e23ddjas34id4e3423455",
+            "course_name":"Intersections of Identity: Understanding Gender through Multiple Lenses",
+            "course_code":"GS 202",
+            "course_category":"Gender Studies",
+            "course_instructor":"Faith Mwangi",
+            "student_involvement_status":"active",
+            "course_status":"available",
+            "overall_completion":"60",
+            "topic_completion":"40",
+            "assignment_completion":"40",
+            "quizes_completion":"40",
+            "cat_completion":"40",
+            "attendance":"70"
+        }
+    ],
+    "profile_information":[
+        {
+            "id":1,
+            "student_id":"23ef44e23ddjas34id4e3423455",
+            "student_fname":"Brian",
+            "student_lname":"Mwangi",
+            "username":"Mwas",
+            "email":"brianmwangi@gmail.com",
+            "phone":"0723145673",
+            "nationality":"Kenya",
+            "password":"x"
+        }
+    ],
+    "purchase_records":[
+        {
+            "id":1,
+            "order_id":"w2w3ww65wetr4gwe67",
+            "course_id":"67ef44e23ddjas34id4e3423455",
+            "course_name":"Intersections of Identity: Understanding Gender through Multiple Lenses",
+            "course_category":"Gender Studies",
+            "course_pricing":"225",
+            "buyer_id":"23ef44e23ddjas34id4e3423455",
+            "buyer_name":"brian Mwangi",
+            "seller_id":"24ef44e23ddjas34id4e34243455",
+            "sellers_name":"53ef44e23ddjas34id4e3423455"
+        }
+    ]
+}

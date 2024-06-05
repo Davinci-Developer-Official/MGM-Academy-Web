@@ -8,6 +8,7 @@ import bb from "@/public/placeholders/bb.jpeg";
 import bc from "@/public/placeholders/bc.jpeg";
 import Image from 'next/image';
 import BootstrapCarousel from './BootstrapCarousel';
+import { FaArchive, FaCheckDouble, FaDownload, FaRegClipboard } from 'react-icons/fa';
 
 function Segment() {
   const items = [
@@ -15,30 +16,37 @@ function Segment() {
       "id":1,
       "courseName":"Sub-poena drafting ",
       "courseInstructor":"John Lenon",
-      "coverImage":ba
+      "coverImage":ba,
+      "status":"active"
   },{
       "id":2,
       "courseName":"Litigation drafting ",
       "courseInstructor":"Grace Lenon",
-      "coverImage":bb
+      "coverImage":bb,
+      "status":"completed"
   },{
       "id":3,
       "courseName":"Ui Design drafting ",
       "courseInstructor":"Thomas Mithamo",
-      "coverImage":bc
+      "coverImage":bc,
+      "status":"active"
   },{
       "id":4,
       "courseName":"Mental Health ",
       "courseInstructor":"Grace williams",
-      "coverImage":ba
+      "coverImage":ba,
+      "status":"archived"
   },{
       "id":5,
       "courseName":"Mistrial ",
       "courseInstructor":"Miss Kim",
-      "coverImage":bb
+      "coverImage":bb,
+      "status":"completed"
   }
   ];
-  const [selectedItems, setSelectedItems] = useState<number[]>([]);
+  const[courseStatus,setCourseStatus]=useState("active")
+  const filteredRecords = items.filter(item=>item.status==courseStatus)
+ {/* const [selectedItems, setSelectedItems] = useState<number[]>([]);
 
   const handleCheckboxChange = (id: number) => {
     if (selectedItems.includes(id)) {
@@ -46,7 +54,7 @@ function Segment() {
     } else {
       setSelectedItems([...selectedItems, id]);
     }
-  };
+  };*/}
   const[progress,showProgress]=useState(false);
   const images = [
     "https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.jpg",
@@ -54,16 +62,105 @@ function Segment() {
     "https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.jpg",
     "https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.jpg"
   ];
+  const [click,setClick] = useState(0);
+  //last added
 
-  useEffect(()=>{},[progress]);
+  const [selectedItems, setSelectedItems] = useState([]);
+
+  const handleCheckboxChange = (id:number) => {
+    setSelectedItems((prevSelected:any) =>
+      prevSelected.includes(id)
+        ? prevSelected.filter((item:any) => item !== id)
+        : [...prevSelected, id]
+    );
+  };
+  const[courses,setCourses]=useState([...filteredRecords])
+  const handleOptionClick = (action:any, id:number) => {
+    if (action === 'completed') {
+      {/*setCourses((prevCourses) =>
+        prevCourses.map((course) =>
+          course.id === id ? { ...course, status: 'archived' } : course
+        )
+      );
+      alert("archived"+courses+id)*/}
+      let index = items.findIndex(item => item.id === id);
+      // If the object is found, update its name
+          if (index !== -1) {
+            const x= items[index].status = "completed";
+            alert(x)
+          }
+
+    } else if (action === 'archive') {
+      {/*setCourses((prevCourses) => prevCourses.filter((course) => course.id !== id));*/}
+      let index = items.findIndex(item => item.id === id);
+      // If the object is found, update its name
+          if (index !== -1) {
+            const x= items[index].status = "archived";
+            alert(x)
+          }
+      //alert("deleted"+JSON.stringify(courses)+id);
+    }
+    setVisibleMenu(null);
+  };
+
+  const [visibleMenu, setVisibleMenu] = useState(null);
+
+  const handleEllipsisClick = (id:any) => {
+    setVisibleMenu(visibleMenu === id ? null : id);
+  };
+
+  {/*const handleOptionClick = (action, id) => {
+    // Handle the action (e.g., delete course, archive)
+    console.log(`${action} course with id ${id}`);
+    setVisibleMenu(null);
+  };*/}
+
+  
+
+  //current date;
+  let currentDate = new Date();
+
+// Extract the day, month, and year
+let day = String(currentDate.getDate()).padStart(2, '0');
+let month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+let year = currentDate.getFullYear();
+
+// Format the date as MM-DD-YYYY
+let formattedDate = `${day}-${month}-${year}`;
+
+  //time state
+  const [time, setTime] = useState('');
+
+//useEffect Hook
+  useEffect(()=>{
+   const updateTime = () => {
+      const currentTime = new Date();
+      let hours = currentTime.getHours();
+      let minutes = currentTime.getMinutes();
+      let seconds = currentTime.getSeconds();
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12; // The hour '0' should be '12'
+      //@ts-ignore
+      minutes = String(minutes).padStart(2, '0');
+      //@ts-ignore
+      seconds = String(seconds).padStart(2, '0');
+      setTime(`${hours}:${minutes}:${seconds} ${ampm}`);
+    };
+
+    updateTime();
+    const timerId = setInterval(updateTime, 1000);
+
+    return () => clearInterval(timerId);
+  },[progress,click,courseStatus,selectedItems]);
   return (
     <div className='bg-white rounded-lg border border-b-[#e97902] h-screen flex flex-col  p-1  ' >
        {/* <HeaderDash/>*/}
         
-        <div className="title p-2 text-center font-serif font bold flex flex-row justify-evenly " >
-          <p>11-05-2024</p>
-          <p>Upcoming activity</p>
-          <p>welcome back: Thomas</p>
+        <div className="title p-2 text-center font-serif font bold flex flex-row justify-between " >
+          <p>{formattedDate}</p>       
+          <p> Hello Thomas 👋 </p>
+           <p>{time}</p>
         </div>
 
         {/* carousel */}
@@ -93,22 +190,22 @@ function Segment() {
       <p className=' text-center text-lg p-1 font-bold ' >course overview</p>
       <div className='justify-center flex flex-row w-full  p-1 ' >
       {/*courses Taken*/}
-      <div className='flex flex-col btn btn-ghost bg-gray-200 h-[100px] w-[100px] ml-2 p-1 rounded-lg text-center ' >
+      <div className='flex flex-col btn btn-ghost bg-gray-200 h-[100px] w-[100px] ml-2 p-1 rounded-lg text-center lg:tooltip ' data-tip="topics completed in a course" >
       <p className='text-xs  ' > Topics </p>
-      <p className='text-4xl' >20%</p>
-      <p className='text-xs  ' >completion </p>
+      <p className='text-4xl lg:pt-3 ' >20%</p>
+      <p className='text-xs lg:hidden ' >completion </p>
       </div>
       {/*completion % */}
-      <div className='flex flex-col btn btn-ghost bg-gray-200 h-[100px] w-[100px] ml-2 p-1 rounded-lg text-center ' >
+      <div className='flex flex-col  btn btn-ghost bg-gray-200 h-[100px] w-[100px] ml-2 p-1 rounded-lg text-center lg:tooltip ' data-tip="assignments completed in a course" >
       <p className='text-xs  ' >Assignments </p>
-      <p className='text-4xl' >12%</p>
-      <p className='text-xs  ' >completion </p>
+      <p className='text-4xl lg:pt-3 ' >12%</p>
+      <p className='text-xs lg:hidden ' >completion </p>
       </div>
       {/*notifications*/}
-      <div className='flex flex-col btn btn-ghost bg-gray-200 h-[100px] w-[100px] ml-2 p-1 rounded-lg text-center ' >
-      <p className='text-xs  ' >quizes </p>
-      <p className='text-4xl' >12%</p>
-      <p className='text-xs  ' >completion </p>
+      <div className='flex flex-col btn btn-ghost bg-gray-200 h-[100px] w-[100px] ml-2 p-1 rounded-lg text-center lg:tooltip ' data-tip="cat completion in a course" >
+      <p className='text-xs  ' >CAT </p>
+      <p className='text-4xl lg:pt-3 ' >12%</p>
+      <p className='text-xs lg:hidden ' >completion </p>
       </div>
       
       </div>
@@ -117,21 +214,61 @@ function Segment() {
     
     
     
-      <button className="btn w-[290px] lg:ml-[60%] sm:mx-auto text-black hover:bg-gray-300 text-xl font-medium bg-white text-center "
+      <button className="btn w-[290px] mx-auto text-black hover:bg-gray-300 text-xl font-medium bg-white text-center lg:tooltip " data-tip="get detailed information about your progress "
       onClick={()=>{
+        setClick(1)
         showProgress(true);
-      }}
+        if(progress==true&&click==1){
+          showProgress(false);
+        }
+      }} 
       >
         Track your progress
       </button></div>
       {/*styling:"collapse-content overflow-y-scroll h-full  "*/}
       
       
-      {progress&&<div className="overflow-y-scroll h-[400px]  ">
+      {progress&&(<div className='flex flex-col h-[400px] ' >
+        
+        <div className="text-sm breadcrumbs p-2  ">
+  <ul className='justify-center ' >
+      <li>
+        <a onClick={()=>{
+          setCourseStatus("active")
+        }} >
+        <FaRegClipboard className="w-4 h-4 stroke-current"/>
+          Current courses
+        </a>
+      </li> 
+      <li>
+        <a onClick={()=>{
+          setCourseStatus("completed")
+         }} >
+          <FaRegClipboard className="w-4 h-4 stroke-current"/>
+          Previous courses
+        </a>
+      </li> 
+      <li>
+      <a className="inline-flex gap-2 items-center" onClick={()=>{
+        setCourseStatus("archived")
+      }} >
+      <FaArchive className="w-4 h-4 stroke-current"/>
+      archived
+      </a>
+       </li>
+       <li>
+      <a  >
+        <FaDownload className="w-4 h-4 stroke-current"/>
+         Transcript
+      </a>
+      </li> 
+      </ul>
+    </div>
+        
+    <div className="overflow-y-scroll p-2 ">
       <table className="table">
-        {/* head */}
         <thead>
-          <tr className='text-black text-lg font-serif '>
+          <tr className='text-black text-lg font-serif'>
             <th>
               <label>
                 <input type="checkbox" className="checkbox" />
@@ -146,63 +283,96 @@ function Segment() {
             <th>CAT Completion%</th>
             <th>Attendance%</th>
             <th>Average Grade</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {/* Map over the data array to render rows dynamically */}
-          {items.map(item => (
-            <tr key={item.id} className='text-black text-lg font-serif   '  >
+          {filteredRecords.map(item => (
+            <tr key={item.id} className='text-black text-lg font-serif'>
               <td>
-                <label>
-                <input
-                        type="checkbox"
-                        className="checkbox  bg-gray-400 "
-                        checked={selectedItems.includes(item.id)}
-                        onChange={() => handleCheckboxChange(item.id)}
-                      />
+              <label>
+                  <input
+                    type="checkbox"
+                    className="checkbox bg-gray-400"
+                    //@ts-ignore
+                    checked={selectedItems.includes(item.id)}
+                    onChange={() => handleCheckboxChange(item.id)}
+                  />
                 </label>
               </td>
               <td>
                 <div className="flex items-center gap-3">
                   <div className="avatar">
                     <div className="mask mask-squircle w-12 h-12">
-                      <Image  src={item.coverImage} alt="Avatar" />
+                      <Image src={item.coverImage} alt="Avatar" />
                     </div>
                   </div>
-                  
                 </div>
               </td>
               <td>
-              <div className="font-bold  ">{item.courseName}</div>
-
+                <div className="font-bold">{item.courseName}</div>
               </td>
               <td>
-              <div className="text-sm font-semibold font-serif  ">{item.courseInstructor}</div>
+                <div className="text-sm font-semibold font-serif">{item.courseInstructor}</div>
               </td>
               <td>
-                <div className="text-sm font-semibold font-serif  " >100</div>
+                <div className="text-sm font-semibold font-serif">100</div>
               </td>
               <td>
-                <div className="text-sm font-semibold font-serif  " >80</div>
+                <div className="text-sm font-semibold font-serif">80</div>
               </td>
               <td>
-              <div className="text-sm font-semibold font-serif   " >70</div>
+                <div className="text-sm font-semibold font-serif">70</div>
               </td>
               <td>
-              <div className="text-sm font-semibold font-serif   " >80</div>
+                <div className="text-sm font-semibold font-serif">80</div>
               </td>
               <td>
-              <div className="text-sm font-semibold font-serif   " >80</div>
+                <div className="text-sm font-semibold font-serif">80</div>
               </td>
               <td>
-              <div className="text-sm font-semibold font-serif   " >B+ (70)</div>
+                <div className="text-sm font-semibold font-serif">B+ (70)</div>
+              </td>
+              <td>
+                <div className="relative">
+                  <button onClick={() => handleEllipsisClick(item.id)} className="p-2 focus:outline-none">
+                    ⋮
+                  </button>
+                  {visibleMenu === item.id && (
+                    <div className="absolute right-0 w-48 bg-white border border-gray-200 shadow-lg z-10 ">
+                      {item.status=="completed"&&<button
+                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        onClick={() => handleOptionClick('incompleted', item.id)}
+                      >
+                        mark as incomplete
+                      </button>}
+                      {item.status!=="completed"&&<button
+                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex flex-row p-2 "
+                        onClick={() => handleOptionClick('completed', item.id)}
+                      >
+                      <FaCheckDouble className='text-green-400 ' />  <p>mark as completed</p>
+                      </button>}
+                      {item.status!=='archived'&&<button
+                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex flex-row p-2 "
+                        onClick={() => handleOptionClick('archive', item.id)}
+                      >
+                        <FaArchive/> <p>Archive</p>
+                      </button>}
+                      {item.status=='unarchived'&&<button
+                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        onClick={() => handleOptionClick('archive', item.id)}
+                      >
+                         remove from Archive
+                      </button>}
+                    </div>
+                  )}
+                </div>
               </td>
             </tr>
           ))}
         </tbody>
-        {/* foot */}
         <tfoot>
-          <tr className='text-black text-lg font-serif ' >
+          <tr className='text-black text-lg font-serif'>
             <th></th>
             <th>cover image</th>
             <th>Course Name</th>
@@ -213,10 +383,12 @@ function Segment() {
             <th>CAT Completion%</th>
             <th>Attendance%</th>
             <th>Average Grade</th>
+            <th>Actions</th>
           </tr>
         </tfoot>
       </table>
-    </div>}
+    </div>
+      </div>)}
 
       </div>
       
@@ -231,4 +403,4 @@ function Segment() {
   )
 }
 
-export default Segment
+export default Segment;

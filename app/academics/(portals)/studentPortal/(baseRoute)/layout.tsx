@@ -72,7 +72,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       } catch (error) {
         console.error('Error fetching data:', error);
         // Handle the error gracefully, e.g., show a message to the user
-        alert("Failed to fetch student data. Please try again later.");
+        //alert("Failed to fetch student data. Please try again later.");
       }
     };
   
