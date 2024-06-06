@@ -61,26 +61,27 @@ const CoursesPage = () => {
   const [renderCategory, setRenderCategory] = useState(false);
   const [filteredData, setFilteredData] = useState<string[]>([]);
 
-  const fetchData = async () => {
-    try {
-      const response = [...data.courses];
-      const collection = collect(response);
-      const uniqueCategories = collection.pluck('category').unique().all();
-      //@ts-ignore
-      setFilteredData(uniqueCategories);
-      if (selectedCategory !== "") {
-        const filter = collection.where('category', selectedCategory).all();
-        //@ts-ignore
-        setFilteredCourses(filter);
-      } else {
-        setFilteredCourses(response);
-      }
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
+ 
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = [...data.courses];
+        const collection = collect(response);
+        const uniqueCategories = collection.pluck('category').unique().all();
+        //@ts-ignore
+        setFilteredData(uniqueCategories);
+        if (selectedCategory !== "") {
+          const filter = collection.where('category', selectedCategory).all();
+          //@ts-ignore
+          setFilteredCourses(filter);
+        } else {
+          setFilteredCourses(response);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
     fetchData();
   }, [selectedCategory]);
 

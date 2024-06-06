@@ -8,8 +8,9 @@ import bb from "@/public/placeholders/bb.jpeg";
 import bc from "@/public/placeholders/bc.jpeg";
 import Image from 'next/image';
 import BootstrapCarousel from './BootstrapCarousel';
-import { FaArchive, FaCheckDouble, FaDownload, FaRegClipboard } from 'react-icons/fa';
+import { FaArchive, FaCheckDouble, FaDownload, FaRegClipboard, FaSearch } from 'react-icons/fa';
 import data from '../data.json'
+import { useHotkeys } from 'react-hotkeys-hook';
 
 function Segment() {
   const items = [
@@ -131,7 +132,8 @@ let formattedDate = `${day}-${month}-${year}`;
 
   //time state
   const [time, setTime] = useState('');
-  
+  const[searchBar,showSearchBar]=useState(false);
+  useHotkeys("ctrl+v",()=>{showSearchBar(true)})
 //useEffect Hook
   useEffect(()=>{
    const updateTime = () => {
@@ -170,7 +172,7 @@ let formattedDate = `${day}-${month}-${year}`;
         <div className="carousel w-full">
         {images.map((image, index) => (
           <div id={`item${index + 1}`} className="carousel-item w-full" key={index}>
-            <Image src={image} alt="s" className="w-full" />
+            <Image src={image} alt="s" className="w-full" width={550} height={550} />
           </div>
         ))}
       </div>
@@ -189,6 +191,7 @@ let formattedDate = `${day}-${month}-${year}`;
         styling:"collapse collapse-arrow font-serif text-center font-semibold  border border-base-300 bg-base-200"*/}
     <div  className="flex flex-col  backdrop: w-[99%] mx-auto  text-black font-serrif  ">
       
+    
     <div className='w-full justify-center  flex flex-col p-1  ' >
       <p className=' text-center text-lg p-1 font-bold ' >course overview</p>
       <div className='justify-center flex flex-row w-full  p-1 ' >
@@ -213,7 +216,25 @@ let formattedDate = `${day}-${month}-${year}`;
       
       </div>
   
-    
+      <div className='bg-white w-full h-fit flex flex-col p-1 ' >
+    <label className="border border-black bg-white input input-bordered flex items-center gap-1 w-[80%] mx-auto  ">
+  <input type="text" className="grow bg-white " placeholder="Search" onClick={()=>{
+    showSearchBar(true)
+    setClick(3)
+    if(click==3){
+      showSearchBar(false);
+      setClick(0)
+    }
+  }} />
+  <kbd className="kbd kbd-sm text-black bg-white "> <FaSearch/> </kbd>
+  <kbd className="kbd kbd-sm text-black bg-white "> ⌘ </kbd>
+  <kbd className="kbd kbd-sm text-black bg-white "> v </kbd>
+  
+</label>
+{searchBar&&(<div className=' flex flex-col  bg-purple-400  w-[95%] mx-auto h-[400px] mt-2 overflow-y-auto ' >
+    <p>search param</p>
+  </div>)}
+    </div>
     
     
     
