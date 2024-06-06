@@ -170,7 +170,7 @@ let formattedDate = `${day}-${month}-${year}`;
         <div className="carousel w-full">
         {images.map((image, index) => (
           <div id={`item${index + 1}`} className="carousel-item w-full" key={index}>
-            <img src={image} className="w-full" />
+            <Image src={image} alt="s" className="w-full" />
           </div>
         ))}
       </div>
