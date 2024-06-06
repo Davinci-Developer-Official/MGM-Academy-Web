@@ -9,6 +9,7 @@ import bc from "@/public/placeholders/bc.jpeg";
 import Image from 'next/image';
 import BootstrapCarousel from './BootstrapCarousel';
 import { FaArchive, FaCheckDouble, FaDownload, FaRegClipboard } from 'react-icons/fa';
+import data from '../data.json'
 
 function Segment() {
   const items = [
@@ -130,7 +131,7 @@ let formattedDate = `${day}-${month}-${year}`;
 
   //time state
   const [time, setTime] = useState('');
-
+  
 //useEffect Hook
   useEffect(()=>{
    const updateTime = () => {
@@ -147,17 +148,19 @@ let formattedDate = `${day}-${month}-${year}`;
       seconds = String(seconds).padStart(2, '0');
       setTime(`${hours}:${minutes}:${seconds} ${ampm}`);
     };
-
+    
+    
     updateTime();
     const timerId = setInterval(updateTime, 1000);
 
     return () => clearInterval(timerId);
   },[progress,click,courseStatus,selectedItems]);
+  
   return (
     <div className='bg-white rounded-lg border border-b-[#e97902] h-screen flex flex-col  p-1  ' >
        {/* <HeaderDash/>*/}
         
-        <div className="title p-2 text-center font-serif font bold flex flex-row justify-between " >
+        <div className="title p-2 text-center font-serif font bold flex flex-row justify-between bg-gray-200 text-xl font-serif " >
           <p>{formattedDate}</p>       
           <p> Hello Thomas 👋 </p>
            <p>{time}</p>
