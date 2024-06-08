@@ -29,15 +29,57 @@ interface Student {
   exposure:string;
   password:string;
 }
+interface CheckboxProps {
+  defaultChecked?: boolean;
+  className?: string;
+}
+
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 
 function LoginStudent({setNavigation,navigation}:any) {
   
   const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [secure, setSecure] = useState(false);
   const [error, setError] = useState('');
   const [students, setStudents] = useState<Student[]>([]);
   
+
+  const [checked, setChecked] = useState(false);
+  const[click,setClick]=useState(0)
+  const handleChange = () => {
+    setChecked(true);
+    setClick(1);
+    if(click==1){
+      setClick(0);
+      setChecked(false);
+    }
+    
+  };
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = async () => {
+    const findEmail = students.find(user => user.email === email);
+    const finduser = students.find(user => user.username === username);
+    const findPass = students.find(user => user.password === password);
+    
+
+    if (findEmail || finduser && findPass) {
+      setSecure(true);
+      setLoading(true);
+      //setError(null);
+      
+      setTimeout(() => {
+        setLoading(false);
+       // router.push('/academics/studentPortal/Dashboard');
+      }, 2000);
+    } else {
+      setError('Email or password is incorrect');
+    }
+  };
+  const [isValid, setIsValid] = useState<boolean>(true);
   //fetch on each render;
   useEffect(()=>{
     const fetchData = async () => {
@@ -54,28 +96,34 @@ function LoginStudent({setNavigation,navigation}:any) {
       }
     };
     fetchData();
-  },[students]);
-  
-  const [loading, setLoading] = useState(false);
-
-  const handleLogin = async () => {
-    const findEmail = students.find(user => user.email === email);
-    const findPass = students.find(user => user.password === password);
-
-    if (findEmail && findPass) {
-      setSecure(true);
-      setLoading(true);
-      //setError(null);
-
-      setTimeout(() => {
-        setLoading(false);
-       // router.push('/academics/studentPortal/Dashboard');
-      }, 2000);
-    } else {
-      setError('Email or password is incorrect');
+    
+    if(secure==true){
+      if(checked==true){
+        if(email!==""&&username==""){
+          localStorage.setItem("s-email",JSON.stringify(email));
+        }else{
+          localStorage.setItem("s-username",JSON.stringify(username));
+          alert("tiii")
+        }
+        localStorage.setItem("s-password",JSON.stringify(password));
+        //alert("yeet")
+      }else{
+        if(email!==""&&username==""){
+          sessionStorage.setItem("s-email",JSON.stringify(email));
+        }else{
+          sessionStorage.setItem("s-username",JSON.stringify(username));
+          //alert("siii")
+        }
+        
+        sessionStorage.setItem("s-password",JSON.stringify(password));
+      }
     }
-  };
 
+  },[students,click,checked,secure,loading,error,username,email]);
+  
+  
+
+  
 
   return (
     <div>
@@ -114,12 +162,23 @@ function LoginStudent({setNavigation,navigation}:any) {
           <div className="card-body  ">
             <div className="form-control  ">
               <label className="label">
-                <span className="font-bold font-mono  ">Email</span>
+                <span className="font-bold font-mono  ">Email/username</span>
               </label>
               <input
                 type="email"
                 placeholder=" example@gmail.com "
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) =>{
+                  e.preventDefault()
+                  //setEmail(e.target.value)
+                  setIsValid(emailRegex.test(e.target.value));
+                  if(isValid){
+                    setEmail(e.target.value);
+                  }else{
+                    setUsername(e.target.value);
+                    
+                  }
+
+                }}
                 className="input input-bordered  border border-b-[#e97902] placeholder-[#e97902] text-black bg-white "
               />
             </div>
@@ -138,6 +197,15 @@ function LoginStudent({setNavigation,navigation}:any) {
                   Forgot password?
                 </a>
               </label>
+              <div className='flex flex-row label bg-gray-200 w-[60%] mx-auto  ' >
+              <input
+                type="checkbox"
+                checked={checked}
+                onChange={handleChange}
+                className={`checkbox border-orange-400 checked:border-indigo-800 [--chkbg:theme(colors.indigo.600)] [--chkfg:orange] ${"my-custom-class" }`}
+              />
+              <p className='pl-2 ' >remember me</p>
+              </div>
             </div>
             
             {secure?<p className='text-center w-full ' >welcome back  </p>:<p className='text-center w-full text-red-500 ' >email or password not correct or possibly empty </p>}

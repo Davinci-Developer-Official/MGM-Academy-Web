@@ -1,6 +1,6 @@
 'use client';
 import HeaderDash from '@/app/components/HeaderDash'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Metrics from "./Metrics"
 import Carousel from './Carousel'
 import ba from "@/public/placeholders/ba.jpeg";
@@ -134,9 +134,13 @@ let formattedDate = `${day}-${month}-${year}`;
   const [time, setTime] = useState('');
   const[searchBar,showSearchBar]=useState(false);
   useHotkeys("ctrl+v",()=>{showSearchBar(true)})
-//useEffect Hook
-  useEffect(()=>{
-   const updateTime = () => {
+  const[user,setUser]=useState({
+    email:"",
+  })
+  const[useError,setUserError]=useState(false);
+
+    // Define updateTime function outside useEffect
+    const updateTime = useCallback(() => {
       const currentTime = new Date();
       let hours = currentTime.getHours();
       let minutes = currentTime.getMinutes();
@@ -149,14 +153,32 @@ let formattedDate = `${day}-${month}-${year}`;
       //@ts-ignore
       seconds = String(seconds).padStart(2, '0');
       setTime(`${hours}:${minutes}:${seconds} ${ampm}`);
-    };
-    
-    
-    updateTime();
-    const timerId = setInterval(updateTime, 1000);
-
-    return () => clearInterval(timerId);
-  },[progress,click,courseStatus,selectedItems]);
+    }, []);
+  
+    useEffect(() => {
+      function getUser() {
+        const emailAddress = localStorage.getItem("s-usename");
+        //@ts-ignore
+        setUser({ email: JSON.parse(emailAddress) });
+        if (!emailAddress) {
+          setUserError(true);
+          const emailAddress = sessionStorage.getItem("s-username");
+          //@ts-ignore
+        setUser({ email: JSON.parse(emailAddress) });
+          //alert(emailAddress)
+        }
+      }
+  
+      getUser();
+    }, [click,user]); // Empty dependency array ensures this runs once
+  
+    useEffect(() => {
+      updateTime();
+      const timerId = setInterval(updateTime, 1000);
+  
+      return () => clearInterval(timerId);
+    }, [updateTime]); // Dependency on updateTime
+  
   
   return (
     <div className='bg-white rounded-lg border border-b-[#e97902] h-screen flex flex-col  p-1  ' >
@@ -164,7 +186,7 @@ let formattedDate = `${day}-${month}-${year}`;
         
         <div className="title p-2 text-center font-serif font bold flex flex-row justify-between bg-gray-200 text-xl font-serif " >
           <p>{formattedDate}</p>       
-          <p> Hello Thomas 👋 </p>
+          <p> Hello {user.email} 👋 </p>
            <p>{time}</p>
         </div>
 

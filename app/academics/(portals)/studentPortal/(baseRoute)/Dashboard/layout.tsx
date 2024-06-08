@@ -4,7 +4,26 @@ import { useEffect, useState } from "react";
 export default function Layout({ children,upcoming,topDeals }: { children: React.ReactNode,upcoming:React.ReactNode,topDeals:React.ReactNode }) {
    
     const [activeTab, setActiveTab] = useState(1); // Setting the default active tab to 2
-    useEffect(()=>{},[activeTab])
+    {/* 
+       const[user,setUser]=useState({
+      email:"",
+    })
+    const[useError,setUserError]=useState(false);  
+    */}
+    useEffect(()=>{
+       {/*
+        function getUser(){
+        const emailAddress =  localStorage.getItem("s-email");
+        //@ts-ignore
+        setUser({email:emailAddress})
+        if(user.email==""){
+            // alert("failed localstorage")
+            setUserError(true)
+        }
+      }
+      getUser()
+        */}
+    },[activeTab])
    
    return <div className="w-full h-screen bg-white " >
      <div role="tablist" className="tabs tabs-bordered justify-center p-2  ">

@@ -54,6 +54,9 @@ export default function Form({setNavigation,navigation}:any){
       exposure:'',
       password: ''
     });
+     
+    //useEffect hook
+    useEffect(()=>{
       async function upload(){
        
         try {
@@ -104,8 +107,6 @@ export default function Form({setNavigation,navigation}:any){
         alert(error)
         console.error(error)
       }}
-    //useEffect hook
-    useEffect(()=>{
         //switching between slides
         function slideSwitcher(){
             if(slide1){
