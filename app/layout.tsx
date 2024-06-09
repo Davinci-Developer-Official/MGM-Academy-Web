@@ -19,7 +19,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const a =""
+  
+  useEffect(() => {
+    // Detect screen size and set zoom accordingly
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 1200) {
+      setZoom(0.75); // Set zoom to 75% if screen width is greater than 1200px
+    }
+  }, []);
   const [zoom, setZoom] = useState(1);
 
   useHotkeys('ctrl+=', () => setZoom((prevZoom) => prevZoom + 0.1));
