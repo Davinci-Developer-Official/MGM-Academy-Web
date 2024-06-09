@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { FaCaretDown, FaCaretUp } from 'react-icons/fa'
 
 function UpdatesCard() {
@@ -110,17 +110,17 @@ const students = [
   });
   const[showCompletionRate,setShowCompletionRate]=useState("")
 
-  function checkRate(){
+  const check = useCallback(function checkRate(){
     courses.find(item=>{
       if(item.courseName==selectedCourse.courseName||item.classCode==selectedCourse.courseCode){
         setShowCompletionRate(item.completionRate);
       }
     })
-  }
+  },[])
 
   useEffect(()=>{
-    checkRate()
-  },[selectedCourse,selectedCourse.courseCode,selectedCourse.courseName,showCompletionRate]);
+   // checkRate()
+  },[check,selectedCourse,selectedCourse.courseCode,selectedCourse.courseName,showCompletionRate]);
   return (
     <div className=' w-[70%] bg-[#2d545e] mx-auto mt-10 rounded-md  p-1 ' >
     <div className=' flex flex-row  ' >

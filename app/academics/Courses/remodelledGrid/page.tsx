@@ -102,7 +102,7 @@ const CoursesPage = () => {
           </button>
           {renderCategory && <ul className='h-[250px] rounded-md background border-[#e1b382] border overflow-y-scroll absolute mt-10 z-10'>
             {filteredData.map((category, index) => (
-              <div key={index}>
+              <div key={category||index}>
                 <button
                   className='btn btn-ghost w-[90%] ml-[5%] mt-2'
                   onClick={() => {

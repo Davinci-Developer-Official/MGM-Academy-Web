@@ -202,7 +202,7 @@ const CoursesPage = () => {
           {selectedCourse && (
             <div className="card mt-1 h-full">
               {selectedCourse.topics.map((topic, index) => (
-                <div key={index} className="card-title bg-gray-200 mt-1 w-[96%] mx-auto flex flex-col">
+                <div key={topic.unit||index} className="card-title bg-gray-200 mt-1 w-[96%] mx-auto flex flex-col">
                   <div className="card-title flex flex-row justify-between w-[90%] mx-auto">
                     <p>{topic.unit}:</p>
                     
@@ -219,7 +219,7 @@ const CoursesPage = () => {
                   <ul className="card-compact bg-red-400 w-[98%] mx-auto bg-white mt-[2px]">
                     {topic.subtopics.map((subtopic, subIndex) => (
                       <div>
-                      <li key={subIndex} className="flex flex-row justify-between mt-1 p-2">
+                      <li key={subtopic||subIndex} className="flex flex-row justify-between mt-1 p-2">
                         <p>{subtopic}</p>
                        <FaInfoCircle size={18}
                         className="cursor-pointer"

@@ -123,7 +123,7 @@ export default function Form({setNavigation,navigation}:any){
             };
             if(slide5) {
                 setValueNo(100);
-                upload()
+                //upload()
             };
         }//slide switcher function;
         slideSwitcher();//calling the slide switcher function;

@@ -159,7 +159,7 @@ let formattedDate = `${day}-${month}-${year}`;
       function getUser() {
         const emailAddress = localStorage.getItem("s-usename");
         //@ts-ignore
-        setUser({ email: JSON.parse(emailAddress) });
+        //setUser({ email: JSON.parse(emailAddress) });
         if (!emailAddress) {
           setUserError(true);
           const emailAddress = sessionStorage.getItem("s-username");

@@ -1,7 +1,7 @@
 "use client";
 
 import { FaArrowRight, FaCaretDown, FaCaretRight, FaCaretUp, FaCartPlus, FaCompress, FaExpand, FaGraduationCap, FaInfoCircle, FaLock, FaLockOpen, FaTimesCircle } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import data from "./data.json";
 import Image from "next/image";
 import Rating from "./Rating";
@@ -61,7 +61,7 @@ const CoursesPage = () => {
   const [renderCategory, setRenderCategory] = useState(false);
   const [filteredData, setFilteredData] = useState<string[]>([]);
 
-  const fetchData = async () => {
+  const fetchData = useCallback( async () => {
     try {
       const response = [...data.courses];
       const collection = collect(response);
@@ -78,11 +78,11 @@ const CoursesPage = () => {
     } catch (error) {
       console.error('Error fetching data:', error);
     }
-  };
+  },[])
 
   useEffect(() => {
-    fetchData();
-  }, [selectedCategory]);
+    
+  }, [selectedCategory,fetchData]);
 
   return (
     <div className="flex flex-col h-full bg-white">
@@ -101,7 +101,7 @@ const CoursesPage = () => {
           </button>
           {renderCategory && <ul className='h-[250px] rounded-md background border-[#e1b382] border overflow-y-scroll absolute mt-10 z-10'>
             {filteredData.map((category, index) => (
-              <div key={index}>
+              <div key={category||index}>
                 <button
                   className='btn btn-ghost w-[90%] ml-[5%] mt-2'
                   onClick={() => {
