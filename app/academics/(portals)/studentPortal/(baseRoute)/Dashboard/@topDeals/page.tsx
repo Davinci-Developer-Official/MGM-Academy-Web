@@ -17,12 +17,12 @@ type Course = {
     unit: string;
     subtopics: string[];
   }[];
-  category: string; // Add the category field to the course type
+  category: string;
 };
 
 const CoursesPage = () => {
   const [showRequirements, setShowRequirements] = useState<Record<string, boolean>>({});
-  const [showSubTopics, setShowSubTopics] = useState<Record<string, Record<string, boolean>>>({});
+  const [showSubTopics, setShowSubTopics] = useState<Record<string, Record<number, boolean>>>({});
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [filteredCourses, setFilteredCourses] = useState<Course[]>(data.courses);
@@ -61,67 +61,84 @@ const CoursesPage = () => {
   const [renderCategory, setRenderCategory] = useState(false);
   const [filteredData, setFilteredData] = useState<string[]>([]);
 
-  const fetchData = useCallback( async () => {
+  const fetchData = useCallback(() => {
     try {
       const response = [...data.courses];
       const collection = collect(response);
-      const uniqueCategories = collection.pluck('category').unique().all();
+      const uniqueCategories = collection.pluck("category").unique().all();
       //@ts-ignore
       setFilteredData(uniqueCategories);
       if (selectedCategory !== "") {
-        const filter = collection.where('category', selectedCategory).all();
+        const filter = collection.where("category", selectedCategory).all();
         //@ts-ignore
         setFilteredCourses(filter);
       } else {
         setFilteredCourses(response);
       }
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
     }
-  },[])
+  }, [selectedCategory]);
 
   useEffect(() => {
-    
-  }, [selectedCategory,fetchData]);
+    fetchData();
+  }, [selectedCategory, fetchData]);
 
   return (
     <div className="flex flex-col h-full bg-white">
-      <div className='flex flex-row h-fit w-full justify-between p-4'>
-        {!hideMenu && <button onClick={() => { setHideMenu(true) }} className='btn btn-ghost flex flex-col'><FaCompress size={15} /></button>}
-        {hideMenu && <button onClick={() => { setHideMenu(false) }} className='btn btn-ghost flex flex-col'><FaExpand size={15} /></button>}
+      <div className="flex flex-row h-fit w-full justify-between p-4">
+        {!hideMenu && (
+          <button onClick={() => setHideMenu(true)} className="btn btn-ghost flex flex-col">
+            <FaCompress size={15} />
+          </button>
+        )}
+        {hideMenu && (
+          <button onClick={() => setHideMenu(false)} className="btn btn-ghost flex flex-col">
+            <FaExpand size={15} />
+          </button>
+        )}
 
-        <p className='btn btn-ghost font-bold lg:text-xl md:text-lg sm:text-sm'>MGM Courses</p>
-        <div className='flex flex-col'>
-          <button className='btn btn-ghost h-fit' onClick={() => {
-            setRenderCategory(true);
-          }}>
-            {selectedCategory !== "" && <p className='sm:text-sm'>{selectedCategory}</p>}
+        <p className="btn btn-ghost font-bold lg:text-xl md:text-lg sm:text-sm">MGM Courses</p>
+        <div className="flex flex-col">
+          <button
+            className="btn btn-ghost h-fit"
+            onClick={() => {
+              setRenderCategory(true);
+            }}
+          >
+            {selectedCategory !== "" && <p className="sm:text-sm">{selectedCategory}</p>}
             {selectedCategory === "" && <p>ALL</p>}
             <FaCaretDown size={20} />
           </button>
-          {renderCategory && <ul className='h-[250px] rounded-md background border-[#e1b382] border overflow-y-scroll absolute mt-10 z-10'>
-            {filteredData.map((category, index) => (
-              <div key={category||index}>
-                <button
-                  className='btn btn-ghost w-[90%] ml-[5%] mt-2'
-                  onClick={() => {
-                    setSelectedCategory(category);
-                    setRenderCategory(false);
-                    setCurrentPage(1); // Reset to the first page when changing category
-                  }}
-                >
-                  {category}
-                </button>
-              </div>
-            ))}
-          </ul>}
+          {renderCategory && (
+            <ul className="h-[250px] rounded-md background border-[#e1b382] border overflow-y-scroll absolute mt-10 z-10">
+              {filteredData.map((category, index) => (
+                <div key={category || index}>
+                  <button
+                    className="btn btn-ghost w-[90%] ml-[5%] mt-2"
+                    onClick={() => {
+                      setSelectedCategory(category);
+                      setRenderCategory(false);
+                      setCurrentPage(1); // Reset to the first page when changing category
+                    }}
+                  >
+                    {category}
+                  </button>
+                </div>
+              ))}
+            </ul>
+          )}
         </div>
-        <button className='cursor-none'><FaGraduationCap size={30} /></button>
+        <button className="cursor-none">
+          <FaGraduationCap size={30} />
+        </button>
       </div>
       <div className="w-full overflow-y-auto h-screen p-2 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-2">
         {currentCourses.map((course) => (
           <div key={course.unitCode} className="p-1 bg-gray-200 mt-1 mx-auto card w-[550px] h-fit shadow-xl shadow-gray-500">
-            <figure><Image src={placeholder} alt="placeholder Image" /></figure>
+            <figure>
+              <Image src={placeholder} alt="placeholder Image" />
+            </figure>
             <h2 className="card-title p-2 font-bold font-serif">{course.title}</h2>
             <div className="card-title p-2 flex flex-row justify-between w-[90%] mx-auto">
               <p className="font-semibold font-mono text-base">Course Requirements:</p>
@@ -155,7 +172,9 @@ const CoursesPage = () => {
             <div className="card-actions justify-start p-1">
               <div className="label ml-5">$ 499.99</div>
               <div className="label">{course.category}</div>
-              <div className="label pt-3"><Rating rating={5} /></div>
+              <div className="label pt-3">
+                <Rating rating={5} />
+              </div>
               <label
                 htmlFor="my_modal_7"
                 className="ml-[18%] text-blue-600 cursor-pointer hover:text-red-500 flex flex-row"
@@ -205,51 +224,59 @@ const CoursesPage = () => {
                 <div key={index} className="card-title bg-gray-200 mt-1 w-[96%] mx-auto flex flex-col">
                   <div className="card-title flex flex-row justify-between w-[90%] mx-auto">
                     <p>{topic.unit}:</p>
-                    
-                      <FaLock
-                        size={18}
-                        className="cursor-pointer pt-[2px] "
-                        onClick={(e) => {
-                          e.preventDefault();
-                          toggleShowSubTopics(selectedCourse.unitCode, index);
-                        }}
-                      />
-                  
+                    <FaLock
+                      size={18}
+                      className="cursor-pointer pt-[2px]"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toggleShowSubTopics(selectedCourse.unitCode, index);
+                      }}
+                    />
                   </div>
-                  <ul className="card-compact bg-red-400 w-[98%] mx-auto bg-white mt-[2px]">
-                    {topic.subtopics.map((subtopic, subIndex) => (
-                      <div>
-                      <li key={subIndex} className="flex flex-row justify-between mt-1 p-2">
-                        <p>{subtopic}</p>
-                       <FaInfoCircle size={18}
-                        className="cursor-pointer"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          toggleShowSubTopics(selectedCourse.unitCode, index);
-                        }} />
-                      </li>
-                      <div className="w-full h-fit " >
-                      {showSubTopics[selectedCourse.unitCode]?.[index] ? (
-                      <></>
-                    ) : (
-                      <div>
-                        <p className="text-sm p-2  " >Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga voluptates ratione cum nam vitae architecto perferendis explicabo quaerat impedit, labore eveniet sequi vel? Impedit ratione rem omnis blanditiis. Ex, quibusdam?</p>
-                      </div>
-                    )}
-                      </div>
-                      <div className=" flex flex-row p-2 w-full "  >
-                        <Link href="" className="text-green-700 text-sm   " >purchase course to unlock topic </Link>
-                        <FaArrowRight size={20} className=" p-1 " />
-                      </div>
-                      </div>
-                    ))}
-                  </ul>
+                  {showSubTopics[selectedCourse.unitCode]?.[index] && (
+                    <ul className="card-compact bg-white w-[98%] mx-auto mt-[2px]">
+                      {topic.subtopics.map((subtopic, subIndex) => (
+                        <div key={subIndex}>
+                          <li className="flex flex-row justify-between mt-1 p-2">
+                            <p>{subtopic}</p>
+                            <FaInfoCircle
+                              size={18}
+                              className="cursor-pointer"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                toggleShowSubTopics(selectedCourse.unitCode, index);
+                              }}
+                            />
+                          </li>
+                          <div className="w-full h-fit">
+                            {!showSubTopics[selectedCourse.unitCode]?.[index] ? (
+                              <></>
+                            ) : (
+                              <div>
+                                <p className="text-sm p-2">
+                                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga voluptates ratione cum nam vitae architecto perferendis explicabo quaerat impedit, labore eveniet sequi vel? Impedit ratione rem omnis blanditiis. Ex, quibusdam?
+                                </p>
+                              </div>
+                            )}
+                          </div>
+                          <div className="flex flex-row p-2 w-full">
+                            <Link href="" className="text-green-700 text-sm">
+                              purchase course to unlock topic
+                            </Link>
+                            <FaArrowRight size={20} className="p-1" />
+                          </div>
+                        </div>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               ))}
             </div>
           )}
         </div>
-        <label className="modal-backdrop" htmlFor="my_modal_7">Close</label>
+        <label className="modal-backdrop" htmlFor="my_modal_7">
+          Close
+        </label>
       </div>
     </div>
   );

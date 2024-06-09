@@ -1,13 +1,13 @@
 "use client";
 
-import { FaArrowRight, FaCaretDown, FaCaretRight, FaCaretUp, FaCartPlus, FaCompress, FaExpand, FaGraduationCap, FaInfoCircle, FaLock, FaLockOpen, FaTimesCircle } from "react-icons/fa";
+import { FaArrowRight, FaCaretDown, FaCartPlus, FaCompress, FaExpand, FaGraduationCap, FaInfoCircle, FaTimesCircle, FaLock } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import data from "./data.json";
 import Image from "next/image";
 import Rating from "../academics/Courses/Rating";
 import Link from "next/link";
 import collect from "collect.js";
-import placeholder from '@/public/categories/business-studies-FO8nWoT6OnZ7DXO6xYA2TnRK4kzhwt.jpg'
+import placeholder from '@/public/categories/business-studies-FO8nWoT6OnZ7DXO6xYA2TnRK4kzhwt.jpg';
 
 type Course = {
   title: string;
@@ -17,12 +17,12 @@ type Course = {
     unit: string;
     subtopics: string[];
   }[];
-  category: string; // Add the category field to the course type
+  category: string;
 };
 
 const CoursesPage = () => {
   const [showRequirements, setShowRequirements] = useState<Record<string, boolean>>({});
-  const [showSubTopics, setShowSubTopics] = useState<Record<string, Record<string, boolean>>>({});
+  const [showSubTopics, setShowSubTopics] = useState<Record<string, Record<number, boolean>>>({});
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [filteredCourses, setFilteredCourses] = useState<Course[]>(data.courses);
@@ -70,7 +70,6 @@ const CoursesPage = () => {
       setFilteredData(uniqueCategories);
       if (selectedCategory !== "") {
         const filter = collection.where('category', selectedCategory).all();
-        //@ts-ignore
         setFilteredCourses(filter);
       } else {
         setFilteredCourses(response);
@@ -93,7 +92,7 @@ const CoursesPage = () => {
         <p className='btn btn-ghost font-bold lg:text-xl md:text-lg sm:text-sm'>MGM Courses</p>
         <div className='flex flex-col'>
           <button className='btn btn-ghost h-fit' onClick={() => {
-            setRenderCategory(true);
+            setRenderCategory(!renderCategory);
           }}>
             {selectedCategory !== "" && <p className='sm:text-sm'>{selectedCategory}</p>}
             {selectedCategory === "" && <p>ALL</p>}
@@ -202,45 +201,43 @@ const CoursesPage = () => {
           {selectedCourse && (
             <div className="card mt-1 h-full">
               {selectedCourse.topics.map((topic, index) => (
-                <div key={topic.unit||index} className="card-title bg-gray-200 mt-1 w-[96%] mx-auto flex flex-col">
+                <div key={index} className="card-title bg-gray-200 mt-1 w-[96%] mx-auto flex flex-col">
                   <div className="card-title flex flex-row justify-between w-[90%] mx-auto">
                     <p>{topic.unit}:</p>
-                    
-                      <FaLock
-                        size={18}
-                        className="cursor-pointer pt-[2px] "
-                        onClick={(e) => {
-                          e.preventDefault();
-                          toggleShowSubTopics(selectedCourse.unitCode, index);
-                        }}
-                      />
-                  
+                    <FaLock
+                      size={18}
+                      className="cursor-pointer pt-[2px]"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        toggleShowSubTopics(selectedCourse.unitCode, index);
+                      }}
+                    />
                   </div>
                   <ul className="card-compact bg-red-400 w-[98%] mx-auto bg-white mt-[2px]">
                     {topic.subtopics.map((subtopic, subIndex) => (
-                      <div>
-                      <li key={subtopic||subIndex} className="flex flex-row justify-between mt-1 p-2">
-                        <p>{subtopic}</p>
-                       <FaInfoCircle size={18}
-                        className="cursor-pointer"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          toggleShowSubTopics(selectedCourse.unitCode, index);
-                        }} />
-                      </li>
-                      <div className="w-full h-fit " >
-                      {showSubTopics[selectedCourse.unitCode]?.[index] ? (
-                      <></>
-                    ) : (
-                      <div>
-                        <p className="text-sm p-2  " >Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga voluptates ratione cum nam vitae architecto perferendis explicabo quaerat impedit, labore eveniet sequi vel? Impedit ratione rem omnis blanditiis. Ex, quibusdam?</p>
-                      </div>
-                    )}
-                      </div>
-                      <div className=" flex flex-row p-2 w-full "  >
-                        <Link href="" className="text-green-700 text-sm   " >purchase course to unlock topic </Link>
-                        <FaArrowRight size={20} className=" p-1 " />
-                      </div>
+                      <div key={subIndex}>
+                        <li className="flex flex-row justify-between mt-1 p-2">
+                          <p>{subtopic}</p>
+                          <FaInfoCircle
+                            size={18}
+                            className="cursor-pointer"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              toggleShowSubTopics(selectedCourse.unitCode, index);
+                            }}
+                          />
+                        </li>
+                        <div className="w-full h-fit">
+                          {showSubTopics[selectedCourse.unitCode]?.[index] && (
+                            <div>
+                              <p className="text-sm p-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga voluptates ratione cum nam vitae architecto perferendis explicabo quaerat impedit, labore eveniet sequi vel? Impedit ratione rem omnis blanditiis. Ex, quibusdam?</p>
+                            </div>
+                          )}
+                        </div>
+                        <div className="flex flex-row p-2 w-full">
+                          <Link href="" className="text-green-700 text-sm">purchase course to unlock topic</Link>
+                          <FaArrowRight size={20} className="p-1" />
+                        </div>
                       </div>
                     ))}
                   </ul>
