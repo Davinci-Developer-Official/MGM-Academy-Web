@@ -155,7 +155,7 @@ const CoursesPage = () => {
                 <FaTimesCircle
                   size={18}
                   className="cursor-pointer"
-                  onClick={(e) => {
+                  onClick={(e:any) => {
                     e.preventDefault();
                     toggleShowRequirements(course.unitCode);
                   }}
@@ -227,7 +227,7 @@ const CoursesPage = () => {
                     <FaLock
                       size={18}
                       className="cursor-pointer pt-[2px]"
-                      onClick={(e) => {
+                      onClick={(e:any) => {
                         e.preventDefault();
                         toggleShowSubTopics(selectedCourse.unitCode, index);
                       }}
@@ -242,7 +242,7 @@ const CoursesPage = () => {
                             <FaInfoCircle
                               size={18}
                               className="cursor-pointer"
-                              onClick={(e) => {
+                              onClick={(e:any) => {
                                 e.preventDefault();
                                 toggleShowSubTopics(selectedCourse.unitCode, index);
                               }}
