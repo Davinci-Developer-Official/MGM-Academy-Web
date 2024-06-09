@@ -3,7 +3,12 @@
 @tailwind utilities;
 
 
- 
+/* styles/globals.css */
+html {
+    transform: scale(0.9.9); /* Default zoom level set to 90% ie 0.75 is 75%*/
+    transform-origin: 0 0;
+  }
+  
 
 ::-webkit-scrollbar {
    width: 12px;
