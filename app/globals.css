@@ -58,3 +58,15 @@ html {
     color: #e1b382 ;
 }
 
+.horizontal-scroll-container {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px;
+  }
+  
+  .horizontal-scroll-container .card {
+    flex: 0 0 auto;
+    margin-right: 10px;
+  }
+  

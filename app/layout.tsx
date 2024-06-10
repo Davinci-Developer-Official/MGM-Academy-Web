@@ -23,8 +23,9 @@ export default function RootLayout({
   useEffect(() => {
     // Detect screen size and set zoom accordingly
     const screenWidth = window.innerWidth;
-    if (screenWidth <= 1200) {
-      setZoom(0.75); // Set zoom to 75% if screen width is greater than 1200px
+    //@ts-ignore
+    if (screenWidth > 1200) {
+      setZoom(0.99); // Set zoom to 75% if screen width is greater than 1200px
     }
   }, []);
   const [zoom, setZoom] = useState(1);
