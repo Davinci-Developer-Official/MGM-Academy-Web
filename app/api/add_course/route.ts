@@ -45,3 +45,21 @@ CREATE TABLE courses (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 */}
+{/*
+  CREATE TABLE Course (
+    id SERIAL,
+    cover_image VARCHAR,
+    introduction_video VARCHAR,
+    course_id UUID NOT NULL  PRIMARY KEY ,
+    course_name VARCHAR NOT NULL,
+    course_requirements TEXT[],
+    unit_code VARCHAR(10) NOT NULL,
+    course_category VARCHAR,
+    instructor_id INT REFERENCES Instructor(id),
+    course_instructor INT REFERENCES Instructor(instructor_name),
+    introduction_statement VARCHAR,
+    overview TEXT,
+    course_rating VARCHAR,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+  */}

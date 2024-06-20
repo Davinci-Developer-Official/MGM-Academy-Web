@@ -52,3 +52,25 @@ CREATE TABLE students (
 );
 
 */}
+
+{/*
+  CREATE TABLE Users (
+    id SERIAL ,
+    user_id UUID NOT NULL PRIMARY KEY ,
+    first_name VARCHAR,
+    middle_name VARCHAR,
+    last_name VARCHAR,
+    avatar VARCHAR,
+    role VARCHAR(100),
+    contact_tip TEXT,
+    email VARCHAR,
+    gender VARCHAR,
+    nationality VARCHAR,
+    residence VARCHAR,
+    phone_number VARCHAR,
+    date_of_birth DATE,
+    exposure VARCHAR,
+    password VARCHAR,
+    time_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+  */}

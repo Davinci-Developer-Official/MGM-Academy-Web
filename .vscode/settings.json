@@ -1,0 +1,5 @@
+{
+    "database-client.autoSync": true,
+    "database-client.capitalizeKeywordsWhenFormatting": true,
+    "database-client.disableSQLCompletion": true
+}
