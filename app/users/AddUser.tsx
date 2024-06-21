@@ -55,10 +55,10 @@ function AddUser() {
     }
 
     return (
-        <form onSubmit={upload} className='flex flex-col w-[80%] mx-auto bg-blue-500 h-[500px] p-2'>
-            <h1 className='label'>Create account</h1>
+        <form onSubmit={upload} className='flex flex-col w-[80%] mx-auto bg-blue-500 mt-5 card h-[450px] p-2'>
+            <h1 className='card-title'>Create account</h1>
 
-            <div className='flex flex-row p-2 bg-green-400 mt-1 justify-evenly rounded'>
+            <div className='card-body flex flex-row p-2 bg-green-400 mt-1 justify-evenly rounded'>
                 <label>Your Names </label>
                 <input
                     type='text'
@@ -70,7 +70,7 @@ function AddUser() {
                 />
             </div>
 
-            <div className='flex flex-row p-2 bg-green-400 mt-1 justify-evenly rounded'>
+            <div className='card-body flex flex-row p-2 bg-green-400 mt-1 justify-evenly rounded'>
                 <label>Your gender </label>
                 <input
                     type='text'
@@ -82,7 +82,7 @@ function AddUser() {
                 />
             </div>
 
-            <div className='flex flex-row p-2 bg-green-400 mt-1 justify-evenly rounded'>
+            <div className='card-body flex flex-row p-2 bg-green-400 mt-1 justify-evenly rounded'>
                 <label>Your email </label>
                 <input
                     type='email'
@@ -94,7 +94,7 @@ function AddUser() {
                 />
             </div>
 
-            <div className='flex flex-row p-2 bg-green-400 mt-1 justify-evenly rounded'>
+            <div className='card-body flex flex-row p-2 bg-green-400 mt-1 justify-evenly rounded'>
                 <label>Your phone number </label>
                 <input
                     type='text'
@@ -106,7 +106,7 @@ function AddUser() {
                 />
             </div>
 
-            <div className='flex flex-row p-2 bg-green-400 mt-1 justify-evenly rounded'>
+            <div className='card-body flex flex-row p-2 bg-green-400 mt-1 justify-evenly rounded'>
                 <label>Your nation of residence </label>
                 <input
                     type='text'
@@ -118,7 +118,7 @@ function AddUser() {
                 />
             </div>
 
-            <div className='flex flex-row p-2 bg-green-400 mt-1 justify-evenly rounded'>
+            <div className='card-body flex flex-row p-2 bg-green-400 mt-1 justify-evenly rounded'>
                 <label>Your verified </label>
                 <input
                     type='checkbox'
@@ -129,7 +129,7 @@ function AddUser() {
                 />
             </div>
 
-            <div className='flex flex-row p-2 bg-green-400 mt-1 justify-evenly rounded'>
+            <div className='card-body flex flex-row p-2 bg-green-400 mt-1 justify-evenly rounded'>
                 <label>Your password </label>
                 <input
                     type='password'
