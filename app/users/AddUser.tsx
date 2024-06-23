@@ -22,12 +22,20 @@ function AddUser() {
         password: ""
     });
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const { name, value, type, checked } = e.target;
-        setUser((prevUser) => ({
-            ...prevUser,
-            [name]: type === 'checkbox' ? checked : value
-        }));
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value, type } = e.target;
+
+        if (type === 'checkbox') {
+            setUser((prevUser) => ({
+                ...prevUser,
+                [name]: (e.target as HTMLInputElement).checked
+            }));
+        } else {
+            setUser((prevUser) => ({
+                ...prevUser,
+                [name]: value
+            }));
+        }
     };
 
     const validateForm = () => {
@@ -71,11 +79,11 @@ function AddUser() {
             <h1 className='text-2xl font-bold text-center text-white mb-4'>Create Account</h1>
 
             <div className='mb-4'>
-                <label className='block text-white mb-2'>Your Names</label>
+                <label className='block text-white mb-2'>Name</label>
                 <input
                     type='text'
                     name='usernames'
-                    placeholder='Your full names'
+                    placeholder='Your full names / username ie changable in portal '
                     className='w-full p-2 border border-gray-300 rounded bg-black text-white'
                     onChange={handleChange}
                     value={user.usernames}
@@ -83,7 +91,7 @@ function AddUser() {
             </div>
 
             <div className='mb-4'>
-                <label className='block text-white mb-2'>Your Gender</label>
+                <label className='block text-white mb-2'> Gender</label>
                 <input
                     list='genders'
                     name='gender'
@@ -94,11 +102,12 @@ function AddUser() {
                 />
                 <datalist id='genders'>
                     <option value="Male" />
+                    <option value="Female"/>
                 </datalist>
             </div>
 
             <div className='mb-4'>
-                <label className='block text-white mb-2'>Your Email</label>
+                <label className='block text-white mb-2'> Email</label>
                 <input
                     type='email'
                     name='email'
@@ -110,7 +119,7 @@ function AddUser() {
             </div>
 
             <div className='mb-4'>
-                <label className='block text-white mb-2'>Your Phone Number</label>
+                <label className='block text-white mb-2'> Phone Number</label>
                 <input
                     type='text'
                     name='phonenumber'
@@ -122,11 +131,11 @@ function AddUser() {
             </div>
 
             <div className='mb-4'>
-                <label className='block text-white mb-2'>Your Nation of Residence</label>
+                <label className='block text-white mb-2'> Nation of Residence</label>
                 <input
                     type='text'
                     name='nationality'
-                    placeholder='Your nation of residence'
+                    placeholder='Your Current nation of residence '
                     className='w-full p-2 border border-gray-300 rounded bg-black text-white'
                     onChange={handleChange}
                     value={user.nationality}
@@ -146,17 +155,19 @@ function AddUser() {
             </div>
 
             <div className='flex items-center mb-4'>
-                <label className='text-white mr-2'>Register as </label>
                 <div className='flex items-center'>
-                <span className='text-white ml-2'> Instructor </span>
-                    <input
+                <input
                         type='checkbox'
                         name='verified'
                         className='form-checkbox h-5 w-5 text-indigo-600'
                         onChange={handleChange}
                         checked={user.verified}
                     />
-                   
+                <label className='text-white mr-2'>Register as </label>
+                
+                
+                <span className='text-white '>an Instructor </span>
+                    
                 </div>
             </div>
 
