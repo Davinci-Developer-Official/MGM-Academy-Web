@@ -19,26 +19,41 @@ function Page() {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
-    useEffect(() => {
-        async function getUsers() {
-            try {
-                const response = await fetch('/api/get_users', {
-                    method: 'GET',
-                    cache: 'no-cache'
-                });
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await response.json();
-                setUsers(data);
-                setLoading(false);
-            } catch (error) {
-                setError('Failed to fetch users');
-                setLoading(false);
+    const getUsers = async () => {
+        setLoading(true);
+        try {
+            const response = await fetch('/api/get_users', {
+                method: 'GET',
+                cache: 'no-cache'
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
+            const data = await response.json();
+            setUsers(data);
+            localStorage.setItem('users', JSON.stringify(data)); // Cache users in local storage
+            setLoading(false);
+        } catch (error) {
+            setError('Failed to fetch users');
+            setLoading(false);
         }
-        getUsers();
-    }, []); // Only run once when the component mounts
+    };
+
+    useEffect(() => {
+        const cachedUsers = localStorage.getItem('users');
+        if (cachedUsers) {
+            setUsers(JSON.parse(cachedUsers));
+            setLoading(false);
+        } else {
+            getUsers();
+        }
+
+        const interval = setInterval(() => {
+            getUsers();
+        }, 10000); // Fetch users every 10 seconds
+
+        return () => clearInterval(interval); // Clear interval on component unmount
+    }, []);
 
     const deleteUser = async (userId: string) => {
         try {
@@ -51,7 +66,9 @@ function Page() {
             });
 
             if (response.ok) {
-                setUsers(users.filter(user => user.user_id !== userId));
+                const updatedUsers = users.filter(user => user.user_id !== userId);
+                setUsers(updatedUsers);
+                localStorage.setItem('users', JSON.stringify(updatedUsers)); // Update cached users
                 console.log('User deleted successfully');
             } else {
                 console.log('Failed to delete user');
@@ -70,32 +87,33 @@ function Page() {
     }
 
     return (
-        <div className='bg-red-400 w-[80%] mx-auto h-[300px] overflow-y-auto'>
-            {users.length === 0 ? (
-                <div>No users found</div>
-            ) : (
-                users.map((item: User) => (
-                    <div 
-                        key={item.id} 
-                        className='bg-yellow-200 w-[80%] mx-auto mt-1 rounded p-2 cursor-pointer flex flex-row justify-between'
-                    >
-                        <p>{item.user_names}</p>
-                        
-                        <button 
-                            className='btn btn-ghost hover:text-red-500' 
-                            onClick={(e: any) => {
-                                e.preventDefault();
-                                deleteUser(item.user_id);
-                            }}
+        <div className='flex flex-col items-center'>
+            <div className='bg-red-400 w-[80%] mx-auto h-[300px] overflow-y-auto p-2 mt-5 rounded-lg'>
+                {users.length === 0 ? (
+                    <div>No users found</div>
+                ) : (
+                    users.map((item: User) => (
+                        <div 
+                            key={item.id} 
+                            className='user-card bg-yellow-200 card w-[80%] mx-auto mt-1 rounded-md p-2 flex flex-row justify-between'
                         >
-                            <FaTrash size={20} />
-                        </button>
-                    </div>
-                ))
-            )}
+                            <p className='card-title'>{item.user_names}</p>
+                            
+                            <button 
+                                className='btn btn-ghost hover:text-red-500' 
+                                onClick={(e: any) => {
+                                    e.preventDefault();
+                                    deleteUser(item.user_id);
+                                }}
+                            >
+                                <FaTrash size={20} />
+                            </button>
+                        </div>
+                    ))
+                )}
+            </div>
         </div>
     );
 }
 
 export default Page;
-

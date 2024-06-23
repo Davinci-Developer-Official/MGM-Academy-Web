@@ -4,9 +4,9 @@ import AddUser from './AddUser';
 
 function Page() {
   return (
-    <div className='flex flex-col h-screen  ' >
-      <AddUser/>
+    <div className='flex flex-col h-full overflow-y-scroll  ' >
       <Mapped/>
+      <AddUser/>   
     </div>
   )
 }

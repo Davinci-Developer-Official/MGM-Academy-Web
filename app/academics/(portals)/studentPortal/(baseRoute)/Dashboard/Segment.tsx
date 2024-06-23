@@ -238,9 +238,12 @@ let formattedDate = `${day}-${month}-${year}`;
       
       </div>
   
-      <div className='bg-white w-full h-fit flex flex-col p-1 ' >
-    <label className="border border-black bg-white input input-bordered flex items-center gap-1 w-[80%] mx-auto  ">
-  <input type="text" className="grow bg-white " placeholder="Search" onClick={()=>{
+      <div className='bg-white w-full h-fit flex flex-col p-1 mt-1 ' >
+    
+      <div className="join w-[80%] mx-auto  mt-1 ">
+  <div>
+    <div>
+      <input className="input input-bordered join-item" placeholder="Search"  onClick={()=>{
     showSearchBar(true)
     setClick(3)
     if(click==3){
@@ -248,11 +251,20 @@ let formattedDate = `${day}-${month}-${year}`;
       setClick(0)
     }
   }} />
-  <kbd className="kbd kbd-sm text-black bg-white "> <FaSearch/> </kbd>
-  <kbd className="kbd kbd-sm text-black bg-white "> ⌘ </kbd>
-  <kbd className="kbd kbd-sm text-black bg-white "> v </kbd>
-  
-</label>
+    </div>
+  </div>
+  <select className="select select-bordered join-item">
+    <option disabled selected>Filter</option>
+    <option>All</option>
+    <option>courses</option>
+    <option>instructors</option>
+  </select>
+  <div className="indicator">
+    <span className="indicator-item badge badge-secondary">new</span> 
+    <button className="btn text-black join-item"><FaSearch size={20} /></button>
+  </div>
+</div>
+
 {searchBar&&(<div className=' flex flex-col  bg-purple-400  w-[95%] mx-auto h-[400px] mt-2 overflow-y-auto ' >
     <p>search param</p>
   </div>)}

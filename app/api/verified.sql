@@ -101,3 +101,100 @@ INSERT INTO  courses (course_instructors,course_name,course_introduction_stateme
 
 --alter table courses to make each course name unique;
  ALTER TABLE courses ADD CONSTRAINT unique_course_name  UNIQUE(course_name);
+
+--create modified courses table;
+CREATE TABLE courses (
+    id SERIAL,
+    course_id UUID DEFAULT uuid_generate_v4()  PRIMARY KEY ,
+    course_instructors TEXT,
+    course_name TEXT UNIQUE,
+    course_category TEXT,
+    course_introduction_statement TEXT,
+    course_overview TEXT,
+    course_content TEXT,
+    purchase_status BOOLEAN,
+    course_price TEXT   
+);
+
+--create modified enrolled users table;
+CREATE TABLE enrolled_students (
+    id SERIAL PRIMARY KEY,
+enrollment_id UUID DEFAULT uuid_generate_v4(),
+    course_id UUID REFERENCES courses(course_id),
+    student_id UUID REFERENCES user_profile(user_id),
+     enrollment_date DATE
+);
+
+--insert into enrolled_students trigger function;
+CREATE OR REPLACE FUNCTION enroll_student_on_purchase()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- Check if the purchase status is set to true
+    IF NEW.purchase_status = true THEN
+        -- Insert into enrolled_students table
+        INSERT INTO enrolled_students (course_id, user_id, enrollment_date)
+        VALUES (NEW.course_id, NEW.user_id, CURRENT_DATE);
+
+        -- Debugging: Log the enrollment
+        RAISE NOTICE 'Enrolled student in course. Course ID: %, User ID: %', NEW.course_id, NEW.user_id;
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+--triggering the function;
+CREATE TRIGGER after_course_purchase
+AFTER UPDATE OF purchase_status ON courses
+FOR EACH ROW
+EXECUTE FUNCTION enroll_student_on_purchase();
+
+--create table for purchases;
+CREATE TABLE purchases (
+    id SERIAL PRIMARY KEY,
+    purchase_id UUID DEFAULT uuid_generate_v4(),
+    user_id UUID REFERENCES user_profile(user_id),
+    course_id UUID REFERENCES courses(course_id),
+    purchase_date DATE DEFAULT CURRENT_DATE
+);
+
+--create trigger function for purchases table;
+CREATE OR REPLACE FUNCTION populate_purchases()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- Insert into purchases table
+    INSERT INTO purchases (user_id, course_id)
+    VALUES (NEW.user_id, NEW.course_id);
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+--trigger for purchase table;
+CREATE TRIGGER after_purchase_status_update
+AFTER UPDATE OF purchase_status ON courses
+FOR EACH ROW
+WHEN (NEW.purchase_status = true)
+EXECUTE FUNCTION populate_purchases();
+
+
+-- table triggerd update purchases table;
+UPDATE courses
+SET purchase_status = true,
+    user_id = '48dc0da5-539c-443f-b60f-3f84a7b8b40f' -- UUID of Alice
+WHERE course_id = '0617f190-60bd-44d8-8432-73f67789aca2';
+
+
+--insert into courses example;
+INSERT INTO courses ( course_name, course_instructors, course_introduction_statement, course_overview, course_content, purchase_status, course_price)
+VALUES (
+    'Introduction to SQL', -- Course name
+    'John Doe', -- Instructors
+    'Learn the basics of SQL programming.', -- Introduction statement
+    'This course covers fundamental SQL concepts and syntax.', -- Overview
+    '1. SQL Introduction\n2. SQL Queries\n3. SQL Joins', -- Course content (example)
+    true, -- Purchase status (assuming not purchased initially)
+    '49.99 USD' -- Course price
+);

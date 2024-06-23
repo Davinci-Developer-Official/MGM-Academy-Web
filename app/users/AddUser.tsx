@@ -30,8 +30,20 @@ function AddUser() {
         }));
     };
 
+    const validateForm = () => {
+        if (!user.usernames || !user.gender || !user.email || !user.phonenumber || !user.nationality || !user.password) {
+            alert('All fields except "verified" must be filled out');
+            return false;
+        }
+        return true;
+    };
+
     async function upload(e: FormEvent) {
         e.preventDefault();
+        if (!validateForm()) {
+            return;
+        }
+
         const response = await fetch('/api/add_user', {
             method: 'POST',
             headers: {
@@ -48,100 +60,109 @@ function AddUser() {
             })
         });
         if (response.ok) {
-            alert('sent');
+            alert('User added successfully');
         } else {
-            alert('not sent');
+            alert('Failed to add user');
         }
     }
 
     return (
-        <form onSubmit={upload} className='flex flex-col w-[80%] mx-auto bg-blue-500 mt-5 card h-[450px] p-2'>
-            <h1 className='card-title'>Create account</h1>
+        <form onSubmit={upload} className='flex flex-col w-[80%] mx-auto bg-blue-500 mt-5 card h-auto p-5 rounded-lg shadow-lg'>
+            <h1 className='text-2xl font-bold text-center text-white mb-4'>Create Account</h1>
 
-            <div className='card-body flex flex-row p-2 bg-green-400 mt-1 justify-evenly rounded'>
-                <label>Your Names </label>
+            <div className='mb-4'>
+                <label className='block text-white mb-2'>Your Names</label>
                 <input
                     type='text'
                     name='usernames'
                     placeholder='Your full names'
-                    className='h-full w-[60%] bg-white '
+                    className='w-full p-2 border border-gray-300 rounded bg-black text-white'
                     onChange={handleChange}
                     value={user.usernames}
                 />
             </div>
 
-            <div className='card-body flex flex-row p-2 bg-green-400 mt-1 justify-evenly rounded'>
-                <label>Your gender </label>
+            <div className='mb-4'>
+                <label className='block text-white mb-2'>Your Gender</label>
                 <input
-                    type='text'
+                    list='genders'
                     name='gender'
                     placeholder='Your gender'
-                    className='h-full w-[60%] bg-white '
+                    className='w-full p-2 border border-gray-300 rounded bg-black text-white '
                     onChange={handleChange}
                     value={user.gender}
                 />
+                <datalist id='genders'>
+                    <option value="Male" />
+                </datalist>
             </div>
 
-            <div className='card-body flex flex-row p-2 bg-green-400 mt-1 justify-evenly rounded'>
-                <label>Your email </label>
+            <div className='mb-4'>
+                <label className='block text-white mb-2'>Your Email</label>
                 <input
                     type='email'
                     name='email'
                     placeholder='Your email'
-                    className='h-full w-[60%] bg-white'
+                    className='w-full p-2 border border-gray-300 rounded bg-black text-white '
                     onChange={handleChange}
                     value={user.email}
                 />
             </div>
 
-            <div className='card-body flex flex-row p-2 bg-green-400 mt-1 justify-evenly rounded'>
-                <label>Your phone number </label>
+            <div className='mb-4'>
+                <label className='block text-white mb-2'>Your Phone Number</label>
                 <input
                     type='text'
                     name='phonenumber'
                     placeholder='Your phone number'
-                    className='h-full w-[60%] bg-white '
+                    className='w-full p-2 border border-gray-300 rounded bg-black text-white ' 
                     onChange={handleChange}
                     value={user.phonenumber}
                 />
             </div>
 
-            <div className='card-body flex flex-row p-2 bg-green-400 mt-1 justify-evenly rounded'>
-                <label>Your nation of residence </label>
+            <div className='mb-4'>
+                <label className='block text-white mb-2'>Your Nation of Residence</label>
                 <input
                     type='text'
                     name='nationality'
                     placeholder='Your nation of residence'
-                    className='h-full w-[60%] bg-white '
+                    className='w-full p-2 border border-gray-300 rounded bg-black text-white'
                     onChange={handleChange}
                     value={user.nationality}
                 />
             </div>
 
-            <div className='card-body flex flex-row p-2 bg-green-400 mt-1 justify-evenly rounded'>
-                <label>Your verified </label>
-                <input
-                    type='checkbox'
-                    name='verified'
-                    className='h-full w-[60%] bg-white '
-                    onChange={handleChange}
-                    checked={user.verified}
-                />
-            </div>
-
-            <div className='card-body flex flex-row p-2 bg-green-400 mt-1 justify-evenly rounded'>
-                <label>Your password </label>
+            <div className='mb-4'>
+                <label className='block text-white mb-2'>Your Password</label>
                 <input
                     type='password'
                     name='password'
                     placeholder='Your password'
-                    className='h-full w-[60%] bg-white'
+                    className='w-full p-2 border border-gray-300 rounded bg-black text-white '
                     onChange={handleChange}
                     value={user.password}
                 />
             </div>
 
-            <input type='submit' className='btn mt-2' value='Add User' />
+            <div className='flex items-center mb-4'>
+                <label className='text-white mr-2'>Register as </label>
+                <div className='flex items-center'>
+                <span className='text-white ml-2'> Instructor </span>
+                    <input
+                        type='checkbox'
+                        name='verified'
+                        className='form-checkbox h-5 w-5 text-indigo-600'
+                        onChange={handleChange}
+                        checked={user.verified}
+                    />
+                   
+                </div>
+            </div>
+
+            <button type='submit' className='w-full p-2 bg-green-500 text-white font-bold rounded hover:bg-green-700'>
+                sign in
+            </button>
         </form>
     );
 }
