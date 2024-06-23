@@ -30,23 +30,49 @@ function Login() {
     const [loading, setLoading] = useState(false);
     const [isValid, setIsValid] = useState<boolean>(true);
     const [userType, setUserType] = useState<string>('student');
+    const [isTypeChange, setTypeChange] = useState<boolean>(true);
 
+    const handleUserTypeChange = () => {
+        setUserType('Instructor');
+        if(userType=='Instructor'){
+            setTypeChange(true);
+            //alert('boomer')
+            setUserType('student');
+        }else{
+            setTypeChange(false);
+           // alert('2027')
+           setUserType('Instructor');
+        }
+    };
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('/api/user_profile');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch data');
+        async function fetchUsers(){
+            if(userType==='student'){
+                const response = await fetch('/api/get_users',{
+                    method: 'GET'
+                });
+                if(response.ok){
+                    alert('iko student')
+                    const data = await response.json();
+                    setUsers([...data]);
+                }else{
+                    alert('bado')
                 }
-                const data = await response.json();
-                console.log('Fetched data:', data);
-                setUsers(data.users); // Ensure this matches the returned data structure
-            } catch (error) {
-                console.error('Error fetching data:', error);
+            }else if(userType==='Instructor'){
+                const response = await fetch('/api/get_user_by_verification',{
+                    method: 'GET'
+                });
+                if(response.ok){
+                    alert('iko Mwalimu')
+                    const data = await response.json();
+                    setUsers([...data]);
+                }else{
+                    alert('bado mwalim')
+                }
             }
-        };
-        fetchData();
-    }, []);
+            }
+            
+        fetchUsers();
+    }, [userType]);
 
     useEffect(() => {
         if (secure) {
@@ -70,21 +96,15 @@ function Login() {
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
-        const user = users.find(user =>
-            (emailRegex.test(emailOrUsername) ? user.user_email === emailOrUsername : user.user_names === emailOrUsername) &&
-            user.user_password === password
-        );
-
-        if (user) {
-            setSecure(true);
-            setLoading(true);
-            setError('');
-
-            setTimeout(() => {
-                setLoading(false);
-            }, 2000);
-        } else {
-            setError('Email or password is incorrect');
+        
+        const checkUser = users.find(user=>user.user_email == emailOrUsername)
+        const checkPass = users.find(user=>user.user_password == password);
+        if(checkUser&&checkPass){
+            //alert(' genz '+' comrade '+ emailOrUsername + password);
+            setSecure(true)
+        }
+        else{
+           setError('Email or password incorrect or missing')
         }
     };
 
@@ -97,9 +117,7 @@ function Login() {
         setChecked(prevChecked => !prevChecked);
     };
 
-    const handleUserTypeChange = () => {
-        setUserType('Instructor');
-    };
+   
 
     const toggleShowPassword = () => {
         setShowPassword(prevShowPassword => !prevShowPassword);
@@ -107,7 +125,7 @@ function Login() {
 
     return (
         <div className='flex flex-col justify-between w-[90%] mx-auto mt-2 h-fit p-2 bg-blue-400 mb-2 rounded-md'>
-            <div className='w-full bg-red-200 h-fit mb-1'>
+            <div className='w-full bg-red-200 h-fit mb-1 card'>
                 <div className="card h-[400px] w-99 bg-base-100 shadow-xl image-full">
                     <figure><Image src={image} alt="Empowerment" /></figure>
                     <div className="card-body">
@@ -129,11 +147,11 @@ function Login() {
                 <p className='text-center text-xl font-bold p-2'>Login</p>
                 <form className='card' onSubmit={handleLogin}>
                     <div className='flex flex-col w-[90%] mx-auto mt-2 card p-2'>
-                        <p className='card-title'>Username/Email</p>
+                        <p className='card-title text-white '>Username/Email</p>
                         <input
                             type='text'
                             placeholder='Enter your username or email'
-                            className='h-[50px] w-[97%] mx-auto mt-1 rounded p-2'
+                            className='h-[50px] w-[97%] mx-auto mt-1 rounded p-2 text-white bg-black '
                             onChange={handleChange}
                         />
                     </div>
@@ -153,17 +171,17 @@ function Login() {
                         <div className='relative'>
                             <input
                                 type={showPassword ? 'text' : 'password'}
-                                className='h-[50px] w-[97%] mx-auto mt-1 rounded p-2'
+                                className='h-[50px] w-[97%] mx-auto mt-1 rounded p-2 bg-black text-white '
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
-                            <span className='absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer mr-5' onClick={toggleShowPassword}>
+                            <span className='absolute inset-y-0 text-white right-0 pr-3 flex items-center cursor-pointer mr-5' onClick={toggleShowPassword}>
                                 {showPassword ? <FaEyeSlash /> : <FaEye />}
                             </span>
                         </div>
                     </div>
 
-                    {error && <p className='text-center w-full text-red-500'>{error}</p>}
+                    {error && <p className='text-center w-full text-red-900'>{error}</p>}
                     
                     <div className="form-control mt-6">
                         {secure ? (
@@ -182,7 +200,7 @@ function Login() {
                             </button>
                         )}
                     </div>
-
+                    
                     <div className="form-control">
                         <div className='flex align-center mt-2 w-[50%] mx-auto'>
                             <input
