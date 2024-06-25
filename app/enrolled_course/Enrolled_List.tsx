@@ -12,6 +12,7 @@ interface Courses {
   course_content: string;
   purchase_status: string;
   course_price: string;
+  avatar:string;
 }
 
 function Enrolled_List() {
@@ -57,7 +58,7 @@ function Enrolled_List() {
   }
 
   return (
-    <div className='h-[400px] overflow-y-scroll'>
+    <div className='h-[150px] overflow-y-scroll'>
       <button className='btn bg-red-500' onClick={(e) => {
         e.preventDefault();
         deleteCourse();
