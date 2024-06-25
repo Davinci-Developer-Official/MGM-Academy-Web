@@ -33,13 +33,16 @@ function Enrolled_Course() {
       if (courseId) {
         setSelectedId(courseId.replace(/"/g, '')); // Ensure ID has no extra quotes
       } else {
-        alert('No course ID found in local storage');
+        //alert('No course ID found in local storage');
+        return;
       }
     }
     getSelectedCourseId();
   }, []);
 
   useEffect(() => {
+    let interval: NodeJS.Timeout;
+
     async function getCourseById(id: string) {
       if (id) {
         const response = await fetch(`/api/get_course_by_id?id=${id}`, {
@@ -54,14 +57,26 @@ function Enrolled_Course() {
         }
       }
     }
-    getCourseById(selectedId);
+
+    if (selectedId) {
+      getCourseById(selectedId);
+      interval = setInterval(() => getCourseById(selectedId), 5000); // Poll every 5 seconds
+    }
+
+    return () => {
+      if (interval) clearInterval(interval); // Clean up interval on component unmount
+    };
   }, [selectedId]);
 
   return (
-    <div className='h-[400px] w bg-blue-200 '>
-      <h1>Enrolled Course</h1>
+    <div className='h-[400px] w bg-blue-200 overflow-y-scroll  '>
+      <div className='card w-[500px] h-[300px] bg-red-200 mx-auto mt-4 '>
+      <h1 className='text-center  bg-green-200 rounded-tl-lg rounded-tr-lg p-2  ' ><p> {course.course_name}</p></h1>
+
+      </div>
+      
       <p>ID: {selectedId}</p>
-      <p>Name: {course.course_name}</p>
+      
       <p>Instructors: {course.course_instructors}</p>
       <p>Category: {course.course_category}</p>
       <p>Introduction: {course.course_introduction_statement}</p>
