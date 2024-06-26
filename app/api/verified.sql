@@ -198,3 +198,21 @@ VALUES (
     true, -- Purchase status (assuming not purchased initially)
     '49.99 USD' -- Course price
 );
+
+--create topics table.
+CREATE TABLE topics (
+    id SERIAL PRIMARY KEY,
+    topic_id UUID DEFAULT uuid_generate_v4(),
+    course_id UUID REFERENCES courses(course_id),
+    topic_cover TEXT,
+    topic_name TEXT,
+    topic_description TEXT,
+    topic_content TEXT,
+    topic_completed BOOLEAN
+);
+--insert into topics table
+INSERT INTO topics (course_id, topic_cover, topic_name, topic_description, topic_content, topic_completed) 
+VALUES 
+    ('358c2b43-ac53-4669-b50c-0b4eaea4700c', 'cover_image_1.jpg', 'Introduction to SQL', 'This topic covers the basics of SQL.', 'Content of the introduction to SQL.', false),
+    ('358c2b43-ac53-4669-b50c-0b4eaea4700c', 'cover_image_2.jpg', 'Advanced SQL Queries', 'This topic covers advanced SQL query techniques.', 'Content of advanced SQL queries.', false),
+    ('358c2b43-ac53-4669-b50c-0b4eaea4700c', 'cover_image_3.jpg', 'Database Design', 'This topic covers database design principles.', 'Content of database design.', true);
