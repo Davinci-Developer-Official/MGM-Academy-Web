@@ -18,6 +18,7 @@ interface Courses {
 }
 
 interface Topics {
+  topic_id: string;
   topic_cover: string;
   topic_name: string;
   topic_description: string;
@@ -98,6 +99,15 @@ function Enrolled_Course() {
     }
   }, [selectedId]);
 
+  async function storeId(id:string){
+    if(id){
+      const store = await localStorage.setItem('topic_id',id);
+      //alert('yes')
+    }else{
+      alert('zii');
+    }
+    
+  }
   return (
     <div className='h-[600px] my-auto w bg-blue-200 p-2 '>
       <div className='overflow-y-scroll w-[90%] h-[90%] rounded-md bg-white mx-auto mt-1 justify-between'>
@@ -131,7 +141,10 @@ function Enrolled_Course() {
           <p className='font-semibold text-xl text-center font-serif underline '>Topics/Chapters</p>
           <div className='card-body text-center'>
             {topics.map((topic: Topics, index) => (
-              <div key={index} className='btn btn-ghost hover:bg-white text-blue-600 hover:text-red-600  hover:underline coursor-pointer '>
+              <div key={index} className='btn btn-ghost hover:bg-white text-blue-600 hover:text-red-600  hover:underline coursor-pointer ' onClick={(e:any)=>{
+                e.preventDefault();
+                storeId(topic.topic_id)
+              }}>
                 <p>{topic.topic_name}</p>
               </div>
             ))}

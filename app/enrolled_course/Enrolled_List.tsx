@@ -59,7 +59,7 @@ function Enrolled_List() {
 
   return (
     <div className='h-[150px] overflow-y-scroll'>
-      <button className='btn bg-red-500' onClick={(e) => {
+      <button className='btn bg-red-500  ml-2' onClick={(e) => {
         e.preventDefault();
         deleteCourse();
       }}>clear</button>
