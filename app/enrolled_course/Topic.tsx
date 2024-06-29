@@ -65,9 +65,9 @@ function Topic() {
               </div>
               <div className='card font-bold  '>
                 <p className='text-center font-bold text-xl underline '>Topic material</p>
-                <div className='flex flex-row w-full p-2 mb-5 mt-5 justify-around '>
+                <div className='flex flex-row w-[60%] mx-auto p-2 mb-5 mt-5 justify-around  '>
                 <FaFile size={20} className=' '/> 
-                <p className='w-[80%] mx-auto cursor-pointer text-blue-700 hover:text-red-700 underline  tex-center  '> {topic.topic_content}</p>
+                <p className=' cursor-pointer text-blue-700 hover:text-red-700 underline  tex-center  '> {topic.topic_content}</p>
                 </div>
                 </div>
               <div>
