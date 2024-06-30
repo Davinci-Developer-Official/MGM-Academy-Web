@@ -1,20 +1,12 @@
 import { sql } from '@vercel/postgres';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
  
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const petName = searchParams.get('petName');
-  const ownerName = searchParams.get('ownerName');
- 
-{/*
-     try {
-    if (!petName || !ownerName) throw new Error('Pet and owner names required');
-    await sql`SELECT * FROM students`;
+export async function GET(request: NextRequest) {
+  try {
+    const{id}=await request.json();
+    const response = await sql`SELECT*FROM instructors `;
+    return NextResponse.json(response.rows);
   } catch (error) {
-    return NextResponse.json({ error }, { status: 500 });
+    return NextResponse.json(`${error}`);
   }
-*/}
- 
-  const instructors = await sql`SELECT * FROM instructors;`;
-  return NextResponse.json({ instructors: instructors.rows }, { status: 200 });
 }
