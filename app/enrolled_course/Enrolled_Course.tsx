@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { FaInfoCircle } from 'react-icons/fa';
+import { FaEdit, FaInfoCircle } from 'react-icons/fa';
 import Examplemg from '@/public/categories/women-studies-1yGyZfLICKnAbMyt3m49yqRYrNyL7z.jpg';
 import Image from 'next/image';
 
@@ -123,7 +123,7 @@ function Enrolled_Course() {
     } catch (error: any) {
       console.error('Error fetching instructor data:', error.message);
       // Handle error state or alert here
-      alert('Instructor data not found');
+      //alert('Instructor data not found');
     }
   }
   
@@ -151,21 +151,24 @@ function Enrolled_Course() {
                 </label>
                 <input type="checkbox" id="my_modal_7" className="modal-toggle" />
                 <div className="modal" role="dialog">
-                  <div className="modal-box">
+                  <div className="modal-box bg-white ">
                     <h3 className="text-lg font-bold ">Instructor Information</h3>
                     {instructor ? (
                       <div className='text-black '>
                         <div className='card flex flex-row '>
                         <p className='card-title '>Name: </p>
-                        <p className='card-body ' >{instructor.instructor_names}</p>
+                        <p className='card-body underline font-bold text-xl ' >{instructor.instructor_names}</p>
                         </div>
                         <div className='card flex flex-row '>
                         <p className='card-title '>Email: </p>
-                        <p className='card-body ' >{instructor.instructor_email}</p>
+                        <div className='card-body flex flex-row p-1 ' >
+                        <p className=' underline font-bold text-xl ' >{instructor.instructor_email}</p>
+                        <FaEdit size={20} className=' ' />
+                        </div>
                         </div>
                         <div className='card flex flex-row '>
                         <p className='card-title '>phonenumber: </p>
-                        <p className='card-body ' >{instructor.instructor_phonenumber}</p>
+                        <p className='card-body underline font-bold text-xl ' >{instructor.instructor_phonenumber}</p>
                         </div>
                        
                         <div className='card flex flex-row '>
