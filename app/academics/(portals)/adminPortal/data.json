@@ -1,0 +1,37 @@
+{
+    "courses":[
+        {
+            "id":1,
+            "course_id":"xsseeeeed",
+            "course_name":"gender studies",
+            "course_instructor":" Brian Wachira",
+            "price":"$45"
+        }
+    ],
+    "students":[
+        {
+            "id":1,
+            "student_id":"3242swa3234w",
+            "student_name":"humphrey waweru"
+        }
+    ],
+    "instructors":[
+        {
+            "id":1,
+            "instructor_id":"23esw345343",
+            "instructor_name":"Brian Wachira",
+            "instructor_rating":"4"
+        }
+    ],
+    "payments":[
+        {
+            "id":1,
+            "payer":"humphrey waweru",
+            "card":"12343-23234-12343423-223",
+            "payee":"mgm@stripe_api_endpoint",
+            "agent":"Barclays Bank",
+            "amount":"$42",
+            "date":"14-05-2934"
+        }
+    ]
+}

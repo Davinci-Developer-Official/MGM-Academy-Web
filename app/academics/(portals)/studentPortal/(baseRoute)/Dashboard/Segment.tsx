@@ -244,13 +244,13 @@ let formattedDate = `${day}-${month}-${year}`;
   <div>
     <div>
       <input className="input input-bordered join-item" placeholder="Search"  onClick={()=>{
-    showSearchBar(true)
-    setClick(3)
-    if(click==3){
-      showSearchBar(false);
-      setClick(0)
-    }
-  }} />
+      showSearchBar(true)
+      setClick(3)
+      if(click==3){
+        showSearchBar(false);
+        setClick(0)
+        }
+      }} />
     </div>
   </div>
   <select className="select select-bordered join-item">

@@ -4,7 +4,7 @@ import React from 'react'
 //import { useColorTheme } from '@/hooks/useColorTheme' 
 import ChangeTheme from "./ChangeTheme"
 import DarkModeButton from './DarkModeButton'
-import { FaBookOpen, FaFemale, FaFile, FaFolder, FaGithub, FaGraduationCap, FaHandshake, FaHome, FaInfo, FaInfoCircle, FaIntercom, FaMoneyBill, FaPersonBooth, FaSun } from 'react-icons/fa'
+import { FaBookOpen, FaChalkboardTeacher, FaFemale, FaFile, FaFolder, FaGithub, FaGraduationCap, FaHandshake, FaHome, FaInfo, FaInfoCircle, FaIntercom, FaMoneyBill, FaPersonBooth, FaSun } from 'react-icons/fa'
 
 function Navbar() {
     //const [colorTheme] = useColorTheme();
@@ -40,8 +40,8 @@ function Navbar() {
         <details>
           <summary><button className='flex flex-row' > <FaPersonBooth size={20} className="mr-2 text-[#e97902] "  /> Portals</button></summary>
           <ul className="p-1 border-b-2 border-b-[#e97902] ">
-            <li><Link href="/academics/studentPortal/auth" > <FaPersonBooth size={20} className='text-[#e97902] ' /> Student portal</Link></li>
-            <li><Link href="/academics/instructorPortal/auth" > <FaPersonBooth size={20} className='text-[#e97902] ' /> Instructor Portal </Link></li>
+            <li><Link href="/academics/studentPortal/auth" > <FaGraduationCap size={20} className='text-[#e97902] ' /> Student portal</Link></li>
+            <li><Link href="/academics/instructorPortal/auth" > <FaChalkboardTeacher size={20} className='text-[#e97902] ' /> Instructor Portal </Link></li>
             <li><Link href="/academics/adminPortal"> <FaPersonBooth size={20} className='text-[#e97902] ' /> Admin portal</Link></li>
           </ul>
         </details>
@@ -100,8 +100,8 @@ function Navbar() {
         <details>
           <summary><button className='flex flex-row' > <FaPersonBooth size={20} className="mr-2 text-[#e97902] "  /> Portals</button></summary>
           <ul className="p-1 border-b-2 border-b-[#e97902] ">
-            <li><Link href="/academics/studentPortal/auth" > <FaPersonBooth size={20} className="text-[#e97902] " /> Student portal</Link></li>
-            <li><Link href="/academics/instructorPortal/auth" > <FaPersonBooth size={20} className="text-[#e97902] " /> Instructor Portal </Link></li>
+            <li><Link href="/academics/studentPortal/auth" > <FaGraduationCap size={20} className="text-[#e97902] " /> Student portal</Link></li>
+            <li><Link href="/academics/instructorPortal/auth" > <FaChalkboardTeacher size={20} className="text-[#e97902] " /> Instructor Portal </Link></li>
             <li><Link href="/academics/adminPortal"> <FaPersonBooth size={20} className="text-[#e97902] " /> Admin portal</Link></li>
           </ul>
         </details>
