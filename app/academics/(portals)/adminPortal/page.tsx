@@ -44,6 +44,10 @@ type AllData = {
 const Page = () => {
   const [searchParams, setSearchParams] = useState<boolean>(false);
   const [searchParamData, setSearchParamData] = useState<AllData[]>([]);
+  const[courses,setcourses]=useState<Courses[]>([]);
+  const[instructors,setinstructors]=useState<Instructors[]>([]);
+  const[students,setstudents]=useState<Students[]>([]);
+  const[payments,setpayments]=useState<Payments[]>([]);
   const [filterOption, setFilterOption] = useState<string>('ALL');
 
   useEffect(() => {
@@ -83,7 +87,7 @@ const Page = () => {
           <div className='w-[90%] mx-auto bg-white mt-1'>
             <div>
               <input
-                className='input w-[80%] mx-auto input-bordered join-item'
+                className='input w-[80%] mx-auto input-bordered join-item inset bg-gray-200 '
                 placeholder='Search'
                 onClick={() => {
                   setSearchParams(true);
@@ -91,17 +95,21 @@ const Page = () => {
               />
             </div>
             <select
-              className='select select-bordered join-item hover:bg-green-400'
+              className='select bg-gray-300 select-bordered join-item hover:bg-green-400'
               onChange={(e) => setFilterOption(e.target.value)}
             >
               <option value='ALL'>ALL</option>
               <option value='STUDENTS'>students</option>
-              <option value='COURSES'>courses</option>
+              <option value='COURSES' onClick={(e:any)=>{
+                e.preventDefault();
+                {courses.length==0&&setcourses(data.courses)}
+                alert(courses)
+              }} >courses</option>
               <option value='INSTRUCTORS'>instructors</option>
               <option value='PAYMENTS'>payments</option>
             </select>
             <div className='indicator'>
-              <button className='btn text-black hover:bg-green-400 join-item'>
+              <button className='btn btn-ghost text-black hover:bg-green-400 join-item'>
                 <FaSearch size={20} />
               </button>
             </div>
@@ -110,12 +118,12 @@ const Page = () => {
       </div>
       {searchParams && (
         <div className='w-[80%] mx-auto mb-1 mt-1 bg-gray-200 h-[400px] card overflow-y-scroll p-2'>
-          {searchParamData.map((item, index) => (
+          {courses.length!==0&&<>{searchParamData.map((item, index) => (
             <div key={index}>
               <h3>{item.type}</h3>
               <pre>{JSON.stringify(item.data, null, 2)}</pre>
             </div>
-          ))}
+          ))}</>}
         </div>
       )}
     </div>
