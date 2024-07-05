@@ -39,7 +39,7 @@ export interface Payments {
 
 const Page = () => {
   const [searchParams, setSearchParams] = useState<boolean>(false);
-  const [filterOption, setFilterOption] = useState<string>('ALL');
+  const [filterOption, setFilterOption] = useState<string>('STUDENTS');
 
   const [courses, setCourses] = useState<Courses[]>([]);
   const [instructors, setInstructors] = useState<Instructors[]>([]);
@@ -50,16 +50,37 @@ const Page = () => {
     // Load all data initially
     setCourses(data.courses);
     setInstructors(data.instructors);
-    setStudents(data.students);
     setPayments(data.payments);
+  }, []);
+
+  useEffect(() => {
+    const getStudents = async () => {
+      try {
+        const response = await fetch('/api/get_students', { // Ensure this matches your API route
+          method: 'GET',
+          cache: 'no-cache',
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch students');
+        } else {
+          const data = await response.json();
+          setStudents(data); // Assuming the API returns an array of students
+        }
+      } catch (error) {
+        console.error('Error fetching students:', error); // Use console.error for error logging
+      }
+    };
+
+    getStudents();
   }, []);
 
   const filteredData = () => {
     switch (filterOption) {
-      case 'COURSES':
-        return courses;
       case 'STUDENTS':
         return students;
+      case 'COURSES':
+        return courses;
       case 'INSTRUCTORS':
         return instructors;
       case 'PAYMENTS':
@@ -87,17 +108,16 @@ const Page = () => {
               />
             </div>
             <select
-              className='select bg-gray-300 select-bordered join-item hover:bg-green-400'
+              className='select bg-gray-300 select-bordered join-item hover:bg-green-200'
               onChange={(e) => setFilterOption(e.target.value)}
             >
-              <option value='ALL'>All</option>
-              <option value='STUDENTS'>Students</option>
-              <option value='COURSES'>Courses</option>
-              <option value='INSTRUCTORS'>Instructors</option>
-              <option value='PAYMENTS'>Payments</option>
+              <option value='STUDENTS' className='cursor-pointer '>Students</option>
+              <option value='COURSES' className='cursor-pointer '>Courses</option>
+              <option value='INSTRUCTORS' className='cursor-pointer '>Instructors</option>
+              <option value='PAYMENTS' className='cursor-pointer '>Payments</option>
             </select>
             <div className='indicator'>
-              <button className='btn btn-ghost text-black hover:bg-green-400 join-item'>
+              <button className='btn btn-ghost text-black hover:bg-green-200 join-item'>
                 <FaSearch size={20} />
               </button>
             </div>
@@ -106,20 +126,35 @@ const Page = () => {
       </div>
       {searchParams && (
         <div className='w-[80%] mx-auto mb-1 mt-1 bg-gray-200 h-[400px] card overflow-y-scroll p-2'>
-          {filteredData().map((item: any, index: number) => (
+          <button className='btn btn-circle btn-ghost hover:bg-green-200 cursor-pointer' onClick={() => setSearchParams(false)}>X</button>
+          {filteredData().map((item: any) => (
             <div key={item.id || item.course_id || item.student_id || item.instructor_id}>
-              {item.course_name && <h3>{item.course_name}</h3>}
-              {item.course_instructor && <p>{item.course_instructor}</p>}
-              {item.student_name && <div className='flex flex-row p-2 bg-green-200 w-[90%] mx-auto mt-1 justify-evenly rounded-md '>
-                <p>{item.student_name}</p>
-                </div>}
+              {item.course_name && (
+                <div className='flex flex-row p-2 bg-green-200 w-[90%] mx-auto mt-1 justify-evenly rounded-md'>
+                  <p>{item.course_name}</p>
+                </div>
+              )}
+              {item.course_instructor && (
+                <div className='flex flex-row p-2 bg-green-200 w-[90%] mx-auto mt-1 justify-evenly rounded-md'>
+                  <p>{item.course_instructor}</p>
+                </div>
+              )}
+              {item.student_name && (
+                <div className='flex flex-row p-2 bg-green-200 w-[90%] mx-auto mt-1 justify-evenly rounded-md'>
+                  <p>{item.student_name}</p>
+                </div>
+              )}
               {item.instructor_name && (
-                <div className='flex flex-row p-2 bg-green-200 w-[90%] mx-auto mt-1 justify-evenly rounded-md ' >
+                <div className='flex flex-row p-2 bg-green-200 w-[90%] mx-auto mt-1 justify-evenly rounded-md'>
                   <p>{item.instructor_name}</p>
                   <p><Rating rating={item.instructor_rating} /></p>
                 </div>
               )}
-              {item.payer && <p>{item.payer}</p>}
+              {item.payer && (
+                <div className='flex flex-row p-2 bg-green-200 w-[90%] mx-auto mt-1 justify-evenly rounded-md'>
+                  <p>{item.payer}</p>
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -129,8 +164,6 @@ const Page = () => {
 };
 
 export default Page;
-
-
 
 
 
