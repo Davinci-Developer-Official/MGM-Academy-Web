@@ -1,12 +1,11 @@
-import { sql } from '@vercel/postgres';
-import { NextRequest, NextResponse } from 'next/server';
- 
-export async function GET(request: NextRequest) {
-  try {
-    const{id}=await request.json();
-    const response = await sql`SELECT*FROM instructors `;
-    return NextResponse.json(response.rows);
-  } catch (error) {
-    return NextResponse.json(`${error}`);
-  }
+import { sql } from "@vercel/postgres";
+import { NextRequest, NextResponse } from "next/server";
+
+export async function GET(req: NextRequest) {
+    try {
+        const response = await sql`SELECT * FROM user_profile WHERE user_verified = 'true'`;
+        return NextResponse.json(response.rows);
+    } catch (error: any) {
+        return NextResponse.json({ error: error.message });
+    }
 }
