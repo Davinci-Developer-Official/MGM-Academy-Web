@@ -3,7 +3,7 @@ import Enrolled_List from './Enrolled_List';
 import Enrolled_Course from './Enrolled_Course';
 import Topic from './Topic'
 import AddTopic from'./AddTopic';
-import AddCourse from './AddCourse';
+import AddCourse from './AddCourse/AddCourse';
 
 function page() {
   return (
