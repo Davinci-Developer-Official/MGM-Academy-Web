@@ -17,7 +17,7 @@ html {
 ::-webkit-scrollbar-track {
     /* Customize the scrollbar track */
     /*background-color: #e1b382;*/
-    background-color: #e97902;
+    background-color: #e2e6e7;
     margin-right: 2px;
     border-radius: 10px;
     border-style: solid;
@@ -28,16 +28,66 @@ html {
 
 ::-webkit-scrollbar-thumb {
     border-radius: 8px;
-  background-color: #0F2027;
+  background-color: #d0b49f;
     background-position:center center;
     background-repeat: no-repeat;
     background-size: 35px;
 }
+.navbar{
+  background-color: #e2e6e7 ;
+  color: #201a1e;
+}
 
 .background {
-    background-color: floralwhite;
-    color: #0F2027;
+    background-color: #e4d4c8;
+    color: #201a1e;
     
+}
+@keyframes button {
+  0%{background-color: #ff9e2f;}
+  25%{background-color: rgb(255, 206, 99);}
+  50%{background-color: rgb(238, 148, 148);}
+  100%{background-color: rgb(224, 216, 216);}
+}
+@keyframes icon {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+.btn{
+  background-color: #d0b49f;
+  color: #201a1e ;
+}
+.btn:hover {
+  background-color: #e2e6e7 ;
+  color: #201a1e ;
+  animation-name: button;
+  animation-duration: 3s;
+  animation-iteration-count:2;
+}
+.btn:hover svg{
+  animation-name: icon;
+  animation-duration: 3s;
+  animation-iteration-count:2;
+}
+.btn:hover p{
+  font-size: large;
+  font-weight:bolder;
+  font-family: sans-serif;
+}
+.card{
+  background-color: #d0b49f;
+  color: #201a1e ;
+  padding: 2px;
+  margin-top: 2px;
 }
 .theme1 {
     background: #0F2027;  /* fallback for old browsers */

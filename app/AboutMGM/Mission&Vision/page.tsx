@@ -5,9 +5,10 @@ import React, { useState } from 'react'
 
 function Page() {
   const[navigation,setNavigation]= useState(true );
+  //{navigation&&<Navbar/>}
   return(
     <>
-    {navigation&&<Navbar/>}
+    
      <MissionAndVision setNavigation={setNavigation} navigation={navigation} />
     </>
   );

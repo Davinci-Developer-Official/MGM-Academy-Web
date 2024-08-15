@@ -1,6 +1,7 @@
 'use client';
 import { put } from '@vercel/blob';
 import React, { useState } from 'react';
+import { CourseCover, CourseCoverResult } from './CourseCover';
 
 interface Courses {
   course_id: string;
@@ -39,21 +40,16 @@ function CreateCourse() {
     }));
   };
   const[uploadedFile,setUploadFile]=useState<string>("")
-  const uploadFiles=async(file:File)=>{
-    try {
-      const data= await file.arrayBuffer();
-      const response = await put(file.name,data,{
-        access: 'public',
-        token: "vercel_blob_rw_SWkzW6EvztKyfVAE_ckiMkh9Y1t1EB3k3VAF7VZ8ZKhG106" // Pass the access token
-      })
-      if(response&&response.url){
-        setUploadFile(response.url);
-        alert('yep');
-      }
+  function changeFile(e:any){
+    const files = e.target.files[0];
+    const name = Array.from(files).map((file:any)=>file.name);
+    const format = Array.from(files).map((file:any)=>file.type);
+    const uploadTime = Array.from(files).map((file:any) => file.lastModified)
+    const size = Array.from(files).map((file:any) => file.size)
 
-    } catch (error) {
-      throw error
-    }
+    if(files&&files.length!==0){
+      setUploadFile(files.name)
+    }else{alert('failed t upload file')}
   }
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -73,7 +69,24 @@ function CreateCourse() {
       console.error('Error creating course:', error.message);
     }
   };
-
+  async function uploadFile(file:File){
+    try {
+      const data = await file.arrayBuffer(); //read file data
+      const response = await put(file.name,data,{
+        access:'public',
+        token:process.env.BLOB_READ_WRITE_TOKEN
+      });
+      //check if there is a response and response url
+      if(response&&response.url){
+        alert(response.url);
+      }else{
+        alert('failed');
+      }
+    } catch (error) {
+      alert('issue uploading file' + error)
+    }
+  }
+  const [result, setResult] = useState<string>('');
   return (
     <div className='h-[600px] my-auto  bg-white p-2 w-[80%] mx-auto mb-5 '>
       <div className='overflow-y-scroll w-[90%]  h-[90%] rounded-md bg-blue-200 mx-auto mt-1'>
@@ -87,7 +100,7 @@ function CreateCourse() {
               readOnly
               type='text'
               name='instructor_id'
-              value={course.instructor_id}
+            //  value={course.instructor_id}
               //onChange={handleChange}
               className='input input-bordered w-full bg-gray-200 '
               required
@@ -99,7 +112,7 @@ function CreateCourse() {
             <textarea className="textarea textarea-bordered w-[98%] mx-auto bg-slate-200 placeholder-black  " placeholder="enter course title "
              // type='text'
               //name='course_name'
-              value={course.course_name}
+             // value={course.course_name}
               onChange={handleChange}
              // className='input input-bordered w-full'
               required
@@ -114,7 +127,7 @@ function CreateCourse() {
             <textarea className="textarea textarea-bordered w-[98%] mx-auto bg-slate-200 placeholder-black  " placeholder="enter course instructor(s) "
              // type='text'
               name='course_instructors'
-              value={course.course_instructors}
+             // value={course.course_instructors}
               onChange={handleChange}
              // className='input input-bordered w-full'
               required
@@ -129,7 +142,7 @@ function CreateCourse() {
             <textarea className="textarea textarea-bordered w-[98%] mx-auto bg-slate-200 placeholder-black  " placeholder="enter course category "
               //type='text'
               name='course_category'
-              value={course.course_category}
+              //value={course.course_category}
               onChange={handleChange}
               //className='input input-bordered w-full'
               required
@@ -143,7 +156,7 @@ function CreateCourse() {
             Introduction Statement:
             <textarea className="textarea textarea-bordered  w-[98%] mx-auto bg-slate-200 placeholder-black  " placeholder="enter introduction statement "
               //name='course_introduction_statement'
-              value={course.course_introduction_statement}
+              //value={course.course_introduction_statement}
               onChange={handleChange}
               //className='textarea textarea-bordered w-full'
               required
@@ -152,12 +165,16 @@ function CreateCourse() {
               <span className="label-text-alt text-black font-mono font-bold text-[12px] ">max length 2,000 words</span>
               <span className="label-text-alt text-black font-mono font-bold text-[12px] ">Expand</span>
             </div>
+            <label className="">
+          Course introduction video from device:
+            <input type='file' accept="video/mp4, video/avi, video/mov, video/mkv, video/webm" />
+          </label>
           </label>
           <label className='mb-2'>
             Course Overview:
             <textarea className="textarea textarea-bordered w-[98%] mx-auto bg-slate-200 placeholder-black  " placeholder="enter course overview "
              // name='course_overview'
-              value={course.course_overview}
+              //value={course.course_overview}
               onChange={handleChange}
              // className='textarea textarea-bordered w-full'
               required
@@ -171,7 +188,7 @@ function CreateCourse() {
             Course Content:
             <textarea className="textarea textarea-bordered w-[98%] mx-auto bg-slate-200 placeholder-black  " placeholder="enter course content "
               //name='course_content'
-              value={course.course_content}
+             // value={course.course_content}
               onChange={handleChange}
               //className='textarea textarea-bordered w-full'
               required
@@ -180,13 +197,17 @@ function CreateCourse() {
               <span className="label-text-alt text-black font-mono font-bold text-[12px] ">file link </span>
               <span className="label-text-alt text-black font-mono font-bold text-[12px] ">Expand</span>
             </div>
+            <label className="">
+          Course file from device:
+            <input type='file' accept="application/pdf, application/vnd.ms-excel, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+          </label>
           </label>
           <label className='mb-2'>
             Course Price:
             <textarea className="textarea textarea-bordered w-[98%] mx-auto bg-slate-200 placeholder-black  " placeholder="enter course price "
               //type='text'
               //name='course_price'
-              value={course.course_price}
+              //value={course.course_price}
               onChange={handleChange}
              // className='input input-bordered w-full'
               required
@@ -197,10 +218,20 @@ function CreateCourse() {
             </div>
           </label>
 
-          <label className="">
-            <input type='file' accept='application/pdf, application/vnd.ms-excel, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document' />
-          </label>
-          
+          <div>
+            <p className='p-2 '>course cover</p>
+            <input type='file' onChange={async(e:any)=>{
+            const files = e.target.files[0];
+            const data = await files.arrayBuffer();
+            //alert(JSON.stringify(data))
+            //uploadFile(files)
+            CourseCover({ file: files, data, action: 'upload', setResult });
+            }}/>
+          <CourseCoverResult result={result} />
+            
+            
+          </div>
+
           <button type='submit' className='btn btn-primary mt-4'>
             Create Course
           </button>

@@ -12,7 +12,7 @@ function Navbar() {
 
 
   return (
-  <div className="navbar background "  >{/*bg-[#2d545e]  text-[#e1b382]*/}
+  <div className="navbar  "  >{/*bg-[#2d545e]  text-[#e1b382]*/}
   <div className="navbar-start">
     <div className="dropdown z-10 ">
       <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -25,7 +25,7 @@ function Navbar() {
         <details>
           <summary><Link href="/AboutMGM" className='flex flex-row ' > <FaInfoCircle size={20} className="mr-2 text-[#e97902] " />  About MGM  </Link></summary>
           <ul className="p-1  w-fit border-b-2 border-b-[#e97902] ">
-            <li><Link href="/AboutMGM/AboutUs" > <FaInfoCircle size={20} className='text-[#e97902] ' /> About MGM  </Link></li>
+            <li><Link href="/AboutMGM" > <FaInfoCircle size={20} className='text-[#e97902] ' /> About MGM  </Link></li>
             <li><Link href="/AboutMGM/Mission&Vision" > <FaSun size={20} className='text-[#e97902] ' /> Mission & Vision  </Link></li>
             <li><Link href="/AboutMGM/MGMAdministration"> <FaPersonBooth size={20} className='text-[#e97902] ' />  Administration</Link></li>
           </ul>
@@ -75,7 +75,7 @@ function Navbar() {
       </li>
       </ul>
     </div>
-    <div className=" font-mono font-bold normal-case lg:text-xl text-sm text-[#0f2027] border-b-[#e97902] border-b-[2px] ml-4 p-2 "> MGM Institute  </div>
+    <div className=" font-mono font-bold normal-case text-xl text-sm text-[#0f2027] border-b-[#d0b49f] border-b-[3px] ml-4 p-2 "> MGM Institute  </div>
   </div>
   <div className="navbar-center hidden lg:flex border-b-2 border-b-[#e97902] ">
     <ul className="menu menu-horizontal px-1 border-b-2 border-b-[#e97902] ">
@@ -85,7 +85,7 @@ function Navbar() {
         <details>
           <summary><Link href="/AboutMGM" className='flex flex-row ' > <FaInfoCircle size={20} className="mr-2 text-[#e97902] " />  About MGM  </Link></summary>
           <ul className="p-1  w-fit  z-10 background border-b-2 border-b-[#e97902] ">
-            <li><Link href="/AboutMGM/AboutUs" > <FaInfoCircle className="text-[#e97902] " size={20} /> About MGM  </Link></li>
+            <li><Link href="/AboutMGM" > <FaInfoCircle className="text-[#e97902] " size={20} /> About MGM  </Link></li>
             <li><Link href="/AboutMGM/Mission&Vision" > <FaSun className='text-[#e97902] ' size={20} /> Mission & Vision  </Link></li>
             <li><Link href="/AboutMGM/MGMAdministration"> <FaPersonBooth className='text-[#e97902] ' size={20} />  Administration</Link></li>
           </ul>

@@ -184,14 +184,14 @@ let formattedDate = `${day}-${month}-${year}`;
     <div className='bg-white rounded-lg border border-b-[#e97902] h-screen flex flex-col  p-1  ' >
        {/* <HeaderDash/>*/}
         
-        <div className="title p-2 text-center font-serif font bold flex flex-row justify-between bg-gray-200 text-xl font-serif " >
+        <div className="title p-2 text-center font-serif font bold flex flex-row justify-between bg-gray-100 text-xl font-serif w-[80%] mx-auto " >
           <p>{formattedDate}</p>       
           <p> Hello {user.email} 👋 </p>
            <p>{time}</p>
         </div>
 
         {/* carousel */}
-        <div className="carousel w-full">
+        <div className="carousel w-[80%] mx-auto mt-1 ">
         {images.map((image, index) => (
           <div id={`item${index + 1}`} className="carousel-item w-full" key={index}>
             <Image src={image} alt="s" className="w-full" width={550} height={550} />

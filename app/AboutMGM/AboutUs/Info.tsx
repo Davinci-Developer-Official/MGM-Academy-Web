@@ -5,7 +5,7 @@ import { FaChevronCircleDown, FaChevronCircleUp, FaCompress, FaExpand, FaHome, F
 
 function Info({setNavigation,navigation}:any) {
   return (
-    <div>
+    <div className=' '>
     <div className='flex flex-row w-full justify-between p-4 ' >
     {!navigation&&<button onClick={()=>{setNavigation(true)}} className='btn btn-ghost flex flex-col ' ><FaCompress size={15} /></button>}
             {navigation&&<button onClick={()=>{setNavigation(false)}} className='btn btn-ghost  flex flex-col ' ><FaExpand size={15} /></button>}

@@ -178,16 +178,16 @@ function ElearningStudentNavbar() {
       {isOpen && (
         <ul
           tabIndex={0}
-          className="mt-3 z-10 bg-red-400 p-2 shadow menu menu-sm dropdown-content  rounded-box w-52"
+          className="mt-3 z-10 bg-gray-200 p-2 shadow menu menu-sm dropdown-content  rounded-box w-52"
         >
           <li>
-            <a className="justify-between">
+            <Link href='/academics/studentPortal/Profile' className="justify-between">
               Profile
               <span className="badge">New</span>
-            </a>
+            </Link>
           </li>
           <li><a>Settings</a></li>
-          <li><a>Logout</a></li>
+          <li><Link href='/academics/studentPortal/auth' >Logout</Link></li>
         </ul>
       )}
     </div>
