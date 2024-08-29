@@ -24,11 +24,11 @@ function Navbar() {
       <li tabIndex={0}>
         <details>
           <summary><Link href="/AboutMGM" className='flex flex-row ' > <FaInfoCircle size={20} className="mr-2 text-[#e97902] " />  About MGM  </Link></summary>
-          <ul className="p-1  w-fit border-b-2 border-b-[#e97902] ">
+          {/*<ul className="p-1  w-fit border-b-2 border-b-[#e97902] ">
             <li><Link href="/AboutMGM" > <FaInfoCircle size={20} className='text-[#e97902] ' /> About MGM  </Link></li>
             <li><Link href="/AboutMGM/Mission&Vision" > <FaSun size={20} className='text-[#e97902] ' /> Mission & Vision  </Link></li>
             <li><Link href="/AboutMGM/MGMAdministration"> <FaPersonBooth size={20} className='text-[#e97902] ' />  Administration</Link></li>
-          </ul>
+          </ul>*/}
         </details>
       </li>
         {/*Academics*/}
@@ -50,10 +50,10 @@ function Navbar() {
             <li><Link href="/academics/Courses/remodelledGrid" className='flex flex-row' > <FaGraduationCap size={20} className="mr-2 text-[#e97902] " /> Available Courses </Link></li>
             <li tabIndex={0}>
         <details>
-          <summary><button className='flex flex-row' > <FaFile size={20} className="mr-2 text-[#e97902] "  /> Apply</button></summary>
+          <summary><button className='flex flex-row' > <FaFolder size={20} className="mr-2 text-[#e97902] "  /> Apply</button></summary>
           <ul className="p-1 border-b-2 border-b-[#e97902] ">
-            <li><Link href="/academics/studentApplication" > <FaFile size={20} className='text-[#e97902]' /> student application</Link></li>
-            <li><Link href="/academics/InstructorApplication" > <FaFile size={20} className='text-[#e97902]' /> Instructor application </Link></li>
+            <li><Link href="/academics/apply" > <FaFile size={20} className='text-[#e97902]' /> create account </Link></li>
+            <li><Link href="/academics" className='flex flex-row' > <FaInfoCircle size={20} className="mr-2 text-[#e97902] "  /> info </Link></li>
           </ul>
         </details>
       </li>
@@ -75,20 +75,20 @@ function Navbar() {
       </li>
       </ul>
     </div>
-    <div className=" font-mono font-bold normal-case text-xl text-sm text-[#0f2027] border-b-[#d0b49f] border-b-[3px] ml-4 p-2 "> MGM Institute  </div>
+    <div className=" font-mono font-bold normal-case text-lg text-[#0f2027] border-b-[#d0b49f] border-b-[3px] ml-4 p-2 "> MGM Institute  </div>
   </div>
   <div className="navbar-center hidden lg:flex border-b-2 border-b-[#e97902] ">
     <ul className="menu menu-horizontal px-1 border-b-2 border-b-[#e97902] ">
     <li><Link href="/" > <FaHome size={20} className="text-[#e97902]  " /> Home</Link></li>
         {/*About MGM*/}
-      <li tabIndex={0}>
+      <li >
         <details>
           <summary><Link href="/AboutMGM" className='flex flex-row ' > <FaInfoCircle size={20} className="mr-2 text-[#e97902] " />  About MGM  </Link></summary>
-          <ul className="p-1  w-fit  z-10 background border-b-2 border-b-[#e97902] ">
+          {/*<ul className="p-1  w-fit  z-10 background border-b-2 border-b-[#e97902] ">
             <li><Link href="/AboutMGM" > <FaInfoCircle className="text-[#e97902] " size={20} /> About MGM  </Link></li>
             <li><Link href="/AboutMGM/Mission&Vision" > <FaSun className='text-[#e97902] ' size={20} /> Mission & Vision  </Link></li>
             <li><Link href="/AboutMGM/MGMAdministration"> <FaPersonBooth className='text-[#e97902] ' size={20} />  Administration</Link></li>
-          </ul>
+          </ul>*/}
         </details>
       </li>
         {/*Academics*/}
@@ -110,10 +110,10 @@ function Navbar() {
             <li><Link href="/academics/Courses/remodelledGrid" className='flex flex-row' > <FaGraduationCap size={20} className="mr-2 text-[#e97902] " /> Available Courses </Link></li>
             <li tabIndex={0}>
         <details>
-          <summary><Link href="/academics" className='flex flex-row' > <FaFolder size={20} className="mr-2 text-[#e97902] "  /> Apply</Link></summary>
+          <summary><button className='flex flex-row' > <FaFolder size={20} className="mr-2 text-[#e97902] "  /> Apply</button></summary>
           <ul className="p-1 border-b-2 border-b-[#e97902] ">
-            <li><Link href="/academics/studentApplication" > <FaFile size={20} className='text-[#e97902] ' /> student application</Link></li>
-            <li><Link href="/academics/InstructorApplication" > <FaFile size={20} className='text-[#e97902] ' /> Instructor application </Link></li>
+            <li><Link href="/academics/apply" > <FaFile size={20} className='text-[#e97902] ' /> create account</Link></li>
+            <li><Link href="/academics" > <FaInfoCircle size={20} className='text-[#e97902] ' /> info </Link></li>
           </ul>
         </details>
       </li>

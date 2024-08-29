@@ -3,7 +3,7 @@ import './timeline.css'
 
 function page() {
   return (
-    <div className='background w-full p-5 h-screen bg-white overflow-y-scroll ' >
+    <div className='background w-full p-5  bg-white  ' >
         <ul className="timeline max-md:timeline-compact">
       <li>
         <div className="timeline-middle">

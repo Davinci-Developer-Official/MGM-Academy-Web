@@ -120,4 +120,9 @@ html {
     margin-right: 10px;
   }
   
+  label{
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+  }
   
