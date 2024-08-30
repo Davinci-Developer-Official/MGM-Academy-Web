@@ -23,12 +23,12 @@ function Navbar() {
         {/*About MGM*/}
       <li tabIndex={0}>
         <details>
-          <summary><Link href="/AboutMGM" className='flex flex-row ' > <FaInfoCircle size={20} className="mr-2 text-[#e97902] " />  About MGM  </Link></summary>
-          {/*<ul className="p-1  w-fit border-b-2 border-b-[#e97902] ">
-            <li><Link href="/AboutMGM" > <FaInfoCircle size={20} className='text-[#e97902] ' /> About MGM  </Link></li>
-            <li><Link href="/AboutMGM/Mission&Vision" > <FaSun size={20} className='text-[#e97902] ' /> Mission & Vision  </Link></li>
-            <li><Link href="/AboutMGM/MGMAdministration"> <FaPersonBooth size={20} className='text-[#e97902] ' />  Administration</Link></li>
-          </ul>*/}
+          <summary><button className='flex flex-row ' > <FaInfoCircle size={20} className="mr-2 text-[#e97902] " />  About MGM  </button></summary>
+          <ul className="p-1  w-fit border-b-2 border-b-[#e97902] ">
+            <li><Link href="/AboutMGM" > <FaInfoCircle size={20} className='text-[#e97902] ' />  info </Link></li>
+            {/*<li><Link href="/AboutMGM/Mission&Vision" > <FaSun size={20} className='text-[#e97902] ' /> Mission & Vision  </Link></li>
+            <li><Link href="/AboutMGM/MGMAdministration"> <FaPersonBooth size={20} className='text-[#e97902] ' />  Administration</Link></li>*/}
+          </ul>
         </details>
       </li>
         {/*Academics*/}
@@ -40,9 +40,9 @@ function Navbar() {
         <details>
           <summary><button className='flex flex-row' > <FaPersonBooth size={20} className="mr-2 text-[#e97902] "  /> Portals</button></summary>
           <ul className="p-1 border-b-2 border-b-[#e97902] ">
-            <li><Link href="/academics/studentPortal/auth" > <FaGraduationCap size={20} className='text-[#e97902] ' /> Student portal</Link></li>
-            <li><Link href="/academics/instructorPortal/auth" > <FaChalkboardTeacher size={20} className='text-[#e97902] ' /> Instructor Portal </Link></li>
-            <li><Link href="/academics/adminPortal"> <FaPersonBooth size={20} className='text-[#e97902] ' /> Admin portal</Link></li>
+            <li><Link href="/academics/signin" > <FaGraduationCap size={20} className='text-[#e97902] ' /> sign in</Link></li>
+            {/*<li><Link href="/academics/instructorPortal/auth" > <FaChalkboardTeacher size={20} className='text-[#e97902] ' /> Instructor Portal </Link></li>
+            <li><Link href="/academics/adminPortal"> <FaPersonBooth size={20} className='text-[#e97902] ' /> Admin portal</Link></li>*/}
           </ul>
         </details>
       </li>
@@ -83,12 +83,12 @@ function Navbar() {
         {/*About MGM*/}
       <li >
         <details>
-          <summary><Link href="/AboutMGM" className='flex flex-row ' > <FaInfoCircle size={20} className="mr-2 text-[#e97902] " />  About MGM  </Link></summary>
-          {/*<ul className="p-1  w-fit  z-10 background border-b-2 border-b-[#e97902] ">
-            <li><Link href="/AboutMGM" > <FaInfoCircle className="text-[#e97902] " size={20} /> About MGM  </Link></li>
-            <li><Link href="/AboutMGM/Mission&Vision" > <FaSun className='text-[#e97902] ' size={20} /> Mission & Vision  </Link></li>
-            <li><Link href="/AboutMGM/MGMAdministration"> <FaPersonBooth className='text-[#e97902] ' size={20} />  Administration</Link></li>
-          </ul>*/}
+          <summary><button className='flex flex-row ' > <FaInfoCircle size={20} className="mr-2 text-[#e97902] " />  About MGM  </button></summary>
+          <ul className="p-1  w-fit  z-10 background border-b-2 border-b-[#e97902] ">
+            <li><Link href="/AboutMGM" > <FaInfoCircle className="text-[#e97902] " size={20} /> info  </Link></li>
+           {/* <li><Link href="/AboutMGM/Mission&Vision" > <FaSun className='text-[#e97902] ' size={20} /> Mission & Vision  </Link></li>
+            <li><Link href="/AboutMGM/MGMAdministration"> <FaPersonBooth className='text-[#e97902] ' size={20} />  Administration</Link></li>*/}
+          </ul>
         </details>
       </li>
         {/*Academics*/}
@@ -100,9 +100,9 @@ function Navbar() {
         <details>
           <summary><button className='flex flex-row' > <FaPersonBooth size={20} className="mr-2 text-[#e97902] "  /> Portals</button></summary>
           <ul className="p-1 border-b-2 border-b-[#e97902] ">
-            <li><Link href="/academics/studentPortal/auth" > <FaGraduationCap size={20} className="text-[#e97902] " /> Student portal</Link></li>
-            <li><Link href="/academics/instructorPortal/auth" > <FaChalkboardTeacher size={20} className="text-[#e97902] " /> Instructor Portal </Link></li>
-            <li><Link href="/academics/adminPortal"> <FaPersonBooth size={20} className="text-[#e97902] " /> Admin portal</Link></li>
+            <li><Link href="/academics/signin" > <FaGraduationCap size={20} className="text-[#e97902] " /> sign in </Link></li>
+            {/*<li><Link href="/academics/instructorPortal/auth" > <FaChalkboardTeacher size={20} className="text-[#e97902] " /> Instructor Portal </Link></li>
+            <li><Link href="/academics/adminPortal"> <FaPersonBooth size={20} className="text-[#e97902] " /> Admin portal</Link></li>*/}
           </ul>
         </details>
       </li>

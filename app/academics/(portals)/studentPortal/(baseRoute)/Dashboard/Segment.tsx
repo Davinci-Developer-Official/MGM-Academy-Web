@@ -181,7 +181,7 @@ let formattedDate = `${day}-${month}-${year}`;
   
   
   return (
-    <div className='bg-white rounded-lg border border-b-[#e97902] h-screen flex flex-col  p-1  ' >
+    <div className='bg-white w-full rounded-lg border border-b-[#e97902] h-full flex flex-col  p-1  ' >
        {/* <HeaderDash/>*/}
         
         <div className="title p-2 text-center font-serif font bold flex flex-row justify-between bg-gray-100 text-xl font-serif w-[80%] mx-auto " >

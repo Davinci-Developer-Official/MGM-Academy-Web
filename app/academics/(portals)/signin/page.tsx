@@ -7,15 +7,11 @@ import Image from "next/image";
 import placeholder from '@/public/remodel/study.jpg'
 import placeholder1 from '@/public/remodel/teach.jpg'
 
-interface Student{
-    email: string;
-    password: string;
-}
+
 
 export default function Page(){
     const [accountType, setAccountType] = useState("students");
-    const[data,setData]=useState<Student[]>([]);
-
+   
     const handleAccountTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setAccountType(event.target.value);
     };
