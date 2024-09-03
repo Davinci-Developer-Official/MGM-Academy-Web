@@ -125,4 +125,8 @@ html {
     flex-direction: column;
     padding: 4px;
   }
-  
+  .tab{
+    border-bottom: solid;
+    border-bottom-color: #ee8a18;
+    border-bottom-width: 4px;
+  }

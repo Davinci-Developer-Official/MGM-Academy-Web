@@ -1,13 +1,13 @@
 "use client";
 
-import { FaArrowRight, FaCaretDown, FaCaretRight, FaCaretUp, FaCartPlus, FaCompress, FaExpand, FaGraduationCap, FaInfoCircle, FaLock, FaLockOpen, FaTimesCircle } from "react-icons/fa";
+import { FaArrowRight, FaCaretDown, FaCartPlus, FaCompress, FaExpand, FaGraduationCap, FaInfoCircle, FaTimesCircle } from "react-icons/fa";
 import { useCallback, useEffect, useState } from "react";
 import data from "./data.json";
 import Image from "next/image";
 import Rating from "./Rating";
 import Link from "next/link";
 import collect from "collect.js";
-import placeholder from '@/public/categories/business-studies-FO8nWoT6OnZ7DXO6xYA2TnRK4kzhwt.jpg'
+import placeholder from '@/public/categories/business-studies-FO8nWoT6OnZ7DXO6xYA2TnRK4kzhwt.jpg';
 
 type Course = {
   title: string;
@@ -68,9 +68,9 @@ const CoursesPage = () => {
       const uniqueCategories = collection.pluck("category").unique().all();
       //@ts-ignore
       setFilteredData(uniqueCategories);
+
       if (selectedCategory !== "") {
         const filter = collection.where("category", selectedCategory).all();
-        //@ts-ignore
         setFilteredCourses(filter);
       } else {
         setFilteredCourses(response);
@@ -85,37 +85,41 @@ const CoursesPage = () => {
   }, [selectedCategory, fetchData]);
 
   return (
-    <div className="flex flex-col h-full bg-white">
-      <div className="flex flex-row h-fit w-full justify-between p-4">
-        {!hideMenu && (
-          <button onClick={() => setHideMenu(true)} className="btn btn-ghost flex flex-col">
-            <FaCompress size={15} />
-          </button>
-        )}
-        {hideMenu && (
-          <button onClick={() => setHideMenu(false)} className="btn btn-ghost flex flex-col">
-            <FaExpand size={15} />
-          </button>
-        )}
+    <div className="flex flex-col w-full h-screen background">
+      <div className="flex flex-row h-fit  justify-between p-4">
+     
 
-        <p className="btn btn-ghost font-bold lg:text-xl md:text-lg sm:text-sm">MGM Courses</p>
-        <div className="flex flex-col">
+        <p className=" font-bold lg:text-xl md:text-lg flex flex  row sm:text-sm"><p>MGM Courses</p> <FaGraduationCap size={20} /></p> 
+        <div className="relative">
           <button
-            className="btn btn-ghost h-fit"
-            onClick={() => {
-              setRenderCategory(true);
-            }}
+            className="btn btn-ghost h-fit text-left w-full"
+            onClick={() => setRenderCategory(!renderCategory)}
           >
-            {selectedCategory !== "" && <p className="sm:text-sm">{selectedCategory}</p>}
-            {selectedCategory === "" && <p>ALL</p>}
-            <FaCaretDown size={20} />
+            {selectedCategory !== "" ? (
+              <p className="sm:text-sm">{selectedCategory}</p>
+            ) : (
+              <p>ALL</p>
+            )}
+            <FaCaretDown size={20} className="ml-2" />
           </button>
           {renderCategory && (
-            <ul className="h-[250px] rounded-md background border-[#e1b382] border overflow-y-scroll absolute mt-10 z-10">
+            <ul className="absolute top-full mt-1 w-[150px] card border rounded-md shadow-md border-gray-300 shadow-lg max-h-64 overflow-y-auto z-10">
+              <li>
+                <button
+                  className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                  onClick={() => {
+                    setSelectedCategory("");
+                    setRenderCategory(false);
+                    setCurrentPage(1); // Reset to the first page when changing category
+                  }}
+                >
+                  ALL
+                </button>
+              </li>
               {filteredData.map((category, index) => (
-                <div key={category || index}>
+                <li key={category || index} className=" " >
                   <button
-                    className="btn btn-ghost w-[90%] ml-[5%] mt-2"
+                    className="w-full text-left px-4 py-2 hover:bg-gray-100"
                     onClick={() => {
                       setSelectedCategory(category);
                       setRenderCategory(false);
@@ -124,20 +128,20 @@ const CoursesPage = () => {
                   >
                     {category}
                   </button>
-                </div>
+                </li>
               ))}
             </ul>
           )}
         </div>
-        <button className="cursor-none">
-          <FaGraduationCap size={30} />
-        </button>
+        
       </div>
-      <div className="w-full overflow-y-auto h-screen p-2 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-2">
+
+      {/* Grid layout for courses */}
+      <div className="w-full overflow-y-auto h-screen p-2 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
         {currentCourses.map((course) => (
-          <div key={course.unitCode} className="p-1 bg-gray-200 mt-1 mx-auto card w-[550px] h-fit shadow-xl shadow-gray-500">
+          <div key={course.unitCode} className="bg-gray-200 mt-1 mx-auto card w-full h-fit shadow-xl shadow-gray-500">
             <figure>
-              <Image src={placeholder} alt="placeholder Image" />
+              <Image src={placeholder} alt="placeholder Image" className="w-full h-48 object-cover" />
             </figure>
             <h2 className="card-title p-2 font-bold font-serif">{course.title}</h2>
             <div className="card-title p-2 flex flex-row justify-between w-[90%] mx-auto">
@@ -146,7 +150,7 @@ const CoursesPage = () => {
                 <FaInfoCircle
                   size={18}
                   className="cursor-pointer"
-                  onClick={(e:any) => {
+                  onClick={(e) => {
                     e.preventDefault();
                     toggleShowRequirements(course.unitCode);
                   }}
@@ -155,7 +159,7 @@ const CoursesPage = () => {
                 <FaTimesCircle
                   size={18}
                   className="cursor-pointer"
-                  onClick={(e:any) => {
+                  onClick={(e) => {
                     e.preventDefault();
                     toggleShowRequirements(course.unitCode);
                   }}
@@ -193,6 +197,8 @@ const CoursesPage = () => {
           </div>
         ))}
       </div>
+
+      {/* Pagination */}
       <div className="flex justify-center mt-4 text-black font-mono font-semibold h-[50px]">
         <div className="join">
           <button
@@ -224,59 +230,31 @@ const CoursesPage = () => {
                 <div key={index} className="card-title bg-gray-200 mt-1 w-[96%] mx-auto flex flex-col">
                   <div className="card-title flex flex-row justify-between w-[90%] mx-auto">
                     <p>{topic.unit}:</p>
-                    <FaLock
+                    <FaTimesCircle
                       size={18}
-                      className="cursor-pointer pt-[2px]"
-                      onClick={(e:any) => {
-                        e.preventDefault();
-                        toggleShowSubTopics(selectedCourse.unitCode, index);
-                      }}
+                      className="cursor-pointer"
+                      onClick={() => toggleShowSubTopics(selectedCourse.unitCode, index)}
                     />
                   </div>
-                  {showSubTopics[selectedCourse.unitCode]?.[index] && (
-                    <ul className="card-compact bg-white w-[98%] mx-auto mt-[2px]">
-                      {topic.subtopics.map((subtopic, subIndex) => (
-                        <div key={subIndex}>
-                          <li className="flex flex-row justify-between mt-1 p-2">
-                            <p>{subtopic}</p>
-                            <FaInfoCircle
-                              size={18}
-                              className="cursor-pointer"
-                              onClick={(e:any) => {
-                                e.preventDefault();
-                                toggleShowSubTopics(selectedCourse.unitCode, index);
-                              }}
-                            />
-                          </li>
-                          <div className="w-full h-fit">
-                            {!showSubTopics[selectedCourse.unitCode]?.[index] ? (
-                              <></>
-                            ) : (
-                              <div>
-                                <p className="text-sm p-2">
-                                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga voluptates ratione cum nam vitae architecto perferendis explicabo quaerat impedit, labore eveniet sequi vel? Impedit ratione rem omnis blanditiis. Ex, quibusdam?
-                                </p>
-                              </div>
-                            )}
-                          </div>
-                          <div className="flex flex-row p-2 w-full">
-                            <Link href="" className="text-green-700 text-sm">
-                              purchase course to unlock topic
-                            </Link>
-                            <FaArrowRight size={20} className="p-1" />
-                          </div>
-                        </div>
-                      ))}
-                    </ul>
-                  )}
+                  <div className="card-body">
+                    {showSubTopics[selectedCourse.unitCode]?.[index] && (
+                      <ul className="list-disc list-inside">
+                        {topic.subtopics.map((subtopic, subIndex) => (
+                          <li key={subIndex}>{subtopic}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
           )}
+          <div className="modal-action">
+            <label htmlFor="my_modal_7" className="btn bg-gray-300 text-black font-serif border-none hover:bg-gray-400 hover:text-black">
+              Close
+            </label>
+          </div>
         </div>
-        <label className="modal-backdrop" htmlFor="my_modal_7">
-          Close
-        </label>
       </div>
     </div>
   );

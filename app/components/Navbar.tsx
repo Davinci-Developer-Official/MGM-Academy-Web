@@ -47,7 +47,7 @@ function Navbar() {
         </details>
       </li>
       {/* href="/academics/Courses"*/}
-            <li><Link href="/academics/Courses/remodelledGrid" className='flex flex-row' > <FaGraduationCap size={20} className="mr-2 text-[#e97902] " /> Available Courses </Link></li>
+            <li><Link href="/academics/Courses" className='flex flex-row' > <FaGraduationCap size={20} className="mr-2 text-[#e97902] " /> courses </Link></li>
             <li tabIndex={0}>
         <details>
           <summary><button className='flex flex-row' > <FaFolder size={20} className="mr-2 text-[#e97902] "  /> Apply</button></summary>
@@ -107,7 +107,7 @@ function Navbar() {
         </details>
       </li>
       {/*href="/academics/Courses"*/}
-            <li><Link href="/academics/Courses/remodelledGrid" className='flex flex-row' > <FaGraduationCap size={20} className="mr-2 text-[#e97902] " /> Available Courses </Link></li>
+            <li><Link href="/academics/Courses" className='flex flex-row' > <FaGraduationCap size={20} className="mr-2 text-[#e97902] " /> courses </Link></li>
             <li tabIndex={0}>
         <details>
           <summary><button className='flex flex-row' > <FaFolder size={20} className="mr-2 text-[#e97902] "  /> Apply</button></summary>

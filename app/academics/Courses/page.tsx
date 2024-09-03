@@ -4,6 +4,7 @@ import Footer from '@/app/components/Footer'
 import Navbar from '@/app/components/Navbar'
 import React, { useEffect, useState } from 'react'
 import Section from './section'
+import Remodel from './remodelled'
 
 function Page() {
   const[hideMenu,setHideMenu]=useState(true);
@@ -13,8 +14,8 @@ function Page() {
   return (
     <div>
       {hideMenu&&<Navbar/>}
-       <Section setHideMenu={setHideMenu} hideMenu={hideMenu} />
-      
+       {/*<Section setHideMenu={setHideMenu} hideMenu={hideMenu} />*/}
+      <Remodel/>
       </div>
   )
 }

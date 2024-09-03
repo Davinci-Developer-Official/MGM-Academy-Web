@@ -27,7 +27,7 @@ function ElearningStudentNavbar() {
 
   useEffect(()=>{},[spContent,financeContent,academicContent,moreContent,dropdownOpen,isOpen])
     return (
-      <div className="navbar justify-between bg-white">
+      <div className="navbar w-full justify-between bg-white">
         <div className="">
           <div className="dropdown">
             <div

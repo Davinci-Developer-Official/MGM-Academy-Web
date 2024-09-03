@@ -14,7 +14,6 @@ function UpdatesCard() {
         { id: 8, classCode: "PSYCH 202", courseName: "Cognitive Psychology", completionRate: "70%" },
         { id: 9, classCode: "ECON 301", courseName: "Macroeconomics", completionRate: "85%" },
         { id: 10, classCode: "STAT 201", courseName: "Statistics for Data Science", completionRate: "78%" },
-        // Add more objects as needed
     ];
 
     const [showOptions, setShowOptions] = useState(true);
@@ -38,7 +37,7 @@ function UpdatesCard() {
 
     useEffect(() => {
         checkRate();
-    }, [checkRate, selectedCourse]);
+    }, [checkRate]);
 
     const indexOfLastCourse = currentPage * itemsPerPage;
     const indexOfFirstCourse = indexOfLastCourse - itemsPerPage;
@@ -47,16 +46,16 @@ function UpdatesCard() {
     const totalPages = Math.ceil(courses.length / itemsPerPage);
 
     return (
-        <div className='w-[70%]  mx-auto mt-10 rounded-md p-1'>
+        <div className='w-[70%] mx-auto mt-10 rounded-md p-1'>
             <div className='flex flex-row'>
                 <div className='w-[94%] h-[90px] flex flex-col'>
                     {selectedCourse.courseCode === "" ? (
-                        <p className='h-[25px] rounded-tl-md text-center'>no course selected</p>
+                        <p className='h-[25px] rounded-tl-md text-center'>No course selected</p>
                     ) : (
                         <p className='h-[25px] rounded-tl-md text-center flex flex-row'>{selectedCourse.courseCode}</p>
                     )}
                     {selectedCourse.courseName === "" ? (
-                        <p className='h-[75%] p-4 rounded-bl-md'>please select course</p>
+                        <p className='h-[75%] p-4 rounded-bl-md'>Please select a course</p>
                     ) : (
                         <div className='h-[75%] p-4 rounded-bl-md flex flex-row justify-evenly'>
                             <p>{selectedCourse.courseName}</p>
@@ -76,11 +75,11 @@ function UpdatesCard() {
             </div>
             {showOptions && (
                 <div className='p-4'>
-                    <div className='grid grid-cols-2 gap-4'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                         {currentCourses.map(items => (
                             <div 
                                 key={items.id} 
-                                className='p-4 bg-[#2d545e] text-[#e1b382] text-[#2d545e] rounded-md flex flex-col justify-between cursor-pointer'
+                                className='p-4 bg-[#2d545e] text-[#e1b382] rounded-md flex flex-col justify-between cursor-pointer'
                                 onClick={() => setSelectedCourse({
                                     courseCode: items.classCode,
                                     courseName: items.courseName,

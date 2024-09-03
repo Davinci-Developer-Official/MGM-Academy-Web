@@ -102,7 +102,7 @@ export default function Page() {
                             </label>
                         )}
                     </div>
-                    {verified?<Link href='/academics/studentPortal/Dashboard' className="btn  ">sign in</Link>:<button  className="btn" onClick={!exists ? check : login }>
+                    {verified?<Link href='/academics/instructorPortal/Dashboard' className="btn  ">sign in</Link>:<button  className="btn" onClick={!exists ? check : login }>
                         {exists ? 'verify' : 'Proceed'}
                     </button>}
                 </form>
