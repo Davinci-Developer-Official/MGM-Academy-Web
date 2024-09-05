@@ -8,7 +8,7 @@ function Home({navigation,setNavigation,footer,setFooter}:any) {
   const Label="MGM Academy: Empowering Education for All"
   const statement = "Welcome to the MGM Institute of Gender and Women Empowerment: Pioneers of Equality and Empowerment. As a dynamic learning platform for all, we offer a diverse range of courses. Join us in reshaping norms, advancing rights, and fostering inclusivity and justice. Together, let's champion progress and empowerment for all."
   return (
-    <div className='h-screen overflow-y-scroll' >
+    <div className='h-full ' >
     <div className='flex flex-row w-full justify-between p-4 ' >
     {!navigation&&<button onClick={()=>{setNavigation(true)}} className='btn btn-ghost flex flex-col ' ><FaCompress size={15} /></button>}
             {navigation&&<button onClick={()=>{setNavigation(false)}} className='btn btn-ghost  flex flex-col ' ><FaExpand size={15} /></button>}
@@ -16,7 +16,7 @@ function Home({navigation,setNavigation,footer,setFooter}:any) {
       <button className='btn btn-ghost hover:cursor-none ' ><FaHome size={20} /></button>
     </div>
     <div className='   ' >
-    <div className='w-[90%] sm:w-[99%] mx-auto card  font-mono' >
+    <div className='w-[90%] sm:w-[99%] mx-auto cards rounded-md p-2  font-mono' >
     <p className=' text-center font-mono    w-[90%] mx-auto  card-body '  >
      {statement}
     </p>

@@ -152,7 +152,7 @@ function Segment() {
               <option>instructors</option>
             </select>
             <div className="indicator">
-              <span className="indicator-item badge badge-secondary">new</span>
+              {/*<span className="indicator-item badge badge-secondary">new</span>*/}
               <button className="btn text-black join-item">
                 <FaSearch size={20} />
               </button>

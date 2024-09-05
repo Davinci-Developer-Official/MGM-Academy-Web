@@ -101,7 +101,7 @@ function ElearningStudentNavbar() {
               </ul>
             )}
           </div>
-          <a className="btn btn-ghost text-xl lowercase">MGM e-learning</a>
+          <a className="ml-4 btn btn-ghost h-fit text-xl lowercase tooltip tooltip-open tooltip-bottom" data-tip="no ads" >MGM pro</a>
         </div>
         <div className=" hidden lg:flex text-xl font-serif font-bold">
           <ul className="menu menu-horizontal px-1">
@@ -149,14 +149,14 @@ function ElearningStudentNavbar() {
             </li>
           </ul>
         </div>
-        <label className="border border-black bg-white input input-bordered flex items-center gap-1">
+       {/* <label className="border border-black bg-white input input-bordered flex items-center gap-1">
   <input type="text" className="grow bg-white " placeholder="Search" />
   <kbd className="kbd kbd-sm text-black bg-white "> ⌘ </kbd>
   <kbd className="kbd kbd-sm text-black bg-white "> B </kbd>
   {searchBar&&(<div className='absolute z-10  bg-purple-400 mt-10 w-[300px] h-[200px]  ' >
     <p>search param</p>
   </div>)}
-</label>
+</label>*/}
 
     <div className="dropdown dropdown-end">  
       <div
