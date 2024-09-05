@@ -150,7 +150,7 @@ const CoursesPage = () => {
                 <FaInfoCircle
                   size={18}
                   className="cursor-pointer"
-                  onClick={(e) => {
+                  onClick={(e:any) => {
                     e.preventDefault();
                     toggleShowRequirements(course.unitCode);
                   }}
