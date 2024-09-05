@@ -9,6 +9,10 @@ export function middleware(req:NextRequest,res:NextResponse){
     const allcookies = req.cookies.getAll('auth');
     console.log('cookie',cookies);
 
+    const user = req.cookies.get('user');
+    
+    console.log('user',user)
+
     //working with cookies;
     const response = NextResponse.next();
 
@@ -30,12 +34,12 @@ export function headers(req:NextRequest){
     });
     response.headers.set('x-custom-auth-header','isAuthed');
 
-    console.log('response header',response.headers);
+    //console.log('response header',response.headers);
     return response;
 }
 
 export const config={
-    matcher:'/',
+    matcher:['/','/academics/signin'],
 }
 
 {/*console.log("middleware working");

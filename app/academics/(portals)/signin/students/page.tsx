@@ -3,8 +3,11 @@
 import Link from "next/link";
 import { useEffect, useState } from "react"
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Cookies from 'js-cookie';
+
 
 interface Student {
+    student_id:string;
     email: string;
     password: string;
 }
@@ -13,13 +16,17 @@ export default function Page() {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState<Student[]>([]);
     const [details, setDetails] = useState<Student>({
+        student_id:'',
         email: '',
         password: ''
     });
     const [exists, setExists] = useState(false);
     const [showPassword, setShowPassword] = useState(false); // New state to toggle password visibility
     const[verified,setVerified]=useState(false);
-    const[status,setStatus]=useState("")
+    const[status,setStatus]=useState("");
+    const[userId,setUserId]=useState('');
+
+    
     useEffect(() => {
         async function getStudents() {
             try {
@@ -37,12 +44,30 @@ export default function Page() {
         }
         getStudents();
     }, []);
+    async function userInfo(){
+
+    }
+
+
 
     async function check(e: React.FormEvent) {
         e.preventDefault();
         const user = data.find((student) => student.email === details.email);
+        
         if (user) {
-            setExists(true);
+            const student_id = user.student_id;
+
+                if (student_id) {
+                    setExists(true);
+                    Cookies.set('user', JSON.stringify(student_id), { expires: 7, path: '/academics/signin' });
+                } else {
+                    setExists(false);
+                    console.error('Student ID is undefined.');
+                    alert(' student id undefined')
+                }
+            
+           // alert(student_id);
+            
            // setDetails((prevDetails) => ({ ...prevDetails, password: user.password }));
         } else {
             alert('No matching email found');
@@ -54,6 +79,7 @@ export default function Page() {
         if (pass) {
             setVerified(true);
             setExists(true)
+            
 
         } else {
             setStatus('No matching email found');
