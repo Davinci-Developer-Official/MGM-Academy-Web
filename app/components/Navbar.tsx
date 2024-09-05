@@ -4,11 +4,11 @@ import React, { useState } from 'react'
 //import { useColorTheme } from '@/hooks/useColorTheme' 
 import ChangeTheme from "./ChangeTheme"
 import DarkModeButton from './DarkModeButton'
-import { FaBookOpen, FaChalkboardTeacher, FaFemale, FaFile, FaFolder, FaGithub, FaGraduationCap, FaHandshake, FaHome, FaInfo, FaInfoCircle, FaIntercom, FaMoneyBill, FaPersonBooth, FaSchool, FaSignInAlt, FaSun, FaUser, FaUserAlt, FaUserCircle } from 'react-icons/fa'
+import { FaBookOpen, FaChalkboardTeacher, FaEdit, FaFemale, FaFile, FaFolder, FaGithub, FaGraduationCap, FaHandshake, FaHome, FaInfo, FaInfoCircle, FaIntercom, FaMoneyBill, FaPen, FaPersonBooth, FaSchool, FaSignInAlt, FaSun, FaUser, FaUserAlt, FaUserCircle } from 'react-icons/fa'
 
 function Navbar() {
     //const [colorTheme] = useColorTheme();
-    const[loggedIn,setLoggedIn]=useState(true)
+    const[loggedIn,setLoggedIn]=useState(true) // false ie fetch from cookies
 
 
   return (
@@ -151,19 +151,16 @@ function Navbar() {
                                 <li><Link href="/academics/apply"><FaUserCircle className='text-[#e97902]' size={20} /> Sign Up</Link></li>
                             </>
                         ) : (
-                          <ul
-                          tabIndex={0}
-                          className="mt-3 z-10 bg-gray-200 p-2 shadow menu menu-sm dropdown-content  rounded-box w-52"
-                        >
+                        <>
                           <li>
                             <Link href='/academics/studentPortal/Profile' className="justify-between">
                               Profile
-                              <span className="badge">New</span>
+                              <span className="badge"><FaEdit/></span>
                             </Link>
                           </li>
                           <li><a>Settings</a></li>
                           <li><Link href='/academics/studentPortal/auth' >Logout</Link></li>
-                        </ul>
+                        </>
                         )}
                     </ul>
                 </div>
