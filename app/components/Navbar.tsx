@@ -8,7 +8,7 @@ import { FaBookOpen, FaChalkboardTeacher, FaFemale, FaFile, FaFolder, FaGithub, 
 
 function Navbar() {
     //const [colorTheme] = useColorTheme();
-    const[loggedIn,setLoggedIn]=useState(false)
+    const[loggedIn,setLoggedIn]=useState(true)
 
 
   return (
@@ -140,18 +140,30 @@ function Navbar() {
             <div className="navbar-end">
                 <div className="dropdown z-10 ml-4 relative">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar tooltip tooltip-open tooltip-bottom mr-10 " data-tip="sign in /sign up ">
-                        <div className="w-10 h-10 bg-white rounded-full">
+                        <div className="w-full h-full bg-white rounded-full">
                             {loggedIn?<img src="https://placeimg.com/192/192/people" alt="User Avatar" className="w-full h-full object-cover rounded-full" />:<div className='bg-white  ' >.</div> }
                         </div>
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-white rounded-box w-52 border-b-2 border-b-[#e97902] absolute right-0 top-full">
                         {!loggedIn ? (
                             <>
-                                <li><Link href="/signin"><FaSignInAlt className='text-[#e97902]' size={20} /> Sign In</Link></li>
-                                <li><Link href="/signup"><FaUserCircle className='text-[#e97902]' size={20} /> Sign Up</Link></li>
+                                <li><Link href="/academics/signin"><FaSignInAlt className='text-[#e97902]' size={20} /> Sign In</Link></li>
+                                <li><Link href="/academics/apply"><FaUserCircle className='text-[#e97902]' size={20} /> Sign Up</Link></li>
                             </>
                         ) : (
-                            <li><Link href="/profile"><FaUserCircle className='text-[#e97902]' size={20} /> Profile</Link></li>
+                          <ul
+                          tabIndex={0}
+                          className="mt-3 z-10 bg-gray-200 p-2 shadow menu menu-sm dropdown-content  rounded-box w-52"
+                        >
+                          <li>
+                            <Link href='/academics/studentPortal/Profile' className="justify-between">
+                              Profile
+                              <span className="badge">New</span>
+                            </Link>
+                          </li>
+                          <li><a>Settings</a></li>
+                          <li><Link href='/academics/studentPortal/auth' >Logout</Link></li>
+                        </ul>
                         )}
                     </ul>
                 </div>
