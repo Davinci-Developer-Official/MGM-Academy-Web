@@ -159,7 +159,7 @@ const CoursesPage = () => {
                 <FaTimesCircle
                   size={18}
                   className="cursor-pointer"
-                  onClick={(e) => {
+                  onClick={(e:any) => {
                     e.preventDefault();
                     toggleShowRequirements(course.unitCode);
                   }}
