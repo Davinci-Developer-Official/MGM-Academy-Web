@@ -39,7 +39,7 @@ export function headers(req:NextRequest){
 }
 
 export const config={
-    matcher:['/','/academics/signin'],
+    matcher:['/','/academics/studentPortal/Profile'],
 }
 
 {/*console.log("middleware working");
