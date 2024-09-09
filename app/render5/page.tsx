@@ -162,11 +162,11 @@ const AddCourseForm = () => {
         <div>
           <label className="block text-gray-700">Course cover</label>
           <input
-            type='file'
-            name="cover image"
-            value={formData.course_rating}
+            type="file"
+            name="cover_image"
+            accept=".jpg, .jpeg, .png" // Accept only specific image types
             onChange={handleChange}
-            
+            className="w-full p-2 border border-gray-300 rounded"
           />
         </div>
         <button

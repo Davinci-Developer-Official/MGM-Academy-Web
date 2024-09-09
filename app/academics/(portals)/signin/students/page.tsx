@@ -52,27 +52,38 @@ export default function Page() {
 
     async function check(e: React.FormEvent) {
         e.preventDefault();
+    
+        // Ensure data and details are correctly populated
+        if (!data || !details.email) {
+            console.error('Data or details.email is missing');
+            alert('No student data or email to check');
+            return;
+        }
+    
+        // Find student by email
         const user = data.find((student) => student.email === details.email);
-        
+        console.log("User found:", user);  // Add logging for debugging
+    
         if (user) {
             const student_id = user.student_id;
-
-                if (student_id) {
-                    setExists(true);
-                    Cookies.set('user', JSON.stringify(student_id), { expires: 7, path: '/academics/signin' });
-                } else {
-                    setExists(false);
-                    console.error('Student ID is undefined.');
-                    alert(' student id undefined')
-                }
-            
-           // alert(student_id);
-            
-           // setDetails((prevDetails) => ({ ...prevDetails, password: user.password }));
+            console.log("Student ID:", student_id);  // Log the student_id
+    
+            if (student_id) {
+                setExists(true);
+                // Set cookie for 7 days with the correct path
+                Cookies.set('user', JSON.stringify(student_id), { expires: 7, path: '/academics/studentPortal/Profile' });
+                console.log('Cookie set:', Cookies.get('user'));  // Log the cookie to ensure it’s set correctly
+            } else {
+                setExists(false);
+                console.error('Student ID is undefined.');
+                alert('Student ID is undefined');
+            }
         } else {
             alert('No matching email found');
+            console.error('No user found for email:', details.email);
         }
     }
+    
     async function login(e:any){
         e.preventDefault();
         const pass = data.find((student) => student.password === details.password);

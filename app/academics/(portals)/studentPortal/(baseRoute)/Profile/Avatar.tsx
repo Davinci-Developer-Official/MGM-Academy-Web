@@ -71,7 +71,7 @@ useEffect(()=>{},[user.avatar])
             {image == null && (
               <div className="image-item flex flex-col justify-evenly ">
                 <div className='  justify-start p-4 '  >
-                  <p className=' p-4 font-mono font-bold ' > Profile picture</p>
+                  <p className=' p-2 font-mono font-bold ' > Profile picture</p>
                   <div className='h-[200px] w-[200px]  bg-red-400  rounded-lg border-[#e97902] border ' >
                     <Image src={profile} alt='profile image' className='object-fit h-full w-full rounded-lg' width={500} height={500} />
                     {/*<p className="mt-[70px] text-center text-[40px] font-bold absolute bg-blue-400 " >{initials}</p>*/}
