@@ -9,7 +9,7 @@ import { put } from "@vercel/blob";
 export default function Avatar({ initials , user,setUser }: any) {
   const [image, setImage] = useState(null); // Change to single image state
   const maxNumber = 1; // Limit to a single image
-useEffect(()=>{},[user.avatar])
+//useEffect(()=>{},[user.avatar])
   const onChange = (
     imageList: ImageListType,
     addUpdateIndex: number[] | undefined

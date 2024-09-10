@@ -6,18 +6,15 @@ import Cookie from'js-cookie'
 import { FaBackspace, FaEdit } from 'react-icons/fa';
 
 interface User{ 
-user_id:string,
-user_names:string;
-user_gender:string;
-user_email:string;
-user_phonenumber:string;
-user_nation:string;
-user_verified:string;
-user_password:string;
-user_avatar:string
+avatar:string,
+names:string;
+email:string;
+phonenumber:string;
+gender:string;
+password:string;
 }
 function Form() {
-    const[user,setUser]=useState<User[]>([]);
+    const[User,setUser]=useState<User[]>([]);
     const[loggedIn,setLoggedIn]=useState("")
     const [userProfile, setUserProfile] = useState<any>(null);
 
@@ -33,7 +30,17 @@ function Form() {
             
             const response = await fetch(`/api/remodelled/students/profile?id=${user}`);
             const data = await response.json();
-            alert(JSON.stringify(data))
+           
+            
+            if(User.length==0){
+             
+              setUser(data);
+             
+            }
+            if(User.length!==0){ 
+             // alert(JSON.stringify(User));
+            }
+
             if(!response.ok){
               alert('users not found');
             }
@@ -51,10 +58,12 @@ function Form() {
     getUser();
   return (
     <form action="" method="post" className='background w-full '>
-      <div className="flex flex-col items-center w-[80%]  p-6 rounded-lg  mx-auto space-y-4 md:flex-row md:space-y-0 md:space-x-8 md:justify-between">
+      {User.map((profile)=>(
+        <div key={profile.names} >
+          <div className="flex flex-col items-center w-[80%]  p-6 rounded-lg  mx-auto space-y-4 md:flex-row md:space-y-0 md:space-x-8 md:justify-between">
   {/* Avatar Section */}
   <div className="flex flex-col items-center space-y-2">
-    <Avatar user={user} setUser={setUser} />
+    <Avatar user={User} setUser={setUser} />
     <p className="text-gray-600 text-sm">confirm changes </p>
   </div>
 
@@ -74,7 +83,7 @@ function Form() {
               name="full names" 
               placeholder='your full names / username of choice'
               className='w-full p-4 pr-10 rounded-lg border resize-none'
-            ></textarea>
+            >{profile.names}</textarea>
             <button className='absolute top-2 right-2 text-gray-500 hover:text-black'>
               <FaBackspace />
             </button>
@@ -87,7 +96,7 @@ function Form() {
               name="email" 
               placeholder='example@gmail.com'
               className='w-full p-4 pr-10 rounded-lg border resize-none'
-            ></textarea>
+            >{profile.email}</textarea>
             <button className='absolute top-2 right-2 text-gray-500 hover:text-black'>
               <FaBackspace />
             </button>
@@ -100,7 +109,7 @@ function Form() {
               name="phone number" 
               placeholder=' 0123456789 '
               className='w-full p-4 pr-10 rounded-lg border resize-none'
-            ></textarea>
+            >{profile.phonenumber}</textarea>
             <button className='absolute top-2 right-2 text-gray-500 hover:text-black'>
               <FaBackspace />
             </button>
@@ -111,6 +120,7 @@ function Form() {
           <div className='relative w-[90%] mx-auto'>
             <input 
               name="gender" 
+              value={profile.gender}
               placeholder='your gender'
               className='w-full p-4 pr-10 rounded-lg border resize-none'
             />
@@ -149,7 +159,7 @@ function Form() {
               name="password" 
               placeholder='enter new password'
               className='w-full p-4 pr-10 rounded-lg border resize-none'
-            ></textarea>
+            >{profile.password}</textarea>
             <button className='absolute top-2 right-2 text-gray-500 hover:text-black'>
               <FaBackspace />
             </button>
@@ -171,6 +181,8 @@ function Form() {
         </div>
 
       </div>
+        </div>
+      ))}
       
     </form>
   )
