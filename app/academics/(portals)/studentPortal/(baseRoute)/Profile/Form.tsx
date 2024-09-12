@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Avatar from './Avatar'
 import Nations from './Nations';
 import Cookie from'js-cookie'
-import { FaBackspace, FaEdit } from 'react-icons/fa';
+import { FaBackspace, FaEdit, FaSave } from 'react-icons/fa';
 
 interface User{ 
 avatar:string,
@@ -56,6 +56,29 @@ function Form() {
     }
     
     getUser();
+    const [info,setInfo]=useState({ 
+      avatar:"",
+      names:"",
+      email:"",
+      phonenumber:"",
+      gender:"",
+      password:"",
+      })
+    async function update(){
+      try {
+        const user = Cookie.get('user');
+          if(user!==""){
+          const response = await fetch(`/api/remodelled/students/profile?id=${user}`,{
+            method:"PUT",
+            body:JSON.stringify(info)
+          });
+          alert('nip')
+        }
+      } catch (error) {
+        console.log(error);
+      }
+
+    }
   return (
     <form action="" method="post" className='background w-full '>
       {User.map((profile)=>(
@@ -68,7 +91,10 @@ function Form() {
   </div>
 
   {/* Save Changes Button */}
-  <button 
+  <button onClick={(e:any)=>{
+              e.preventDefault();
+              update()
+            }}
     type="submit" 
     className="btn bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-lg font-semibold transition duration-200 ease-in-out transform hover:scale-105">
     Save Changes
@@ -84,7 +110,11 @@ function Form() {
               placeholder='your full names / username of choice'
               className='w-full p-4 pr-10 rounded-lg border resize-none'
             >{profile.names}</textarea>
-            <button className='absolute top-2 right-2 text-gray-500 hover:text-black'>
+            <button onClick={()=>{
+              //const user = User.find(z=>z==z.names return)
+              if(User){}
+            }} 
+             className='absolute top-2 right-2 text-gray-500 hover:text-black'>
               <FaBackspace />
             </button>
           </div>
@@ -98,7 +128,7 @@ function Form() {
               className='w-full p-4 pr-10 rounded-lg border resize-none'
             >{profile.email}</textarea>
             <button className='absolute top-2 right-2 text-gray-500 hover:text-black'>
-              <FaBackspace />
+              <FaSave />
             </button>
           </div>
         </div>
@@ -111,7 +141,7 @@ function Form() {
               className='w-full p-4 pr-10 rounded-lg border resize-none'
             >{profile.phonenumber}</textarea>
             <button className='absolute top-2 right-2 text-gray-500 hover:text-black'>
-              <FaBackspace />
+              <FaSave />
             </button>
           </div>
         </div>
@@ -125,7 +155,7 @@ function Form() {
               className='w-full p-4 pr-10 rounded-lg border resize-none'
             />
             <button className='absolute top-2 right-2 text-gray-500 hover:text-black'>
-              <FaBackspace />
+              <FaSave />
             </button>
           </div>
         </div>
@@ -139,7 +169,7 @@ function Form() {
               className='w-full p-4 pr-10 rounded-lg border resize-none'
             ></textarea>
             <button className='absolute top-2 right-2 text-gray-500 hover:text-black'>
-              <FaBackspace />
+              <FaSave />
             </button>
           </div>
         </div>
@@ -161,7 +191,7 @@ function Form() {
               className='w-full p-4 pr-10 rounded-lg border resize-none'
             >{profile.password}</textarea>
             <button className='absolute top-2 right-2 text-gray-500 hover:text-black'>
-              <FaBackspace />
+              <FaSave />
             </button>
           </div>
         </div>
@@ -174,8 +204,8 @@ function Form() {
               placeholder='re enter your password'
               className='w-full p-4 pr-10 rounded-lg border resize-none'
             ></textarea>
-            <button className='absolute top-2 right-2 text-gray-500 hover:text-black'>
-              <FaBackspace />
+            <button className='absolute top-2 right-2 text-gray-500 hover:text-black'  >
+              <FaSave />
             </button>
           </div>
         </div>
