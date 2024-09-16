@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { sql } from '@vercel/postgres'; // Import the Vercel Postgres client
 
-export default async function PUT(req: NextApiRequest, res: NextApiResponse) {
+export  async function PUT(req: NextApiRequest, res: NextApiResponse) {
   
     try {
       // Extract the 'id' from the query parameters
