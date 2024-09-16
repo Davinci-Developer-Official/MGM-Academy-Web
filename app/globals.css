@@ -17,7 +17,7 @@ html {
 ::-webkit-scrollbar-track {
     /* Customize the scrollbar track */
     /*background-color: #e1b382;*/
-    background-color: #e2e6e7;
+    background-color: #e2e6e7 ;
     margin-right: 2px;
     border-radius: 10px;
     border-style: solid;
@@ -34,12 +34,12 @@ html {
     background-size: 35px;
 }
 .navbar{
-  background-color: #e2e6e7 ;
+  background-color: #e2e6e7 ;/*#e2e6e7 */
   color: #201a1e;
 }
 
 .background {
-    background-color: #e4d4c8;
+    background-color: #ffffff; /*#e4d4c8*/
     color: #201a1e;
     
 }
@@ -63,7 +63,7 @@ html {
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 .btn{
-  background-color: #d0b49f;
+  background-color: #e2e6e7  ; /*#d0b49f*/
   color: #201a1e ;
 }
 .btn:hover {

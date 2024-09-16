@@ -4,7 +4,8 @@ import { sql } from '@vercel/postgres'; // Import the Vercel Postgres client
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'PUT') {
     try {
-      const id = Array.isArray(req.query.id) ? req.query.id[0] : req.query.id; // Ensure `id` is a string
+      // Extract the 'id' from the query parameters
+      const { id } = req.query;
 
       if (!id) {
         return res.status(400).json({ message: 'User ID is required' });
@@ -13,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const updatedData = JSON.parse(req.body); // Parse the request body
 
       // Update the user's profile in the Postgres database
-      const { rows } = await sql`
+      const response = await sql`
         UPDATE students
         SET 
           avatar = ${updatedData.avatar}, 
@@ -22,12 +23,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           phonenumber = ${updatedData.phonenumber},
           gender = ${updatedData.gender},
           password = ${updatedData.password}
-        WHERE id = ${id}
+        WHERE id = ${JSON.stringify(id)}
         RETURNING *;
       `;
 
-      if (rows.length > 0) {
-        res.status(200).json({ message: 'User profile updated successfully', user: rows[0] });
+      if (response.rows.length > 0) {
+        res.status(200).json({ message: 'User profile updated successfully', user: response.rows[0] });
       } else {
         res.status(404).json({ message: 'User not found' });
       }
