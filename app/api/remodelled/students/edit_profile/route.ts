@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { sql } from '@vercel/postgres'; // Import the Vercel Postgres client
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === 'PUT') {
+export default async function PUT(req: NextApiRequest, res: NextApiResponse) {
+  
     try {
       // Extract the 'id' from the query parameters
       const { id } = req.query;
@@ -36,7 +36,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       console.error('Error updating user profile:', error);
       res.status(500).json({ message: 'Internal Server Error' });
     }
-  } else {
-    res.status(405).json({ message: 'Method Not Allowed' });
-  }
+  
 }
