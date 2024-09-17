@@ -1,40 +1,35 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import { sql } from '@vercel/postgres'; // Import the Vercel Postgres client
+import { sql } from '@vercel/postgres'; 
+import { NextRequest, NextResponse } from 'next/server';
 
-export  async function PUT(req: NextApiRequest, res: NextApiResponse) {
-  
-    try {
-      // Extract the 'id' from the query parameters
-      const { id } = req.query;
+export async function PUT(req: NextRequest, res: NextResponse) {
+  try {
+    console.log('Received PUT request');
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get('id') || '';
+    const parsed = JSON.parse(id)
+    console.log('ID from URL:', id);
 
-      if (!id) {
-        return res.status(400).json({ message: 'User ID is required' });
-      }
+    const updatedData = await req.json();
+    console.log('Data received:', updatedData);
 
-      const updatedData = JSON.parse(req.body); // Parse the request body
+    const response = await sql`
+      UPDATE student_profile
+      SET 
+        avatar = ${updatedData.avatar}, 
+        names = ${updatedData.names},
+        email = ${updatedData.email},
+        phonenumber = ${updatedData.phonenumber},
+        gender = ${updatedData.gender},
+        password = ${updatedData.password}
+      WHERE student_id = ${parsed}
+      RETURNING *;
+    `;
 
-      // Update the user's profile in the Postgres database
-      const response = await sql`
-        UPDATE students
-        SET 
-          avatar = ${updatedData.avatar}, 
-          names = ${updatedData.names},
-          email = ${updatedData.email},
-          phonenumber = ${updatedData.phonenumber},
-          gender = ${updatedData.gender},
-          password = ${updatedData.password}
-        WHERE id = ${JSON.stringify(id)}
-        RETURNING *;
-      `;
-
-      if (response.rows.length > 0) {
-        res.status(200).json({ message: 'User profile updated successfully', user: response.rows[0] });
-      } else {
-        res.status(404).json({ message: 'User not found' });
-      }
-    } catch (error) {
-      console.error('Error updating user profile:', error);
-      res.status(500).json({ message: 'Internal Server Error' });
-    }
-  
+    console.log('Update response:', response);
+    return NextResponse.json(response.rows, { status: 200 });
+  } catch (error) {
+    console.error('Server error:', error);
+    return NextResponse.json({ error: 'Failed to update' }, { status: 500 });
+  }
 }
+
