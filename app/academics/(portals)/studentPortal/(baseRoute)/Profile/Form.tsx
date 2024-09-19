@@ -19,36 +19,38 @@ function Form() {
   const [loggedIn, setLoggedIn] = useState("");
   const [userProfile, setUserProfile] = useState('');
 
-  async function getUser() {
-    try {
-      const user = Cookie.get('user');
-      if (user !== '') {
-        if (typeof user === 'string' && user !== '') {
-          setUserProfile(user);
-        }
-        try {
-          const response = await fetch(`/api/remodelled/students/profile?id=${user}`);
-          const data = await response.json();
-
-          if (User.length == 0) {
-            setUser(data);
-          }
-
-          if (!response.ok) {
-            alert('users not found');
-          }
-        } catch (error: any) {
-          alert('error' + 'sucker');
-        }
-      } else {
-        console.log('No user found');
-      }
-    } catch (error) {
-      console.error('Error fetching user cookie:', error);
-    }
-  }
+  
+  
 
   useEffect(() => {
+    async function getUser() {
+      try {
+        const user = Cookie.get('user');
+        if (user !== '') {
+          if (typeof user === 'string' && user !== '') {
+            setUserProfile(user);
+          }
+          try {
+            const response = await fetch(`/api/remodelled/students/profile?id=${user}`);
+            const data = await response.json();
+  
+            if (User.length == 0) {
+              setUser(data);
+            }
+  
+            if (!response.ok) {
+              alert('users not found');
+            }
+          } catch (error: any) {
+            alert('error' + 'sucker');
+          }
+        } else {
+          console.log('No user found');
+        }
+      } catch (error) {
+        console.error('Error fetching user cookie:', error);
+      }
+    }
     getUser();
   }, []);
 
@@ -123,10 +125,24 @@ function Form() {
   };
 
   const[triggerDelete,setTriggerDelete]=useState("")
-
+  
   async function deleteUser(){
     try {
-      alert('yeah')
+      if(triggerDelete!==""&&triggerDelete=="delete_account"){
+        const response = await fetch(`/api/remodelled/students/delete_student?id=${userProfile}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          }
+        })
+        if(response.ok){
+          alert('success')
+        }else{
+          alert('failure')
+        }
+      }else{
+        alert('please enter value')
+      }
     } catch (error) {
       alert({error:error} + 'your fault')
     }
@@ -268,17 +284,20 @@ function Form() {
           <div className='w-[80%] ml-[10%] mt-2 mb-2 p-2 '>
               <div className='flex flex-col' >
               <p className=' '> You can delete your account, this action is permanent  and it cannot be reversed all your progress and transactions will be lost  </p>
-              <p className=' text-sm flex flex-row p-2 '>type: <p className='text-red-700 ml-1 mr-1' > delete_account </p> to delete your account</p>
+              <div className=' text-sm flex flex-row p-2 '>type: <p className='text-red-700 ml-1 mr-1' > delete_account </p> to delete your account</div>
               </div>
               
                 <input
                   name="confirm password"
                   placeholder='delete_account'
                   className='w-[80%] mx-auto p-4 pr-10 rounded-lg border resize-none'
-                  onChange={(e) => handleUpdate('password', e.target.value)}
+                  onChange={(e) =>{
+                    setTriggerDelete(e.target.value)
+                  }}
                 />
                 <button onClick={(e: any) => {
                   e.preventDefault();
+                  deleteUser()
                 }} className=' btn w-[80%] mx-auto text-gray-500 hover:text-black'>
                   delete account
                 </button>

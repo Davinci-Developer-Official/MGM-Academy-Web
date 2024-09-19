@@ -8,9 +8,9 @@ export async function GET(req: NextRequest) {
             SELECT * FROM student_profile;
         `;
         // Return the result as JSON
-        return NextResponse.json(response.rows);
+        return NextResponse.json(response.rows,{status:200});
     } catch (error:any) {
         // Return an error message if something goes wrong
-        return NextResponse.json({ error: 'Error fetching data', details: error.message });
+        return NextResponse.json({ error: 'Error fetching data', details: error.message },{status:404});
     }
 }

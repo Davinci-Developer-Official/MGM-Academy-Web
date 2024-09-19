@@ -1,15 +1,28 @@
 'use client'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 //import { useColorTheme } from '@/hooks/useColorTheme' 
 import ChangeTheme from "./ChangeTheme"
 import DarkModeButton from './DarkModeButton'
 import { FaBookOpen, FaChalkboardTeacher, FaEdit, FaFemale, FaFile, FaFolder, FaGithub, FaGraduationCap, FaHandshake, FaHome, FaInfo, FaInfoCircle, FaIntercom, FaMoneyBill, FaPen, FaPersonBooth, FaSchool, FaSignInAlt, FaSun, FaUser, FaUserAlt, FaUserCircle } from 'react-icons/fa'
+import Cookies from 'js-cookie'
 
 function Navbar() {
     //const [colorTheme] = useColorTheme();
-    const[loggedIn,setLoggedIn]=useState(true) // false ie fetch from cookies
-
+    const[loggedIn,setLoggedIn]=useState(false) // false ie fetch from cookies
+    useEffect(()=>{
+      function userStatus(){
+        const cookie = Cookies.get("user")
+        if(cookie?.length!==0){
+          //alert('working 1')
+          setLoggedIn(true)
+        }else{
+          //alert('not working')
+          setLoggedIn(false)
+        }
+      }
+      userStatus()
+    },[])
 
   return (
   <div className="navbar  "  >{/*bg-[#2d545e]  text-[#e1b382]*/}
@@ -65,11 +78,11 @@ function Navbar() {
       {/*Contribute*/}
       <li tabIndex={0} >
         <details>
-          <summary><Link href="/contribute" className='flex flex-row' > <FaHandshake size={20} className="mr-2 text-[#e97902] " /> Contribute</Link></summary>
+          <summary><Link href="/contribute" className='flex flex-row' > <FaGithub size={20} className="mr-2 text-[#e97902] " /> Developer</Link></summary>
           <ul className="p-1 border-b-2 border-b-[#e97902] ">
-            <li><Link href="https://github.com" > <FaGithub size={20} className='text-[#e97902] ' /> Github</Link></li>
-            <li><Link href="http://localhost:3000" > <FaMoneyBill size={20} className='text-[#e97902] ' /> Donate </Link></li>
-            <li><Link href="http://localhost:3000"> <FaIntercom size={20} className='text-[#e97902] ' /> Social Media</Link></li>
+            <li><Link href="https://github.com" > <FaFile size={20} className='text-[#e97902] ' /> Docs</Link></li>
+            {/*<li><Link href="http://localhost:3000" > <FaMoneyBill size={20} className='text-[#e97902] ' /> Donate </Link></li>
+            <li><Link href="http://localhost:3000"> <FaIntercom size={20} className='text-[#e97902] ' /> Social Media</Link></li>*/}
           </ul>
         </details>
       </li>
@@ -125,11 +138,11 @@ function Navbar() {
       {/*Contribute*/}
       <li tabIndex={0} >
         <details>
-          <summary><Link href="/contribute" className='flex flex-row  ' > <FaHandshake size={20} className="mr-2 text-[#e97902] " /> Contribute</Link></summary>
+          <summary><Link href="/contribute" className='flex flex-row  ' > <FaGithub size={20} className="mr-2 text-[#e97902] " /> Developer</Link></summary>
           <ul className="p-1 background border-b-2 border-b-[#e97902] ">
-            <li><Link href="https://github.com" > <FaGithub size={20} className='text-[#e97902] '  /> Github</Link></li>
-            <li><Link href="http://localhost:3000" > <FaMoneyBill size={20} className='text-[#e97902] ' /> Donate </Link></li>
-            <li><Link href="http://localhost:3000"> <FaIntercom size={20} className='text-[#e97902] ' /> Social Media</Link></li>
+            <li><Link href="https://github.com" > <FaFile size={20} className='text-[#e97902] '  /> Docs</Link></li>
+            {/*<li><Link href="http://localhost:3000" > <FaMoneyBill size={20} className='text-[#e97902] ' /> Donate </Link></li>
+            <li><Link href="http://localhost:3000"> <FaIntercom size={20} className='text-[#e97902] ' /> Social Media</Link></li>*/}
           </ul>
         </details>
       </li>
@@ -139,30 +152,38 @@ function Navbar() {
 
             <div className="navbar-end">
                 <div className="dropdown z-10 ml-4 relative">
-                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar tooltip tooltip-open tooltip-bottom mr-10 " data-tip="sign in /sign up ">
+                    <label tabIndex={0} className={loggedIn?`btn btn-ghost btn-circle avatar mr-10`:`btn btn-ghost btn-circle avatar tooltip tooltip-open tooltip-bottom mr-10`} data-tip={!loggedIn?"sign in /sign up ":""}>
                         <div className="w-full h-full bg-white rounded-full">
                             {loggedIn?<img src="https://placeimg.com/192/192/people" alt="User Avatar" className="w-full h-full object-cover rounded-full" />:<div className='bg-white  ' >.</div> }
                         </div>
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-white rounded-box w-52 border-b-2 border-b-[#e97902] absolute right-0 top-full">
-                        {!loggedIn ? (
+                        {loggedIn ? (
                             <>
-                                <li><Link href="/academics/signin"><FaSignInAlt className='text-[#e97902]' size={20} /> Sign In</Link></li>
-                                <li><Link href="/academics/apply"><FaUserCircle className='text-[#e97902]' size={20} /> Sign Up</Link></li>
-                            </>
-                        ) : (
-                        <>
-                          <li>
+                                <li>
                             <Link href='/academics/studentPortal/Profile' className="justify-between">
-                              Profile
-                              <span className="badge"><FaEdit/></span>
+                              profile
+                              <span className="badge"><FaUser/></span>
                             </Link>
                           </li>
                           <li><a>Settings</a></li>
-                          <li><Link href='/academics/studentPortal/auth' >Logout</Link></li>
+                          <li><Link href='/academics/signin' >Logout</Link></li>
+                            </>
+                        ) : (
+                        <>
+                          <li><Link href="/academics/signin"><FaSignInAlt className='text-[#e97902]' size={20} /> Sign In</Link></li>
+                          <li><Link href="/academics/apply"><FaUserCircle className='text-[#e97902]' size={20} /> Sign Up</Link></li>
                         </>
                         )}
                     </ul>
+                    {/*<li>
+                            <Link href='/academics/signin' className="justify-between">
+                              sign in
+                              <span className="badge"><FaUser/></span>
+                            </Link>
+                          </li>
+                          <li><a>Settings</a></li>
+                          <li><Link href='/academics/signin' >Logout</Link></li> */}
                 </div>
                 </div>
   

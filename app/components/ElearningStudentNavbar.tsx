@@ -4,6 +4,7 @@ import placeholder from "@/public/profile/user.png"
 import Image from 'next/image';
 import { useHotkeys } from 'react-hotkeys-hook';
 import Link from 'next/link';
+import { FaUser } from 'react-icons/fa';
 
 
 function ElearningStudentNavbar() {
@@ -183,11 +184,11 @@ function ElearningStudentNavbar() {
           <li>
             <Link href='/academics/studentPortal/Profile' className="justify-between">
               Profile
-              <span className="badge">New</span>
+              <span className="badge"><FaUser/></span>
             </Link>
           </li>
           <li><a>Settings</a></li>
-          <li><Link href='/academics/studentPortal/auth' >Logout</Link></li>
+          <li><Link href='/academics/signin' >Logout</Link></li>
         </ul>
       )}
     </div>
