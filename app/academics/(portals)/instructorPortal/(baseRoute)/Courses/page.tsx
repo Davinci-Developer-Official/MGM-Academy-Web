@@ -25,7 +25,7 @@ function page() {
         courses.length==0? <div className='p-5 ' > no courses added </div>: 
         <div>
           {courses.map((course:Courses)=>(
-            <div className='p-5 ' >{course.course_name}</div>
+            <div className='p-5 ' key={course.course_name}  >{course.course_name}</div>
           ))}
         </div>
       }
