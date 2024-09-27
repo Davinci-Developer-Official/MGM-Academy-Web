@@ -1,7 +1,7 @@
 'use client';
 import React, { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { FaArchive, FaCheckDouble, FaDownload, FaRegClipboard, FaSearch } from 'react-icons/fa';
+import { FaArchive, FaCheckDouble, FaDownload, FaEllipsisV, FaRegClipboard, FaSearch } from 'react-icons/fa';
 import { useHotkeys } from 'react-hotkeys-hook';
 import Info from './coursesInfo';
 
@@ -102,15 +102,26 @@ function Segment() {
     const formattedTime = `${hours}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')} ${ampm}`;
     setTime(formattedTime);
   }, []);
+  const [accountType, setAccountType] = useState("current");
+   
+  const handleAccountTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+      setAccountType(event.target.value);
+      //alert(accountType)
+  };
 
   useEffect(() => {
-    const emailAddress = localStorage.getItem("s-usename") || sessionStorage.getItem("s-username");
+    {/*const emailAddress = localStorage.getItem("s-usename") || sessionStorage.getItem("s-username");
     if (emailAddress) {
       setUser({ email: JSON.parse(emailAddress) });
     } else {
       setUserError(true);
+    }*/}
+    if(accountType=="current"){
+      setCourseStatus('active');
+    }else if(accountType=="previous"){
+      setCourseStatus('completed');
     }
-  }, [click]);
+  }, [accountType,courseStatus]);
 
   useEffect(() => {
     updateTime();
@@ -121,9 +132,19 @@ function Segment() {
   let currentDate = new Date();
   let formattedDate = `${String(currentDate.getDate()).padStart(2, '0')}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${currentDate.getFullYear()}`;
 
+  const openModal = () => {
+    const modal = document.getElementById('my_modal_3') as HTMLDialogElement | null;
+    if (modal) {
+      modal.showModal();
+    }
+  };
+
+  const[details,setDetails]=useState(false)
+ 
+
   return (
-    <div className='background w-full rounded-lg border inset border-b-[#e97902] h-full flex flex-col p-1'>
-      <div className="title p-2 text-center font-serif font-bold flex flex-row justify-evenly  text-xl w-[100%] mx-auto">
+    <div className='background w-full p-1 rounded-lg border inset border-b-[#e97902] h-full flex flex-col '>
+      <div className="title p-2 text-center font-serif font-bold flex flex-row justify-evenly  text-xl w-[100%] ">
         <p>{formattedDate}</p>
         <p>Hello  👋 {user.email} </p>
         <p>{time}</p>
@@ -172,9 +193,11 @@ function Segment() {
         <button
           className="btn w-[290px] mx-auto text-black hover:bg-gray-300 text-xl font-medium bg-white text-center lg:tooltip"
           data-tip="Get detailed information about your progress"
-          onClick={() => {
+          onClick={(e:any) => {
+            e.preventDefault()
             setClick(1);
-            showProgress(true);
+            openModal()
+            //showProgress(true);
             if (progress && click === 1) {
               showProgress(false);
             }
@@ -183,6 +206,80 @@ function Segment() {
           Track your progress
         </button>
       </div>
+
+      <dialog id="my_modal_3" className="modal  ">
+        <div className="modal-box background w-[80%] mx-auto ">
+          <form method="dialog">
+            {/* if there is a button in form, it will close the modal */}
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={()=>{
+              
+            }} >✕</button>
+          </form>
+          <div>
+          <select 
+                    value={accountType} 
+                    onChange={handleAccountTypeChange} 
+                    className="select select-bordered w-full max-w-xs"
+                >
+                    <option value="currrent">current</option>
+                    <option value="previous">previous</option>
+                    {/*<option value="archived">archived</option>
+                    <option value="transcripts">previous</option>*/}
+                </select>
+            <div className='h-[250px] overflow-y-auto bg-gray-100 ' >
+              {filteredRecords.map((item)=>(
+                <div className='flex flex-col h-fit w-[96%] mx-auto bg-gray-200 mt-1 p-2' >
+                  <div key={item.id} className='w-full flex flex-row   justify-between rounded-md bg-gray-200  ' >
+                  <div className='h-[30px] w-[30px] rounded-full  ' >
+                    <Image src={item.coverImage} alt='cover image' className='w-full rounded-full h-full object-fit ' />
+                  </div>
+                  <p className='text-blue-600 text-bold ' >{item.courseName}</p>
+                  <p className='text-sm p-1 ' >{item.courseInstructor}</p>
+                  <button onClick={(e:any)=>{handleEllipsisClick(item.id)}} ><FaEllipsisV/></button>
+                  {visibleMenu === item.id && (
+                          <div className="absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg">
+                            <button
+                              className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100"
+                              onClick={() =>setDetails(true)}
+                            >
+                              details
+                            </button>
+                            <button
+                              className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100"
+                              onClick={() => {
+                                if(courseStatus!=='active'){
+                                  handleOptionClick('completed', item.id)
+                                }else{
+                                  handleOptionClick('completed', item.id)
+                                }
+                              }}
+                            > 
+                             {courseStatus=="active"? <p> Mark as Completed</p>:<p>mark as incomplete</p>}
+                            </button>
+                            <button
+                              className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100"
+                              onClick={() => handleOptionClick('archive', item.id)}
+                            >
+                              Archive
+                            </button>
+                          </div>
+                        )}
+                </div>
+                {details&&<div className='flex flex-col p-1   ' >
+                  <p>Course Completion : 60%</p>
+                  <p>Assignment Completion : 30%</p>
+                  <p>Quizzes Completion : 5%</p>
+                  <p>CAT Completion : 100%</p>
+                  <p>Attendance : 30%</p>
+                  <p>Average Grade : B</p>
+                  
+                  </div>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        </dialog>
 
       {progress && (
         <div className='flex flex-col h-[400px] mt-4'>

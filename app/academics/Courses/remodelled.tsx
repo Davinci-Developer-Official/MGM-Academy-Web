@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { useState } from 'react';
 
 // Sample data with at least 12 courses
@@ -40,7 +41,7 @@ const TopicsList: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-11/12 max-w-screen-lg">
         {currentTopics.map((topic, index) => (
           <div key={index} className="bg-gray-100 rounded-lg p-4 shadow-md">
-            <h2 className="text-xl font-semibold mb-2">{topic.title}</h2>
+            <Link href='/' className="text-xl hover:text-blue-400 hover:underline font-semibold mb-2">{topic.title}</Link>
             <p className="text-gray-700">{topic.overview}</p>
           </div>
         ))}

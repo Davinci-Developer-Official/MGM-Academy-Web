@@ -1,5 +1,6 @@
 'use client';
 
+import Link from "next/link";
 import { useState } from "react";
 
 // Define an interface for the form data (Student)
@@ -172,6 +173,7 @@ function Page() {
                 </div>
             </form>
             {message && <div>{message}</div>}
+            
         </div>
     );
 }

@@ -51,7 +51,7 @@ function Navbar() {
           <ul className="p-1 border-b-2 border-b-[#e97902] ">
           <li tabIndex={0}>
         <details>
-          <summary><button className='flex flex-row' > <FaUserCircle size={20} className="mr-2 text-[#e97902] "  /> Portal </button></summary>
+          <summary><button className='flex flex-row' > <FaUserCircle size={20} className="mr-2 text-[#e97902] "  /> Student/Instructor </button></summary>
           <ul className="p-1 border-b-2 border-b-[#e97902] ">
             <li><Link href="/academics/signin" > <FaSignInAlt size={20} className='text-[#e97902] ' /> sign in</Link></li>
             {/*<li><Link href="/academics/instructorPortal/auth" > <FaChalkboardTeacher size={20} className='text-[#e97902] ' /> Instructor Portal </Link></li>
@@ -111,17 +111,22 @@ function Navbar() {
           <ul className="p-1  z-10 background border-b-2 border-b-[#e97902] ">
           <li tabIndex={0}>
         <details>
-          <summary><button className='flex flex-row' > <FaUserCircle size={20} className="mr-2 text-[#e97902] "  /> Portal </button></summary>
+          <summary><button className='flex flex-row' > <FaUserCircle size={20} className="mr-2 text-[#e97902] "  /> Student/Instructor </button></summary>
           <ul className="p-1 border-b-2 border-b-[#e97902] ">
             <li><Link href="/academics/signin" > <FaSignInAlt size={20} className="text-[#e97902] " /> sign in </Link></li>
+            {/*<li><Link href="/academics/signin" > <FaSignInAlt size={20} className="text-[#e97902] " /> sign up </Link></li> */}
+
             {/*<li><Link href="/academics/instructorPortal/auth" > <FaChalkboardTeacher size={20} className="text-[#e97902] " /> Instructor Portal </Link></li>
             <li><Link href="/academics/adminPortal"> <FaPersonBooth size={20} className="text-[#e97902] " /> Admin portal</Link></li>*/}
           </ul>
         </details>
       </li>
+      <li><Link href="/academics/adminPortal"> <FaUserCircle size={20} className="text-[#e97902]" /> Admin Sign In </Link></li>
+
       {/*href="/academics/Courses"*/}
             <li><Link href="/academics/Courses" className='flex flex-row' > <FaGraduationCap size={30} className="mr-2 text-[#e97902] " /> Offerd Courses </Link></li>
             <li tabIndex={0}>
+        {/*
         <details>
           <summary><button className='flex flex-row' > <FaFolder size={20} className="mr-2 text-[#e97902] "  /> Apply</button></summary>
           <ul className="p-1 border-b-2 border-b-[#e97902] ">
@@ -129,8 +134,8 @@ function Navbar() {
             <li><Link href="/academics" > <FaInfoCircle size={20} className='text-[#e97902] ' /> info </Link></li>
           </ul>
         </details>
+        */}
       </li>
-            <li><Link href="/academics/adminPortal"> <FaUserCircle size={20} className="text-[#e97902]" /> Admin </Link></li>
           </ul>
         </details>
       </li>

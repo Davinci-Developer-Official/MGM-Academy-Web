@@ -101,7 +101,8 @@ export default function Page() {
     return (
         <div>
             {!loading ? (
-                <form className="w-[350px] p-2 mx-auto">
+                <div>
+                    <form className="w-[350px] p-2 mx-auto">
                     <div>
                         {!exists ? (
                             <label>
@@ -142,8 +143,12 @@ export default function Page() {
                         {exists ? 'verify' : 'Proceed'}
                     </button>}
                 </form>
+                <div className="p-2 ml-[35%] mx-auto " >
+                or create an account <Link href='/academics/apply' className="text-blue-600 " >sign up</Link>
+            </div>
+                </div>
             ) : (
-                <div>Loading.....</div>
+                <div className="p-2 ml-[35%] mx-auto " >Loading.....</div>
             )}
         </div>
     )

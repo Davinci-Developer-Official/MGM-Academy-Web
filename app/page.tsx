@@ -14,7 +14,7 @@ export default function Page() {
   const[navigation,setNavigation]=useState(true);
   const[footer,setFooter]=useState(false);
   return (
-  <div  className=' background w-full ' >
+  <div  className=' background w-[100%] ' >
   {navigation&&<Navbar/>}
   <Home navigation={navigation} setNavigation={setNavigation} footer={footer} setFooter={setFooter} />
   {footer&&<Footer/>}

@@ -13,11 +13,11 @@ function Page() {
     },100)
   },[])
   return (
-    <div className='' >
+    <div className='background ' >
     <div className='w-full h-screen  overflow-y-scroll ' >
     <div className='flex flex-row ' >
     <p className='pt-7 pl-5 text-[25px] text-[#2d545e] font-mono  ' >Welcome back Thomas </p> 
-    <Link href="/academics/instructorPortal/Courses/create" className='btn btn-success flex flex-row' ><FaPlus/> add </Link> 
+    
     </div>
     <UpdatesCard/>
     </div>   

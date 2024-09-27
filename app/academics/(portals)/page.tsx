@@ -5,7 +5,7 @@ import React from 'react'
 
 function page() {
   return (
-    <div className='background' >
+    <div className='background ' >
     <Navbar/>
     <StudentPortalGuide/>
     <Footer/>

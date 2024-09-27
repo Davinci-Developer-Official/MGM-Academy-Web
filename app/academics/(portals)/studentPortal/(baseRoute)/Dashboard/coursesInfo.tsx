@@ -16,7 +16,7 @@ function UpdatesCard() {
         { id: 10, classCode: "STAT 201", courseName: "Statistics for Data Science", completionRate: "78%" },
     ];
 
-    const [showOptions, setShowOptions] = useState(true);
+    const [showOptions, setShowOptions] = useState(false);
     const [selectedCourse, setSelectedCourse] = useState({
         courseName: "",
         courseCode: "",

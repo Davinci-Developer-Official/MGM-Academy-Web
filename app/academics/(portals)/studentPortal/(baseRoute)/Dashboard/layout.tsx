@@ -19,7 +19,7 @@ export default function Layout({ children, upcoming, topDeals }: { children: Rea
     }, [activeTab]);
 
     return (
-        <div className=" h-screen flex flex-col background">
+        <div className=" h-screen p-1 flex flex-col background">
             <div role="tablist" className="tabs tabs-bordered justify-center p-2">
                 <button
                     name="my_tabs_1"

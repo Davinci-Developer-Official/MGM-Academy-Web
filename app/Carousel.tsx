@@ -30,14 +30,14 @@ const Carousel: React.FC = () => {
       NavItem: "Student Portal",
       NavDescription: "Discover MGM: Empowering minds, shaping futures. Learn more about our mission and vision today!",
       NavImage: mv,
-      link: "/academics/studentPortal/auth"
+      link: "/academics/signin"
     },
     {
       id: 6,
       NavItem: "Instructor Portal",
       NavDescription: "Discover MGM: Empowering minds, shaping futures. Learn more about our mission and vision today!",
       NavImage: mv,
-      link: "/academics/instructorPortal/auth"
+      link: "/academics/signin"
     },
     {
       id: 7,
