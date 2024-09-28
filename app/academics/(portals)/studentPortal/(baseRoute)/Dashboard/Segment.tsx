@@ -228,7 +228,7 @@ function Segment() {
                 </select>
             <div className='h-[250px] overflow-y-auto bg-gray-100 ' >
               {filteredRecords.map((item)=>(
-                <div className='flex flex-col h-fit w-[96%] mx-auto bg-gray-200 mt-1 p-2' >
+                <div key={item.id} className='flex flex-col h-fit w-[96%] mx-auto bg-gray-200 mt-1 p-2' >
                   <div key={item.id} className='w-full flex flex-row   justify-between rounded-md bg-gray-200  ' >
                   <div className='h-[30px] w-[30px] rounded-full  ' >
                     <Image src={item.coverImage} alt='cover image' className='w-full rounded-full h-full object-fit ' />

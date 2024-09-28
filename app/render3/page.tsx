@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { FaCaretDown, FaCaretUp, FaInfoCircle, FaMinus, FaPlus } from 'react-icons/fa';
 import data from "./data.json";
+import Image from 'next/image';
 
 interface Topic {
   unit: string;
@@ -48,7 +49,7 @@ function Page() {
           <div className='flex flex-row justify-left bg-gray-200 cursor-pointer w-[200px] my-auto tooltip tooltip-open tooltip-bottom p-2 mb-2' data-tip={course.instructor.contactTip}>
             <div className="avatar online">
               <div className="w-14 rounded-full">
-                <img src={course.instructor.photo} alt="Instructor" />
+                <Image src={course.instructor.photo} alt="Instructor" />
               </div>
             </div>
             <div className='flex flex-col w-full text-center'>

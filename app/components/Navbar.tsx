@@ -6,6 +6,7 @@ import ChangeTheme from "./ChangeTheme"
 import DarkModeButton from './DarkModeButton'
 import { FaBookOpen, FaChalkboardTeacher, FaEdit, FaFemale, FaFile, FaFolder, FaGithub, FaGraduationCap, FaHandshake, FaHome, FaInfo, FaInfoCircle, FaIntercom, FaMoneyBill, FaPen, FaPersonBooth, FaSchool, FaSignInAlt, FaSun, FaUser, FaUserAlt, FaUserCircle } from 'react-icons/fa'
 import Cookies from 'js-cookie'
+import Image from 'next/image'
 
 function Navbar() {
     //const [colorTheme] = useColorTheme();
@@ -159,7 +160,7 @@ function Navbar() {
                 <div className="dropdown z-10 ml-4 relative">
                     <label tabIndex={0} className={loggedIn?`btn btn-ghost btn-circle avatar mr-10`:`btn btn-ghost btn-circle avatar tooltip tooltip-open tooltip-bottom mr-10`} data-tip={!loggedIn?"sign in /sign up ":""}>
                         <div className="w-full h-full bg-white rounded-full">
-                            {loggedIn?<img src="https://placeimg.com/192/192/people" alt="User Avatar" className="w-full h-full object-cover rounded-full" />:<div className='bg-white  ' >.</div> }
+                            {loggedIn?<Image src="https://placeimg.com/192/192/people" alt="User Avatar" className="w-full h-full object-cover rounded-full" />:<div className='bg-white  ' >.</div> }
                         </div>
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-white rounded-box w-52 border-b-2 border-b-[#e97902] absolute right-0 top-full">

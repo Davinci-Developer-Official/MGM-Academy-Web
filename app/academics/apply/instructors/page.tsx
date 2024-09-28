@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Register from './register/page';
+import Image from "next/image";
 
 // Define an interface for the student data
 interface Student {
@@ -53,7 +54,7 @@ function Page() {
                                 <p>Phone Number: {phonenumber}</p>
                                 <p>Gender: {gender}</p>
                                 {/* Conditionally render avatar if present */}
-                                {avatar && <img src={avatar} alt={names} className="w-24 h-24 object-cover rounded-full" />}
+                                {avatar && <Image src={avatar} alt={names} className="w-24 h-24 object-cover rounded-full" />}
                             </div>
                         </li>
                     ))}

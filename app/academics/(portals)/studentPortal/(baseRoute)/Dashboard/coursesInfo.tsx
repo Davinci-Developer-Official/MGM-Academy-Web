@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FaCaretDown, FaCaretUp, FaTimes } from 'react-icons/fa';
 
 function UpdatesCard() {
@@ -25,7 +25,7 @@ function UpdatesCard() {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
 
-    const checkRate = useCallback(() => {
+    const checkRate = useMemo(() => {
         const course = courses.find(item => 
             item.courseName === selectedCourse.courseName || 
             item.classCode === selectedCourse.courseCode
@@ -35,9 +35,9 @@ function UpdatesCard() {
         }
     }, [selectedCourse, courses]);
 
-    useEffect(() => {
+    {/*useEffect(() => {
         checkRate();
-    }, [checkRate]);
+    }, [checkRate]);*/}
 
     const indexOfLastCourse = currentPage * itemsPerPage;
     const indexOfFirstCourse = indexOfLastCourse - itemsPerPage;

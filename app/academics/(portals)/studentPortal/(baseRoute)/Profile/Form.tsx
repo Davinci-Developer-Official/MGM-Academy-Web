@@ -65,7 +65,7 @@ function Form() {
     if (User.length > 0) {
       setInfo(User[0]);  // Update info with fetched User[0]
     }
-  }, [User]);
+  }, []);
 
 
     // Function to update individual fields
