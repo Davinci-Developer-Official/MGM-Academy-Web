@@ -7,6 +7,7 @@ import DarkModeButton from './DarkModeButton'
 import { FaBookOpen, FaChalkboardTeacher, FaEdit, FaFemale, FaFile, FaFolder, FaGithub, FaGraduationCap, FaHandshake, FaHome, FaInfo, FaInfoCircle, FaIntercom, FaMoneyBill, FaPen, FaPersonBooth, FaSchool, FaSignInAlt, FaSun, FaUser, FaUserAlt, FaUserCircle } from 'react-icons/fa'
 import Cookies from 'js-cookie'
 import Image from 'next/image'
+import placeholder from '@/public/categories/business-studies-FO8nWoT6OnZ7DXO6xYA2TnRK4kzhwt.jpg'
 
 function Navbar() {
     //const [colorTheme] = useColorTheme();
@@ -39,7 +40,11 @@ function Navbar() {
         <details>
           <summary><button className='flex flex-row ' > <FaInfoCircle size={20} className="mr-2 text-[#e97902] " />  About MGM  </button></summary>
           <ul className="p-1  w-fit border-b-2 border-b-[#e97902] ">
-            <li><Link href="/AboutMGM" > <FaInfoCircle size={20} className='text-[#e97902] ' />  info </Link></li>
+          <li><Link href="/AboutMGM/Mission" > <FaInfoCircle size={20} className='text-[#e97902] ' />  Mission </Link></li>
+          <li><Link href="/AboutMGM/Vision" > <FaInfoCircle size={20} className='text-[#e97902] ' />  Vision </Link></li>
+          <li><Link href="/AboutMGM/Initiative" > <FaInfoCircle size={20} className='text-[#e97902] ' />  Initiative </Link></li>
+          <li><Link href="/AboutMGM/Direction" > <FaInfoCircle size={20} className='text-[#e97902] ' />  Direction </Link></li>
+            <li><Link href="/AboutMGM/Impact" > <FaInfoCircle size={20} className='text-[#e97902] ' />  Impact </Link></li>
             {/*<li><Link href="/AboutMGM/Mission&Vision" > <FaSun size={20} className='text-[#e97902] ' /> Mission & Vision  </Link></li>
             <li><Link href="/AboutMGM/MGMAdministration"> <FaPersonBooth size={20} className='text-[#e97902] ' />  Administration</Link></li>*/}
           </ul>
@@ -99,6 +104,11 @@ function Navbar() {
         <details>
           <summary><button className='flex flex-row ' > <FaInfoCircle size={20} className="mr-2 text-[#e97902] " />  About MGM  </button></summary>
           <ul className="p-1  w-fit  z-10 background border-b-2 border-b-[#e97902] ">
+          <li><Link href="/AboutMGM/Mission" > <FaInfoCircle size={20} className='text-[#e97902] ' />  Mission </Link></li>
+          <li><Link href="/AboutMGM/Vision" > <FaInfoCircle size={20} className='text-[#e97902] ' />  Vision </Link></li>
+          <li><Link href="/AboutMGM/Initiative" > <FaInfoCircle size={20} className='text-[#e97902] ' />  Initiative </Link></li>
+          <li><Link href="/AboutMGM/Direction" > <FaInfoCircle size={20} className='text-[#e97902] ' />  Direction </Link></li>
+            <li><Link href="/AboutMGM/Impact" > <FaInfoCircle size={20} className='text-[#e97902] ' />  Impact </Link></li>
             <li><Link href="/AboutMGM" > <FaInfoCircle className="text-[#e97902] " size={20} /> info  </Link></li>
            {/* <li><Link href="/AboutMGM/Mission&Vision" > <FaSun className='text-[#e97902] ' size={20} /> Mission & Vision  </Link></li>
             <li><Link href="/AboutMGM/MGMAdministration"> <FaPersonBooth className='text-[#e97902] ' size={20} />  Administration</Link></li>*/}
@@ -160,7 +170,7 @@ function Navbar() {
                 <div className="dropdown z-10 ml-4 relative">
                     <label tabIndex={0} className={loggedIn?`btn btn-ghost btn-circle avatar mr-10`:`btn btn-ghost btn-circle avatar tooltip tooltip-open tooltip-bottom mr-10`} data-tip={!loggedIn?"sign in /sign up ":""}>
                         <div className="w-full h-full bg-white rounded-full">
-                            {loggedIn?<Image src="https://placeimg.com/192/192/people" alt="User Avatar" className="w-full h-full object-cover rounded-full" />:<div className='bg-white  ' >.</div> }
+                            {loggedIn?<Image src={placeholder} alt="User Avatar" className="w-full h-full object-cover rounded-full" />:<div className='bg-white  ' >.</div> }
                         </div>
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-white rounded-box w-52 border-b-2 border-b-[#e97902] absolute right-0 top-full">
