@@ -43,6 +43,16 @@ CREATE TABLE student_profile (
     created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+--remodelled courses
+ CREATE TABLE courses(
+    id SERIAL ,
+    course_id UNIQUE DEFAULT uuid_generate_v4(),
+    course_title VARCHAR,
+    course_description VARCHAR,
+    
+
+ )
+
 --list of each enrollement;
 CREATE TABLE enrollement (
     id SERIAL,
