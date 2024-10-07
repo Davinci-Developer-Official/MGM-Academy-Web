@@ -1,9 +1,9 @@
-CREATE TABLE Courses (
-    course_id uuid_generate_v4() UUID PRIMARY KEY,
-    course_cover VARCHAR, --image url / video url
+CREATE TABLE courses (
+    course_id UUID DEFAULT uuid_generate_v4() PRIMARY KEY UNIQUE,
+    course_cover VARCHAR, -- Image URL or video URL
     course_title VARCHAR(255) NOT NULL,
     course_description TEXT,
-    instructor_id INT, -- Assuming there's a table for instructors
+    instructor_id VARCHAR, -- Assuming there's a table for instructors
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
