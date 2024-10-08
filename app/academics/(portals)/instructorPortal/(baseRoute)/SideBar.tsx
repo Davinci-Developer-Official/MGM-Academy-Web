@@ -4,8 +4,8 @@ import React, { useState } from 'react'
 import { FaArchive, FaBookOpen, FaChalkboardTeacher, FaCompress, FaExpand, FaGraduationCap, FaHome, FaPeopleCarry, FaPersonBooth, FaPiggyBank } from 'react-icons/fa';
 
 function SideBar() {
-    const[bar,setBar]=useState<boolean>(false);
-    const[barExpanded,setBarExpanded]=useState<boolean>(true)
+    const[bar,setBar]=useState<boolean>(true);
+    const[barExpanded,setBarExpanded]=useState<boolean>(false)
   return (
     <div className='flex flex-col p-2'>
       {bar&&<div className='w-[70px] flex flex-col p-2'>

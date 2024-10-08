@@ -1,21 +1,56 @@
+'use client';
+
 import { useState } from 'react';
+import { put, del } from '@vercel/blob';
 
 const CourseForm = () => {
-  const [cover, setCover] = useState<string>('');
+  const [coverUrl, setCoverUrl] = useState<string>(''); // Holds the uploaded Vercel image URL
+  const [localImageFile, setLocalImageFile] = useState<File | null>(null); // Holds the selected image file locally
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [instructor, setInstructor] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleCoverChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files![0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setCover(reader.result as string); // Set the base64 string
-      };
-      reader.readAsDataURL(file); // Convert to base64
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    setLocalImageFile(file); // Set the selected image file locally
+  };
+
+  const handleImageUpload = async () => {
+    if (!localImageFile) {
+      setError('Please select an image before uploading.');
+      return;
+    }
+
+    try {
+      const blob = await uploadImage(localImageFile);
+      if (blob) {
+        setCoverUrl(blob.url); // Store only the Vercel image URL after successful upload
+        setError(null);
+        console.log('Image uploaded successfully!');
+      } else {
+        setError('Failed to upload image.');
+      }
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      setError('Error uploading image. Please try again.');
+    }
+  };
+
+  const handleImageDelete =  () => {
+    if (!coverUrl) {
+      setError('No uploaded image to delete.');
+      return;
+    }
+
+    try {
+       deleteImage(coverUrl); // Delete the image from Vercel
+      setCoverUrl(''); // Clear the uploaded image URL
+      console.log('Image deleted successfully!');
+    } catch (error) {
+      console.error('Error deleting image:', error);
+      setError('Error deleting image. Please try again.');
     }
   };
 
@@ -23,7 +58,13 @@ const CourseForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const courseData = { cover, title, description, instructor };
+    if (!coverUrl) {
+      setError('Please upload a cover image before submitting.');
+      setIsSubmitting(false);
+      return;
+    }
+
+    const courseData = { cover: coverUrl, title, description, instructor };
 
     try {
       const response = await fetch('/api/remodelled/courses/add_course', {
@@ -33,22 +74,49 @@ const CourseForm = () => {
         },
         body: JSON.stringify(courseData),
       });
+
       const data = await response.json();
 
-      if (response.ok && data !== '') {
-        alert('Course created successfully!' + JSON.stringify(data));
+      if (response.ok) {
+        alert('Course created successfully!');
         // Reset form
-        setCover('');
+        setCoverUrl(''); // Reset the uploaded cover URL
         setTitle('');
         setDescription('');
         setInstructor('');
       } else {
         setError(data.error || 'Something went wrong.');
       }
-    } catch (err) {
-      setError('An error occurred.');
+    } catch (err: any) {
+      setError('An error occurred: ' + err.message);
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const uploadImage = async (imageFile: File) => {
+    try {
+      const blob = await put(imageFile.name, imageFile, {
+        access: 'public',
+        token: 'vercel_blob_rw_jDNRDIzn5HpnU1jS_mb5wAReKxQIubo7b0VP1ejgTk6ffcz', // Use your access token
+      });
+      console.log('Uploaded image:', blob);
+      return blob; // Return the blob object containing the URL
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      return null;
+    }
+  };
+
+  const deleteImage = async (url: string) => {
+    try {
+      await del(url, {
+        token: 'vercel_blob_rw_jDNRDIzn5HpnU1jS_mb5wAReKxQIubo7b0VP1ejgTk6ffcz', // Use your access token
+      });
+      console.log('Deleted image:', url);
+    } catch (error) {
+      console.error('Error deleting image:', error);
+      throw new Error('Failed to delete image.');
     }
   };
 
@@ -62,10 +130,36 @@ const CourseForm = () => {
           <input
             type="file"
             accept="image/*"
-            onChange={handleCoverChange}
+            onChange={handleImageChange}
             className="w-full border border-gray-300 p-2 rounded"
-            required
           />
+          <button
+            type="button"
+            onClick={handleImageUpload}
+            className="mt-2 bg-blue-500 hover:bg-blue-700 text-white p-2 rounded"
+          >
+            Upload Image
+          </button>
+
+          {coverUrl ? (
+            <div className="mt-4">
+              <img
+                src={coverUrl} // Display uploaded image
+                alt="Uploaded Cover"
+                className="w-32 h-32 object-cover"
+              />
+              {/*<p>{coverUrl}</p>*/}
+              <button
+                type="button"
+                onClick={handleImageDelete}
+                className="mt-2 bg-red-500 hover:bg-red-700 text-white p-2 rounded"
+              >
+                Delete Image
+              </button>
+            </div>
+          ) : (
+            <p>No image uploaded</p>
+          )}
         </div>
 
         <div>
