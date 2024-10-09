@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { FaEllipsisV } from 'react-icons/fa';
 
 interface Course {
   course_id: string;
@@ -16,6 +17,9 @@ export default function CoursesPage() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const[editCourse,setEditCourse]=useState(false)
+  const[more,setMore]=useState(false)
+  const[selectedCourse,setSelectedCourse]=useState("A0NULL")
   const itemsPerPage = 6;
 
   useEffect(() => {
@@ -53,6 +57,7 @@ export default function CoursesPage() {
     setCurrentPage(newPage);
   };
 
+  
   return (
     <div className="background h-full w-full p-5">
       <h1 className="text-2xl font-bold mb-5">Courses</h1>
@@ -60,9 +65,9 @@ export default function CoursesPage() {
         <div>No courses available.</div>
       ) : (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 overflow-y-auto h-[450px] w-[98%] mx-auto">
+          <div className=" p-2 grid grid-cols-1 md:grid-cols-2 gap-4 overflow-y-auto h-[450px] w-[98%] mx-auto">
             {currentCourses.map((course: Course) => (
-              <div key={course.course_id} className="p-4 border rounded shadow">
+              <div key={course.course_id} className="p-1 border rounded shadow">
                 <h2 className="text-xl font-semibold">{course.course_title}</h2>
                 <div className="h-[250px] w-full mb-4">
                   <img
@@ -75,6 +80,10 @@ export default function CoursesPage() {
                 <small>Instructor ID: {course.instructor_id}</small>
                 <br />
                 <small>Created at: {new Date(course.created_at).toLocaleString()}</small>
+                <div className='flex flex-row justify-between ' >
+                {more?<div>options</div>:<button className='btn w-[80%] ' >View Course</button>}
+                <button className='btn ' ><FaEllipsisV/></button>
+                </div>
               </div>
             ))}
           </div>
