@@ -1,7 +1,7 @@
 'use client'
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import {cookies} from 'next/headers'
+//import {cookies} from 'next/headers'
 import CurrentItem from "../../app/components/AddCookie"
 
 interface OpenCourseProps {
@@ -21,7 +21,7 @@ export default function OpenCourse({ id,name }: OpenCourseProps) {
   const handleClick = async() => {
     if (isMounted) {
       router.push(`/academics/instructorPortal/Courses/${name}`);
-       CurrentItem({label:'current-course',content:id});
+      await CurrentItem({label:'current-course',content:id});
     }
   };
 

@@ -1,14 +1,14 @@
-"use server";
-import { cookies } from "next/headers";
+
+import  Cookies  from "js-cookie";
 
 interface Cookie{
     label: string;
     content: string;
   }
 export default  async function CurrentItem ({label,content}:Cookie){
-    const cookie =  cookies();
+    
     if(content!==""){
-      await cookie.set(label,content);
+      await Cookies.set(label,content);
     }
   
   }
