@@ -8,13 +8,30 @@ CREATE TABLE courses (
 );
 
 CREATE TABLE Chapters (
-    chapter_id uuid_generate_v4() UUID UNIQUE PRIMARY KEY,
-    course_id INT REFERENCES courses(course_id),
+    chapter_id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+    course_id INT REFERENCES courses(course_id) ON DELETE CASCADE,
     chapter_title VARCHAR(255) NOT NULL,
-    chapter_description VARCHAR ,
+    chapter_description TEXT,
     chapter_order INT NOT NULL, -- To define the order of chapters within a course
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+--order trigger function
+CREATE OR REPLACE FUNCTION set_chapter_order()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- Set chapter_order to the next available number for the same course_id
+    NEW.chapter_order := COALESCE(
+        (SELECT MAX(chapter_order) FROM Chapters WHERE course_id = NEW.course_id), 0
+    ) + 1;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+--chapter order trigger
+CREATE TRIGGER trigger_set_chapter_order
+BEFORE INSERT ON Chapters
+FOR EACH ROW
+EXECUTE FUNCTION set_chapter_order();
+
 
 CREATE TABLE sub_chapters (
     sub_chapter_id uuid_generate_v4 UUID PRIMARY KEY,
