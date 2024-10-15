@@ -7,13 +7,14 @@ CREATE TABLE courses (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE Chapters (
+CREATE TABLE chapters (
     chapter_id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-    course_id INT REFERENCES courses(course_id) ON DELETE CASCADE,
+    course_id UUID REFERENCES courses(course_id) ON DELETE CASCADE,
     chapter_title VARCHAR(255) NOT NULL,
     chapter_description TEXT,
-    chapter_order INT NOT NULL, -- To define the order of chapters within a course
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    chapter_order INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (course_id, chapter_order) -- Ensures chapter order is unique within a course
 );
 --order trigger function
 CREATE OR REPLACE FUNCTION set_chapter_order()
