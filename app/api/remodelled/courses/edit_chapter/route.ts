@@ -1,7 +1,7 @@
 import { sql } from "@vercel/postgres";
 import { NextRequest,NextResponse } from "next/server";
 
-export default async function PUT(req:NextRequest){
+export  async function PUT(req:NextRequest){
     try {
         const {chapterid,courseid,title,description,order} = await req.json()
         const response = await sql `

@@ -1,7 +1,7 @@
 import { sql } from "@vercel/postgres";
 import { NextRequest,NextResponse } from "next/server";
 
-export default async function GET(req:NextRequest){
+export  async function GET(req:NextRequest){
     try {
         const id = await req.json()
         const response = await sql `SELECT * FROM Courses where course_id=${id} `;

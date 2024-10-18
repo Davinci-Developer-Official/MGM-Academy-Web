@@ -51,7 +51,7 @@ function Page() {
         setMessage('');
 
         try {
-            const response = await fetch('/api/remodelled/students/add_instructor', {
+            const response = await fetch('/api/remodelled/instructors/add_instructor', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

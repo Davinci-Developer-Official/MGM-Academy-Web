@@ -23,7 +23,7 @@ export default function Page() {
     useEffect(() => {
         async function getStudents() {
             try {
-                const response = await fetch(`/api/remodelled/students/get_student`);
+                const response = await fetch(`/api/remodelled/instructors/get_instructor`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch students');
                 }
