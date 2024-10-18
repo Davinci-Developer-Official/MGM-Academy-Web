@@ -45,7 +45,7 @@ export default function Page() {
             setExists(true);
            // setDetails((prevDetails) => ({ ...prevDetails, password: user.password }));
         } else {
-            alert('No matching email found');
+            alert('No matching email found yet');
         }
     }
     async function login(e:any){
