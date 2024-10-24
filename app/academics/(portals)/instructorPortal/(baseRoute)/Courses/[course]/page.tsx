@@ -83,14 +83,15 @@ export default function Page() {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            chapter_title: newChapter.title,
-            chapter_description: newChapter.description,
-            chapter_order: newChapter.order,
-            course_id: courseId,
+            id: courseId,
+            title: newChapter.title,
+            description: newChapter.description,
+            order: newChapter.order,
+            
           }),})
         if(response.ok){
-          alert("emmet" + JSON.stringify(response.json()))
-
+          //alert("emmet" + JSON.stringify(response.json()))
+          console.log("posted chapter");
         }
         // Clear form and update the chapters list
         
@@ -128,6 +129,7 @@ export default function Page() {
               <p className="font-bold text-lg">Chapter {item.chapter_order}</p>
               <p className="text-xl mt-2">{item.chapter_title}</p>
               <p className="text-sm mt-2 text-gray-600">{item.chapter_description}</p>
+              <button className="btn " >open</button>
             </div>
           ))}
         </div>
