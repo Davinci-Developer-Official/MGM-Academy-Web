@@ -2,6 +2,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
+import { put } from '@vercel/blob';
 
 interface ChapterProps {
   chapter_id: string;
@@ -15,14 +16,21 @@ interface ChapterProps {
 export default function Page() {
   const [chapters, setChapters] = useState<ChapterProps[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [newChapter, setNewChapter] = useState({
-    id:"",
+    id: "",
     title: "",
     description: "",
     order: 1,
+    file: null as File | null,
+    video: null as File | null,
   });
-  
+  const [uploadedFileURL, setUploadedFileURL] = useState<string>("");
+  const [uploadedVideoURL, setUploadedVideoURL] = useState<string>("");
+  const [videoLink, setVideoLink] = useState("");
+  const [uploadedVideo, setUploadedVideo] = useState<File | null>(null);
+  const [uploadingFile, setUploadingFile] = useState(false);
+  const [uploadingVideo, setUploadingVideo] = useState(false);
   const chaptersPerPage = 6;
 
   useEffect(() => {
@@ -33,7 +41,6 @@ export default function Page() {
           const res = await axios(`/api/remodelled/courses/get_chapter_by_id?id=${data}`);
           if (chapters.length === 0) {
             setChapters(res.data);
-            // Set the default `chapter_order` to the next value based on existing chapters
             const maxOrder = Math.max(0, ...res.data.map((chapter: ChapterProps) => chapter.chapter_order));
             setNewChapter(prev => ({ ...prev, chapter_order: maxOrder + 1 }));
           }
@@ -45,11 +52,96 @@ export default function Page() {
     getCourseChapters();
   }, []);
 
-  // Pagination logic
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    if (file && file.size > 5 * 1024 * 1024) {
+      alert("File size exceeds 5 MB limit");
+      return;
+    }
+    setNewChapter(prev => ({ ...prev, file }));
+  };
+
+  const handleVideoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const video = e.target.files?.[0] || null;
+    if (video && video.size > 25 * 1024 * 1024) {
+      alert("Video size exceeds 25 MB limit");
+      return;
+    }
+    setUploadedVideo(video);
+  };
+
+  const uploadFile = async (file: File | null) => {
+    if (!file) return null;
+    try {
+      setUploadingFile(true); // Start animation
+      const result = await put(file.name, file, {
+        access: 'public',
+        token: 'vercel_blob_rw_jDNRDIzn5HpnU1jS_mb5wAReKxQIubo7b0VP1ejgTk6ffcz',
+      });
+      return result.url;
+    } catch (error: any) {
+      alert('Error uploading file: ' + error.message);
+      return null;
+    } finally {
+      setUploadingFile(false); // Stop animation
+    }
+  };
+
+  const uploadVideo = async (file: File | null) => {
+    if (!file) return;
+    try {
+      setUploadingVideo(true); // Start animation
+      const result = await put(file.name, file, {
+        access: 'public',
+        token: 'vercel_blob_rw_jDNRDIzn5HpnU1jS_mb5wAReKxQIubo7b0VP1ejgTk6ffcz',
+      });
+      alert('File uploaded: ' + result.url);
+      if (videoLink === "") setVideoLink(result.url);
+    } catch (error: any) {
+      alert('Error uploading video: ' + error.message);
+    } finally {
+      setUploadingVideo(false); // Stop animation
+    }
+  };
+
+  const handleUploadFile = async () => {
+    if (newChapter.file && !uploadingFile) {
+      const fileUrl = await uploadFile(newChapter.file);
+      setUploadedFileURL(fileUrl || "");
+    }
+  };
+
+  const handleAddChapter = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const courseId = Cookies.get("current-course") || "";
+
+    if (courseId) {
+      try {
+        const response = await fetch('/api/remodelled/courses/add_chapter', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            id: courseId,
+            title: newChapter.title,
+            description: newChapter.description,
+            order: newChapter.order,
+            file: uploadedFileURL,
+            video: uploadedVideoURL,
+          }),
+        });
+        if (response.ok) {
+          console.log("Chapter added successfully");
+        }
+        toggleModal();
+      } catch (error) {
+        alert('Error adding chapter: ' + error);
+      }
+    }
+  };
+
   const indexOfLastChapter = currentPage * chaptersPerPage;
   const indexOfFirstChapter = indexOfLastChapter - chaptersPerPage;
   const currentChapters = chapters.slice(indexOfFirstChapter, indexOfLastChapter);
-
   const totalPages = Math.ceil(chapters.length / chaptersPerPage);
 
   const handleNextPage = () => {
@@ -64,51 +156,8 @@ export default function Page() {
     }
   };
 
-  // Function to handle modal open and close
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
-  };
-
-  // Function to handle form submission
-  const handleAddChapter = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const courseId = Cookies.get("current-course") || "";
-
-    if (courseId) {
-      try {
-        // Post new chapter
-         const response = await fetch('/api/remodelled/courses/add_chapter', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            id: courseId,
-            title: newChapter.title,
-            description: newChapter.description,
-            order: newChapter.order,
-            
-          }),})
-        if(response.ok){
-          //alert("emmet" + JSON.stringify(response.json()))
-          console.log("posted chapter");
-        }
-        // Clear form and update the chapters list
-        
-        //setNewChapter({ id: "",title: "", description: "", order: newChapter.order + 1 });
-        //@ts-ignore
-       {/*
-         setChapters(prevChapters => [
-          ...prevChapters,
-          { ...newChapter, chapter_id: `new-${Date.now()}`, course_id: courseId } // Temporary ID
-        ]);
-        */}
-
-        toggleModal(); // Close the modal after adding
-      } catch (error) {
-        alert('Error adding chapter: ' + error);
-      }
-    }
   };
 
   return (
@@ -129,13 +178,12 @@ export default function Page() {
               <p className="font-bold text-lg">Chapter {item.chapter_order}</p>
               <p className="text-xl mt-2">{item.chapter_title}</p>
               <p className="text-sm mt-2 text-gray-600">{item.chapter_description}</p>
-              <button className="btn " >open</button>
+              <button className="btn">Open</button>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Pagination controls */}
       <div className="flex justify-between items-center mt-6">
         <button
           className={`btn py-2 px-4 rounded bg-blue-500 text-white ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
@@ -158,7 +206,6 @@ export default function Page() {
         </button>
       </div>
 
-      {/* Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded-lg w-[90%] sm:w-[60%] lg:w-[40%]">
@@ -178,7 +225,7 @@ export default function Page() {
                 <label className="block text-sm font-medium text-gray-700">Chapter Description</label>
                 <textarea
                   value={newChapter.description}
-                  onChange={(e) => setNewChapter({ ...newChapter,description: e.target.value })}
+                  onChange={(e) => setNewChapter({ ...newChapter, description: e.target.value })}
                   className="w-full p-2 border rounded-md"
                 />
               </div>
@@ -189,18 +236,24 @@ export default function Page() {
                   value={newChapter.order}
                   onChange={(e) => setNewChapter({ ...newChapter, order: parseInt(e.target.value) })}
                   className="w-full p-2 border rounded-md"
-                  disabled // Disabled to prevent manual editing
+                  required
                 />
               </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700">File Upload (Max 5MB)</label>
+                <input type="file" onChange={handleFileChange} />
+                {uploadingFile && <p className="text-blue-500">Uploading...</p>}
+                <button type="button" onClick={handleUploadFile} disabled={uploadingFile}>Upload File</button>
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700">Video Upload (Max 25MB)</label>
+                <input type="file" onChange={handleVideoChange} />
+                {uploadingVideo && <p className="text-blue-500">Uploading...</p>}
+                <button type="button" onClick={() => uploadVideo(uploadedVideo)} disabled={uploadingVideo}>Upload Video</button>
+              </div>
               <div className="flex justify-end">
-                <button
-                  type="button"
-                  className="mr-2 bg-gray-500 text-white py-2 px-4 rounded"
-                  onClick={toggleModal}
-                >
-                  Cancel
-                </button>
-                <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">
+                <button type="button" onClick={toggleModal} className="mr-2">Cancel</button>
+                <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded" disabled={uploadingFile || uploadingVideo}>
                   Add Chapter
                 </button>
               </div>
