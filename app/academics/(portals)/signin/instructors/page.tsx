@@ -3,8 +3,10 @@
 import Link from "next/link";
 import { useEffect, useState } from "react"
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Cookies from "js-cookie";
 
 interface Student {
+    instructor_id:string;
     email: string;
     password: string;
 }
@@ -13,6 +15,7 @@ export default function Page() {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState<Student[]>([]);
     const [details, setDetails] = useState<Student>({
+        instructor_id:'',
         email: '',
         password: ''
     });
@@ -40,12 +43,36 @@ export default function Page() {
 
     async function check(e: React.FormEvent) {
         e.preventDefault();
+    
+        // Ensure data and details are correctly populated
+        if (!data || !details.email) {
+            console.error('Data or details.email is missing');
+            alert('No student data or email to check');
+            return;
+        }
+    
+        // Find student by email
         const user = data.find((student) => student.email === details.email);
+        console.log("User found:", user);  // Add logging for debugging
+    
         if (user) {
-            setExists(true);
-           // setDetails((prevDetails) => ({ ...prevDetails, password: user.password }));
+            const instructor = user.instructor_id;
+            console.log("Student ID:", instructor);  // Log the student_id
+    
+            if (instructor) {
+                setExists(true);
+                // Set cookie for 7 days with the correct path
+                Cookies.set('instructor', JSON.stringify(instructor), { expires: 7, path: '/academics/instructorPortal/' });
+                console.log('Cookie set:', Cookies.get('user'));  // Log the cookie to ensure it’s set correctly
+                //alert(student_id)
+            } else {
+                setExists(false);
+                console.error('Student ID is undefined.');
+                alert('Student ID is undefined');
+            }
         } else {
-            alert('No matching email found ');
+            alert('No matching email found');
+            console.error('No user found for email:', details.email);
         }
     }
     async function login(e:any){

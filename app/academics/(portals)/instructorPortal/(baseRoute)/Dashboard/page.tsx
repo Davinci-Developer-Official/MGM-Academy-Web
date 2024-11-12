@@ -1,17 +1,37 @@
 'use client'
 import NotificationInstructors from '@/app/components/NotificationInstructor'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import UpdatesCard from './UpdatesCard'
-import Cookies from "./Cookies"
+import Cookies from "js-cookie"
 import { FaPlus } from 'react-icons/fa'
 import Link from 'next/link'
 
+interface Instructor {
+  instructor:string;
+  name:string;
+}
+
 function Page() {
+  const [instructorInfo,setInstructorInfo]=useState<Instructor[]>([])
   useEffect(()=>{
-    setTimeout(()=>{
-      return <Cookies/>
-    },100)
+    async function get_instructor(){
+      try {
+        const data = Cookies.get('instructor')
+        
+        if(data?.length==0){
+          const response = await fetch(`/api/remodelled/get_instructor_by_id?id=${data}`);
+          const info = await response.json()
+          alert(info)
+        }
+        
+      } catch (error) {
+        alert(error)
+
+      }
+    }
+    get_instructor()
   },[])
+  
   return (
     <div className='background ' >
     <div className='w-full h-screen  overflow-y-scroll ' >

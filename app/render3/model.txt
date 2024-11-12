@@ -1,0 +1,89 @@
+<div className='w-full h-full p-2 background'>
+      {course.length!==0 &&course.map((data:Courses)=>(
+      <div className='w-full mb-8'>
+      {data.title}
+        <div className='w-full flex flex-row p-1 justify-evenly'>
+          
+            <div className='flex flex-row justify-left bg-gray-200 cursor-pointer w-[200px] my-auto tooltip tooltip-open tooltip-bottom p-2 mb-2' data-tip={data.instructor_id}>
+            <div className="avatar online">
+              <div className="w-14 rounded-full">
+                <Image src={data.cover} alt="Instructor" width={300} height={300} />
+              </div>
+            </div>
+            <div className='flex flex-col w-full text-center'>
+              <p className='text-sm font-bold pt-2'>{data.instructor_id}</p>
+              <p className='text-sm font-bold pt-2 flex flex-row p-1 justify-between'>
+                <span>{data.id}</span> <FaInfoCircle />
+              </p>
+            </div>
+          </div>
+          
+          <div className='p-2 lg:pt-4 sm:pt-6 md:pt-5 w-[80%] mx-auto'>
+            <p className='text-center font-bold text-lg'>{data.title}</p>
+          </div>
+        </div>
+        
+        <div className='p-2'>
+          
+           
+              <section  className='p-2 text-red-800 text-center flex flex-col mt-2 card'>
+              <p className='text-xl font-bold underline text-center text-blue-800'>Title</p>
+              <p className='font-bold text-lg card-body'>{data.title}</p>
+              <p className='text-xl font-bold underline text-center text-blue-800'>Overview</p>
+              <p className='font-semibold card-body text-lg'>{data.description}</p>
+            </section>
+            
+          
+        </div>
+        </div>
+      ))}
+        <div className='text-xl font-bold underline text-center text-blue-800'>Topics/Chapters</div>
+        <div>
+          {chapters.map((topic, index) => (
+            <div key={index} className='w-[90%] mx-auto h-fit mt-2 bg-white'>
+              <button 
+                className='btn btn-ghost rounded-lg w-full justify-between hover:text-blue-900 hover:underline'
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleSubTopics(index);
+                }}
+              >
+                <p>Chapter : {index + 1}</p>
+                <p>{topic.title}</p>
+                {expandedTopics[index] ? <FaMinus /> : <FaPlus />}
+              </button>
+              {/*subchapters*/}
+              {expandedTopics[index] && (
+                <div className='horizontal-scroll-container w-[88%] mx-auto'>
+                  {chapters.map((subtopic, subIndex) => (
+                    <div 
+                      key={subIndex}
+                      className='card bg-gray-300 w-fit h-fit p-2 ml-2 tooltip'
+                      data-tip={subtopic}
+                    >
+                      <label className='card-title btn btn-circle bg--gray-300'>{subIndex + 1}</label>
+                      <label 
+                        className='card-title pt-2 hover:text-blue-800 cursor-pointer' 
+                        htmlFor={`modal_${index}_${subIndex}`}
+                      >
+                        {subtopic.description}
+                      </label>
+
+                      {/* The button to open modal */}
+                      <input type="checkbox" id={`modal_${index}_${subIndex}`} className="modal-toggle" />
+                      <div className="modal" role="dialog">
+                        <div className="modal-box">
+                          <h3 className="text-lg font-bold">{subtopic.title}</h3>
+                          <p className="py-4">Details about {subtopic.video} will be here.</p>
+                        </div>
+                        <label className="modal-backdrop" htmlFor={`modal_${index}_${subIndex}`}>Close</label>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      
+    </div>

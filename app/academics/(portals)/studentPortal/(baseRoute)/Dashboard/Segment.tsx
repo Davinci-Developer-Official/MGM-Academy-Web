@@ -8,6 +8,7 @@ import Info from './coursesInfo';
 import ba from "@/public/placeholders/ba.jpeg";
 import bb from "@/public/placeholders/bb.jpeg";
 import bc from "@/public/placeholders/bc.jpeg";
+import Cookies from 'js-cookie';
 
 function Segment() {
   const items = [
@@ -141,12 +142,13 @@ function Segment() {
 
   const[details,setDetails]=useState(false)
  
-
+  const users = Cookies.get('s-user')
+  //const x = JSON.parse(users)
   return (
     <div className='background w-full p-1 rounded-lg border inset border-b-[#e97902] h-full flex flex-col '>
       <div className="title p-2 text-center font-serif font-bold flex flex-row justify-evenly  text-xl w-[100%] ">
         <p>{formattedDate}</p>
-        <p>Hello  👋 {user.email} </p>
+        <p>Hello  👋 {users} </p>
         <p>{time}</p>
       </div>
 

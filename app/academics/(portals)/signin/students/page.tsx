@@ -10,6 +10,7 @@ interface Student {
     student_id:string;
     email: string;
     password: string;
+    names:string;
 }
 
 export default function Page() {
@@ -18,7 +19,8 @@ export default function Page() {
     const [details, setDetails] = useState<Student>({
         student_id:'',
         email: '',
-        password: ''
+        password: '',
+        names:''
     });
     const [exists, setExists] = useState(false);
     const [showPassword, setShowPassword] = useState(false); // New state to toggle password visibility
@@ -63,7 +65,9 @@ export default function Page() {
         // Find student by email
         const user = data.find((student) => student.email === details.email);
         console.log("User found:", user);  // Add logging for debugging
-    
+        const inf = data.find((students)=>  students.names)
+        const stream = inf?.names
+        alert(stream)
         if (user) {
             const student_id = user.student_id;
             console.log("Student ID:", student_id);  // Log the student_id
@@ -71,8 +75,10 @@ export default function Page() {
             if (student_id) {
                 setExists(true);
                 // Set cookie for 7 days with the correct path
-                Cookies.set('user', JSON.stringify(student_id), { expires: 7, path: '/academics/studentPortal/Profile' });
+                Cookies.set('s-id', JSON.stringify(student_id), { expires: 7, path: '/academics/studentPortal/' });
+                Cookies.set('s-user', JSON.stringify(stream), { expires: 7, path: '/academics/studentPortal/' });
                 console.log('Cookie set:', Cookies.get('user'));  // Log the cookie to ensure it’s set correctly
+                //alert(student_id)
             } else {
                 setExists(false);
                 console.error('Student ID is undefined.');

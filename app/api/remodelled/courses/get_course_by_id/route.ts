@@ -14,8 +14,11 @@ export  async function GET(req: NextRequest) {
             const response = await sql`
             SELECT * FROM courses WHERE course_id = ${id} ;
             `
-        console.log(id)
-        console.log(response.rows)
+        console.log({
+            id: id,
+            data: response.rows
+        })
+        //console.log(response.rows)
         return NextResponse.json(response.rows);
         }
 
