@@ -6,6 +6,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Cookies from "js-cookie";
 
 interface Student {
+    names:string;
     instructor_id:string;
     email: string;
     password: string;
@@ -15,6 +16,7 @@ export default function Page() {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState<Student[]>([]);
     const [details, setDetails] = useState<Student>({
+        names:'',
         instructor_id:'',
         email: '',
         password: ''
@@ -40,7 +42,7 @@ export default function Page() {
         }
         getStudents();
     }, []);
-
+    
     async function check(e: React.FormEvent) {
         e.preventDefault();
     
@@ -54,7 +56,9 @@ export default function Page() {
         // Find student by email
         const user = data.find((student) => student.email === details.email);
         console.log("User found:", user);  // Add logging for debugging
-    
+        
+        const info = data.find((instructor)=>instructor.names)
+        const newData = info?.names
         if (user) {
             const instructor = user.instructor_id;
             console.log("Student ID:", instructor);  // Log the student_id
@@ -62,7 +66,8 @@ export default function Page() {
             if (instructor) {
                 setExists(true);
                 // Set cookie for 7 days with the correct path
-                Cookies.set('instructor', JSON.stringify(instructor), { expires: 7, path: '/academics/instructorPortal/' });
+                Cookies.set('i-id', JSON.stringify(instructor), { expires: 7, path: '/academics/instructorPortal/' });
+                Cookies.set('i-name', JSON.stringify(newData), { expires: 7, path: '/academics/instructorPortal/' });
                 console.log('Cookie set:', Cookies.get('user'));  // Log the cookie to ensure it’s set correctly
                 //alert(student_id)
             } else {
