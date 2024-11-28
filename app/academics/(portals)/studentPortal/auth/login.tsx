@@ -119,7 +119,7 @@ function LoginStudent({setNavigation,navigation}:any) {
       }
     }
 
-  },[]);// students,click,checked,secure,loading,error,username,email
+  },['checked', 'email', 'password', 'secure','username']);// students,click,checked,secure,loading,error,username,email
   
   
 

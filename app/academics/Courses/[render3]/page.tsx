@@ -71,11 +71,12 @@ function Page(Course:Courses) {
   //alert(JSON.stringify(info))
   const router = useRouter()
   const [isMounted, setIsMounted] = useState(false);
-
+  const[selectedSubtopic,setSelectSubtopic]=useState("")
+  
   useEffect(() => {
     setIsMounted(true);
   }, []);
- const[selectedSubtopic,setSelectSubtopic]=useState("")
+
   const handleClick = async(chapter:string) => {
     if (isMounted) {
       //const i = info.topics.map

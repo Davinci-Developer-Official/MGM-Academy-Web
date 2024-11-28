@@ -58,7 +58,8 @@ function Page(Course:Courses) {
   const[arrCourse,setArrCourse]=useState<Courses[]>([])
   const[loading,setLoading]=useState(false)
   const used_id = '21feb3ce-14ce-497c-99c1-a2fd9a4b772f'
- 
+  const[selectedSubtopic,setSelectSubtopic]=useState("")
+
   
   if (!course) {
     return <div>Course not found</div>;
@@ -74,7 +75,6 @@ function Page(Course:Courses) {
   useEffect(() => {
     setIsMounted(true);
   }, []);
- const[selectedSubtopic,setSelectSubtopic]=useState("")
   const handleClick = async(chapter:string) => {
     if (isMounted) {
       const i = info.topics.map

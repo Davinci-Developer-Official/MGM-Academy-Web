@@ -26,7 +26,7 @@ function UpdatesCard() {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
 
-    const checkRate = useMemo(() => {
+    useEffect(() => {
         const course = courses.find(item => 
             item.courseName === selectedCourse.courseName || 
             item.classCode === selectedCourse.courseCode
