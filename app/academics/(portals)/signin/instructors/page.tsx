@@ -67,7 +67,7 @@ export default function Page() {
                 setExists(true);
                 // Set cookie for 7 days with the correct path
                 Cookies.set('i-id', JSON.stringify(instructor), { expires: 7, path: '/academics/instructorPortal/' });
-                Cookies.set('i-name', JSON.stringify(newData), { expires: 7, path: '/academics/instructorPortal/' });
+                Cookies.set('i-name', JSON.stringify(newData), { expires: 7, path: '/' });
                 console.log('Cookie set:', Cookies.get('user'));  // Log the cookie to ensure it’s set correctly
                 //alert(student_id)
             } else {

@@ -1,0 +1,406 @@
+{
+  "courses": [
+    {
+      "title": "Intersections of Identity: Understanding Gender through Multiple Lenses",
+      "courseRequirements": [
+        "No prerequisites",
+        "Open to undergraduates and graduates",
+        "Access to course readings and materials (provided online)"
+      ],
+      "unitCode": "GS101",
+      "category": "Gender Studies",
+      "instructor": {
+        "name": "Emma Mwangi",
+        "photo": "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg",
+        "role": "Instructor",
+        "contactTip": "Hi 👋 contact instructor"
+      },
+      "intro": "My name is Emma Mwangi and I will be your instructor, guiding you through the course. Classes will be online both live and pre-recorded and will provide links for the classes. Assignments and topic materials will be available once the topic is unlocked by the instructor for every week of class participation.",
+      "overview": "In the pursuit of a more equitable society, education stands as a fundamental pillar shaping the future of individuals and communities alike. However, the classrooms where this education takes place are often microcosms reflecting broader societal dynamics, including gender inequalities. This course delves into the intricate ways gender influences educational experiences, opportunities, and outcomes. By examining these dynamics, we aim to uncover the subtle and overt biases that persist in educational settings and explore strategies to foster a more inclusive and empowering learning environment for all genders. Through this exploration, we seek to illuminate the path towards true equality in education, ensuring that every student has the opportunity to thrive and succeed, irrespective of gender.",
+      "topics": [
+        {
+          "unit": "Introduction to Intersectionality",
+          "subtopics": [
+            "Definition and Origins",
+            "Key Theorists (e.g., Kimberlé Crenshaw)",
+            "Case Studies in Intersectionality"
+          ]
+        },
+        {
+          "unit": "Gender and Race",
+          "subtopics": [
+            "Historical Context of Race and Gender",
+            "Impact on Social and Economic Opportunities",
+            "Media Representation"
+          ]
+        },
+        {
+          "unit": "Gender and Class",
+          "subtopics": [
+            "Economic Inequality and Class",
+            "Intersection with Gender Roles",
+            "Feminization of Poverty"
+          ]
+        },
+        {
+          "unit": "Gender and Sexuality",
+          "subtopics": [
+            "Sexual Orientation and Gender Identity",
+            "Discrimination and Legal Rights",
+            "Intersectional Queer Theories"
+          ]
+        },
+        {
+          "unit": "Gender and Disability",
+          "subtopics": [
+            "Gendered Experiences of Disability",
+            "Access and Inclusion",
+            "Disability Rights Movement"
+          ]
+        },
+        {
+          "unit": "Policy and Advocacy",
+          "subtopics": [
+            "Intersectional Policy Analysis",
+            "Advocacy Strategies",
+            "Case Studies in Intersectional Activism"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Media Mirrors: Gender Representation on Screen and Page",
+      "courseRequirements": [
+        "No prerequisites",
+        "Open to undergraduates and graduates",
+        "Access to a variety of media examples (provided online or suggested)"
+      ],
+      "unitCode": "GS102",
+      "category": "Media Gender Bias",
+      "instructor": {
+        "name": "Emma Mwangi",
+        "photo": "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg",
+        "role": "Instructor",
+        "contactTip": "Hi 👋 contact instructor"
+      },
+      "intro": "My name is Emma Mwangi and I will be your instructor, guiding you through the course. Classes will be online both live and pre-recorded and will provide links for the classes. Assignments and topic materials will be available once the topic is unlocked by the instructor for every week of class participation.",
+      "overview": "In the pursuit of a more equitable society, education stands as a fundamental pillar shaping the future of individuals and communities alike. However, the classrooms where this education takes place are often microcosms reflecting broader societal dynamics, including gender inequalities. This course delves into the intricate ways gender influences educational experiences, opportunities, and outcomes. By examining these dynamics, we aim to uncover the subtle and overt biases that persist in educational settings and explore strategies to foster a more inclusive and empowering learning environment for all genders. Through this exploration, we seek to illuminate the path towards true equality in education, ensuring that every student has the opportunity to thrive and succeed, irrespective of gender.",
+      "topics": [
+        {
+          "unit": "Introduction to Media Representation",
+          "subtopics": [
+            "Defining Media Representation",
+            "Historical Overview"
+          ]
+        },
+        {
+          "unit": "Gender in Film",
+          "subtopics": [
+            "Analysis of Classic and Contemporary Films",
+            "Gender Stereotypes in Cinema",
+            "Role of Women and Men Behind the Camera"
+          ]
+        },
+        {
+          "unit": "Television and Gender",
+          "subtopics": [
+            "Gender Dynamics in TV Shows",
+            "Impact of Soap Operas, Sitcoms, and Dramas",
+            "Representation in Children’s Television"
+          ]
+        },
+        {
+          "unit": "Literature and Gender",
+          "subtopics": [
+            "Gender Roles in Classic and Modern Literature",
+            "Feminist Literary Criticism",
+            "Gender in Young Adult and Popular Fiction"
+          ]
+        },
+        {
+          "unit": "Social Media and Digital Platforms",
+          "subtopics": [
+            "Gender Representation on Social Media",
+            "Influencers and Gendered Branding",
+            "Online Harassment and Gender"
+          ]
+        },
+        {
+          "unit": "Changing the Narrative",
+          "subtopics": [
+            "Media Literacy and Critical Viewing",
+            "Strategies for More Inclusive Media",
+            "Case Studies of Successful Interventions"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Bridging the Gap: The Gender Pay Disparity Explained",
+      "courseRequirements": [
+        "No prerequisites",
+        "Open to undergraduates and graduates",
+        "Access to statistical tools and reports (provided online)"
+      ],
+      "unitCode": "GS103",
+      "category": "Gender Studies",
+      "instructor": {
+        "name": "Emma Mwangi",
+        "photo": "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg",
+        "role": "Instructor",
+        "contactTip": "Hi 👋 contact instructor"
+      },
+      "intro": "My name is Emma Mwangi and I will be your instructor, guiding you through the course. Classes will be online both live and pre-recorded and will provide links for the classes. Assignments and topic materials will be available once the topic is unlocked by the instructor for every week of class participation.",
+      "overview": "In the pursuit of a more equitable society, education stands as a fundamental pillar shaping the future of individuals and communities alike. However, the classrooms where this education takes place are often microcosms reflecting broader societal dynamics, including gender inequalities. This course delves into the intricate ways gender influences educational experiences, opportunities, and outcomes. By examining these dynamics, we aim to uncover the subtle and overt biases that persist in educational settings and explore strategies to foster a more inclusive and empowering learning environment for all genders. Through this exploration, we seek to illuminate the path towards true equality in education, ensuring that every student has the opportunity to thrive and succeed, irrespective of gender.",
+      "topics": [
+        {
+          "unit": "Introduction to the Gender Pay Gap",
+          "subtopics": [
+            "Definition and Measurement",
+            "Historical Context"
+          ]
+        },
+        {
+          "unit": "Causes of the Gender Pay Gap",
+          "subtopics": [
+            "Occupational Segregation",
+            "Discrimination and Bias",
+            "Education and Training Differences"
+          ]
+        },
+        {
+          "unit": "Economic Impact",
+          "subtopics": [
+            "Impact on Individuals and Families",
+            "Broader Economic Consequences",
+            "Global Comparisons"
+          ]
+        },
+        {
+          "unit": "Legal and Policy Framework",
+          "subtopics": [
+            "Equal Pay Legislation",
+            "Policies for Closing the Gap",
+            "Case Studies of Effective Policies"
+          ]
+        },
+        {
+          "unit": "Corporate and Organizational Practices",
+          "subtopics": [
+            "Best Practices for Employers",
+            "Gender Pay Audits",
+            "Strategies for Advocacy"
+          ]
+        },
+        {
+          "unit": "Future Directions",
+          "subtopics": [
+            "Emerging Trends and Research",
+            "Advocacy and Activism",
+            "Personal Strategies for Negotiation"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Gender and Education",
+      "courseRequirements": [
+        "Requirement 1",
+        "Requirement 2"
+      ],
+      "unitCode": "GS104",
+      "category": "Social Sciences",
+      "instructor": {
+        "name": "Emma Mwangi",
+        "photo": "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg",
+        "role": "Instructor",
+        "contactTip": "Hi 👋 contact instructor"
+      },
+      "intro": "My name is Emma Mwangi and I will be your instructor, guiding you through the course. Classes will be online both live and pre-recorded and will provide links for the classes. Assignments and topic materials will be available once the topic is unlocked by the instructor for every week of class participation.",
+      "overview": "In the pursuit of a more equitable society, education stands as a fundamental pillar shaping the future of individuals and communities alike. However, the classrooms where this education takes place are often microcosms reflecting broader societal dynamics, including gender inequalities. This course delves into the intricate ways gender influences educational experiences, opportunities, and outcomes. By examining these dynamics, we aim to uncover the subtle and overt biases that persist in educational settings and explore strategies to foster a more inclusive and empowering learning environment for all genders. Through this exploration, we seek to illuminate the path towards true equality in education, ensuring that every student has the opportunity to thrive and succeed, irrespective of gender.",
+      "topics": [
+        {
+          "unit": "Introduction to Gender and Education",
+          "subtopics": [
+            "Overview of Gender Disparities in Education",
+            "Historical Context"
+          ]
+        },
+        {
+          "unit": "Gender Bias in Curricula",
+          "subtopics": [
+            "Gender Stereotypes in Textbooks",
+            "Inclusive Teaching Materials",
+            "Case Studies of Curriculum Reforms"
+          ]
+        },
+        {
+          "unit": "Gender and Educational Attainment",
+          "subtopics": [
+            "Performance Differences Between Genders",
+            "Impact of Socioeconomic Status",
+            "Gender Differences in STEM and Humanities"
+          ]
+        },
+        {
+          "unit": "Gender Dynamics in the Classroom",
+          "subtopics": [
+            "Teacher Expectations and Student Performance",
+            "Classroom Interaction Patterns",
+            "Strategies for Gender-Inclusive Teaching"
+          ]
+        },
+        {
+          "unit": "Policy and Institutional Responses",
+          "subtopics": [
+            "Gender Equity Policies in Education",
+            "Role of Educational Institutions",
+            "Case Studies of Successful Programs"
+          ]
+        },
+        {
+          "unit": "Global Perspectives",
+          "subtopics": [
+            "Comparative Analysis of Gender in Education",
+            "International Education Programs",
+            "Future Directions in Educational Gender Equity"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Trans Lives Matter: Understanding Transgender Rights and Issues",
+      "courseRequirements": [
+        "No prerequisites",
+        "Open to undergraduates and graduates",
+        "Access to legal documents and activist materials (provided online)"
+      ],
+      "unitCode": "GS105",
+      "category": "Gender Studies",
+      "instructor": {
+        "name": "Emma Mwangi",
+        "photo": "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg",
+        "role": "Instructor",
+        "contactTip": "Hi 👋 contact instructor"
+      },
+      "intro": "My name is Emma Mwangi and I will be your instructor, guiding you through the course. Classes will be online both live and pre-recorded and will provide links for the classes. Assignments and topic materials will be available once the topic is unlocked by the instructor for every week of class participation.",
+      "overview": "In the pursuit of a more equitable society, education stands as a fundamental pillar shaping the future of individuals and communities alike. However, the classrooms where this education takes place are often microcosms reflecting broader societal dynamics, including gender inequalities. This course delves into the intricate ways gender influences educational experiences, opportunities, and outcomes. By examining these dynamics, we aim to uncover the subtle and overt biases that persist in educational settings and explore strategies to foster a more inclusive and empowering learning environment for all genders. Through this exploration, we seek to illuminate the path towards true equality in education, ensuring that every student has the opportunity to thrive and succeed, irrespective of gender.",
+      "topics": [
+        {
+          "unit": "Introduction to Transgender Identities",
+          "subtopics": [
+            "Definitions and Terminology",
+            "Historical and Cultural Contexts"
+          ]
+        },
+        {
+          "unit": "Legal Rights and Protections",
+          "subtopics": [
+            "Overview of Legal Challenges",
+            "Key Legislation and Court Cases",
+            "International Comparisons"
+          ]
+        },
+        {
+          "unit": "Healthcare and Medical Issues",
+          "subtopics": [
+            "Access to Healthcare",
+            "Medical Transition and Insurance",
+            "Mental Health Challenges"
+          ]
+        },
+        {
+          "unit": "Social and Cultural Issues",
+          "subtopics": [
+            "Representation in Media and Culture",
+            "Experiences in Education and Employment",
+            "Family Dynamics and Social Support"
+          ]
+        },
+        {
+          "unit": "Advocacy and Activism",
+          "subtopics": [
+            "Key Figures and Movements",
+            "Strategies for Advocacy",
+            "Case Studies of Successful Campaigns"
+          ]
+        },
+        {
+          "unit": "Future Directions",
+          "subtopics": [
+            "Emerging Issues in Trans Rights",
+            "Intersectional Approaches",
+            "Building Inclusive Communities"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Redefining Masculinity: From Stereotypes to Strength",
+      "courseRequirements": [
+        "No prerequisites",
+        "Open to undergraduates and graduates",
+        "Access to multimedia resources (provided online)"
+      ],
+      "unitCode": "GS106",
+      "category": "Gender Studies",
+      "instructor": {
+        "name": "Emma Mwangi",
+        "photo": "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg",
+        "role": "Instructor",
+        "contactTip": "Hi 👋 contact instructor"
+      },
+      "intro": "My name is Emma Mwangi and I will be your instructor, guiding you through the course. Classes will be online both live and pre-recorded and will provide links for the classes. Assignments and topic materials will be available once the topic is unlocked by the instructor for every week of class participation.",
+      "overview": "In the pursuit of a more equitable society, education stands as a fundamental pillar shaping the future of individuals and communities alike. However, the classrooms where this education takes place are often microcosms reflecting broader societal dynamics, including gender inequalities. This course delves into the intricate ways gender influences educational experiences, opportunities, and outcomes. By examining these dynamics, we aim to uncover the subtle and overt biases that persist in educational settings and explore strategies to foster a more inclusive and empowering learning environment for all genders. Through this exploration, we seek to illuminate the path towards true equality in education, ensuring that every student has the opportunity to thrive and succeed, irrespective of gender.",
+      "topics": [
+        {
+          "unit": "Introduction to Masculinity Studies",
+          "subtopics": [
+            "Definitions and Key Concepts",
+            "Historical Context"
+          ]
+        },
+        {
+          "unit": "Constructions of Masculinity",
+          "subtopics": [
+            "Traditional Masculine Norms",
+            "Media Representations",
+            "Masculinity Across Cultures"
+          ]
+        },
+        {
+          "unit": "Masculinity and Health",
+          "subtopics": [
+            "Impact on Physical Health",
+            "Mental Health Challenges",
+            "Substance Use and Risk Behaviors"
+          ]
+        },
+        {
+          "unit": "Masculinity and Relationships",
+          "subtopics": [
+            "Masculinity in Friendships and Romantic Relationships",
+            "Parenting and Fatherhood",
+            "Impact on Work-Life Balance"
+          ]
+        },
+        {
+          "unit": "Policy and Advocacy",
+          "subtopics": [
+            "Gender Equity Policies in Education",
+            "Role of Educational Institutions",
+            "Case Studies of Successful Programs"
+          ]
+        },
+        {
+          "unit": "Future Directions",
+          "subtopics": [
+            "Comparative Analysis of Gender in Education",
+            "International Education Programs",
+            "Future Directions in Educational Gender Equity"
+          ]
+        }
+      ]
+    }
+  ]
+}

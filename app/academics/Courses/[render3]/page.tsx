@@ -4,6 +4,7 @@ import { FaBars, FaCaretDown, FaCaretLeft, FaCaretRight, FaCaretUp, FaEllipsisH,
 import data from "./data.json";
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 
 
 interface Courses{
@@ -77,8 +78,9 @@ function Page(Course:Courses) {
  const[selectedSubtopic,setSelectSubtopic]=useState("")
   const handleClick = async(chapter:string) => {
     if (isMounted) {
-      const i = info.topics.map
-      router.push(`/${info.title}/${chapter}`);
+      //const i = info.topics.map
+      const topic= await Cookies.get('c-course')
+      router.push(`/academics/Courses/${topic}/${chapter}`);
       //await CurrentItem({label:'current-course',content:id});
     }
   };

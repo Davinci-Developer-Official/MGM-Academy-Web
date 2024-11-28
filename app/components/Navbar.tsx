@@ -4,23 +4,45 @@ import React, { useEffect, useState } from 'react'
 //import { useColorTheme } from '@/hooks/useColorTheme' 
 import ChangeTheme from "./ChangeTheme"
 import DarkModeButton from './DarkModeButton'
-import { FaBookOpen, FaChalkboardTeacher, FaEdit, FaFemale, FaFile, FaFolder, FaGithub, FaGraduationCap, FaHandshake, FaHome, FaInfo, FaInfoCircle, FaIntercom, FaMoneyBill, FaPen, FaPersonBooth, FaSchool, FaSignInAlt, FaSun, FaUser, FaUserAlt, FaUserCircle } from 'react-icons/fa'
+import { FaBookOpen, FaCaretDown, FaCaretUp, FaChalkboardTeacher, FaEdit, FaFemale, FaFile, FaFolder, FaGithub, FaGraduationCap, FaHandshake, FaHome, FaInfo, FaInfoCircle, FaIntercom, FaMoneyBill, FaPen, FaPersonBooth, FaSchool, FaSignInAlt, FaSignOutAlt, FaSun, FaTerminal, FaUser, FaUserAlt, FaUserCircle } from 'react-icons/fa'
 import Cookies from 'js-cookie'
 import Image from 'next/image'
 import placeholder from '@/public/categories/business-studies-FO8nWoT6OnZ7DXO6xYA2TnRK4kzhwt.jpg'
 
+
 function Navbar() {
     //const [colorTheme] = useColorTheme();
-    const[loggedIn,setLoggedIn]=useState(false) // false ie fetch from cookies
+    const[loggedIn,setLoggedIn]=useState(true) // false ie fetch from cookies
+    const[typE,setTypE]=useState('student')
+    const[user,setUser]=useState(null)
+    const[userOptions,setUserOptions]=useState(false)
     useEffect(()=>{
-      function userStatus(){
-        const cookie = Cookies.get("user")
-        if(cookie?.length!==0){
+      async function userStatus(){
+        await Cookies.set('s-user','josh')
+        await Cookies.set('i-user','miriam')
+        const student = await Cookies.get("s-user")
+        const instructor =await Cookies.get("i-user")
+        //setUser(JSON.stringify(student))
+        const students = JSON.stringify(student)
+        const instructors = JSON.stringify(instructor)
+        //alert(student)
+        if(students){
           //alert('working 1')
           setLoggedIn(true)
-        }else{
-          //alert('not working')
-          setLoggedIn(false)
+          setTypE("student")
+          setUser(JSON.parse(students))
+          //alert(user)
+          //alert(typE)
+        }else if(instructors){
+          setLoggedIn(true)
+          setTypE("instructor")
+          setUser(JSON.parse(instructors))
+          //alert(user)
+          //alert(typE)
+        }else if(students&&instructors){
+          setLoggedIn(true)
+          setTypE("haloo")
+          //alert(typE)
         }
       }
       userStatus()
@@ -167,39 +189,37 @@ function Navbar() {
   
 
             <div className="navbar-end">
-                <div className="dropdown z-10 ml-4 relative">
-                    <label tabIndex={0} className={loggedIn?`btn btn-ghost btn-circle avatar mr-10`:`btn btn-ghost btn-circle avatar tooltip tooltip-open tooltip-bottom mr-10`} data-tip={!loggedIn?"sign in /sign up ":""}>
-                        <div className="w-full h-full bg-white rounded-full">
-                            {loggedIn?<Image src={placeholder} alt="User Avatar" className="w-full h-full object-cover rounded-full" />:<div className='bg-white  ' >.</div> }
-                        </div>
-                    </label>
-                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-white rounded-box w-52 border-b-2 border-b-[#e97902] absolute right-0 top-full">
-                        {loggedIn ? (
-                            <>
-                                <li>
-                            <Link href='/academics/studentPortal/Profile' className="justify-between">
-                              profile
-                              <span className="badge"><FaUser/></span>
-                            </Link>
-                          </li>
-                          <li><a>Settings</a></li>
-                          <li><Link href='/academics/signin' >Logout</Link></li>
-                            </>
-                        ) : (
-                        <>
-                          <li><Link href="/academics/signin"><FaSignInAlt className='text-[#e97902]' size={20} /> Sign In</Link></li>
-                          <li><Link href="/academics/apply"><FaUserCircle className='text-[#e97902]' size={20} /> Sign Up</Link></li>
-                        </>
-                        )}
-                    </ul>
-                    {/*<li>
-                            <Link href='/academics/signin' className="justify-between">
-                              sign in
-                              <span className="badge"><FaUser/></span>
-                            </Link>
-                          </li>
-                          <li><a>Settings</a></li>
-                          <li><Link href='/academics/signin' >Logout</Link></li> */}
+                <div className='mr-2 bg-red-400 rounded-md w-fit h-fit ' >
+                  
+                  {!loggedIn?<p>sign in / sign up</p>:<div className='flex flex-row p-1 justify-between ' >
+                    <span className='w-[50px] h-[40px] my-auto rounded-full mr-1  ' >
+                      <Image src={placeholder} alt='' className='w-full h-full object-fit rounded-full '  />
+                    </span>
+                    <p className='p-[.5px] w-[70%] flex flex-col  ' >{typE=="student"? <div>
+                      <p className='text-center text-sm p-1 text-sm h-[30px] w-full  ' >{user}</p>
+                      <p className='text-xs text-center bg-yellow-300 p-[.8px]  ' >student</p>
+                    </div> :<div>
+                      <p>{user}</p>
+                      </div>}</p>
+                      <button onClick={()=>{
+                        if(userOptions==false){
+                          setUserOptions(true)
+                        }else{
+                          setUserOptions(false)
+                        }
+                      }} >{userOptions?<FaCaretUp/>:<FaCaretDown/>}</button>
+                    </div>}
+                    {userOptions&&(
+                      <div className='absolute rounded-md flex flex-col mt-2 border-red-400 border-[1px]  bg-white border-b-red-400 border-b-[5px] h-[120px] w-[150px] z-100 p-1  ' style={{right:'10px'}} >
+                      <Link href='/academics/studentPortal/Dashboard' className=' bg-red-200 mt-1 w-[90%] mx-auto rounded-md cursor-pointer p-1 text-[14px] ' >E-Learning portal</Link>
+                      {/*<button className=' bg-red-200 mt-1 w-[90%] mx-auto rounded-md cursor-pointer p-1 text-[15px] ' >{typE=="student"? 'student portal' : 'instructor portal' }</button>*/}
+                      <button className=' bg-red-200 mt-1 w-[90%] mx-auto rounded-md cursor-pointer p-1 text-[15px] ' >switch accounts</button>
+                      <div className='flex flex-row bg-red-100 mt-2 h-full ' >
+                        <button className=' mt-[8px] ml-4 hover:bg-red-300 rounded-full cursor-pointer hover:tooltip hover:tooltip-open hover:tooltip-bottom  ' data-tip={" log out "}  ><FaSignOutAlt  /></button>
+                        <Link href='/academics/studentPortal/Dashboard' className=' mt-[8px] ml-4 hover:bg-red-300 rounded-full cursor-pointer hover:tooltip hover:tooltip-open hover:tooltip-bottom  ' data-tip={"E-learning Dashboard "}  ><FaGraduationCap  /></Link>
+                      </div>
+                    </div>
+                    )}
                 </div>
                 </div>
   
@@ -208,3 +228,4 @@ function Navbar() {
 }
 
 export default Navbar
+

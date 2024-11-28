@@ -1,0 +1,56 @@
+ useEffect(()=>{
+    const fetchCourses = async () => {
+      try {
+        //const response = await fetch(`/api/remodelled/courses/get_course_by_id?id=${used_id}`);
+        //if (!response.ok) {
+        //  throw new Error('Failed to fetch courses');
+        //}
+        //const data:Courses[] = await response.json();
+        setCourse([{
+          id:"aq2222qw",
+          cover:"asdas",
+          title:"Threadstone ",
+          description:"conditioning training",
+          instructor_id:"w232wea3",
+          created:"12-sept-2020",
+        }])
+        {course.length!==0&&setLoading(false)}
+        //alert(JSON.stringify(data))
+        //{course==null?()=>{ alert('yes')}:alert('booo')}
+        {/*
+          const courseData: Courses = {
+          id: data.course_id,
+          cover: data.course_cover,
+          title: data.course_title,
+          description: data.course_description,
+          instructor_id: data.instructor_id,
+          created: data.created_at,
+        };
+          */}
+        
+        //{data!==null?alert("slippery"):alert("yep")}
+        {/*
+          {course.id!==""?setCourse({
+          id: data.course_id,
+          cover: data.course_cover,
+          title: data.course_title,
+          description: data.course_description,
+          instructor_id: data.instructor_id,
+          created: data.created_at,
+        }):alert("no data fetched LOL"+JSON.stringify(data))}
+          */}
+         //{data!==null&&course.length==0 ?setCourse(data):alert("failed")}
+         //{course.length!==0&&alert(JSON.stringify(course))}
+        //alert(JSON.stringify(course))
+        //alert(JSON.stringify(course))
+        //setArrCourse(data)
+      } catch (err: any) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCourses()
+     
+  },[course])

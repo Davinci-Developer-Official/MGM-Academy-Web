@@ -1,5 +1,7 @@
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 
 // Sample data with at least 12 courses
 const allTopics = [
@@ -35,13 +37,31 @@ const TopicsList: React.FC = () => {
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const currentTopics = allTopics.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
+  const router = useRouter()
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+ const[selectedSubtopic,setSelectSubtopic]=useState("")
+  const handleClick = async(topic:string) => {
+    if (isMounted) {
+      //const i = info.topics.map
+      router.push(`/academics/Courses/${topic}`);
+      await Cookies.set('c-course',topic)
+      await Cookies.set('s-check','loggedIn')
+      //await CurrentItem({label:'current-course',content:id});
+    }
+  };
   return (
     <div className="flex flex-col items-center p-5 w-full h-full">
       <h1 className="text-2xl font-bold mb-6">Course Categories</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-11/12 max-w-screen-lg">
         {currentTopics.map((topic, index) => (
           <div key={index} className="bg-gray-100 rounded-lg p-4 shadow-md">
-            <Link href='/academics/apply' className="text-xl hover:text-blue-400 hover:underline font-semibold mb-2">{topic.title}</Link>
+            <button onClick={()=>{
+              handleClick(topic.title)
+            }} className="text-xl hover:text-blue-400 hover:underline font-semibold mb-2">{topic.title}</button>
             <p className="text-gray-700">{topic.overview}</p>
           </div>
         ))}

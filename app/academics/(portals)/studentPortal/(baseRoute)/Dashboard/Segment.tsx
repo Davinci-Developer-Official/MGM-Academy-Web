@@ -152,9 +152,9 @@ function Segment() {
   return (
     <div className='background w-full p-1 rounded-lg border inset border-b-[#e97902] h-full flex flex-col '>
       <div className="title p-2 text-center font-serif font-bold flex flex-row justify-evenly  text-xl w-[100%] ">
-        <p>{formattedDate}</p>
+        <div>{formattedDate}</div>
         <div><p>Hello</p>  👋 <p>{userz}</p> </div>
-        <p>{time}</p>
+        <div>{time}</div>
       </div>
 
       <div className='w-full justify-center flex flex-col p-1'>
