@@ -3,7 +3,7 @@ import React from 'react'
 function Footer() {
   return (
   
-  <footer className="footer p-8  background h-fit relative border-t-2 border-t-[#e97902] "  >
+  <footer className="footer p-8  mt-2 h-fit relative border-t-2 border-t-[#e97902] "  >
   <nav>
     <header className="footer-title border-b-2 border-b-[#e97902] ">Legal</header> 
     <a className="link link-hover">Terms of use</a> 

@@ -59,16 +59,19 @@ const Carousel: React.FC = () => {
   const currentItem = NavInfo[currentItemIndex];
 
   return (
-    <div className="carousel flex flex-row relative w-[90%]  mx-auto h-[300px] mt-6">
-      <button 
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 bg-white border border-black text-black hover:text-[#e97902] p-2 rounded-full"
+    <div className="carousel flex flex-row relative w-[80%] mx-auto h-[250px] sm:h-[300px] mt-6">
+      {/* Left Navigation Button */}
+      <button
+        className="absolute left-0 top-1/2 transform -translate-y-1/2 z-20 bg-white border border-black text-black hover:text-[#e97902] p-2 rounded-full shadow-md transition duration-300"
         onClick={prevItem}
       >
-        <FaArrowLeft />
+        <FaArrowLeft size={18} />
       </button>
 
+      {/* Carousel Item Container */}
       <div className="item flex flex-col-reverse w-full relative">
-        <div className="lower-navigation h-10 w-full flex justify-center items-center absolute bottom-0 z-10 bg-white/70">
+        {/* Lower Navigation */}
+        <div className="lower-navigation h-8 w-full flex justify-center items-center absolute bottom-0 z-10 bg-white/70 rounded-b-md">
           {NavInfo.map((item, index) => (
             <button
               key={item.id}
@@ -82,37 +85,40 @@ const Carousel: React.FC = () => {
           ))}
         </div>
 
-        <div className="card w-full bg-base-100 shadow-xl h-[400px] relative">
+        {/* Carousel Card */}
+        <div className="card w-full bg-base-100 shadow-xl h-[300px] sm:h-[350px] relative rounded-lg overflow-hidden">
           <figure className="relative h-full">
             <Image
               src={currentItem.NavImage}
               alt={currentItem.NavItem}
               layout="fill"
               objectFit="cover"
-              className="rounded-t-xl"
+              className="transition-all duration-500 ease-in-out transform hover:scale-105"
             />
           </figure>
-          <div className="card-body absolute bottom-0 p-4 bg-white/80 w-full rounded-b-xl z-10">
-            <h2 className="card-title text-[#e97902]">{currentItem.NavItem}</h2>
-            <p className="text-[#e97902]">{currentItem.NavDescription}</p>
-            <div className="card-actions flex justify-end">
-              <Link href={currentItem.link} className="btn btn-primary">
-                {currentItem.NavItem}
+
+          {/* Card Body */}
+          <div className="card-body absolute bottom-0 p-4 bg-white/80 w-full rounded-b-lg z-10 transition-all duration-300 transform hover:translate-y-1">
+            <h2 className="card-title text-[#e97902] font-semibold text-lg">{currentItem.NavItem}</h2>
+            <p className="text-[#333] text-sm sm:text-base">{currentItem.NavDescription}</p>
+            <div className="card-actions flex justify-end mt-3">
+              <Link href={currentItem.link} className="btn btn-primary bg-[#e97902] text-white hover:bg-[#d86e02] transition duration-300">
+                Learn More
               </Link>
             </div>
           </div>
         </div>
       </div>
 
-      <button 
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20 bg-white border border-black text-black hover:text-[#e97902] p-2 rounded-full"
+      {/* Right Navigation Button */}
+      <button
+        className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20 bg-white border border-black text-black hover:text-[#e97902] p-2 rounded-full shadow-md transition duration-300"
         onClick={nextItem}
       >
-        <FaArrowRight />
+        <FaArrowRight size={18} />
       </button>
     </div>
   );
 };
 
 export default Carousel;
-

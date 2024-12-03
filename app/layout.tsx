@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google'
 import { Providers } from './components/providers';
 import { useEffect, useState } from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
+import{ThemeProvider} from "./themeContext"
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -41,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className && 'background'}>{/*background color linear and fallback color */}
-       <Providers> {children}</Providers>
+       <ThemeProvider> {children}</ThemeProvider>
       </body>
     </html>
   )
