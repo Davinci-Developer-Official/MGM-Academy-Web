@@ -14,6 +14,8 @@ interface Student {
 }
 
 export default function Page() {
+    const router =  useRouter()
+
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState<Student[]>([]);
     const [details, setDetails] = useState<Student>({
@@ -79,7 +81,7 @@ export default function Page() {
         if (pass) {
             setVerified(true);
             //alert("yey")
-            const router = await useRouter()
+            
             router.push('/')
         } else {
             setStatus('No matching email found');
@@ -122,7 +124,9 @@ export default function Page() {
                                     id="password"
                                     type={showPassword ? "text" : "password"}
                                     value={details.password}
-                                    onChange={(e) => setDetails({ ...details, password: e.target.value })}
+                                    onChange={(e) => {
+                                        setDetails({ ...details, password: e.target.value })
+                                    }}
                                     required
                                     className="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 dark:bg-gray-700 dark:text-white"
                                 />
