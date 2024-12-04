@@ -1,34 +1,31 @@
 'use client'
 
 import Link from "next/link";
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Cookies from 'js-cookie';
 
-
 interface Student {
-    student_id:string;
+    student_id: string;
     email: string;
     password: string;
-    names:string;
+    names: string;
 }
 
 export default function Page() {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState<Student[]>([]);
     const [details, setDetails] = useState<Student>({
-        student_id:'',
+        student_id: '',
         email: '',
         password: '',
-        names:''
+        names: ''
     });
     const [exists, setExists] = useState(false);
-    const [showPassword, setShowPassword] = useState(false); // New state to toggle password visibility
-    const[verified,setVerified]=useState(false);
-    const[status,setStatus]=useState("");
-    const[userId,setUserId]=useState('');
+    const [showPassword, setShowPassword] = useState(false);
+    const [verified, setVerified] = useState(false);
+    const [status, setStatus] = useState("");
 
-    
     useEffect(() => {
         async function getStudents() {
             try {
@@ -46,116 +43,97 @@ export default function Page() {
         }
         getStudents();
     }, []);
-    async function userInfo(){
-
-    }
-
-
 
     async function check(e: React.FormEvent) {
         e.preventDefault();
-    
-        // Ensure data and details are correctly populated
-        if (!data || !details.email) {
-            console.error('Data or details.email is missing');
-            alert('No student data or email to check');
-            return;
-        }
-    
-        // Find student by email
         const user = data.find((student) => student.email === details.email);
-        console.log("User found:", user);  // Add logging for debugging
-        const inf = data.find((students)=>  students.names)
-        const stream = inf?.names
-        alert(stream)
         if (user) {
             const student_id = user.student_id;
-            console.log("Student ID:", student_id);  // Log the student_id
-    
             if (student_id) {
                 setExists(true);
-                // Set cookie for 7 days with the correct path
                 Cookies.set('s-id', JSON.stringify(student_id), { expires: 7, path: '/academics/studentPortal/' });
-                Cookies.set('s-user', JSON.stringify(stream), { expires: 7, path: '/' });
-                console.log('Cookie set:', Cookies.get('user'));  // Log the cookie to ensure it’s set correctly
-                //alert(student_id)
+                Cookies.set('s-user', JSON.stringify(user.names), { expires: 7, path: '/' });
             } else {
-                setExists(false);
-                console.error('Student ID is undefined.');
                 alert('Student ID is undefined');
             }
         } else {
             alert('No matching email found');
-            console.error('No user found for email:', details.email);
         }
     }
-    
-    async function login(e:any){
+
+    async function login(e: React.FormEvent) {
         e.preventDefault();
         const pass = data.find((student) => student.password === details.password);
         if (pass) {
             setVerified(true);
-            setExists(true)
-            
-
         } else {
             setStatus('No matching email found');
             setVerified(false);
-            setExists(true)
         }
     }
+
     return (
-        <div>
+        <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex  justify-center">
             {!loading ? (
-                <div>
-                    <form className="w-[350px] p-2 mx-auto">
-                    <div>
-                        {!exists ? (
-                            <label>
+                <div className="w-full max-w-lg bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
+                    <h2 className="text-xl font-bold text-gray-800 dark:text-white text-center mb-4">
+                        {exists ? "Verify Your Account" : "Sign In"}
+                    </h2>
+                    <form onSubmit={!exists ? check : login} className="space-y-6">
+                        <div>
+                            <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                                 Email
+                            </label>
+                            {!exists ? (
                                 <input
-                                    type="text"
+                                    id="email"
+                                    type="email"
                                     value={details.email}
                                     onChange={(e) => setDetails({ ...details, email: e.target.value })}
                                     required
+                                    className="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 dark:bg-gray-700 dark:text-white"
                                 />
-                            </label>
-                        ) : (
-                            <label>
-                                {details.email}
-                            </label>
-                        )}
+                            ) : (
+                                <div className="text-gray-800 dark:text-white">{details.email}</div>
+                            )}
+                        </div>
                         {exists && (
-                            <label className="relative">
-                                Password
+                            <div className="relative">
+                                <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                    Password
+                                </label>
                                 <input
-                                    type={showPassword ? "text" : "password"} // Toggle between "text" and "password"
+                                    id="password"
+                                    type={showPassword ? "text" : "password"}
                                     value={details.password}
                                     onChange={(e) => setDetails({ ...details, password: e.target.value })}
                                     required
+                                    className="mt-1 block w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 dark:bg-gray-700 dark:text-white"
                                 />
-                                <p>{status}</p>
                                 <button
                                     type="button"
-                                    onClick={() => setShowPassword(!showPassword)} // Toggle showPassword state
-                                    className="absolute right-2 top-1/2 transform -translate-y-1/2"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-600 dark:text-gray-400"
                                 >
-                                    {showPassword ? <FaEyeSlash size={20} className="mt-2 cursor-pointer  " /> : <FaEye size={20} className="mt-2 cursor-pointer  " />}
+                                    {showPassword ? <FaEyeSlash /> : <FaEye />}
                                 </button>
-                            </label>
+                                {status && <p className="mt-1 text-sm text-red-600">{status}</p>}
+                            </div>
                         )}
+                        <button
+                            type="submit"
+                            className="w-full px-4 py-2 text-white bg-orange-500 hover:bg-orange-600 rounded-md shadow focus:outline-none"
+                        >
+                            {exists ? 'Verify' : 'Proceed'}
+                        </button>
+                    </form>
+                    <div className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
+                        Or <Link href="/academics/apply" className="text-orange-500 hover:underline">create an account</Link>
                     </div>
-                    {verified?<Link href='/academics/studentPortal/Dashboard' className="btn  " >sign in</Link>:<button  className="btn" onClick={!exists ? check : login }>
-                        {exists ? 'verify' : 'Proceed'}
-                    </button>}
-                </form>
-                <div className="p-2 ml-[35%] mx-auto " >
-                or create an account <Link href='/academics/apply' className="text-blue-600 " >sign up</Link>
-            </div>
                 </div>
             ) : (
-                <div className="p-2 ml-[35%] mx-auto " >Loading.....</div>
+                <p className="text-gray-800 dark:text-white">Loading...</p>
             )}
         </div>
-    )
+    );
 }
