@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Cookies from 'js-cookie';
+import { useRouter } from "next/navigation";
 
 interface Student {
     student_id: string;
@@ -33,8 +34,11 @@ export default function Page() {
                 if (!response.ok) {
                     throw new Error('Failed to fetch students');
                 }
-                const info: Student[] = await response.json();
-                setData(info);
+                const info = await response.json();
+                // Populate data only if it hasn't been populated already
+                if (data.length === 0) {
+                    setData(info); // Store the array of student objects
+                }
             } catch (error) {
                 console.error(error);
             } finally {
@@ -42,33 +46,45 @@ export default function Page() {
             }
         }
         getStudents();
+        // Remove `data` as a dependency to prevent infinite loop
     }, []);
-
+    
     async function check(e: React.FormEvent) {
         e.preventDefault();
-        const user = data.find((student) => student.email === details.email);
-        if (user) {
-            const student_id = user.student_id;
-            if (student_id) {
-                setExists(true);
-                Cookies.set('s-id', JSON.stringify(student_id), { expires: 7, path: '/academics/studentPortal/' });
-                Cookies.set('s-user', JSON.stringify(user.names), { expires: 7, path: '/' });
+        if (data.length !== 0) {
+            // Find student object in the `data` array
+            const user = data.find((student) => student.email === details.email);
+            //alert(user ? JSON.stringify(user.email) : "No user found");
+            if (user) {
+                const student_id = user.student_id;
+                if (student_id) {
+                    setExists(true);
+                    Cookies.set('s-id', JSON.stringify(student_id), { expires: 7, path: '/academics/studentPortal/' });
+                    Cookies.set('s-user', JSON.stringify(user.names), { expires: 7, path: '/' });
+                } else {
+                    alert('Student ID is undefined');
+                }
             } else {
-                alert('Student ID is undefined');
+                alert('No matching email found');
             }
         } else {
-            alert('No matching email found');
+            alert("Student data is not loaded yet");
         }
     }
+    
 
     async function login(e: React.FormEvent) {
         e.preventDefault();
         const pass = data.find((student) => student.password === details.password);
         if (pass) {
             setVerified(true);
+            //alert("yey")
+            const router = await useRouter()
+            router.push('/')
         } else {
             setStatus('No matching email found');
             setVerified(false);
+            alert("ney")
         }
     }
 
@@ -120,12 +136,18 @@ export default function Page() {
                                 {status && <p className="mt-1 text-sm text-red-600">{status}</p>}
                             </div>
                         )}
-                        <button
+                        {exists?<button
                             type="submit"
                             className="w-full px-4 py-2 text-white bg-orange-500 hover:bg-orange-600 rounded-md shadow focus:outline-none"
                         >
-                            {exists ? 'Verify' : 'Proceed'}
-                        </button>
+                            Verify
+                        </button>:<button
+                            onClick={login}
+                            type="submit"
+                            className="w-full px-4 py-2 text-white bg-orange-500 hover:bg-orange-600 rounded-md shadow focus:outline-none"
+                        >
+                            Proceed
+                        </button>}
                     </form>
                     <div className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
                         Or <Link href="/academics/apply" className="text-orange-500 hover:underline">create an account</Link>
