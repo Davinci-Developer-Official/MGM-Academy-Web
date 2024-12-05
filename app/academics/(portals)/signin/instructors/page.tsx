@@ -36,7 +36,7 @@ export default function Page() {
         const instructors: Instructor[] = await response.json();
         
         const refined =instructors.map((student)=>student.email)
-        alert(refined)
+        //alert(refined)
         setData(instructors);
       } catch (error) {
         console.error(error);
@@ -125,13 +125,13 @@ export default function Page() {
 
             {status && <p className="text-red-500 text-sm mb-4">{status}</p>}
 
-            {exists&&<button
+            {!exists&&<button
               type="submit"
               className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
             >
               Proceed
             </button>}
-            {!verified&&<button onClick={handleLogin}
+            {verified&&<button onClick={handleLogin}
               type="submit"
               className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
             >
