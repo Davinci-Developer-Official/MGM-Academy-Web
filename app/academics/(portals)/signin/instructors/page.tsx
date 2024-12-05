@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
 
 interface Instructor {
   names: string;
@@ -13,6 +14,7 @@ interface Instructor {
 }
 
 export default function Page() {
+  const router = useRouter()
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<Instructor[]>([]);
   const [details, setDetails] = useState<Instructor>({
@@ -32,6 +34,9 @@ export default function Page() {
         const response = await fetch('/api/remodelled/instructors/get_instructor');
         if (!response.ok) throw new Error('Failed to fetch instructors');
         const instructors: Instructor[] = await response.json();
+        
+        const refined =instructors.map((student)=>student.email)
+        alert(refined)
         setData(instructors);
       } catch (error) {
         console.error(error);
@@ -69,6 +74,7 @@ export default function Page() {
     const instructor = data.find((inst) => inst.password === details.password);
     if (instructor) {
       setVerified(true);
+      router.push('/academics/instructorPortal/Dashboard')
     } else {
       setStatus('Incorrect password.');
     }
@@ -119,12 +125,18 @@ export default function Page() {
 
             {status && <p className="text-red-500 text-sm mb-4">{status}</p>}
 
-            <button
+            {exists&&<button
               type="submit"
               className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
             >
-              {exists ? 'Verify' : 'Proceed'}
-            </button>
+              Proceed
+            </button>}
+            {!verified&&<button onClick={handleLogin}
+              type="submit"
+              className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+            >
+              verifying ...
+            </button>}
           </form>
 
           {verified && (

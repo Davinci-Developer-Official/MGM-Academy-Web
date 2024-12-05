@@ -82,7 +82,7 @@ export default function Page() {
             setVerified(true);
             //alert("yey")
             
-            router.push('/')
+            setTimeout(()=>{router.push('/academics/studentPortal/Dashboard')},1000)
         } else {
             setStatus('No matching email found');
             setVerified(false);
@@ -140,17 +140,18 @@ export default function Page() {
                                 {status && <p className="mt-1 text-sm text-red-600">{status}</p>}
                             </div>
                         )}
-                        {exists?<button
-                            type="submit"
-                            className="w-full px-4 py-2 text-white bg-orange-500 hover:bg-orange-600 rounded-md shadow focus:outline-none"
-                        >
-                            Verify
-                        </button>:<button
-                            onClick={login}
+                        {!exists&&<button
                             type="submit"
                             className="w-full px-4 py-2 text-white bg-orange-500 hover:bg-orange-600 rounded-md shadow focus:outline-none"
                         >
                             Proceed
+                        </button>}
+                        {verified&&<button
+                            onClick={login}
+                            type="submit"
+                            className="w-full px-4 py-2 text-white bg-orange-500 hover:bg-orange-600 rounded-md shadow focus:outline-none"
+                        >
+                            Verifying ...
                         </button>}
                     </form>
                     <div className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
