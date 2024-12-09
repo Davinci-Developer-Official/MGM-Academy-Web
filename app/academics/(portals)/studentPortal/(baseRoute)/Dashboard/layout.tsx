@@ -1,75 +1,101 @@
-'use client'
+'use client';
 import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
-export default function Layout({ children, upcoming, topDeals }: { children: React.ReactNode, upcoming: React.ReactNode, topDeals: React.ReactNode }) {
-    const [activeTab, setActiveTab] = useState(1); // Setting the default active tab to 1
+export default function Layout({
+    children,
+    upcoming,
+    topDeals
+}: {
+    children: React.ReactNode,
+    upcoming: React.ReactNode,
+    topDeals: React.ReactNode
+}) {
+    const [activeTab, setActiveTab] = useState(1); // Default active tab to 1
+    const [userName, setUserName] = useState<string >();
+    const [loading, setLoading] = useState<boolean>(true); // Loading state to show the content while data is fetched
 
     useEffect(() => {
-        // Example effect (currently commented out)
-        // function getUser() {
-        //     const emailAddress = localStorage.getItem("s-email");
-        //     //@ts-ignore
-        //     setUser({ email: emailAddress });
-        //     if (user.email === "") {
-        //         // alert("failed localstorage");
-        //         setUserError(true);
-        //     }
-        // }
-        // getUser();
-    }, [activeTab]);
+        // Retrieve the user's name from cookies
+        const user = Cookies.get('s-user');
+        //alert(user)
+        if (user!=="") {
+            setUserName(user); // Set the user name if available
+        }
+        setLoading(false); // Set loading to false after fetching data
+    }, [userName]);
 
     return (
-        <div className=" h-screen p-1 flex flex-col background">
-            <div role="tablist" className="tabs tabs-bordered justify-center p-2">
+        <div className="h-screen w-full p-1 flex flex-col bg-gradient-to-br from-gray-100 via-white to-gray-50">
+            {/* Welcome Banner */}
+            <div className="p-4 bg-indigo-600 text-white shadow-md">
+                <h1 className="text-lg font-bold">
+                    {loading ? (
+                        <span>Loading...</span> // Show loading message while fetching user data
+                    ) : userName ? (
+                        `Welcome back, ${JSON.parse(userName)}!` // Show user name if available
+                    ) : (
+                        "Welcome to Your Dashboard!" // Fallback message if user name is not available
+                    )}
+                </h1>
+                <p className="text-sm">Manage your courses, notifications, and more in one place.</p>
+            </div>
+
+            {/* Tabs */}
+            <div role="tablist" className="tabs justify-center bg-gray-200 p=2 shadow-inner py-2">
                 <button
-                    name="my_tabs_1"
+                    name="tab_my_courses"
                     role="tab"
-                    className={`tab text-black lg:tooltip ${activeTab === 1 ? 'tab-active' : ''}`}
+                    className={`tab px-4 py-1 font-medium rounded-t-lg ${activeTab === 1 ? 'bg-white text-indigo-600 shadow' : 'text-gray-600'}`}
                     aria-label="Tab 1"
                     onClick={() => setActiveTab(1)}
-                    data-tip="get all course info"
                 >
                     My Courses
                 </button>
-
                 <button
-                    name="my_tabs_1"
+                    name="tab_courses"
                     role="tab"
-                    className={`tab text-black lg:tooltip ${activeTab === 3 ? 'tab-active' : ''}`}
+                    className={`tab px-4 py-1 font-medium rounded-t-lg ${activeTab === 3 ? 'bg-white text-indigo-600 shadow' : 'text-gray-600'}`}
                     aria-label="Tab 3"
                     onClick={() => setActiveTab(3)}
-                    data-tip=" find courses "
                 >
-                    courses
-                    <div className="badge badge-secondary text-white ml-1">new</div>
-                    
+                    Courses
+                    <span className="badge badge-secondary text-white ml-1">New</span>
                 </button>
-
                 <button
-                    name="my_tabs_1"
+                    name="tab_notifications"
                     role="tab"
-                    className={`tab text-black lg:tooltip ${activeTab === 2 ? 'tab-active' : ''}`}
+                    className={`tab px-4 py-1 font-medium rounded-t-lg ${activeTab === 2 ? 'bg-white text-indigo-600 shadow' : 'text-gray-600'}`}
                     aria-label="Tab 2"
                     onClick={() => setActiveTab(2)}
-                    data-tip="view notifications "
                 >
-                    notifications
-                    <div className="badge badge-primary text-white ml-1">5</div>
+                    Notifications
+                    <span className="badge badge-primary text-white ml-1">5</span>
                 </button>
             </div>
 
-            <div className="flex-1 overflow-auto p-2">
-                {/* Content for the active tab */}
+            {/* Content Area */}
+            <div className="flex-1 overflow-auto p-6">
                 {activeTab === 1 && (
-                    <div role="tabpanel" className="tab-content p-10">{children}</div>
+                    <div role="tabpanel" className="tab-content bg-white p-6 rounded-md shadow-md">
+                        {children}
+                    </div>
                 )}
                 {activeTab === 3 && (
-                    <div role="tabpanel" className="tab-content p-10 w-full h-full">{topDeals}</div>
+                    <div role="tabpanel" className="tab-content bg-white p-6 rounded-md shadow-md">
+                        {topDeals}
+                    </div>
                 )}
                 {activeTab === 2 && (
-                    <div role="tabpanel" className="tab-content p-10">{upcoming}</div>
+                    <div role="tabpanel" className="tab-content bg-white p-6 rounded-md shadow-md">
+                        {upcoming}
+                    </div>
                 )}
-                
+            </div>
+
+            {/* Footer */}
+            <div className="p-4 bg-gray-100 text-center text-sm text-gray-500 border-t">
+                © 2024 Your App. All rights reserved.
             </div>
         </div>
     );

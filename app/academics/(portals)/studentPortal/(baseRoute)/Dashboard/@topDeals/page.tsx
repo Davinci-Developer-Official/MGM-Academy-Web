@@ -1,6 +1,6 @@
 "use client";
 
-import { FaArrowRight, FaCaretDown, FaCartPlus, FaCompress, FaExpand, FaGraduationCap, FaInfoCircle, FaTimesCircle } from "react-icons/fa";
+import { FaArrowRight, FaCaretDown, FaCartPlus, FaGraduationCap, FaInfoCircle, FaTimesCircle } from "react-icons/fa";
 import { useCallback, useEffect, useState } from "react";
 import data from "./data.json";
 import Image from "next/image";
@@ -85,45 +85,39 @@ const CoursesPage = () => {
   }, [selectedCategory, fetchData]);
 
   return (
-    <div className="flex flex-col w-full h-screen background">
-      <div className="flex flex-row h-fit  justify-between p-4">
-     
-
-        <p className=" font-bold lg:text-xl md:text-lg flex flex  row sm:text-sm"><p>MGM Courses</p> <FaGraduationCap size={20} /></p> 
+    <div className="flex flex-col w-full h-screen bg-gray-100 text-black dark:bg-gray-900 dark:text-gray-100 transition-all"> {/*bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500*/}
+      <div className="flex flex-row h-fit  justify-between p-4 items-center rounded-xl">{/*bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 */}
+        <p className="font-bold text-2xl flex items-center"><FaGraduationCap size={24} className="mr-2" /> MGM Courses</p>
         <div className="relative">
           <button
-            className="btn btn-ghost h-fit text-left w-full"
+            className="btn btn-ghost h-fit text-left w-full text-lg flex items-center space-x-2"
             onClick={() => setRenderCategory(!renderCategory)}
           >
-            {selectedCategory !== "" ? (
-              <p className="sm:text-sm">{selectedCategory}</p>
-            ) : (
-              <p>ALL</p>
-            )}
-            <FaCaretDown size={20} className="ml-2" />
+            <span>{selectedCategory !== "" ? selectedCategory : "ALL"}</span>
+            <FaCaretDown size={20} />
           </button>
           {renderCategory && (
-            <ul className="absolute top-full mt-1 w-[150px] card border rounded-md shadow-md border-gray-300 shadow-lg max-h-64 overflow-y-auto z-10">
+            <ul className="absolute top-full mt-2 w-48 bg-white dark:bg-gray-800 text-black dark:text-gray-100 rounded-lg shadow-lg max-h-60 overflow-y-auto z-10">
               <li>
                 <button
-                  className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                  className="w-full text-left px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700"
                   onClick={() => {
                     setSelectedCategory("");
                     setRenderCategory(false);
-                    setCurrentPage(1); // Reset to the first page when changing category
+                    setCurrentPage(1);
                   }}
                 >
                   ALL
                 </button>
               </li>
               {filteredData.map((category, index) => (
-                <li key={category || index} className=" " >
+                <li key={category || index}>
                   <button
-                    className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                    className="w-full text-left px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700"
                     onClick={() => {
                       setSelectedCategory(category);
                       setRenderCategory(false);
-                      setCurrentPage(1); // Reset to the first page when changing category
+                      setCurrentPage(1);
                     }}
                   >
                     {category}
@@ -133,65 +127,54 @@ const CoursesPage = () => {
             </ul>
           )}
         </div>
-        
       </div>
 
-      {/* Grid layout for courses */}
-      <div className="w-full overflow-y-auto h-screen p-2 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4">
+      <div className=" overflow-y-auto p-4 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6">
         {currentCourses.map((course) => (
-          <div key={course.unitCode} className="bg-gray-200 mt-1 mx-auto card w-full h-fit shadow-xl shadow-gray-500">
+          <div key={course.unitCode} className=" dark:bg-gray-800 hover:bg-gray-700 rounded-xl p-4 transition-all shadow-2xl transform hover:scale-105">
             <figure>
-              <Image src={placeholder} alt="placeholder Image" className="w-full h-48 object-cover" />
+              <Image src={placeholder} alt="placeholder Image" className="w-full h-48 object-cover rounded-lg" />
             </figure>
-            <h2 className="card-title p-2 font-bold font-serif">{course.title}</h2>
-            <div className="card-title p-2 flex flex-row justify-between w-[90%] mx-auto">
-              <p className="font-semibold font-mono text-base">Course Requirements:</p>
+            <h2 className="font-bold text-xl mt-2">{course.title}</h2>
+            <div className="flex justify-between items-center mt-2">
+              <p className="font-medium text-sm">Course Requirements:</p>
               {!showRequirements[course.unitCode] ? (
                 <FaInfoCircle
                   size={18}
                   className="cursor-pointer"
-                  onClick={(e:any) => {
-                    e.preventDefault();
-                    toggleShowRequirements(course.unitCode);
-                  }}
+                  onClick={() => toggleShowRequirements(course.unitCode)}
                 />
               ) : (
                 <FaTimesCircle
                   size={18}
                   className="cursor-pointer"
-                  onClick={(e:any) => {
-                    e.preventDefault();
-                    toggleShowRequirements(course.unitCode);
-                  }}
+                  onClick={() => toggleShowRequirements(course.unitCode)}
                 />
               )}
             </div>
             {showRequirements[course.unitCode] && (
-              <ul className="bg-white card-body">
+              <ul className="bg-gray-900 text-sm mt-2 p-2 rounded-lg">
                 {course.courseRequirements.map((requirement, index) => (
                   <li key={index}>{requirement}</li>
                 ))}
               </ul>
             )}
-            <div className="card-actions justify-start p-1">
-              <div className="label ml-5">$ 499.99</div>
-              <div className="label">{course.category}</div>
-              <div className="label pt-3">
+            <div className="flex justify-between items-center mt-3">
+              <span className="text-lg font-bold">$499.99</span>
+              <span className="text-sm">{course.category}</span>
+              <div className="pt-3">
                 <Rating rating={5} />
               </div>
-              <label
-                htmlFor="my_modal_7"
-                className="ml-[18%] text-blue-600 cursor-pointer hover:text-red-500 flex flex-row"
-                onClick={() => {
-                  setSelectedCourse(course);
-                }}
+              <button
+                className="ml-5 text-blue-600 hover:text-red-500"
+                onClick={() => setSelectedCourse(course)}
               >
-                <p>more info</p>
-                <FaInfoCircle size={20} className="ml-1" />
-              </label>
+                <FaInfoCircle size={20} className="inline mr-1" />
+                More Info
+              </button>
             </div>
-            <Link href="/academics/Courses/content" className="btn bg-gray-300 text-black font-serif border-none hover:bg-gray-400 hover:text-black">
-              buy
+            <Link href="/academics/Courses/content" className="btn bg-purple-600 text-white mt-3 w-full hover:bg-purple-500">
+              Buy
               <FaCartPlus size={20} />
             </Link>
           </div>
@@ -199,7 +182,7 @@ const CoursesPage = () => {
       </div>
 
       {/* Pagination */}
-      <div className="flex justify-center mt-4 text-black font-mono font-semibold h-[50px]">
+      <div className="flex justify-center mt-6">
         <div className="join">
           <button
             className="join-item btn"
@@ -208,7 +191,7 @@ const CoursesPage = () => {
           >
             «
           </button>
-          <button className="join-item btn btn-ghost lg:p-2">Page {currentPage}</button>
+          <button className="join-item btn btn-ghost">Page {currentPage}</button>
           <button
             className="join-item btn"
             onClick={() => paginate(currentPage + 1)}
@@ -219,16 +202,16 @@ const CoursesPage = () => {
         </div>
       </div>
 
-      {/* Modal showing course details */}
-      <input type="checkbox" id="my_modal_7" className="modal-toggle" />
-      <div className="modal" role="dialog">
-        <div className="modal-box bg-white">
+      {/* Modal for Course Details */}
+      <input type="checkbox" id="course-modal" className="modal-toggle" />
+      <div className="modal">
+        <div className="modal-box bg-white dark:bg-gray-800 text-black dark:text-white">
           <h3 className="text-lg font-bold">Course Outline</h3>
           {selectedCourse && (
-            <div className="card mt-1 h-full">
+            <div className="card mt-3">
               {selectedCourse.topics.map((topic, index) => (
-                <div key={index} className="card-title bg-gray-200 mt-1 w-[96%] mx-auto flex flex-col">
-                  <div className="card-title flex flex-row justify-between w-[90%] mx-auto">
+                <div key={index} className="card-title bg-gray-200 dark:bg-gray-700 mt-2 rounded-lg p-2">
+                  <div className="flex justify-between items-center">
                     <p>{topic.unit}:</p>
                     <FaTimesCircle
                       size={18}
@@ -236,23 +219,19 @@ const CoursesPage = () => {
                       onClick={() => toggleShowSubTopics(selectedCourse.unitCode, index)}
                     />
                   </div>
-                  <div className="card-body">
-                    {showSubTopics[selectedCourse.unitCode]?.[index] && (
-                      <ul className="list-disc list-inside">
-                        {topic.subtopics.map((subtopic, subIndex) => (
-                          <li key={subIndex}>{subtopic}</li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
+                  {showSubTopics[selectedCourse.unitCode]?.[index] && (
+                    <ul className="list-disc ml-5 mt-2">
+                      {topic.subtopics.map((subtopic, subIndex) => (
+                        <li key={subIndex}>{subtopic}</li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               ))}
             </div>
           )}
           <div className="modal-action">
-            <label htmlFor="my_modal_7" className="btn bg-gray-300 text-black font-serif border-none hover:bg-gray-400 hover:text-black">
-              Close
-            </label>
+            <label htmlFor="course-modal" className="btn btn-primary">Close</label>
           </div>
         </div>
       </div>

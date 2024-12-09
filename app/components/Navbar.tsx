@@ -118,7 +118,7 @@ function Navbar() {
                   className="w-8 h-8 rounded-full border border-white mr-2"
                 />
                 <span className="hidden lg:block text-sm">
-                  Welcome, {user || 'User'}
+                  Welcome, {JSON.parse(user)}
                 </span>
               </>
             ) : (
@@ -129,11 +129,11 @@ function Navbar() {
             <div className="absolute right-0 mt-2 w-48 bg-[#2d545e] text-orange-600 dark:bg-gray-800 shadow-lg rounded-lg py-2 z-50">
               {loggedIn ? (
                 <>
-                  <Link href="/profile/settings" className="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700">
+                  <Link href={userType === 'student' ? "/academics/studentPortal/Profile":"/academics/instructorPortal/Profile"} className="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700">
                     Profile Settings
                   </Link>
                   <Link
-                    href={userType === 'student' ? '/portal/student' : '/portal/instructor'}
+                    href={userType === 'student' ? '/academics/studentPortal/Dashboard' : '/academics/instructorPortal/Dashboard'}
                     className="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700"
                   >
                     {userType === 'student' ? 'Student Portal' : 'Instructor Portal'}
