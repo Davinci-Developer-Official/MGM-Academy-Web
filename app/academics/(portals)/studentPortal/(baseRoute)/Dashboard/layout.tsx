@@ -26,7 +26,7 @@ export default function Layout({
     }, [userName]);
 
     return (
-        <div className="h-screen w-full p-1 flex flex-col bg-gradient-to-br from-gray-100 via-white to-gray-50">
+        <div className="h-screen w-full p-1 flex flex-col bg-gray-100 dark:bg-gray-900">
             {/* Welcome Banner */}
             <div className="p-4 bg-indigo-600 text-white shadow-md">
                 <h1 className="text-lg font-bold">
@@ -77,25 +77,25 @@ export default function Layout({
             {/* Content Area */}
             <div className="flex-1 overflow-auto p-6">
                 {activeTab === 1 && (
-                    <div role="tabpanel" className="tab-content bg-white p-6 rounded-md shadow-md">
+                    <div role="tabpanel" className="tab-content bg-white dark:bg-gray-900 p-6 rounded-md ">
                         {children}
                     </div>
                 )}
                 {activeTab === 3 && (
-                    <div role="tabpanel" className="tab-content bg-white p-6 rounded-md shadow-md">
+                    <div role="tabpanel" className="tab-content bg-white dark:bg-gray-900 p-6 rounded-md ">
                         {topDeals}
                     </div>
                 )}
                 {activeTab === 2 && (
-                    <div role="tabpanel" className="tab-content bg-white p-6 rounded-md shadow-md">
+                    <div role="tabpanel" className="tab-content bg-white dark:bg-gray-900 p-6 rounded-md ">
                         {upcoming}
                     </div>
                 )}
             </div>
 
             {/* Footer */}
-            <div className="p-4 bg-gray-100 text-center text-sm text-gray-500 border-t">
-                © 2024 Your App. All rights reserved.
+            <div className="p-4 bg-gray-100 dark:bg-gray-900 dark:text-gray-100 text-center text-sm text-gray-500 border-t">
+                © 2024 MGM institute All rights reserved.
             </div>
         </div>
     );

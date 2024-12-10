@@ -9,6 +9,8 @@ import Link from "next/link";
 import collect from "collect.js";
 import placeholder from '@/public/categories/business-studies-FO8nWoT6OnZ7DXO6xYA2TnRK4kzhwt.jpg';
 
+import { useRouter } from "next/navigation";
+
 type Course = {
   title: string;
   courseRequirements: string[];
@@ -21,6 +23,9 @@ type Course = {
 };
 
 const CoursesPage = () => {
+
+  const router = useRouter()
+
   const [showRequirements, setShowRequirements] = useState<Record<string, boolean>>({});
   const [showSubTopics, setShowSubTopics] = useState<Record<string, Record<number, boolean>>>({});
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
@@ -85,7 +90,7 @@ const CoursesPage = () => {
   }, [selectedCategory, fetchData]);
 
   return (
-    <div className="flex flex-col w-full h-screen bg-gray-100 text-black dark:bg-gray-900 dark:text-gray-100 transition-all"> {/*bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500*/}
+    <div className="flex flex-col w-full h-screen bg-gray-100 dark:text-gray-100 text-black dark:bg-gray-900 dark:text-gray-100 transition-all"> {/*bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500*/}
       <div className="flex flex-row h-fit  justify-between p-4 items-center rounded-xl">{/*bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 */}
         <p className="font-bold text-2xl flex items-center"><FaGraduationCap size={24} className="mr-2" /> MGM Courses</p>
         <div className="relative">
@@ -173,10 +178,12 @@ const CoursesPage = () => {
                 More Info
               </button>
             </div>
-            <Link href="/academics/Courses/content" className="btn bg-purple-600 text-white mt-3 w-full hover:bg-purple-500">
+            <button onClick={()=>{
+              router.push(`/academics/Courses/${course.title}`);
+            }} className="btn bg-purple-600 text-white mt-3 w-full hover:bg-purple-500">
               Buy
               <FaCartPlus size={20} />
-            </Link>
+            </button>
           </div>
         ))}
       </div>

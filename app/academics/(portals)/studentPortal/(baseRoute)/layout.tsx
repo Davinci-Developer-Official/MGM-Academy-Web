@@ -7,6 +7,7 @@ import ElearningStudentNavbar from "@/app/components/ElearningStudentNavbar";
 import NotificationStudents from "@/app/components/NotificationStudents";
 import { NodeNextRequest } from "next/dist/server/base-http/node";
 import { useEffect, useState } from "react";
+import Navbar from "@/app/components/Navbar";
 
 interface Student {
   id: number;
@@ -96,7 +97,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex flex-col" >
-    <ElearningStudentNavbar/>
+    <Navbar/>
     <div className="flex flex-col lg:flex-row h-screen w-full bg-white ">
     
   {/*<div className="lg:w-auto z-10 ">

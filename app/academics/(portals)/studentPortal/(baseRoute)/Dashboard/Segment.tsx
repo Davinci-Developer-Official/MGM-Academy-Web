@@ -77,7 +77,7 @@ const Segment = () => {
   };
 
   return (
-    <div className="bg-gray-50 text-gray-800 w-full h-full p-4 flex flex-col items-center">
+    <div className="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 w-full h-full p-4 flex flex-col items-center">
       {/* Search and Filter */}
       <div className="flex flex-col lg:flex-row items-center w-full max-w-3xl mb-6 gap-4">
         <input
@@ -88,7 +88,7 @@ const Segment = () => {
           onChange={(e) => setSearchQuery(e.target.value)}
         />
         <select
-          className="select select-bordered lg:w-1/4"
+          className="select select-bordered lg:w-1/4 bg-gray-100 dark:bg-gray-800 dark:text-gray-100 "
           value={selectedStatus}
           onChange={(e) => setSelectedStatus(e.target.value)}
         >
@@ -103,7 +103,7 @@ const Segment = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-4xl">
         {paginatedCourses.length > 0 ? (
           paginatedCourses.map((course) => (
-            <div key={course.id} className="relative p-4 bg-white rounded-lg shadow-md flex flex-col">
+            <div key={course.id} className="relative p-4 bg-white rounded-lg dark:bg-gray-800 dark:text-gray-100 shadow-md flex flex-col">
               <Image src={course.image} alt={course.name} className="w-full h-40 object-cover rounded-md" />
               <h2 className="mt-4 text-lg font-semibold">{course.name}</h2>
               <p className="text-sm text-gray-600">Instructor: {course.instructor}</p>

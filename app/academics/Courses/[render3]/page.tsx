@@ -1,131 +1,111 @@
 'use client';
-import React, { useEffect, useMemo, useState } from 'react';
-import { FaBars, FaCaretDown, FaCaretLeft, FaCaretRight, FaCaretUp, FaEllipsisH, FaEllipsisV, FaEyeSlash, FaFacebookMessenger, FaInfoCircle, FaMinus, FaPlus } from 'react-icons/fa';
+import React, { useEffect, useState } from 'react';
+import { FaBars, FaEyeSlash, FaFacebookMessenger } from 'react-icons/fa';
 import data from "./data.json";
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
+import Image from 'next/image';
 
-
-interface Courses{
-  id:string
-  cover:string;
-  title:string;
-  description:string;
-  instructor_id:string;
-  created:string
-}
-interface Chapters{
-  id:string;
-  course_id:string;
-  title:string;
-  description:string;
-  order:string;
-  created:string;
-  file:string;
-  video:string
+interface Courses {
+  id: string;
+  cover: string;
+  title: string;
+  description: string;
+  instructor_id: string;
+  created: string;
 }
 
+interface Chapters {
+  id: string;
+  course_id: string;
+  title: string;
+  description: string;
+  order: string;
+  created: string;
+  file: string;
+  video: string;
+}
 
-function Page(Course:Courses) {
-
- 
-
+function Page() {
   const [expandedTopics, setExpandedTopics] = useState<{ [key: number]: boolean }>({});
+  const [options, setOptions] = useState(false);
+  const [selectedSubtopic, setSelectedSubtopic] = useState("");
+  const router = useRouter();
 
   const toggleSubTopics = (index: number) => {
-    setExpandedTopics(prev => ({
+    setExpandedTopics((prev) => ({
       ...prev,
-      [index]: !prev[index]
+      [index]: !prev[index],
     }));
   };
-  
 
-  // Find the course with unitCode 'GS104'
-  const [course,setCourse]  = useState<Courses[]>([]);
-  {/*
-    {
-    id: "",
-    cover:"",
-    title: "",
-    description: "",
-    instructor_id: "",
-    created: ""
-  }
-    */}
-  
-  const[chapters,setChapters]= useState<Chapters[]>([])
-  const[error,setError]=useState()
-  const[arrCourse,setArrCourse]=useState<Courses[]>([])
-  const[loading,setLoading]=useState(false)
-  const used_id = '21feb3ce-14ce-497c-99c1-a2fd9a4b772f'
- 
-  
-  if (!course) {
-    return <div>Course not found</div>;
-  }
-
-  const info = data.courses[0]
-  const[options,setOptions]=useState(false)
-  
-  //alert(JSON.stringify(info))
-  const router = useRouter()
-  const [isMounted, setIsMounted] = useState(false);
-  const[selectedSubtopic,setSelectSubtopic]=useState("")
-  
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  const handleClick = async(chapter:string) => {
-    if (isMounted) {
-      //const i = info.topics.map
-      const topic= await Cookies.get('c-course')
-      router.push(`/academics/Courses/${topic}/${chapter}`);
-      //await CurrentItem({label:'current-course',content:id});
-    }
+  const info = data.courses[0]; // Sample data from the JSON
+  const handleClick = async (chapter: string) => {
+    const topic = await Cookies.get('c-course');
+    router.push(`/academics/Courses/${topic}/${chapter}`);
   };
+
   return (
-    <div className='bg-gray-300 text-black' >
-      <div className='h-fit w-[80%] mx-auto bg-gray-200 p-2 ' >
-        <div className='underline text-blue-400 text-center text-lg ' > {info.title}  </div>
-        <div className='w-[99%] mx-auto p-2 mt-2 flex flex-col ' > 
-          <div className='flex flex-row-reverse p-2 justify-between  w-full bg-gray-200 ' >
-            <div className='flex flex-row p-1 '>
-              <img src={info.instructor.photo} alt="" className='h-[25px] w-[25px] rounded-full bg-red-300  '  />
-              <p className='ml-1 ' > {info.instructor.name} </p>
-              <div>
-              <FaFacebookMessenger size={20} className='cursor-pointer ml-1 '  />
-              </div>
-            </div>
-            <p className='text-center text-lg text-blue-400  ' >overview</p> 
-            {options==false?<button onClick={()=>{
-              setOptions(true)
-            }} ><FaBars size={20} /></button>:<button onClick={()=>{
-              setOptions(false)
-            }} ><FaEyeSlash size={20} /></button>}
-            {options&&<div className='h-[200px] w-[200px] bg-red-400 absolute z-100  ' >
-              <p>yes</p>
-              </div>}
-          </div>
-          <p>{info.overview}</p> 
-         
-          
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+      {/* Course Header */}
+      <div className="max-w-4xl mx-auto p-4">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold underline text-blue-500">{info.title}</h1>
         </div>
 
-        <div className='flex flex-col h-[400px] w-full bg-gray-200 p-2  ' >
-            <p className='text-blue-400 text-center  text-lg  ' > chapters </p>
-            <div className='h-full overflow-y-auto ' >
-              {info.topics.map((chapter)=>(
-                <div key={chapter.unit} className='bg-gray-200 p-2 mt-1 w-[90%] mx-auto rounded-md ' >
-                  <p onClick={()=>{
-                    setSelectSubtopic(chapter.unit)
-                    handleClick(selectedSubtopic)
-                  }} className='text-purple-600 underline cursor-pointer hover:text-red-400  ' > {chapter.unit} </p>
-                  <p className='text-black  cursor-pointer hover:text-urple-400  ' >{chapter.subtopics}</p>
-                </div>
-              ))}
+        {/* Instructor and Overview Section */}
+        <div className="flex justify-between items-center bg-gray-200 dark:bg-gray-800 p-4 rounded-lg mt-4">
+          <div className="flex items-center">
+            <Image
+              src={info.instructor.photo}
+              alt={info.instructor.name}
+              width={30}
+              height={30}
+              className="rounded-full"
+            />
+            <p className="ml-2 font-semibold">{info.instructor.name}</p>
+            <FaFacebookMessenger size={20} className="ml-2 cursor-pointer text-blue-500" />
+          </div>
+          <p className="text-blue-500 font-medium">Overview</p>
+          <button onClick={() => setOptions(!options)} className="relative">
+            {options ? (
+              <FaEyeSlash size={20} />
+            ) : (
+              <FaBars size={20} />
+            )}
+          </button>
+          {options && (
+            <div className="absolute top-12 right-0 bg-white dark:bg-gray-700 shadow-lg p-4 rounded-md w-48">
+              <p className="text-sm">More Options</p>
             </div>
+          )}
+        </div>
+        <p className="mt-4">{info.overview}</p>
+      </div>
+
+      {/* Chapters Section */}
+      <div className="max-w-4xl mx-auto mt-6 bg-gray-200 dark:bg-gray-800 p-4 rounded-lg">
+        <h2 className="text-center text-lg font-bold text-blue-500">Chapters</h2>
+        <div className="mt-4 max-h-96 overflow-y-auto space-y-4">
+          {info.topics.map((chapter, index) => (
+            <div
+              key={chapter.unit}
+              className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow-sm hover:shadow-md"
+            >
+              <p
+                onClick={() => {
+                  setSelectedSubtopic(chapter.unit);
+                  handleClick(selectedSubtopic);
+                }}
+                className="text-blue-500 underline cursor-pointer hover:text-blue-300"
+              >
+                {chapter.unit}
+              </p>
+              <div>
+                <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">{chapter.subtopics}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -133,6 +113,7 @@ function Page(Course:Courses) {
 }
 
 export default Page;
+
 
 {/*{course.length!==0?course.map((data:Courses)=>(
         <div key={data.id} className='bg-red-400 w-[80%] mx-auto h-[300px] ' >
