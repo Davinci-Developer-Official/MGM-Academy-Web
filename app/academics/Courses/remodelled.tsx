@@ -23,9 +23,8 @@ const ITEMS_PER_PAGE = 6;
 
 const TopicsList: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  
   const totalPages = Math.ceil(allTopics.length / ITEMS_PER_PAGE);
-  
+
   const handleNext = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
   };
@@ -37,49 +36,54 @@ const TopicsList: React.FC = () => {
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const currentTopics = allTopics.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
-  const router = useRouter()
+  const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
- const[selectedSubtopic,setSelectSubtopic]=useState("")
-  const handleClick = async(topic:string) => {
+
+  const handleClick = async (topic: string) => {
     if (isMounted) {
-      //const i = info.topics.map
       router.push(`/academics/Courses/${topic}`);
-      await Cookies.set('c-course',topic)
-      await Cookies.set('s-check','loggedIn')
-      //await CurrentItem({label:'current-course',content:id});
+      Cookies.set('c-course', topic);
+      Cookies.set('s-check', 'loggedIn');
     }
   };
+
   return (
-    <div className="flex flex-col items-center p-5 w-full h-full">
-      <h1 className="text-2xl font-bold mb-6">Course Categories</h1>
+    <div className="flex flex-col items-center p-6 w-full h-full bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+      <h1 className="text-3xl font-bold mb-8">Explore Course Categories</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-11/12 max-w-screen-lg">
         {currentTopics.map((topic, index) => (
-          <div key={index} className="bg-gray-100 rounded-lg p-4 shadow-md">
-            <button onClick={()=>{
-              handleClick(topic.title)
-            }} className="text-xl hover:text-blue-400 hover:underline font-semibold mb-2">{topic.title}</button>
-            <p className="text-gray-700">{topic.overview}</p>
+          <div
+            key={index}
+            className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg transform transition-transform hover:scale-105"
+          >
+            <button
+              onClick={() => handleClick(topic.title)}
+              className="text-xl font-semibold hover:text-blue-500 hover:underline focus:outline-none"
+            >
+              {topic.title}
+            </button>
+            <p className="text-sm mt-4 leading-relaxed">{topic.overview}</p>
           </div>
         ))}
       </div>
-      <div className="flex justify-center items-center mt-6 space-x-4">
-        <button 
-          onClick={handlePrevious} 
-          className="px-4 py-2 bg-blue-500 text-white rounded disabled:bg-blue-300"
+      <div className="flex justify-center items-center mt-8 space-x-4">
+        <button
+          onClick={handlePrevious}
+          className="px-4 py-2 bg-blue-600 dark:bg-blue-700 text-white rounded-lg shadow-md transition-colors disabled:bg-blue-300 disabled:cursor-not-allowed"
           disabled={currentPage === 1}
         >
           &laquo; Previous
         </button>
-        <span className="text-lg">
+        <span className="text-lg font-medium">
           Page {currentPage} of {totalPages}
         </span>
-        <button 
-          onClick={handleNext} 
-          className="px-4 py-2 bg-blue-500 text-white rounded disabled:bg-blue-300"
+        <button
+          onClick={handleNext}
+          className="px-4 py-2 bg-blue-600 dark:bg-blue-700 text-white rounded-lg shadow-md transition-colors disabled:bg-blue-300 disabled:cursor-not-allowed"
           disabled={currentPage === totalPages}
         >
           Next &raquo;

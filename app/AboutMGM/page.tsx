@@ -3,7 +3,7 @@ import './timeline.css'
 
 function page() {
   return (
-    <div className='background w-full p-5  bg-white  ' >
+    <div className='bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 w-full p-5  bg-white  ' >
         <ul className="timeline max-md:timeline-compact">
       <li>
         <div className="timeline-middle">
@@ -20,7 +20,7 @@ function page() {
             />
           </svg>
         </div>
-        <div className="p-2 lg:w-[50%] md:w-[50%] w-full lg:right-[50%] md:right-[50%] rounded-md p-2  bg-gray-100 mb-10">
+        <div className="p-2 lg:w-[50%] md:w-[50%] w-full lg:right-[50%] md:right-[50%] rounded-md p-2  bg-gray-100 dark:bg-gray-800 mb-10">
           <time className="font-mono italic"> MGM admin </time>
           <div className="text-lg font-black"> Our Vision </div>
           <p>
@@ -45,7 +45,7 @@ function page() {
             />
           </svg>
         </div>
-        <div className="timeline-end p-2 lg:w-[50%] md:w-[50%] w-full lg:left-[50%] md:left-[50%] rounded-md p-2 bg-gray-100 mb-10 ">
+        <div className="timeline-end p-2 lg:w-[50%] md:w-[50%] w-full lg:left-[50%] md:left-[50%] rounded-md p-2 bg-gray-100 dark:bg-gray-800 mb-10 ">
           <time className="font-mono italic"> MGM admin </time>
           <div className="text-lg font-black"> Our Mission </div>
           <p>
@@ -70,7 +70,7 @@ function page() {
             />
           </svg>
         </div>
-        <div className="lg:w-[50%] md:w-[50%] w-full lg:right-[50%] md:right-[50%]  rounded-md p-2 bg-gray-100 mb-10">
+        <div className="lg:w-[50%] md:w-[50%] w-full lg:right-[50%] md:right-[50%]  rounded-md p-2 bg-gray-100 dark:bg-gray-800 mb-10">
           <time className="font-mono italic"> MGM admin </time>
           <div className="text-lg font-black"> Our Key Initiative </div>
           <p>
@@ -95,7 +95,7 @@ function page() {
             />
           </svg>
         </div>
-        <div className="timeline-end lg:w-[50%] md:w-[50%] w-full lg:right-[50%] md:right-[50%] rounded-md p-2  bg-gray-100 mb-10 ">
+        <div className="timeline-end lg:w-[50%] md:w-[50%] w-full lg:right-[50%] md:right-[50%] rounded-md p-2  bg-gray-100 dark:bg-gray-800 mb-10 ">
           <time className="font-mono italic"> MGM admin </time>
           <div className="text-lg font-black">Our Expected Impact </div>
           <p>
@@ -123,7 +123,7 @@ function page() {
             />
           </svg>
         </div>
-        <div className="lg:w-[50%] md:w-[50%] w-full lg:right-[50%] md:right-[50%] rounded-md p-2 bg-gray-100 mb-10">
+        <div className="lg:w-[50%] md:w-[50%] w-full lg:right-[50%] md:right-[50%] rounded-md p-2 bg-gray-100 dark:bg-gray-800 mb-10">
           <time className="font-mono italic"> MGM admin </time>
           <div className="text-lg font-black"> Our Future Direction </div>
           <p>

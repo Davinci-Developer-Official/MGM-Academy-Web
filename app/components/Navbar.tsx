@@ -82,7 +82,7 @@ function Navbar() {
             </span>
             {aboutUsMenuOpen && (
               <div className="absolute bg-[#2d545e] text-orange-600 dark:bg-gray-800 shadow-lg rounded-lg py-2 mt-2 w-48">
-                <Link href="/about" className="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700">
+                <Link href="/AboutMGM" className="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700">
                   About Us Page
                 </Link>
                 <Link href="/team" className="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700">
