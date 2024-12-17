@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { put, del } from '@vercel/blob';
 
 const CourseForm = () => {
-  const [coverUrl, setCoverUrl] = useState<string>(''); // Holds the uploaded Vercel image URL
-  const [localImageFile, setLocalImageFile] = useState<File | null>(null); // Holds the selected image file locally
+  const [coverUrl, setCoverUrl] = useState<string>('');
+  const [localImageFile, setLocalImageFile] = useState<File | null>(null);
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [instructor, setInstructor] = useState<string>('');
@@ -14,7 +14,7 @@ const CourseForm = () => {
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
-    setLocalImageFile(file); // Set the selected image file locally
+    setLocalImageFile(file);
   };
 
   const handleImageUpload = async () => {
@@ -26,7 +26,7 @@ const CourseForm = () => {
     try {
       const blob = await uploadImage(localImageFile);
       if (blob) {
-        setCoverUrl(blob.url); // Store only the Vercel image URL after successful upload
+        setCoverUrl(blob.url);
         setError(null);
         console.log('Image uploaded successfully!');
       } else {
@@ -38,15 +38,15 @@ const CourseForm = () => {
     }
   };
 
-  const handleImageDelete =  () => {
+  const handleImageDelete = () => {
     if (!coverUrl) {
       setError('No uploaded image to delete.');
       return;
     }
 
     try {
-       deleteImage(coverUrl); // Delete the image from Vercel
-      setCoverUrl(''); // Clear the uploaded image URL
+      deleteImage(coverUrl);
+      setCoverUrl('');
       console.log('Image deleted successfully!');
     } catch (error) {
       console.error('Error deleting image:', error);
@@ -79,8 +79,7 @@ const CourseForm = () => {
 
       if (response.ok) {
         alert('Course created successfully!');
-        // Reset form
-        setCoverUrl(''); // Reset the uploaded cover URL
+        setCoverUrl('');
         setTitle('');
         setDescription('');
         setInstructor('');
@@ -98,10 +97,10 @@ const CourseForm = () => {
     try {
       const blob = await put(imageFile.name, imageFile, {
         access: 'public',
-        token: 'vercel_blob_rw_jDNRDIzn5HpnU1jS_mb5wAReKxQIubo7b0VP1ejgTk6ffcz', // Use your access token
+        token: 'vercel_blob_rw_jDNRDIzn5HpnU1jS_mb5wAReKxQIubo7b0VP1ejgTk6ffcz',
       });
       console.log('Uploaded image:', blob);
-      return blob; // Return the blob object containing the URL
+      return blob;
     } catch (error) {
       console.error('Error uploading image:', error);
       return null;
@@ -111,7 +110,7 @@ const CourseForm = () => {
   const deleteImage = async (url: string) => {
     try {
       await del(url, {
-        token: 'vercel_blob_rw_jDNRDIzn5HpnU1jS_mb5wAReKxQIubo7b0VP1ejgTk6ffcz', // Use your access token
+        token: 'vercel_blob_rw_jDNRDIzn5HpnU1jS_mb5wAReKxQIubo7b0VP1ejgTk6ffcz',
       });
       console.log('Deleted image:', url);
     } catch (error) {
@@ -121,77 +120,82 @@ const CourseForm = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10">
-      <h2 className="text-2xl font-bold mb-5">Create a New Course</h2>
-      {error && <p className="text-red-500 mb-4">{error}</p>}
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="max-w-lg mx-auto mt-10 bg-white shadow-lg rounded-lg p-6">
+      <h2 className="text-3xl font-semibold text-gray-800 mb-6">Create a New Course</h2>
+      {error && <p className="text-red-500 bg-red-100 p-3 rounded mb-4">{error}</p>}
+      <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label className="block mb-2">Course Cover Image</label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Course Cover Image
+          </label>
           <input
             type="file"
             accept="image/*"
             onChange={handleImageChange}
-            className="w-full border border-gray-300 p-2 rounded"
+            className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
           />
           <button
             type="button"
             onClick={handleImageUpload}
-            className="mt-2 bg-blue-500 hover:bg-blue-700 text-white p-2 rounded"
+            className="mt-3 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
             Upload Image
           </button>
-
-          {coverUrl ? (
-            <div className="mt-4">
+          {coverUrl && (
+            <div className="mt-4 flex flex-col items-center">
               <img
-                src={coverUrl} // Display uploaded image
+                src={coverUrl}
                 alt="Uploaded Cover"
-                className="w-32 h-32 object-cover"
+                className="w-40 h-40 object-cover rounded-lg border border-gray-200"
               />
-              {/*<p>{coverUrl}</p>*/}
               <button
                 type="button"
                 onClick={handleImageDelete}
-                className="mt-2 bg-red-500 hover:bg-red-700 text-white p-2 rounded"
+                className="mt-3 bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
               >
                 Delete Image
               </button>
             </div>
-          ) : (
-            <p>No image uploaded</p>
           )}
         </div>
 
         <div>
-          <label className="block mb-2">Course Title</label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Course Title
+          </label>
           <input
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full border border-gray-300 p-2 rounded"
+            className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
             placeholder="Enter course title"
             required
           />
         </div>
 
         <div>
-          <label className="block mb-2">Course Description</label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Course Description
+          </label>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="w-full border border-gray-300 p-2 rounded"
+            className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
             placeholder="Enter course description"
+            rows={4}
             required
           />
         </div>
 
         <div>
-          <label className="block mb-2">Instructor ID</label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Instructor ID
+          </label>
           <input
             type="text"
             value={instructor}
             onChange={(e) => setInstructor(e.target.value)}
-            className="w-full border border-gray-300 p-2 rounded"
+            className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
             placeholder="Enter instructor ID"
             required
           />
@@ -200,7 +204,7 @@ const CourseForm = () => {
         <button
           type="submit"
           disabled={isSubmitting}
-          className={`w-full p-2 text-white ${isSubmitting ? 'bg-gray-400' : 'bg-blue-500 hover:bg-blue-700'} rounded`}
+          className={`w-full py-2 px-4 text-white rounded-lg shadow-sm focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${isSubmitting ? 'bg-gray-400' : 'bg-blue-600 hover:bg-blue-700'}`}
         >
           {isSubmitting ? 'Submitting...' : 'Create Course'}
         </button>
