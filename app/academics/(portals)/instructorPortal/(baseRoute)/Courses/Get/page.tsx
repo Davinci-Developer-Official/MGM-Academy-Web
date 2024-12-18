@@ -77,7 +77,7 @@ export default function CoursesPage() {
   const currentCourses = courses.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   return (
-    <div className="background h-full w-full p-5">
+    <div className="bg-white dark:bg-gray-800  h-full w-full p-5">
       <h1 className="text-2xl font-bold mb-5">Courses</h1>
       {courses.length === 0 ? (
         <div>No courses available.</div>
@@ -85,7 +85,7 @@ export default function CoursesPage() {
         <>
           <div className=" p-2 grid grid-cols-1 md:grid-cols-2 gap-4 overflow-y-auto h-[450px] w-[98%] mx-auto">
             {currentCourses.map((course: Course) => (
-              <div key={course.course_id} className="relative p-1 border rounded shadow-md shadow-gray-600    "> {/* Added relative */}
+              <div key={course.course_id} className="relative p-1  rounded shadow-md shadow-gray-100    "> {/* Added relative */}
                 <h2 className="text-xl font-semibold">{course.course_title}</h2>
                 <div className="h-[250px] w-full mb-4">
                   <Image
