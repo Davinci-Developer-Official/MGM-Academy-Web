@@ -4,14 +4,13 @@ import { useState } from 'react';
 import { put, del } from '@vercel/blob';
 import Image from 'next/image';
 
-const CourseForm = () => {
+export default function  CourseForm ()  {
   const [coverUrl, setCoverUrl] = useState<string>('');
   const [localImageFile, setLocalImageFile] = useState<File | null>(null);
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [instructor, setInstructor] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const [isUploading, setIsUploading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +24,6 @@ const CourseForm = () => {
       return;
     }
 
-    setIsUploading(true);
     try {
       const blob = await uploadImage(localImageFile);
       if (blob) {
@@ -38,8 +36,6 @@ const CourseForm = () => {
     } catch (error) {
       console.error('Error uploading image:', error);
       setError('Error uploading image. Please try again.');
-    } finally {
-      setIsUploading(false);
     }
   };
 
@@ -84,7 +80,10 @@ const CourseForm = () => {
 
       if (response.ok) {
         alert('Course created successfully!');
-        resetForm();
+        setCoverUrl('');
+        setTitle('');
+        setDescription('');
+        setInstructor('');
       } else {
         setError(data.error || 'Something went wrong.');
       }
@@ -99,8 +98,9 @@ const CourseForm = () => {
     try {
       const blob = await put(imageFile.name, imageFile, {
         access: 'public',
-        token: 'your-vercel-token',
+        token: 'vercel_blob_rw_jDNRDIzn5HpnU1jS_mb5wAReKxQIubo7b0VP1ejgTk6ffcz',
       });
+      console.log('Uploaded image:', blob);
       return blob;
     } catch (error) {
       console.error('Error uploading image:', error);
@@ -111,25 +111,17 @@ const CourseForm = () => {
   const deleteImage = async (url: string) => {
     try {
       await del(url, {
-        token: 'your-vercel-token',
+        token: 'vercel_blob_rw_jDNRDIzn5HpnU1jS_mb5wAReKxQIubo7b0VP1ejgTk6ffcz',
       });
+      console.log('Deleted image:', url);
     } catch (error) {
       console.error('Error deleting image:', error);
       throw new Error('Failed to delete image.');
     }
   };
 
-  const resetForm = () => {
-    setCoverUrl('');
-    setTitle('');
-    setDescription('');
-    setInstructor('');
-    setLocalImageFile(null);
-    setError(null);
-  };
-
   return (
-    <div className="max-w-lg mx-auto mt-10 bg-gray-50 shadow-lg rounded-lg p-6">
+    <div className="max-w-lg mx-auto mt-10 bg-white shadow-lg rounded-lg p-6">
       <h2 className="text-3xl font-semibold text-gray-800 mb-6">Create a New Course</h2>
       {error && <p className="text-red-500 bg-red-100 p-3 rounded mb-4">{error}</p>}
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -146,12 +138,9 @@ const CourseForm = () => {
           <button
             type="button"
             onClick={handleImageUpload}
-            disabled={isUploading}
-            className={`mt-3 py-2 px-4 rounded-lg text-white ${
-              isUploading ? 'bg-gray-400' : 'bg-blue-600 hover:bg-blue-700'
-            }`}
+            className="mt-3 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
-            {isUploading ? 'Uploading...' : 'Upload Image'}
+            Upload Image
           </button>
           {coverUrl && (
             <div className="mt-4 flex flex-col items-center">
@@ -170,10 +159,59 @@ const CourseForm = () => {
             </div>
           )}
         </div>
-        {/* Other input fields remain unchanged */}
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Course Title
+          </label>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
+            placeholder="Enter course title"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Course Description
+          </label>
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
+            placeholder="Enter course description"
+            rows={4}
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Instructor ID
+          </label>
+          <input
+            type="text"
+            value={instructor}
+            onChange={(e) => setInstructor(e.target.value)}
+            className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
+            placeholder="Enter instructor ID"
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className={`w-full py-2 px-4 text-white rounded-lg shadow-sm focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${isSubmitting ? 'bg-gray-400' : 'bg-blue-600 hover:bg-blue-700'}`}
+        >
+          {isSubmitting ? 'Submitting...' : 'Create Course'}
+        </button>
       </form>
     </div>
   );
 };
 
-export default CourseForm;
+//export default CourseForm;
