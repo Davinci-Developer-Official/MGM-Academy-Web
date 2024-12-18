@@ -50,7 +50,7 @@ export default function Page() {
       }
     }
     getCourseChapters();
-  }, ['checked', 'email', 'password', 'secure', 'username']);
+  }, []);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
@@ -73,7 +73,7 @@ export default function Page() {
   const uploadFile = async (file: File | null) => {
     if (!file) return null;
     try {
-      setUploadingFile(true); // Start animation
+      setUploadingFile(true);
       const result = await put(file.name, file, {
         access: 'public',
         token: 'vercel_blob_rw_jDNRDIzn5HpnU1jS_mb5wAReKxQIubo7b0VP1ejgTk6ffcz',
@@ -83,24 +83,24 @@ export default function Page() {
       alert('Error uploading file: ' + error.message);
       return null;
     } finally {
-      setUploadingFile(false); // Stop animation
+      setUploadingFile(false);
     }
   };
 
   const uploadVideo = async (file: File | null) => {
     if (!file) return;
     try {
-      setUploadingVideo(true); // Start animation
+      setUploadingVideo(true);
       const result = await put(file.name, file, {
         access: 'public',
         token: 'vercel_blob_rw_jDNRDIzn5HpnU1jS_mb5wAReKxQIubo7b0VP1ejgTk6ffcz',
       });
+      setUploadedVideoURL(result.url);
       alert('File uploaded: ' + result.url);
-      if (videoLink === "") setVideoLink(result.url);
     } catch (error: any) {
       alert('Error uploading video: ' + error.message);
     } finally {
-      setUploadingVideo(false); // Stop animation
+      setUploadingVideo(false);
     }
   };
 
@@ -161,106 +161,51 @@ export default function Page() {
   };
 
   return (
-    <div className="p-6 w-[90%] mx-auto">
-      <div className="flex justify-end mb-4">
+    <div className="p-6 w-[90%] mx-auto space-y-8">
+      {/* Header */}
+      <div className="flex justify-end">
         <button
-          className="btn bg-blue-500 text-white py-2 px-4 rounded"
+          className="btn bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md transition"
           onClick={toggleModal}
         >
-          Add Chapter
+          + Add Chapter
         </button>
       </div>
 
-      <div className="h-auto w-full">
-        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-          {currentChapters.map((item) => (
-            <div key={item.chapter_id} className="bg-white shadow-md p-6 rounded-md">
-              <p className="font-bold text-lg">Chapter {item.chapter_order}</p>
-              <p className="text-xl mt-2">{item.chapter_title}</p>
-              <p className="text-sm mt-2 text-gray-600">{item.chapter_description}</p>
-              <button className="btn">Open</button>
-            </div>
-          ))}
-        </div>
+      {/* Chapters */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {currentChapters.map((item) => (
+          <div
+            key={item.chapter_id}
+            className="bg-white shadow hover:shadow-lg rounded-lg p-5 transition duration-300"
+          >
+            <h3 className="font-bold text-blue-700 mb-2">Chapter {item.chapter_order}</h3>
+            <p className="text-xl font-semibold text-gray-800">{item.chapter_title}</p>
+            <p className="text-gray-600 mt-1">{item.chapter_description}</p>
+          </div>
+        ))}
       </div>
 
-      <div className="flex justify-between items-center mt-6">
+      {/* Pagination */}
+      <div className="flex justify-between items-center">
         <button
-          className={`btn py-2 px-4 rounded bg-blue-500 text-white ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+          className="btn bg-gray-300 px-4 py-2 rounded disabled:opacity-50"
           onClick={handlePreviousPage}
           disabled={currentPage === 1}
         >
-          Back
+          Prev
         </button>
-
-        <p className="text-lg">
+        <span className="text-gray-800 font-medium">
           Page {currentPage} of {totalPages}
-        </p>
-
+        </span>
         <button
-          className={`btn py-2 px-4 rounded bg-blue-500 text-white ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
+          className="btn bg-gray-300 px-4 py-2 rounded disabled:opacity-50"
           onClick={handleNextPage}
           disabled={currentPage === totalPages}
         >
           Next
         </button>
       </div>
-
-      {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg w-[90%] sm:w-[60%] lg:w-[40%]">
-            <h2 className="text-2xl font-bold mb-4">Add New Chapter</h2>
-            <form onSubmit={handleAddChapter}>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">Chapter Title</label>
-                <input
-                  type="text"
-                  value={newChapter.title}
-                  onChange={(e) => setNewChapter({ ...newChapter, title: e.target.value })}
-                  className="w-full p-2 border rounded-md"
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">Chapter Description</label>
-                <textarea
-                  value={newChapter.description}
-                  onChange={(e) => setNewChapter({ ...newChapter, description: e.target.value })}
-                  className="w-full p-2 border rounded-md"
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">Chapter Order</label>
-                <input
-                  type="number"
-                  value={newChapter.order}
-                  onChange={(e) => setNewChapter({ ...newChapter, order: parseInt(e.target.value) })}
-                  className="w-full p-2 border rounded-md"
-                  required
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">File Upload (Max 5MB)</label>
-                <input type="file" onChange={handleFileChange} />
-                {uploadingFile && <p className="text-blue-500">Uploading...</p>}
-                <button type="button" onClick={handleUploadFile} disabled={uploadingFile}>Upload File</button>
-              </div>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">Video Upload (Max 25MB)</label>
-                <input type="file" onChange={handleVideoChange} />
-                {uploadingVideo && <p className="text-blue-500">Uploading...</p>}
-                <button type="button" onClick={() => uploadVideo(uploadedVideo)} disabled={uploadingVideo}>Upload Video</button>
-              </div>
-              <div className="flex justify-end">
-                <button type="button" onClick={toggleModal} className="mr-2">Cancel</button>
-                <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded" disabled={uploadingFile || uploadingVideo}>
-                  Add Chapter
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

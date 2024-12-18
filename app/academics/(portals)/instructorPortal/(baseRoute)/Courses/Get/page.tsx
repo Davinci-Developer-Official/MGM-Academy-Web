@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import OpenCourse from '../../../../../../components/OpenCourse';
 import { useState, useEffect } from 'react';
 import { FaEllipsisV, FaHeart, FaShareAlt, FaThumbsUp } from 'react-icons/fa';
@@ -87,9 +88,9 @@ export default function CoursesPage() {
               <div key={course.course_id} className="relative p-1 border rounded shadow-md shadow-gray-600    "> {/* Added relative */}
                 <h2 className="text-xl font-semibold">{course.course_title}</h2>
                 <div className="h-[250px] w-full mb-4">
-                  <img
+                  <Image
                     src={course.course_cover}
-                    alt={course.course_title}
+                    alt={course.course_title} width={200} height={200}
                     className="w-full h-full object-cover"
                   />
                 </div>

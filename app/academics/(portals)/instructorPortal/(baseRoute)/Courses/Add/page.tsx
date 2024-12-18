@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { put, del } from '@vercel/blob';
+import Image from 'next/image';
 
 const CourseForm = () => {
   const [coverUrl, setCoverUrl] = useState<string>('');
@@ -143,7 +144,7 @@ const CourseForm = () => {
           </button>
           {coverUrl && (
             <div className="mt-4 flex flex-col items-center">
-              <img
+              <Image
                 src={coverUrl}
                 alt="Uploaded Cover"
                 className="w-40 h-40 object-cover rounded-lg border border-gray-200"

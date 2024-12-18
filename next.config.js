@@ -4,7 +4,7 @@ const nextConfig = {
         serverActions:true,
     },
     images: {
-        domains: ['swkzw6evztkyfvae.public.blob.vercel-storage.com','vercel.com','img.daisyui.com'],
+        domains: ['jdnrdizn5hpnu1js.public.blob.vercel-storage.com','swkzw6evztkyfvae.public.blob.vercel-storage.com','vercel.com','img.daisyui.com'],
       },
      
       
