@@ -13,11 +13,14 @@ interface Instructor {
 
 function Page() {
   const [instructorInfo,setInstructorInfo]=useState<Instructor[]>([])
+  const[instructor,setInstructor]=useState<string>("")
   useEffect(()=>{
     async function get_instructor(){
       try {
-        const data = Cookies.get('instructor')
-        
+        const data = Cookies.get('i-name')
+        //alert(data)
+        //@ts-ignore
+        {instructor==""&&setInstructor(data)}
         if(data?.length==0){
           const response = await fetch(`/api/remodelled/get_instructor_by_id?id=${data}`);
           const info = await response.json()
@@ -36,10 +39,15 @@ function Page() {
     <div className='background ' >
     <div className='w-full h-screen  overflow-y-scroll ' >
     <div className='flex flex-row ' >
-    <p className='pt-7 pl-5 text-[25px] text-[#2d545e] font-mono  ' >Welcome back Thomas </p> 
+    <p className='pt-7 pl-5 text-[25px] text-[#2d545e] font-mono  ' >Welcome back {instructor} </p> 
     
     </div>
-    <UpdatesCard/>
+   {/* <UpdatesCard/>*/}
+   <div className='w-[99%] mx-auto bg-red-400 h-full p-2 overflow-y-auto ' >
+    <div className='grid  ' >
+
+    </div>
+   </div>
     </div>   
     <NotificationInstructors/>
     
