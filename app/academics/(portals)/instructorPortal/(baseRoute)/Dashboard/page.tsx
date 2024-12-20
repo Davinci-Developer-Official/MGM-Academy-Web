@@ -5,6 +5,7 @@ import UpdatesCard from './UpdatesCard'
 import Cookies from "js-cookie"
 import { FaPlus } from 'react-icons/fa'
 import Link from 'next/link'
+import Content from './Content'
 
 interface Instructor {
   instructor:string;
@@ -43,11 +44,7 @@ function Page() {
     
     </div>
    {/* <UpdatesCard/>*/}
-   <div className='w-[99%] mx-auto bg-red-400 h-full p-2 overflow-y-auto ' >
-    <div className='grid  ' >
-
-    </div>
-   </div>
+   <Content/>
     </div>   
     <NotificationInstructors/>
     
