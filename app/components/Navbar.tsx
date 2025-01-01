@@ -5,6 +5,8 @@ import React, { useEffect, useState } from 'react';
 import { FaBars, FaHome, FaSchool, FaMoon, FaSun, FaUser } from 'react-icons/fa';
 import Cookies from 'js-cookie';
 import { useTheme } from '../themeContext';
+import logo from "@/public/logo/icon.png"
+import Image from 'next/image';
 
 function Navbar() {
   const { theme, toggleTheme } = useTheme();
@@ -43,7 +45,10 @@ function Navbar() {
     <nav className="w-full bg-[#2d545e] dark:bg-gray-800 text-white shadow-md">
       <div className="container mx-auto flex flex-row justify-between items-center px-4 py-2">
         {/* Logo Section */}
-        <div className="text-lg font-bold">MGM Institute</div>
+        <div className="flex flex-row  h-fit  w-fit p-1   ">
+          <div className='h-[50px] w-[70px] rounded-full dark:bg-gray-500 ' ><Image src={logo} alt="" className='w-full h-full object-fit ' /></div>
+          <p className='text-lg font-bold pt-3 pl-1 '> Empower yourself </p>
+        </div>
 
         {/* Bars Button for Small Screens */}
         <div className="lg:hidden">
