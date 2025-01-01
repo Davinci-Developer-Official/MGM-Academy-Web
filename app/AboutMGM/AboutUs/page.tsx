@@ -11,7 +11,7 @@ function Page() {
   const[navigation,setNavigation]= useState(true);
   return (
    <div  >
-   {navigation&&<Navbar/>}
+   
    <Info setNavigation={setNavigation} navigation={navigation} />
    </div>
   )

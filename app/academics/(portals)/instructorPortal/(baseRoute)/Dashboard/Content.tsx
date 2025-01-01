@@ -10,12 +10,12 @@ export default function Content(){
       <div>finances</div>
       <div>notifications</div>
     </div>
-    <div className="bg-blue-400 w-[98%] mx-auto h-[350px] p-1 mt-1 overflow-y-auto " >
+    <div className="bg-blue-400 w-[98%] mx-auto h-fit p-1 mt-1 overflow-y-auto " >
       <div className="flex flex-col  bg-green-200 p-1 " >
         <div className="flex flex-row w-full p-2  justify-evenly bg-green-400 " >
-        <div>courses Assignment </div>
-        <div> 12:40 pm</div>
-        <div>tue-12-2025</div>
+        <div>courses Assignment </div> {/*title*/}
+        <div> 12:40 pm</div> {/*time sent*/}
+        <div>student</div> {/*sender*/}
         </div>
         <div className="flex flex-col bg-red-300 h-[250px] " >
             <div>Assignment 1 </div>
