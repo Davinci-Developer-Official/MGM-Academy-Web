@@ -2,7 +2,7 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import ImageUploading, { ImageListType } from "react-images-uploading";
-import profile from '@/public/profile/user.png'
+import profile from '@/public/logo/1.png'
 import { FaEraser, FaMarker, FaPen, FaSave, FaTrash } from "react-icons/fa";
 import { put } from "@vercel/blob";
 

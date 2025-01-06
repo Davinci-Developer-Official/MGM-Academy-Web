@@ -46,7 +46,7 @@ function Navbar() {
       <div className="container mx-auto flex flex-row justify-between items-center px-4 py-2">
         {/* Logo Section */}
         <div className="flex flex-row  h-fit  w-fit p-1   ">
-          <div className='h-[50px] w-[70px] rounded-full dark:bg-gray-500 ' ><Image src={logo} alt="" className='w-full h-full object-fit ' /></div>
+          <div className='h-[50px] w-[70px] rounded-full bg-gray-100 ' ><Image src={logo} alt="" className='w-full h-full object-fit ' /></div>
           <p className='text-lg font-bold pt-3 pl-1 '> Empower yourself </p>
         </div>
 

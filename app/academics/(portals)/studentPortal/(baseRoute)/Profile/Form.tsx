@@ -18,14 +18,15 @@ function Form() {
   const [User, setUser] = useState<User[]>([]);
   const [loggedIn, setLoggedIn] = useState("");
   const [userProfile, setUserProfile] = useState('');
-
+  const[issue,setIssue]=useState("")
+  const[error,setError]=useState("")
   
   
 
   useEffect(() => {
     async function getUser() {
       try {
-        const user = Cookie.get('user');
+        const user = Cookie.get('s-id');
         if (user !== '') {
           if (typeof user === 'string' && user !== '') {
             setUserProfile(user);
@@ -39,10 +40,12 @@ function Form() {
             }
   
             if (!response.ok) {
-              alert('users not found');
+              //alert('users not found');
+              setIssue("user not found")
             }
           } catch (error: any) {
-            alert('error' + 'sucker');
+            //alert('error' + 'sucker');
+            setError(JSON.stringify(error))
           }
         } else {
           console.log('No user found');
@@ -52,7 +55,7 @@ function Form() {
       }
     }
     getUser();
-  }, []);
+  }, [issue,error]);
 
     // Use `useMemo` to memoize the first element from the array as the initial state
     const initialInfo = useMemo(() => User[0], [User]);
@@ -169,7 +172,8 @@ function Form() {
               Save Changes
             </button>
           </div>
-
+            <p>{issue}</p>
+            <p>{error}</p>
           <div className='w-[90%] mx-auto h-fit p-2'>
             {/* Names */}
             <div className='w-full'>

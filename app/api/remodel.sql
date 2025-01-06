@@ -80,3 +80,26 @@ INNER JOIN
     courses ON enrollment.course_id = courses.course_id
 INNER JOIN 
     instructor_profile ON enrollment.instructor_id = instructor_profile.instructor_id;
+
+
+--student academic records
+CREATE TABLE student_academics (
+id SERIAL,
+entry_id UUID DEFAULT uuid_generate_v4() PRIMARY KEY ,
+student_id TEXT,
+student_name TEXT,
+course_id TEXT,
+enrollment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+completion_date TEXT,
+instructor_id TEXT,
+instructor_name TEXT,
+cat_1 TEXT,
+cat_2 TEXT,
+cat_3 TEXT,
+cat_4 TEXT,
+quiz_1 TEXT,
+quiz_2 TEXT,
+quiz_3 TEXT,
+quiz_4 TEXT,
+avarage_grade TEXT,
+total_marks TEXT) ;
