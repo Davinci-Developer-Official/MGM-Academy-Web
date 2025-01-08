@@ -42,7 +42,7 @@ export default function Page() {
             setCurrentPage(page);
         }
     };
-    const[category,setCategory]=useState()
+    const[category,setCategory]=useState();
     return (
         <div className="w-[90%] mx-auto bg-gray-200 h-[600px]   ">
             {/* Courses Grid */}
