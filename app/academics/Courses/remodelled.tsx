@@ -45,7 +45,7 @@ const TopicsList: React.FC = () => {
 
   const handleClick = async (topic: string) => {
     if (isMounted) {
-      router.push(`/academics/Courses/${topic}/${topic}`);
+      router.push(`/academics/Courses/${topic}`);
       Cookies.set('c-course', topic);
       Cookies.set('s-check', 'loggedIn');
     }

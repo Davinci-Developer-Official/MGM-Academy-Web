@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { FaShoppingCart } from "react-icons/fa";
 
 export interface Course {
     course_id: string; // UUID for the course
@@ -44,14 +45,14 @@ export default function Page() {
     };
     const[category,setCategory]=useState();
     return (
-        <div className="w-[90%] mx-auto bg-gray-200 h-[600px]   ">
+        <div className="w-[90%] mx-auto bg-gray-200 p-2 dark:bg-gray-900 h-[600px]   ">
             {/* Courses Grid */}
             <h1>based on category  </h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4 overflow-y-auto h-full ">
                 {currentItems.map((item: Course) => (
                     <div
                         key={item.course_id}
-                        className="p-4 bg-white shadow-md rounded-lg flex flex-col justify-between h-[300px] "
+                        className="p-1 bg-white dark:bg-gray-700 text-black dark:text-gray-200 shadow-md rounded-lg flex flex-col justify-between h-[300px] "
                     >
                         <img
                             src={item.course_cover}
@@ -59,7 +60,8 @@ export default function Page() {
                             className="w-full h-40 object-cover rounded-md mb-2"
                         />
                         <h2 className="text-lg font-semibold">{item.course_title}</h2>
-                        <p className="text-sm text-gray-600">{item.course_description}</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-100 ">{item.course_description}</p>
+                        <div className=" flex flex-row  " ><button className="btn bg-gray-100 dark:bg-grey-700 btn-circle "><FaShoppingCart size={20} /></button> <p className="pt-3 pl-2 text-bold text-black dark:text-gray-200  " > $400 </p> </div>
                     </div>
                 ))}
             </div>
