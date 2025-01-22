@@ -24,7 +24,7 @@ function page() {
         try {
             const response = await fetch('/api/remodelled/courses/purchase_course',{
                 method:'POST',
-                body : data
+                //body : data
 
             })
         } catch (error) {
