@@ -54,19 +54,19 @@ const TopicsList: React.FC = () => {
   return (
     <div className="flex flex-col items-center p-6 w-full h-full bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
       <h1 className="text-3xl font-bold mb-8">Explore Course Categories</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-11/12 max-w-screen-lg">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-11/12 h-full max-w-screen-xl">
         {currentTopics.map((topic, index) => (
           <div
             key={index}
-            className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg transform transition-transform hover:scale-105"
+            className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg transform transition-transform hover:scale-105 hover:shadow-xl focus:outline-none"
           >
             <button
               onClick={() => handleClick(topic.title)}
-              className="text-xl font-semibold hover:text-blue-500 hover:underline focus:outline-none"
+              className="text-xl font-semibold text-gray-800 dark:text-gray-200 hover:text-blue-500 hover:underline focus:ring-2 focus:ring-blue-500 focus:outline-none"
             >
               {topic.title}
             </button>
-            <p className="text-sm mt-4 leading-relaxed">{topic.overview}</p>
+            <p className="text-sm mt-4 leading-relaxed text-gray-600 dark:text-gray-400">{topic.overview}</p>
           </div>
         ))}
       </div>
@@ -94,4 +94,3 @@ const TopicsList: React.FC = () => {
 };
 
 export default TopicsList;
-
