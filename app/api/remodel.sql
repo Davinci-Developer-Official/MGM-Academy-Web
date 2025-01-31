@@ -46,7 +46,7 @@ CREATE TABLE student_profile (
 --remodelled courses
  CREATE TABLE courses(
     id SERIAL ,
-    course_id UNIQUE DEFAULT uuid_generate_v4(),
+    course_id UUID UNIQUE DEFAULT uuid_generate_v4(),
     course_title VARCHAR,
     course_description VARCHAR,
     
