@@ -1,5 +1,5 @@
 --creating  a new postgres user
-CREATE USER tom WITH PASSWORD 'postgres';
+CREATE USER tom WITH PASSWORD = 'postgres';
 
 --tom Database
 CREATE DATABASE tom;
