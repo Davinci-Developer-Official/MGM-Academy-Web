@@ -144,7 +144,7 @@ function LoginInstructor({setNavigation,navigation}:any) {
             {/*text-[#e1b382] bg-gradient-to-r from-[#2d545e]*/}
             <div className="form-control mt-6">
             {secure ? (
-          <Link href="/academics/studentPortal/Dashboard">
+          <Link href="/academics/studentPortal/Notification">{/*formerly Dashboard*/}
             <p className="btn btn-success w-[70%] mx-auto flex items-center justify-center">
               Continue Learning <FaCaretRight size={20} className="ml-2" />
             </p>

@@ -7,7 +7,7 @@ export async function GET(){
         console.log(response.rows)
         return NextResponse.json(response.rows,{status:200});
     } catch (error) {
-        console.log({error : 'The issue is' + error});
+        console.log({error : 'The issue is: ' + error});
         return NextResponse.json(error,{status:404})
     }
 }

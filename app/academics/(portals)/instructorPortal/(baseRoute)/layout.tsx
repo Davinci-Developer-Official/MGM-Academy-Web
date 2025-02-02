@@ -34,7 +34,7 @@ export default function NewLayout({ children }:{children:React.ReactNode}) {
             </div>}
         </div>
         <SideBar/></div>
-       <main className="w-full  bg-[#e1b382]  ">
+       <main className="w-full  bg-gray-100 dark:bg-gray-800  ">
        {children}
          
          
