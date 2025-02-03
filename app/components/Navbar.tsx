@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import { FaBars, FaHome, FaSchool, FaMoon, FaSun, FaUser } from 'react-icons/fa';
+import { FaBars, FaHome, FaSchool, FaMoon, FaSun, FaUser, FaFacebookMessenger } from 'react-icons/fa';
 import Cookies from 'js-cookie';
 import { useTheme } from '../themeContext';
 import logo from "@/public/logo/icon.png"
@@ -72,12 +72,12 @@ function Navbar() {
               Home
             </Link>
           </li>
-          <li>
+          {userType==""&&<li>
             <Link href="/academics/Courses" className="flex items-center hover:text-[#e97902]">
               <FaSchool size={20} className="mr-2" />
               Offered Courses
             </Link>
-          </li>
+          </li>}
           <li className="relative">
             <span
               className="flex items-center cursor-pointer hover:text-[#e97902]"
@@ -108,7 +108,12 @@ function Navbar() {
         >
           {theme === 'light' ? <FaMoon size={20} /> : <FaSun size={20} />}
         </button>
-
+        {/*notifications*/}
+        {userType!==""&&<div className='flex items-center '>
+            <FaFacebookMessenger size={20} className='mr-2' /> 
+            notifications 
+            <p className='label bg-gray-400 h-fit w-fit rounded-full p-2  '>4</p>
+            </div>}
         {/* Profile Section */}
         <div className="relative">
           <button

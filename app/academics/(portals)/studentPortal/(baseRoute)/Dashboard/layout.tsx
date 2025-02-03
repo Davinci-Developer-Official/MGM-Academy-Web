@@ -28,7 +28,7 @@ export default function Layout({
     return (
         <div className="h-screen w-full p-1 flex flex-col bg-gray-100 dark:bg-gray-900">
             {/* Welcome Banner */}
-            <div className="p-4 bg-indigo-600 text-white shadow-md">
+            {/*<div className="p-4 bg-indigo-600 text-white shadow-md">
                 <h1 className="text-lg font-bold">
                     {loading ? (
                         <span>Loading...</span> // Show loading message while fetching user data
@@ -39,7 +39,7 @@ export default function Layout({
                     )}
                 </h1>
                 <p className="text-sm">Manage your courses, notifications, and more in one place.</p>
-            </div>
+            </div>*/}
 
             {/* Tabs */}
             <div role="tablist" className="tabs justify-center bg-gray-200 p=2 shadow-inner py-2">
@@ -62,7 +62,7 @@ export default function Layout({
                     Courses
                     <span className="badge badge-secondary text-white ml-1">New</span>
                 </button>
-                <button
+                {/*<button
                     name="tab_notifications"
                     role="tab"
                     className={`tab px-4 py-1 font-medium rounded-t-lg ${activeTab === 2 ? 'bg-white text-indigo-600 shadow' : 'text-gray-600'}`}
@@ -71,7 +71,7 @@ export default function Layout({
                 >
                     Notifications
                     <span className="badge badge-primary text-white ml-1">5</span>
-                </button>
+                </button>*/}
             </div>
 
             {/* Content Area */}
