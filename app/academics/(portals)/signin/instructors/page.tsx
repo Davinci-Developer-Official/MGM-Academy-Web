@@ -74,7 +74,7 @@ export default function Page() {
     const instructor = data.find((inst) => inst.password === details.password);
     if (instructor) {
       setVerified(true);
-      router.push('/academics/instructorPortal/Dashboard')
+      router.push('/academics/instructorPortal/Notification')
     } else {
       setStatus('Incorrect password.');
     }

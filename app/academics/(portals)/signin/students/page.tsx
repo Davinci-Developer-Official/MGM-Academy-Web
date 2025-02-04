@@ -82,7 +82,7 @@ export default function Page() {
             setVerified(true);
             //alert("yey")
             
-            setTimeout(()=>{router.push('/academics/studentPortal/Dashboard')},1000)
+            setTimeout(()=>{router.push('/academics/studentPortal/notification')},1000)
         } else {
             setStatus('No matching email found');
             setVerified(false);

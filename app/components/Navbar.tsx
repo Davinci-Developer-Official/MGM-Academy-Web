@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { FaBars, FaHome, FaSchool, FaMoon, FaSun, FaUser, FaFacebookMessenger } from 'react-icons/fa';
 import Cookies from 'js-cookie';
 import { useTheme } from '../themeContext';
-import logo from "@/public/logo/icon.png"
+import logo from "@/public/logo/icon.png";
 import Image from 'next/image';
 
 function Navbar() {
@@ -16,19 +16,30 @@ function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const [aboutUsMenuOpen, setAboutUsMenuOpen] = useState(false);
+  const [cacheLock,setCacheLock]=useState(false);
+
 
   useEffect(() => {
-    const student = Cookies.get('s-user') || '';
+    const student = Cookies.get('s-user');
     const instructor = Cookies.get('i-user');
-
+    if(userType=="student" || userType=="instructor"){
+      setCacheLock(true)
+      setLoggedIn(true)
+      alert("logged in");
+    }
     if (student) {
-      setLoggedIn(true);
+      //setLoggedIn(true);
       setUserType('student');
       setUser(student);
-    } else if (instructor) {
-      setLoggedIn(true);
+    } 
+     if (instructor) {
+      //setLoggedIn(true);
       setUserType('instructor');
-      setUser(JSON.parse(instructor));
+      try {
+        setUser(JSON.parse(instructor).name || 'Instructor');
+      } catch {
+        setUser('Instructor');
+      }
     }
   }, []);
 
@@ -43,126 +54,75 @@ function Navbar() {
 
   return (
     <nav className="w-full bg-[#2d545e] dark:bg-gray-800 text-white shadow-md">
-      <div className="container mx-auto flex flex-row justify-between items-center px-4 py-2">
-        {/* Logo Section */}
-        <div className="flex flex-row  h-fit  w-fit p-1   ">
-          <div className='h-[50px] w-[70px] rounded-full bg-gray-100 ' ><Image src={logo} alt="" className='w-full h-full object-fit ' /></div>
-          <p className='text-lg font-bold pt-3 pl-1 '> Empower yourself </p>
+      <div className="container mx-auto flex justify-between items-center px-4 py-3">
+        {/* Logo */}
+        <div className="flex items-center space-x-2">
+          <div className='h-12 w-12 rounded-full bg-gray-100 overflow-hidden'>
+            <Image src={logo} alt="Logo" className='w-full h-full object-cover' />
+          </div>
+          <p className='text-lg font-bold'>Empower Yourself</p>
         </div>
 
-        {/* Bars Button for Small Screens */}
-        <div className="lg:hidden">
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="text-white hover:text-[#e97902] focus:outline-none"
-          >
-            <FaBars size={24} />
-          </button>
-        </div>
+        {/* Mobile Menu Button */}
+        <button onClick={() => setMenuOpen(!menuOpen)} className="lg:hidden text-white hover:text-[#e97902]">
+          <FaBars size={24} />
+        </button>
 
         {/* Navigation Links */}
-        <ul
-          className={`flex flex-col lg:flex-row w-full lg:w-auto items-start lg:items-center space-y-2 lg:space-y-0 lg:space-x-8 absolute lg:relative bg-[#2d545e] dark:bg-gray-800 lg:bg-transparent ${
-            menuOpen ? 'top-12 left-0 p-4 z-10 shadow-lg' : 'hidden lg:flex'
-          }`}
-        >
-          <li>
-            <Link href="/" className="flex items-center hover:text-[#e97902]">
-              <FaHome size={20} className="mr-2" />
-              Home
-            </Link>
-          </li>
-          {userType==""&&<li>
-            <Link href="/academics/Courses" className="flex items-center hover:text-[#e97902]">
-              <FaSchool size={20} className="mr-2" />
-              Offered Courses
-            </Link>
-          </li>}
+        <ul className={`lg:flex space-x-6 ${menuOpen ? 'block' : 'hidden lg:flex'}`}>
+          <li><Link href="/" className="hover:text-[#e97902] flex items-center"><FaHome className="mr-2" /> Home</Link></li>
+          {!loggedIn && <li><Link href="/academics/Courses" className="hover:text-[#e97902] flex items-center"><FaSchool className="mr-2" /> Offered Courses</Link></li>}
           <li className="relative">
-            <span
-              className="flex items-center cursor-pointer hover:text-[#e97902]"
-              onClick={() => setAboutUsMenuOpen(!aboutUsMenuOpen)}
-            >
-              About Us
-            </span>
+            <span className="cursor-pointer hover:text-[#e97902]" onClick={() => setAboutUsMenuOpen(!aboutUsMenuOpen)}>About Us</span>
             {aboutUsMenuOpen && (
-              <div className="absolute bg-[#2d545e] text-orange-600 dark:bg-gray-800 shadow-lg rounded-lg py-2 mt-2 w-48">
-                <Link href="/AboutMGM" className="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700">
-                  About Us Page
-                </Link>
-                <Link href="/team" className="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700">
-                  Our Team
-                </Link>
-                <Link href="/contact" className="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700">
-                  Contact Us
-                </Link>
+              <div className="absolute bg-[#2d545e] dark:bg-gray-800 text-orange-600 shadow-md rounded-md py-2 w-48 mt-2">
+                <Link href="/AboutMGM" className="block px-4 py-2 hover:bg-gray-700">About Us</Link>
+                <Link href="/team" className="block px-4 py-2 hover:bg-gray-700">Our Team</Link>
+                <Link href="/contact" className="block px-4 py-2 hover:bg-gray-700">Contact Us</Link>
               </div>
             )}
           </li>
         </ul>
 
         {/* Theme Toggle */}
-        <button
-          onClick={toggleTheme}
-          className="text-white hover:text-[#e97902] focus:outline-none mr-4"
-        >
+        <button onClick={toggleTheme} className="text-white hover:text-[#e97902] mr-4">
           {theme === 'light' ? <FaMoon size={20} /> : <FaSun size={20} />}
         </button>
-        {/*notifications*/}
-        {userType!==""&&<div className='flex items-center '>
-            <FaFacebookMessenger size={20} className='mr-2' /> 
-            notifications 
-            <p className='label bg-gray-400 h-fit w-fit rounded-full p-2  '>4</p>
-            </div>}
+
+        {/* Notifications */}
+        {loggedIn && (
+          <div className='relative flex items-center cursor-pointer'>
+            <FaFacebookMessenger size={20} className='mr-2' />
+            <span className='absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full px-2'>4</span>
+          </div>
+        )}
+
         {/* Profile Section */}
         <div className="relative">
-          <button
-            className="flex items-center hover:text-[#e97902] focus:outline-none"
-            onClick={() => setProfileMenuOpen(!profileMenuOpen)}
-          >
-            {user ? (
+          <button onClick={() => setProfileMenuOpen(!profileMenuOpen)} className="flex items-center hover:text-[#e97902]">
+            {loggedIn ? (
               <>
-                <img
-                  src={'/profile-pic.jpg'} // Replace with dynamic user profile picture URL
-                  alt="Profile"
-                  className="w-8 h-8 rounded-full border border-white mr-2"
-                />
-                <span className="hidden lg:block text-sm">
-                  Welcome, {JSON.parse(user)}
-                </span>
+                <div className="w-8 h-8 rounded-full border border-white bg-gray-300 flex items-center justify-center text-sm">
+                  {user.charAt(0).toUpperCase()}
+                </div>
+                <span className="ml-2 hidden lg:block text-sm">Welcome, {user}</span>
               </>
             ) : (
               <FaUser size={24} />
             )}
           </button>
           {profileMenuOpen && (
-            <div className="absolute right-0 mt-2 w-48 bg-[#2d545e] text-orange-600 dark:bg-gray-800 shadow-lg rounded-lg py-2 z-50">
+            <div className="absolute right-0 mt-2 w-48 bg-[#2d545e] dark:bg-gray-800 text-orange-600 shadow-md rounded-md py-2">
               {loggedIn ? (
                 <>
-                  <Link href={userType === 'student' ? "/academics/studentPortal/Profile":"/academics/instructorPortal/Profile"} className="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700">
-                    Profile Settings
-                  </Link>
-                  <Link
-                    href={userType === 'student' ? '/academics/studentPortal/Dashboard' : '/academics/instructorPortal/Dashboard'}
-                    className="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700"
-                  >
-                    {userType === 'student' ? 'Student Portal' : 'Instructor Portal'}
-                  </Link>
-                  <button
-                    onClick={handleLogout}
-                    className="block w-full text-left px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700"
-                  >
-                    Logout
-                  </button>
+                  <Link href={userType === 'student' ? "/academics/studentPortal/Profile" : "/academics/instructorPortal/Profile"} className="block px-4 py-2 hover:bg-gray-700">Profile Settings</Link>
+                  <Link href={userType === 'student' ? "/academics/studentPortal/Dashboard" : "/academics/instructorPortal/Dashboard"} className="block px-4 py-2 hover:bg-gray-700">{userType === 'student' ? 'Student Portal' : 'Instructor Portal'}</Link>
+                  <button onClick={handleLogout} className="block w-full text-left px-4 py-2 hover:bg-gray-700">Logout</button>
                 </>
               ) : (
                 <>
-                  <Link href="/academics/signin" className="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700">
-                    Sign In
-                  </Link>
-                  <Link href="/academics/apply" className="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700">
-                    Sign Up
-                  </Link>
+                  <Link href="/academics/signin"  className="block px-4 py-2 hover:bg-gray-700">Sign In</Link>
+                  <Link href="/academics/apply" className="block px-4 py-2 hover:bg-gray-700">Sign Up</Link>
                 </>
               )}
             </div>
@@ -174,3 +134,4 @@ function Navbar() {
 }
 
 export default Navbar;
+ 

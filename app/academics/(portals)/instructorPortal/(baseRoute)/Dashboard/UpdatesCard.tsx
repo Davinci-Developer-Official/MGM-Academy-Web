@@ -3,7 +3,8 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { FaCaretDown, FaCaretUp, FaTimes } from 'react-icons/fa';
 
 function UpdatesCard() {
-    const courses = [
+    //@ts-ignore ts-ignore
+    const courses =  [
         { id: 1, classCode: "CS 101", courseName: "Introduction to Computer Science", completionRate: "65%" },
         { id: 2, classCode: "ENG 202", courseName: "Advanced English Literature", completionRate: "80%" },
         { id: 3, classCode: "MATH 301", courseName: "Calculus III", completionRate: "50%" },
@@ -16,6 +17,7 @@ function UpdatesCard() {
         { id: 10, classCode: "STAT 201", courseName: "Statistics for Data Science", completionRate: "78%" },
         // Add more objects as needed
     ];
+    
 
     const [showOptions, setShowOptions] = useState(true);
     const [selectedCourse, setSelectedCourse] = useState({
@@ -26,7 +28,7 @@ function UpdatesCard() {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
 
-    useEffect(() => {
+    
         const course = courses.find(item => 
             item.courseName === selectedCourse.courseName || 
             item.classCode === selectedCourse.courseCode
@@ -34,9 +36,9 @@ function UpdatesCard() {
         if (course) {
             setShowCompletionRate(course.completionRate);
         }
-    }, [selectedCourse, courses]);
+  
     
-
+ 
     {/*useEffect(() => {
         checkRate();
     }, [checkRate, selectedCourse]);*/}
@@ -81,7 +83,7 @@ function UpdatesCard() {
                         {currentCourses.map(items => (
                             <div 
                                 key={items.id} 
-                                className='p-4 bg-[#2d545e] text-[#e1b382] text-[#2d545e] rounded-md flex flex-col justify-between cursor-pointer'
+                                className='p-4 bg-[#2d545e]  text-[#2d545e] rounded-md flex flex-col justify-between cursor-pointer'
                                 onClick={() => setSelectedCourse({
                                     courseCode: items.classCode,
                                     courseName: items.courseName,

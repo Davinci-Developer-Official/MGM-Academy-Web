@@ -46,7 +46,7 @@ function Page() {
    {/* <UpdatesCard/>*/}
    <Content/>
     </div>   
-    <NotificationInstructors/>
+    {/*<NotificationInstructors/>*/}
     
     </div>
   )
