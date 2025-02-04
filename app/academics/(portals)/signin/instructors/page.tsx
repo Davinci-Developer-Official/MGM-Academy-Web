@@ -58,7 +58,8 @@ export default function Page() {
     if (instructor) {
       setExists(true);
       Cookies.set('i-id', instructor.instructor_id, { expires: 7, path: '/academics/instructorPortal/' });
-      Cookies.set('i-name', instructor.names, { expires: 7, path: '/' });
+      Cookies.set('i-user', instructor.names, { expires: 7, path: '/' });
+      alert(JSON.stringify(instructor.names))
     } else {
       setStatus('No instructor found with the provided email.');
     }

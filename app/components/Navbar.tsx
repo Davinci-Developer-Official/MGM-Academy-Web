@@ -30,11 +30,21 @@ function Navbar() {
     if (student) {
       //setLoggedIn(true);
       setUserType('student');
+      if(instructor){
+        setUserType("instructor")
+      }
       setUser(student);
+      setLoggedIn(true)
     } 
      if (instructor) {
       //setLoggedIn(true);
       setUserType('instructor');
+      setUser(instructor);
+      //alert(instructor)
+      setLoggedIn(true);
+      if(student){
+        setUserType("student");
+      }
       try {
         setUser(JSON.parse(instructor).name || 'Instructor');
       } catch {

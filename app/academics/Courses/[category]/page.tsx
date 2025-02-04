@@ -26,6 +26,9 @@ function Page() {
         student_id: "2e4r5wegdy3443423sfdw44",
         course_id:"hxh3b3248h32b6b32uh92wdh83",
     };
+    const[selectedCourse,setSelectedCourse]=useState("");
+    const[hidePurchase,sethidePurchase]=useState(true);
+    const[courses,setCourses]=useState([])
 
     async function confirmPurchase(props: Info) {
         try {
@@ -48,7 +51,10 @@ function Page() {
 
     return (
         <div className="h-screen w-full p-4">
-            <table className="w-[90%] sm:w-[400px] bg-gray-100 dark:bg-gray-800 mx-auto text-center rounded-lg shadow-md">
+            {hidePurchase&&<div>
+                {courses.map((item)=>(<div key={item}></div>))}
+                </div>}
+           {!hidePurchase&&<table className="w-[90%] sm:w-[400px] bg-gray-100 dark:bg-gray-800 mx-auto text-center rounded-lg shadow-md">
                 <thead>
                     <tr>
                         <th colSpan={2} className="text-xl font-semibold text-blue-600 py-2">
@@ -98,7 +104,7 @@ function Page() {
                         </td>
                     </tr>
                 </tfoot>
-            </table>
+            </table>}
         </div>
     );
 }
