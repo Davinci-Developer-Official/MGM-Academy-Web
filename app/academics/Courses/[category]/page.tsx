@@ -27,7 +27,7 @@ function Page() {
         course_id:"hxh3b3248h32b6b32uh92wdh83",
     };
     const[selectedCourse,setSelectedCourse]=useState("");
-    const[hidePurchase,sethidePurchase]=useState(true);
+    const[hidePurchase,sethidePurchase]=useState(false);
     const[courses,setCourses]=useState([])
 
     async function confirmPurchase(props: Info) {
